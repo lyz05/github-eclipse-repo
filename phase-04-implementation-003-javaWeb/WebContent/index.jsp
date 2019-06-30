@@ -63,13 +63,13 @@
     <span id="firstline" style="font-size: 22px; color: white">大家好，我与这学期学习“软件工程导论”的学生们准备设计和实现一个“<span
 		style="font-size: 38px; color: red">流浪地球</span>”的模拟工程！ 欢迎大家观赏,谢谢！点击屏幕左下角的地球，可以开始悲壮的流浪！！
 	</span>
-	<audio id="waiting" src="/static/audio/waiting.mp3" preload="auto" onended="onWaitingAudioEnd();"></audio>
+	<audio id="waiting" src="/static/audio/alwayswithme.mp3" preload="auto" onended="onWaitingAudioEnd();"></audio>
 	<div id="poem-txt"
 		style="display: none; font-size: 18px; color: red; position:absolute; left :10px;top:100px" >
 		《诗词版"流浪地球"》<br /> <span style="font-size: 18px; color: grey">
 			-郭鹏 </span><br /> <br /> 西风吹皱东方河，万年地球白发多。 <br /> 流浪星际家何去，满船清梦出银河。
 	</div>
-	<img src="/static/imgs/earth.png"
+	<img src="/static/imgs/earth1.png"
 		style="position: absolute; left: 10px; bottom: 10px; width: 150px"
 		onclick="run(this);return false" 
 		title="点击后，开始流浪 ！"
