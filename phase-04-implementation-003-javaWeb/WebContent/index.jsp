@@ -65,7 +65,7 @@
 	</span>
 	<audio id="waiting" src="/static/audio/waiting.mp3" preload="auto" onended="onWaitingAudioEnd();"></audio>
 	<div id="poem-txt"
-		style="display: none; font-size: 18px; color: orange; position:absolute; left :10px;top:50px" >
+		style="display: none; font-size: 18px; color: red; position:absolute; left :10px;top:100px" >
 		《诗词版"流浪地球"》<br /> <span style="font-size: 18px; color: grey">
 			-郭鹏 </span><br /> <br /> 西风吹皱东方河，万年地球白发多。 <br /> 流浪星际家何去，满船清梦出银河。
 	</div>
@@ -76,8 +76,11 @@
 		/>
 	<div id="moviebox" style="margin-top: 100px; display: none"
 		align="center">
+		<!--  
+			<iframe src="//player.bilibili.com/player.html?aid=37343342&cid=65633682&page=1" scrolling="no" border="0" frameborder="no" framespacing="0" allowfullscreen="true" onended="onVideoEnd();" id="movie" height="300px" width="25%" > </iframe>
+		-->
 		<video id="movie" height="300px" controls="controls"
-			src="/static/video/movie.mp4" onended="onVideoEnd();" />
+			src="/static/video/movie1.mp4" onended="onVideoEnd();" />
 	</div>
 	<div id="hornor" style="display:none;position:absolute;left:10x; bottom:10px;color:white;font-size:24px" align="center">2019年发生了很多大事，谨以此向<span style="color:red">《流浪地球》</span>和<span style="color:orange">华为公司</span>表示致敬 !  <br/>本网页未来将放在以下网站 sdlc.huaku-2019.xyz (华为公司的云服务器) <br/> huaku-2019, 2019 年，《流浪地球》 和华为很酷！ <br/>也许华为的崛起意味着，在人类未来需要流浪地球时，东方大国将作出巨大的贡献 ！</div>
 </body>
