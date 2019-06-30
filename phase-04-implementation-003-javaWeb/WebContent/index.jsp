@@ -58,7 +58,7 @@
 <body class="background">
 	<audio id="intr" controls="controls"
 		src="/static/audio/introduction.mp3" autoplay="autoplay"></audio>
-	<audio id="poem" src="/static/audio/wanderingEarch-poem.mp3"
+	<audio id="poem" src="/static/audio/poem.mp3"
 		preload="auto"></audio>
     <span id="firstline" style="font-size: 22px; color: white">大家好，我与这学期学习“软件工程导论”的学生们准备设计和实现一个“<span
 		style="font-size: 38px; color: red">流浪地球</span>”的模拟工程！ 欢迎大家观赏,谢谢！点击屏幕左下角的地球，可以开始悲壮的流浪！！
@@ -66,8 +66,8 @@
 	<audio id="waiting" src="/static/audio/alwayswithme.mp3" preload="auto" onended="onWaitingAudioEnd();"></audio>
 	<div id="poem-txt"
 		style="display: none; font-size: 18px; color: red; position:absolute; left :10px;top:100px" >
-		《诗词版"流浪地球"》<br /> <span style="font-size: 18px; color: grey">
-			-郭鹏 </span><br /> <br /> 西风吹皱东方河，万年地球白发多。 <br /> 流浪星际家何去，满船清梦出银河。
+		《南陵别儿童入京》<br /> <span style="font-size: 18px; color: grey">
+			[唐] 李白 </span><br /> <br /> 白酒新熟山中归，黄鸡啄黍秋正肥。 <br /> 呼童烹鸡酌白酒，儿女嬉笑牵人衣。 <br /> 高歌取醉欲自慰，起舞落日争光辉。 <br /> 游说万乘苦不早，著鞭跨马涉远道。 <br /> 会稽愚妇轻买臣，余亦辞家西入秦。 <br /> 仰天大笑出门去，我辈岂是蓬蒿人。
 	</div>
 	<img src="/static/imgs/earth1.png"
 		style="position: absolute; left: 10px; bottom: 10px; width: 150px"
