@@ -4,9 +4,10 @@
 <html>
 <head>
 <style>
-.background1 {
-	background-image: url(/static/imgs/pic008.jpg);
+.background {
+	background: url(/static/imgs/pic002.jpg) no-repeat padding-box content-box;
 	background-color: #000000;
+	background-size: cover;
 }
 </style>
 <script>
@@ -54,7 +55,7 @@
 <title>The Wandering Earth</title>
 <script src="/static/jquery.min.js"></script>
 </head>
-<body class="background1">
+<body class="background">
 	<audio id="intr" controls="controls"
 		src="/static/audio/introduction.mp3" autoplay="autoplay"></audio>
 	<audio id="poem" src="/static/audio/wanderingEarch-poem.mp3"
