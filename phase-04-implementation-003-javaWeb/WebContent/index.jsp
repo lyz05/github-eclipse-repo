@@ -1,5 +1,13 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@page import="sdlc.*"%>
+<%
+    String titleZH = "流浪地球";
+	String titleEN = "The Wandering Earth";
+	PoemWeb poem=new PoemWeb();
+    String poemText=poem.getPoemContent(1);
+    //System.out.print(poemText);
+%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -26,8 +34,6 @@
 			top : '20px'
 		}, 15000);
 		var o = $("#poem-txt");
-		//alert(o.width());
-		//alert(o.height());
 		//获取诗词控件对象
 		o.animate({
 			left : w-o.width(),
@@ -64,7 +70,7 @@
 	}
 </script>
 <meta charset="UTF-8">
-<title>The Wandering Earth</title>
+<title><%=titleEN %></title>
 <script src="/static/jquery.min.js"></script>
 </head>
 <body class="background">
@@ -73,13 +79,12 @@
 	<audio id="poem" src="/static/audio/poem.mp3"
 		preload="auto"></audio>
     <span id="firstline" style="font-size: 22px; color: white">大家好，我与这学期学习“软件工程导论”的学生们准备设计和实现一个“<span
-		style="font-size: 38px; color: red">流浪地球</span>”的模拟工程！ 欢迎大家观赏,谢谢！点击屏幕左下角的地球，可以开始悲壮的流浪！！
+		style="font-size: 38px; color: red"><%=titleZH %></span>”的模拟工程！ 欢迎大家观赏,谢谢！点击屏幕左下角的地球，可以开始悲壮的流浪！！
 	</span>
 	<audio id="waiting" src="/static/audio/alwayswithme.mp3" preload="auto" onended="onWaitingAudioEnd();"></audio>
 	<div id="poem-txt"
 		style="display: none; font-size: 18px; color: red; position:absolute; left :10px;top:100px" >
-		《南陵别儿童入京》<br /> <span style="font-size: 18px; color: grey">
-			[唐] 李白 </span><br /> <br /> 白酒新熟山中归，黄鸡啄黍秋正肥。 <br /> 呼童烹鸡酌白酒，儿女嬉笑牵人衣。 <br /> 高歌取醉欲自慰，起舞落日争光辉。 <br /> 游说万乘苦不早，著鞭跨马涉远道。 <br /> 会稽愚妇轻买臣，余亦辞家西入秦。 <br /> 仰天大笑出门去，我辈岂是蓬蒿人。
+		<%=poemText%>
 	</div>
 	<img src="/static/imgs/earth1.png"
 		style="position: absolute; left: 10px; bottom: 10px; width: 150px"

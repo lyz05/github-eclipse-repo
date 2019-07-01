@@ -7,7 +7,6 @@ public class HelloWorldWeb {
     		"			<br /> 流浪星际家何去，满船清梦出银河。";
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
-
 	}
     public String getPoemContent() {
     	return poemTest;
