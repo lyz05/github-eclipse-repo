@@ -12,6 +12,9 @@
 </style>
 <script>
 	function run(clickedObj) {
+		var h = document.documentElement.clientHeight || document.body.clientHeight;
+		var w = document.documentElement.clientWidth || document.body.clientWidth;
+		//获取浏览器显示界面高度宽度
 		$("#firstline").fadeOut('slow');
 		$('#intr')[0].pause();
 		$('#poem')[0].play();
@@ -19,9 +22,18 @@
 		$(clickedObj).animate({
 			width : '10px',
 			opacity : '0.2',
-			left : '1000px',
+			left : w-20,
 			top : '20px'
-		}, 30000);
+		}, 15000);
+		var o = $("#poem-txt");
+		//alert(o.width());
+		//alert(o.height());
+		//获取诗词控件对象
+		o.animate({
+			left : w-o.width(),
+			top : h-o.height()-10,
+		}, 15000);
+		//alert(w);
 		//$('#waiting')[0].play();
 		$("#moviebox").show('slow');
 		$("#movie")[0].play();
