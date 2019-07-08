@@ -98,5 +98,10 @@ public class PoemWeb {
     	return poemTest;
     }
 }
+//mysql -u root -p
+//ALTER USER 'root'@'localhost' IDENTIFIED WITH mysql_native_password BY '5137';
+//create database sdlc;
+//use sdlc;
+//create table poem(id int,content char(255));
 //INSERT INTO `poem` VALUES ('1', '《南陵别儿童入京》<br /> <span style=\"font-size: 18px; color: grey\">[唐] 李白 </span><br /> <br /> 白酒新熟山中归，黄鸡啄黍秋正肥。<br /> 呼童烹鸡酌白酒，儿女嬉笑牵人衣。<br /> 高歌取醉欲自慰，起舞落日争光辉。<br /> 游说万乘苦不早，著鞭跨马涉远道。<br /> 会稽愚妇轻买臣，余亦辞家西入秦。<br /> 仰天大笑出门去，我辈岂是蓬蒿人。');
 //INSERT INTO `poem` VALUES ('2', '《诗词版\"流浪地球\"》<br /> <span style=\"font-size: 18px; color: grey\">-郭鹏 </span><br /> <br /> 西风吹皱东方河，万年地球白发多。 <br /> 流浪星际家何去，满船清梦出银河。');
