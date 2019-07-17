@@ -3,13 +3,26 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="ISO-8859-1">
-<title>Insert title here</title>
+	<title>Input information</title>
 </head>
+<script>
+	function submit1()
+	{
+		//alert(123);
+		var odiv=document.getElementById("information");
+		odiv.style.display="block";
+		
+	}
+</script>
 <body>
-	<div align="center">
-		<form action="information.jsp" method="post">        
-	            登录信息采集
+<% if( request.getMethod().equals("POST") ){ %>
+    <div id="information" style="display:block;">
+    	<jsp:include page = "/information.jsp" />
+    </div>
+<% }else if( request.getMethod().equals("GET") ){ %> 
+    <div align="center">
+		<form method="post" action="">        
+	            <h1>登录信息采集</h1>
 	            <table>                        
 	            <tr>
 	                <td><label for="username">姓名：</label></td>
@@ -48,12 +61,15 @@
 	            </tr>
 	            <tr>
 	                <td colspan="2" align="center" >
-	                    <input type="submit" value="提交" />
+	                    <input type="submit" value="提交"  />
 	                    <input type="reset" value="重置" />                
 	                </td>
 	            </tr>
             </table>
 		</form>    
-    </div>>
+    </div>
+<% } %>
+
+
 </body>
 </html>

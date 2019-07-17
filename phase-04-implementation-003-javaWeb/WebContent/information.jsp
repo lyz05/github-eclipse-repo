@@ -3,7 +3,7 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <title>Insert title here</title>
+        <title>Show information</title>
     </head>
     <body>
         <%
@@ -18,18 +18,20 @@
             String textarea = request.getParameter("textarea");
         %>
             
-
-        <h1>姓名:<%=username %></h1>
-        <h1>密码:<%=password %></h1>
-        <h1>性别:<%=sex %></h1>
-        <h1>兴趣:</h1>
+	<div align="center">
+	<h1>信息采集结果</h1>
+        	姓名:<%=username %><br>
+        	密码:<%=password %><br>
+        	性别:<%=sex %><br>
+        	兴趣:<br>
         <% if(inst!=null) {%>
         <% System.out.println(inst.length); %>
         <%for(int i=0;i<inst.length;i ++){ %>    
-        <h1><%=inst[i]%></h1>
+        <%=inst[i]%><br>
         <%} }%>
-        <h1>出生日期:<%=date %></h1>
-        <h1>电子邮箱:<%=email %></h1>
-        <h1>个人简介:<%=textarea %></h1>
+        	出生日期:<%=date %><br>
+        	电子邮箱:<%=email %><br>
+        	个人简介:<%=textarea %><br>
+     </div>
     </body>
 </html>
