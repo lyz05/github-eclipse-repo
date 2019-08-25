@@ -111,7 +111,7 @@
 			<iframe src="//player.bilibili.com/player.html?aid=37343342&cid=65633682&page=1" scrolling="no" border="0" frameborder="no" framespacing="0" allowfullscreen="true" onended="onVideoEnd();" id="movie" height="300px" width="25%" > </iframe>
 		-->
 		<video id="movie" height="300px" controls="controls"
-			src="/static/video/movie1.mp4" onended="onVideoEnd();" />
+			src="/static/video/movie1.mp4" onended="onVideoEnd();" /></video>
 	</div>
 	<div id="hornor" style="display:none;position:absolute;left:10x; bottom:10px;color:white;font-size:24px" align="center">2019年发生了很多大事，谨以此向<span style="color:red">《流浪地球》</span>和<span style="color:orange">华为公司</span>表示致敬 !  <br/>本网页未来将放在以下网站 sdlc.huaku-2019.xyz (华为公司的云服务器) <br/> huaku-2019, 2019 年，《流浪地球》 和华为很酷！ <br/>也许华为的崛起意味着，在人类未来需要流浪地球时，东方大国将作出巨大的贡献 ！</div>
 </body>
