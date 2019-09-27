@@ -24,7 +24,7 @@ public class PoemWeb {
  
     // 数据库的用户名与密码，需要根据自己的设置
     static final String USER = "root";
-    static final String PASS = "";
+    static final String PASS = "5137";
  
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
