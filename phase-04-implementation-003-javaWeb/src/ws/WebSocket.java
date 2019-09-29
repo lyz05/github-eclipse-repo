@@ -88,8 +88,8 @@ public class WebSocket {
 					Date now = new Date(); 
 					SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");//可以方便地修改日期格式
 					String time = dateFormat.format( now );
-					sendMessage("当前在线人数："+online_num+"\n服务器当前时间:"+time);
-					System.out.println("Session:"+session);
+					sendMessage("当前在线人数："+online_num+"<br>服务器当前时间："+time);
+					//System.out.println("Session:"+session);
 					TimeUnit.MILLISECONDS.sleep(1000);//MILLISECONDS表示以毫秒为单位延时
 				}
 			} catch (Exception e) {

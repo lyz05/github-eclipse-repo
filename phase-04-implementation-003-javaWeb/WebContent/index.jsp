@@ -6,6 +6,7 @@
 	String titleEN = "The Wandering Earth";
 	PoemWeb poem=new PoemWeb();
     String poemText=poem.getPoemContent(1);
+    String basePath = "ws://"+request.getServerName()+":"+request.getServerPort();//远程ip地址
 %>
 <!DOCTYPE html>
 <html>
@@ -15,9 +16,23 @@
 				background: url(/static/imgs/pic002.jpg) no-repeat padding-box content-box;
 				background-color: #000000;
 				background-size: cover;
-			}
+			}    
+	        html{height:100%;}
+	        body{min-height:100%;margin:0;padding:0;position:relative;}
+	
+	        .footer{
+	        	position:absolute;
+	        	bottom:0;
+	        	width:100%;
+	        	height:50px;
+	        	text-align:center;
+	        	font-size:16px;
+	        	color: white;
+	        	
+	        }
 		</style>
 		<script src="/static/jquery.min.js"></script>
+		<script src="/static/js/websocket.js"></script>
 		<script>
 			function run(clickedObj) {
 				//隐藏inputinformation,link,firstline
@@ -66,12 +81,12 @@
 			function onWaitingAudioEnd(){
 				$('#intr')[0].play();	
 			}
-</script>
-
-<meta charset="UTF-8">
-<title><%=titleEN %></title>
+	</script>
+	<meta charset="UTF-8">
+	<title><%=titleEN %></title>
 </head>
-<body class="background">
+
+<body class="background" onload="connect('<%=basePath%>');">
 	<audio id="intr" controls="controls"
 		src="/static/audio/introduction.mp3" autoplay="autoplay">
 	</audio>
@@ -118,5 +133,7 @@
 	</div>
 	
 	<div id="hornor" style="display:none;position:absolute;left:10x; bottom:10px;color:white;font-size:24px" align="center">2019年发生了很多大事，谨以此向<span style="color:red">《流浪地球》</span>和<span style="color:orange">华为公司</span>表示致敬 !  <br/>本网页未来将放在以下网站 sdlc.huaku-2019.xyz (华为公司的云服务器) <br/> huaku-2019, 2019 年，《流浪地球》 和华为很酷！ <br/>也许华为的崛起意味着，在人类未来需要流浪地球时，东方大国将作出巨大的贡献 ！</div>
+<!-- 显示服务器时间及在线人数信息 -->
+<div class="footer" id="footer"></div>
 </body>
 </html>
