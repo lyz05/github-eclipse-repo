@@ -22,7 +22,7 @@
         	inst[i] = $(this).val();
         });
         $.ajax({
-			url: "Registerservlet",
+			url: "RegisterServlet",
 			type: "post",
 			dataType: "html",
 			data: $('#form').serialize(),
@@ -42,7 +42,7 @@
 
 <body>
 <div align="center">
-	<div id="index" style=display:> 
+	<div id="index" style="display:block;"> 
     	<form id="form" method="post" action="">        
 		            <h1>登录信息采集</h1>
 		            <table>                        
