@@ -31,7 +31,7 @@
 		<h1>聊天室登录</h1>
 		<form id="myform" action="index.jsp" method="post">
 			姓名：<input id="name" name="name" type="text" />
-			<input type="submit" value="开始聊天" onclick="login()"/>
+			<input type="submit" value="开始聊天"/>
 		</form>
 	</div>
 

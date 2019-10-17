@@ -5,8 +5,10 @@
     String titleZH = "流浪地球";
 	String titleEN = "The Wandering Earth";
 	PoemWeb poem=new PoemWeb();
-    String poemText=poem.getPoemContent(1);
-    String basePath = "ws://"+request.getServerName()+":"+request.getServerPort();//远程ip地址
+    String poemText = poem.getPoemContent(1);
+    String wsprotol;
+    if (request.isSecure()) wsprotol = "wss"; else wsprotol = "ws"; 
+    String basePath = wsprotol +"://"+request.getServerName()+":"+request.getServerPort();//远程ip地址
 %>
 <!DOCTYPE html>
 <html>
@@ -86,7 +88,7 @@
 	<title><%=titleEN %></title>
 </head>
 
-<body class="background" onload="connect('<%=basePath%>');">
+<body class="background" onload="connect('<%=basePath %>');">
 	<audio id="intr" controls="controls"
 		src="/static/audio/introduction.mp3" autoplay="autoplay">
 	</audio>

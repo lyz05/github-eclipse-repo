@@ -1,7 +1,9 @@
 
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<%	String basePath = "ws://"+request.getServerName()+":"+request.getServerPort();//远程ip地址
+<%  String wsprotol;
+	if (request.isSecure()) wsprotol = "wss"; else wsprotol = "ws"; 
+	String basePath = wsprotol +"://"+request.getServerName()+":"+request.getServerPort();//远程ip地址
 	String username = new String(session.getAttribute("userName").toString().getBytes("iso-8859-1"),"utf-8");
 %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
