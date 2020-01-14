@@ -32,51 +32,52 @@
 </head>
 <body>
 
-<h1>Session 跟踪</h1>
-
-<table border="1" align="center"> 
-<tr bgcolor="#949494">
-   <th>Session 信息</th>
-   <th>值</th>
-</tr> 
-<tr>
-   <td>id</td>
-   <td><% out.print( session.getId()); %></td>
-</tr> 
-<tr>
-	<td>标题</td>
-	<td><%=title  %>
-</tr>
-<tr>
-	<td>所有属性名称</td>
-	<td><%
-
-		Enumeration<String> en=session.getAttributeNames();
-		while(en.hasMoreElements())
-		{
-			String name=(String) en.nextElement();
-			out.println(name);
-			out.print("<br>");
-		}
-
-	%>
-</tr>
-<tr>
-   <td>创建时间</td>
-   <td><% out.print(createTime); %></td>
-</tr> 
-<tr>
-   <td>最后访问时间</td>
-   <td><% out.print(lastAccessTime); %></td>
-</tr> 
-<tr>
-   <td>用户 ID</td>
-   <td><% out.print(userID); %></td>
-</tr> 
-<tr>
-   <td>访问次数</td>
-   <td><% out.print(visitCount); %></td>
-</tr> 
-</table> 
+<div style="text-align: center">
+	<h1>Session 跟踪</h1>
+	<table border="1" style="margin:auto"> 
+	<tr bgcolor="#949494">
+	   <th>Session 信息</th>
+	   <th>值</th>
+	</tr> 
+	<tr>
+	   <td>id</td>
+	   <td><% out.print( session.getId()); %></td>
+	</tr> 
+	<tr>
+		<td>标题</td>
+		<td><%=title  %>
+	</tr>
+	<tr>
+		<td>所有属性名称</td>
+		<td><%
+	
+			Enumeration<String> en=session.getAttributeNames();
+			while(en.hasMoreElements())
+			{
+				String name=(String) en.nextElement();
+				out.println(name);
+				out.print("<br>");
+			}
+	
+		%>
+	</tr>
+	<tr>
+	   <td>创建时间</td>
+	   <td><% out.print(createTime); %></td>
+	</tr> 
+	<tr>
+	   <td>最后访问时间</td>
+	   <td><% out.print(lastAccessTime); %></td>
+	</tr> 
+	<tr>
+	   <td>用户 ID</td>
+	   <td><% out.print(userID); %></td>
+	</tr> 
+	<tr>
+	   <td>访问次数</td>
+	   <td><% out.print(visitCount); %></td>
+	</tr> 
+	</table> 
+</div>
 </body>
 </html>

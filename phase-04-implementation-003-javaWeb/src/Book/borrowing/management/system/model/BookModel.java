@@ -1,0 +1,55 @@
+package Book.borrowing.management.system.model;
+
+public class BookModel {
+	public String bookno,bookname,author,press,publishdate_1,publishdate_2,price,publishdate,shopnum;
+	public boolean check;
+	public String readerno;
+	public BookModel() {
+		this.bookno=new String();
+		this.bookname=new String();
+		this.author=new String();
+		this.press=new String();
+		this.publishdate_1=new String();
+		this.publishdate_2=new String();
+		this.price=new String();
+		this.publishdate=new String();
+		this.shopnum=new String();
+		this.check=false;
+		this.readerno=new String();
+	}
+	public BookModel(String bookno,String bookname,String author,String press,String publishdate_1,String publishdate_2,boolean check,String readerno)
+	{
+		this.bookno=bookno;
+		this.bookname=bookname;
+		this.author=author;
+		this.press=press;
+		this.publishdate_1=publishdate_1;
+		this.publishdate_2=publishdate_2;
+		this.check=check;
+		this.readerno=readerno;
+	}
+	public BookModel(String bookno,String bookname,String author,String press,String price,String publishdate,String shopnum)
+	{
+		this.bookno=bookno;
+		this.bookname=bookname;
+		this.author=author;
+		this.press=press;
+		this.price=price;
+		this.publishdate=publishdate;
+		this.shopnum=shopnum;
+	}
+	public String getSqlQueryString() {
+		String sql = "where 图书编号 like '%"+ bookno + "%' and 图书名称 like '%" + bookname + "%' and 作者 like '%" + author + "%' and 出版社 like '%" + press + "%'";
+        if (!publishdate_1.equals("")) 
+            sql += " and 出版日期>='" + publishdate_1+"'";
+        if (!publishdate_2.equals("")) 
+            sql += " and 出版日期<='" + publishdate_2+"'";
+        if (check)
+            sql += " and 在库数量>0 and 图书编号 not in (select 图书编号 from View_Borrow where 读者编号='"+readerno+"' and 归还日期 is null)";
+        return sql;
+	}
+	public String getSqlQueryString1() {
+		String sql= "where 图书编号 like '%"+bookno+"%' and 图书名称 like '%"+bookname+"%' and 作者 like '%"+author +"%' and 出版社 like '%"+press+"%'";
+		return sql;
+	}
+}

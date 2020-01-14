@@ -22,13 +22,6 @@ import javax.swing.table.TableColumnModel;
 public class Util4Frm {
     private Util4Frm() {}       //禁止实例化
     /**
-     * 当前登陆用户的ReaderNO，对所有的窗口均适用
-     */
-    //public static String readerNO = null;
-    /**
-     * 排序的方向，用于对jTable中的列排序
-     */
-    private static boolean sort = false;
     
     /**
      * 设置窗口显示效果，原界面丑拒
@@ -113,16 +106,15 @@ public class Util4Frm {
      * @param col 对应的列
      * @return 返回排序需要追加的sql文本
      */
-    public static String getappendsqlbyorder(JTable jtable,int col){
+    public static String getappendsqlbyorder(String colName){
         //获取列名
-        String colName = jtable.getColumnName(col);
         String appendsql = " order by "+colName;
         //根据排序方向选择升序或降序
-        if (sort) {
-            appendsql += " desc";
-        }
+        //if (sort) {
+        //    appendsql += " desc";
+        //}
         //再次运行方法，更换排序方向
-        sort = !sort;
+        //sort = !sort;
         return appendsql;
     }
     
