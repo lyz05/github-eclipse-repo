@@ -98,7 +98,6 @@
 						<%}
 						%>
 						<th>借阅操作</th>
-						<th>续借操作</th>
 					</tr>
 				</thead>
 				<tbody>
@@ -107,8 +106,10 @@
 							<% for (String item:row) { %>
 								<td><%=item %></td>
 							<%}%>
-							<td><a href="api/bookreturn?bookno=<%=row.get(0)%>">还书</a></td>
-							<td><a href="api/bookrenew?bookno=<%=row.get(0)%>">续借</a></td>
+							<td>
+								<a href="api/bookreturn?bookno=<%=row.get(0)%>">还书</a> |
+								<a href="api/bookrenew?bookno=<%=row.get(0)%>">续借</a>
+							</td>
 						</tr>
 					<%}%>
 				</tbody>

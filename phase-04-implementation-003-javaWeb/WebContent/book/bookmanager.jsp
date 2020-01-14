@@ -80,6 +80,7 @@
 							<th><a href="?orderby=<%=item %>"><%=item %></a></th>
 						<%}
 						%>
+						<th>操作</th>
 					</tr>
 				</thead>
 				<tbody>
@@ -88,6 +89,10 @@
 							<% for (String item:row) { %>
 								<td><%=item %></td>
 							<%}%>
+							<td>
+								<a>编辑</a> |
+								<a href="api/bookdelete?bookno=<%=row.get(0)%>">删除</a>
+							</td>
 						</tr>
 					<%}%>
 				</tbody>
