@@ -32,7 +32,7 @@
 		orderby = new String(request.getParameter("orderby").getBytes("iso-8859-1"), "utf-8");
 		if (session.getAttribute("sort")==null || session.getAttribute("sort").toString().equals(""))
 		{
-	session.setAttribute("sort", "desc");
+		session.setAttribute("sort", "desc");
 		} else session.setAttribute("sort", "");
 		appendsql = " order by "+orderby+" "+session.getAttribute("sort");
 	}
@@ -77,7 +77,7 @@
 			  	<thead>
 					<tr>
 						<% for (String item:BookTable.name) { %>
-							<th><a href="?orderby=<%=item %>" onclick="reload()"><%=item %></a></th>
+							<th><a href="?orderby=<%=item %>"><%=item %></a></th>
 						<%}
 						%>
 					</tr>

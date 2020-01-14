@@ -13,7 +13,7 @@
 		window.location.href='index.jsp'
 	</script>
 <%	return;
-	} 
+	}
 %>
 <%
 	request.setCharacterEncoding("UTF-8"); 
