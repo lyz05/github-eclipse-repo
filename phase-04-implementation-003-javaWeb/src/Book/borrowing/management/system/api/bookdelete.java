@@ -8,6 +8,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import Book.borrowing.management.system.BookDBCon;
+import Book.borrowing.management.system.Util4Frm;
 
 /**
  * Servlet implementation class bookdelete
@@ -42,9 +43,9 @@ public class bookdelete extends HttpServlet {
         BookDBCon.preparedupdateData(sql,bookNO);
         sql = "delete from Book where bookNO=?";
         if (BookDBCon.preparedupdateData(sql,bookNO)) {
-			response.getWriter().append("<script>alert('删除信息成功');window.location.href='../bookmanager.jsp'</script>");
+        	Util4Frm.showMessageDialogAndReturn(response,"删除信息成功");
 		} else {
-			response.getWriter().append("<script>alert('删除信息失败');window.location.href='../bookmanager.jsp'</script>");
+			Util4Frm.showMessageDialogAndReturn(response,"删除信息失败");
 		}
 	}
 

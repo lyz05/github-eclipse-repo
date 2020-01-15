@@ -7,6 +7,10 @@
 package Book.borrowing.management.system;
 
 import java.awt.Component;
+import java.io.IOException;
+
+import javax.servlet.ServletException;
+import javax.servlet.http.HttpServletResponse;
 import javax.swing.*;
 import javax.swing.JOptionPane;
 import javax.swing.SwingUtilities;
@@ -18,6 +22,7 @@ import javax.swing.table.TableColumnModel;
 /**
  *
  * @author congcong
+ * 通用类
  */
 public class Util4Frm {
     private Util4Frm() {}       //禁止实例化
@@ -190,5 +195,10 @@ public class Util4Frm {
          }while (input.charAt(i) != '\0');
          return output;
     }
-
+    
+    public static void showMessageDialogAndReturn(HttpServletResponse response,String message) throws ServletException, IOException {
+		response.setContentType("text/html; charset=UTF-8");
+		response.setCharacterEncoding("UTF-8");
+		response.getWriter().append("<script>alert('"+message+"');location.href=document.referrer;</script>");
+    }
 }

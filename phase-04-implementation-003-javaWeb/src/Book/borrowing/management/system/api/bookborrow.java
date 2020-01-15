@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import Book.borrowing.management.system.BookDBCon;
+import Book.borrowing.management.system.Util4Frm;
 
 /**
  * Servlet implementation class bookborrow
@@ -50,9 +51,9 @@ public class bookborrow extends HttpServlet {
             return;
         }
 		if(BookDBCon.preparedupdateData(sql,readerNO,bookNO)) {
-			response.getWriter().append("<script>alert('借书成功');window.location.href='../borrowinformation.jsp#tabs-3'</script>");
+			Util4Frm.showMessageDialogAndReturn(response,"借书成功");
 		} else {
-			response.getWriter().append("<script>alert('借书失败');window.location.href='../borrowinformation.jsp#tabs-3'</script>");
+			Util4Frm.showMessageDialogAndReturn(response,"借书失败");
 		}
 	}
 

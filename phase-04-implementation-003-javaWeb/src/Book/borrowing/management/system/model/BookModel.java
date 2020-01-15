@@ -1,5 +1,7 @@
 package Book.borrowing.management.system.model;
 
+import Book.borrowing.management.system.BookDBCon;
+
 public class BookModel {
 	public String bookno,bookname,author,press,publishdate_1,publishdate_2,price,publishdate,shopnum;
 	public boolean check;
@@ -51,5 +53,9 @@ public class BookModel {
 	public String getSqlQueryString1() {
 		String sql= "where 图书编号 like '%"+bookno+"%' and 图书名称 like '%"+bookname+"%' and 作者 like '%"+author +"%' and 出版社 like '%"+press+"%'";
 		return sql;
+	}
+	public boolean getSqlAddResult() {
+		String sql= "INSERT INTO Book VALUES(?,?,?,?,?,?,?)";
+		 return BookDBCon.preparedupdateData(sql,bookno,bookname,author,press,price,publishdate,shopnum);
 	}
 }

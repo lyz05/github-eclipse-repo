@@ -19,6 +19,7 @@ import java.util.Vector;
 /**
  *
  * @author congcong
+ * 数据库连接层
  */
 public class BookDBCon {
     private static final String DBdriver="com.microsoft.sqlserver.jdbc.SQLServerDriver";

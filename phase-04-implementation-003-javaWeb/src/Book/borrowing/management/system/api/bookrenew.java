@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import Book.borrowing.management.system.BookDBCon;
+import Book.borrowing.management.system.Util4Frm;
 
 /**
  * Servlet implementation class bookrenew
@@ -42,9 +43,9 @@ public class bookrenew extends HttpServlet {
 		request.setCharacterEncoding("UTF-8");
 		response.setCharacterEncoding("UTF-8");
 		if(BookDBCon.preparedupdateData(sql,readerNO,bookNO)) {
-			response.getWriter().append("<script>alert('续借成功');window.location.href='../borrowinformation.jsp'</script>");
+			Util4Frm.showMessageDialogAndReturn(response,"续借成功");
 		} else {
-			response.getWriter().append("<script>alert('续借失败');window.location.href='../borrowinformation.jsp'</script>");
+			Util4Frm.showMessageDialogAndReturn(response,"续借失败");
 		}
 	}
 

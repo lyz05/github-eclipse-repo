@@ -57,7 +57,7 @@
 		</div>
 
 		<div class="screen">
-			<form method="POST" action="bookmanager.jsp">
+			<form method="POST" name="form1">
 				<fieldset>
 				<legend>筛选模式（左栏信息可筛选）</legend>
 				<p>图书编号：<input name="bookno" value="<%=bookinfo.bookno%>">
@@ -67,7 +67,8 @@
 				<p>作者：<input name="author" value="<%=bookinfo.author%>">
 				<span class="right">入库数量：<input name="shopnum" value="<%=bookinfo.shopnum%>"></span></p>
 				<p>出版社：<input name="press" value="<%=bookinfo.press%>"></p>
-				<input type="submit" value="查询" class="btn"> 
+				<input type="button" value="查询" class="btn" onclick="search()">
+				<input type="button" value="添加" class="btn" onclick="add()">
 				</fieldset>
 			</form>
 		</div>
@@ -90,7 +91,7 @@
 								<td><%=item %></td>
 							<%}%>
 							<td>
-								<a>编辑</a> |
+								<a onclick="edit()">编辑</a> |
 								<a href="api/bookdelete?bookno=<%=row.get(0)%>">删除</a>
 							</td>
 						</tr>
@@ -99,5 +100,17 @@
 			</table>
 		</div>
 	</body>
-	
+	<script>
+		function search(){
+	        document.form1.action="bookmanager.jsp";
+	        document.form1.submit();
+		}
+		function add() {
+			document.form1.action="api/bookadd";
+			document.form1.submit();
+		}
+		function edit(){
+			$('#bookno').val('123');
+		}
+	</script>
 </html>
