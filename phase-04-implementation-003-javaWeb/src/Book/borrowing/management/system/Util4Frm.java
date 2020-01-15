@@ -10,6 +10,7 @@ import java.awt.Component;
 import java.io.IOException;
 
 import javax.servlet.ServletException;
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.swing.*;
 import javax.swing.JOptionPane;
@@ -200,5 +201,12 @@ public class Util4Frm {
 		response.setContentType("text/html; charset=UTF-8");
 		response.setCharacterEncoding("UTF-8");
 		response.getWriter().append("<script>alert('"+message+"');window.location.href='"+url+"';</script>");
+    }
+    
+    public static boolean judgeusername(HttpServletRequest request,HttpServletResponse response) throws ServletException, IOException {
+    	if (request.getSession().getAttribute("username")==null) {
+    		Util4Frm.showMessageDialogAndReturn(response,"·Ç·¨²Ù×÷","../index.jsp");
+    	}
+    	return request.getSession().getAttribute("username")!=null;
     }
 }

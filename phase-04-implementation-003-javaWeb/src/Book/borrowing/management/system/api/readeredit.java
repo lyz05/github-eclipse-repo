@@ -11,16 +11,16 @@ import Book.borrowing.management.system.BookDBCon;
 import Book.borrowing.management.system.Util4Frm;
 
 /**
- * Servlet implementation class bookedit
+ * Servlet implementation class readeredit
  */
-@WebServlet("/book/api/bookedit")
-public class bookedit extends HttpServlet {
+@WebServlet("/book/api/readeredit")
+public class readeredit extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public bookedit() {
+    public readeredit() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -40,12 +40,10 @@ public class bookedit extends HttpServlet {
 		// TODO Auto-generated method stub
 		if (!Util4Frm.judgeusername(request,response)) return;
 		request.setCharacterEncoding("UTF-8");
-		if (BookDBCon.preparedupdateData("update Book set bookName=?,authorName=?,publishingName=?,price=?,publishingDate=?,shopNum=? where bookNO=?",request.getParameter("bookname"),request.getParameter("author"),request.getParameter("press"),request.getParameter("price"),request.getParameter("publishdate"),request.getParameter("shopnum"),request.getParameter("bookno"))) {
-            Util4Frm.showMessageDialogAndReturn(response,"修改信息成功","../bookmanager.jsp");
+		if (BookDBCon.preparedupdateData("update Reader set readerName=?,sex=?,identitycard=?,workUnit=? where readerNO=?",request.getParameter("readername"),request.getParameter("sex"),request.getParameter("idnum"),request.getParameter("workunit"),request.getParameter("readerno"))) {
+            Util4Frm.showMessageDialogAndReturn(response,"修改信息成功","../readerinformation.jsp");
         } else {
-            Util4Frm.showMessageDialogAndReturn(response,"修改信息失败","../bookmanager.jsp");
+            Util4Frm.showMessageDialogAndReturn(response,"修改信息失败","../readerinformation.jsp");
         }
-
 	}
-
 }

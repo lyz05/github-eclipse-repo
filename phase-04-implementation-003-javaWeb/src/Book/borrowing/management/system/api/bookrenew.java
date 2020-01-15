@@ -31,6 +31,7 @@ public class bookrenew extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
+		if (!Util4Frm.judgeusername(request,response)) return;
 		HttpSession session = request.getSession(true);
 		String bookNO = request.getParameter("bookno");
 		String readerNO = session.getAttribute("username").toString();

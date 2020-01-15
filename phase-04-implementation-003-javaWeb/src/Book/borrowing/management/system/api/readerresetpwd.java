@@ -11,16 +11,16 @@ import Book.borrowing.management.system.BookDBCon;
 import Book.borrowing.management.system.Util4Frm;
 
 /**
- * Servlet implementation class bookedit
+ * Servlet implementation class readerresetpwd
  */
-@WebServlet("/book/api/bookedit")
-public class bookedit extends HttpServlet {
+@WebServlet("/book/api/readerresetpwd")
+public class readerresetpwd extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public bookedit() {
+    public readerresetpwd() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -30,7 +30,13 @@ public class bookedit extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		response.getWriter().append("This Pages isn't support GET");
+		if (!Util4Frm.judgeusername(request,response)) return;
+		String readerno = request.getParameter("readerno");
+        if (BookDBCon.preparedupdateData("update Reader set password='' from Reader where readerNo=?",readerno)) {
+        	Util4Frm.showMessageDialogAndReturn(response,"重置密码成功","../readerinformation.jsp");
+        } else {
+        	Util4Frm.showMessageDialogAndReturn(response,"重置密码失败","../readerinformation.jsp");
+        }
 	}
 
 	/**
@@ -38,14 +44,7 @@ public class bookedit extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		if (!Util4Frm.judgeusername(request,response)) return;
-		request.setCharacterEncoding("UTF-8");
-		if (BookDBCon.preparedupdateData("update Book set bookName=?,authorName=?,publishingName=?,price=?,publishingDate=?,shopNum=? where bookNO=?",request.getParameter("bookname"),request.getParameter("author"),request.getParameter("press"),request.getParameter("price"),request.getParameter("publishdate"),request.getParameter("shopnum"),request.getParameter("bookno"))) {
-            Util4Frm.showMessageDialogAndReturn(response,"修改信息成功","../bookmanager.jsp");
-        } else {
-            Util4Frm.showMessageDialogAndReturn(response,"修改信息失败","../bookmanager.jsp");
-        }
-
+		doGet(request, response);
 	}
 
 }

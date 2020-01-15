@@ -39,6 +39,7 @@ public class bookadd extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
+		if (!Util4Frm.judgeusername(request,response)) return;
 		request.setCharacterEncoding("UTF-8");
 		BookModel bookinfo = new BookModel();
 		bookinfo = new BookModel(request.getParameter("bookno"),request.getParameter("bookname"),request.getParameter("author"),request.getParameter("press"),request.getParameter("price"),request.getParameter("publishdate"),request.getParameter("shopnum"));
