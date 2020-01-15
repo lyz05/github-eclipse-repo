@@ -52,7 +52,7 @@ public class login extends HttpServlet {
         	session.setAttribute("username", username);
         	//进入到管理员选择界面后跳转到指定页面
             response.getWriter().print("<script>var res=confirm('您好，管理员\\n确定 进入图书管理界面\\n取消 进入读者管理界面');\nif(res==true)\nwindow.location.href='../bookmanager.jsp';\n else window.location.href='../readerinformation.jsp';</script>");
-        } else Util4Frm.showMessageDialogAndReturn(response,"用户名或密码错误");
+        } else Util4Frm.showMessageDialogAndReturn(response,"用户名或密码错误","../index.jsp");
 	}
 
 }

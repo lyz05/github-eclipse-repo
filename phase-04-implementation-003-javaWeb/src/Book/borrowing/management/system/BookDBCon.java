@@ -23,7 +23,7 @@ import java.util.Vector;
  */
 public class BookDBCon {
     private static final String DBdriver="com.microsoft.sqlserver.jdbc.SQLServerDriver";
-    private static final String DBURL="jdbc:sqlserver://10.0.78.30:1433;DatabaseName=BookDB";       //内网数据库
+    private static final String DBURL="jdbc:sqlserver://localhost:1433;DatabaseName=BookDB";       //内网数据库
     //private static final String DBURL="jdbc:sqlserver://s1.natfrp.com:62776;DatabaseName=BookDB"; //外网数据库
     private static final String DBUSER="BookDB"; 
     private static final String DBPASS="bookdb"; 

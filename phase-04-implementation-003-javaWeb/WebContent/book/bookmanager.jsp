@@ -19,9 +19,15 @@
 	request.setCharacterEncoding("UTF-8"); 
 	String querysql = new String();
 	BookModel bookinfo = new BookModel();
+	String style="display:none";
 	if (request.getMethod().equals("POST")){
 		bookinfo = new BookModel(request.getParameter("bookno"),request.getParameter("bookname"),request.getParameter("author"),request.getParameter("press"),request.getParameter("price"),request.getParameter("publishdate"),request.getParameter("shopnum"));
 		querysql = bookinfo.getSqlQueryString1();
+	} else {
+		if (request.getParameter("bookno")!=null) {
+			bookinfo = new BookModel(request.getParameter("bookno"));
+			style="";
+		}
 	}
 %>
 <%
@@ -67,8 +73,9 @@
 				<p>作者：<input name="author" value="<%=bookinfo.author%>">
 				<span class="right">入库数量：<input name="shopnum" value="<%=bookinfo.shopnum%>"></span></p>
 				<p>出版社：<input name="press" value="<%=bookinfo.press%>"></p>
-				<input type="button" value="查询" class="btn" onclick="search()">
+				<input type="button" value="查询" class="btn" onclick="search()" >
 				<input type="button" value="添加" class="btn" onclick="add()">
+				<input type="button" value="保存" class="btn" onclick="save()" style="<%=style %>" >
 				</fieldset>
 			</form>
 		</div>
@@ -91,7 +98,7 @@
 								<td><%=item %></td>
 							<%}%>
 							<td>
-								<a onclick="edit()">编辑</a> |
+								<a href="?bookno=<%=row.get(0)%>">编辑</a> |
 								<a href="api/bookdelete?bookno=<%=row.get(0)%>">删除</a>
 							</td>
 						</tr>
@@ -109,8 +116,10 @@
 			document.form1.action="api/bookadd";
 			document.form1.submit();
 		}
-		function edit(){
-			$('#bookno').val('123');
+		function save() {
+			document.form1.action="api/bookedit";
+			document.form1.submit();
 		}
 	</script>
+	<script src="/static/jquery.min.js"></script>
 </html>

@@ -1,11 +1,26 @@
 package Book.borrowing.management.system.model;
 
+import java.util.Vector;
+
 import Book.borrowing.management.system.BookDBCon;
 
 public class BookModel {
 	public String bookno,bookname,author,press,publishdate_1,publishdate_2,price,publishdate,shopnum;
 	public boolean check;
 	public String readerno;
+	public BookModel(String bookno) {
+		this.bookno=bookno;
+		String sql = "select * from View_Book_Admin where Õº È±‡∫≈='"+bookno+"'";
+		Vector<String> name = new Vector<String>();
+		Vector<Vector<String>> data = new Vector<Vector<String>>();
+		BookDBCon.queryVector2(sql, data, name);
+		this.bookname=data.get(0).get(1);
+		this.author=data.get(0).get(2);
+		this.press=data.get(0).get(3);
+		this.price=data.get(0).get(4);
+		this.publishdate=data.get(0).get(5);
+		this.shopnum=data.get(0).get(6);
+	}
 	public BookModel() {
 		this.bookno=new String();
 		this.bookname=new String();

@@ -196,9 +196,9 @@ public class Util4Frm {
          return output;
     }
     
-    public static void showMessageDialogAndReturn(HttpServletResponse response,String message) throws ServletException, IOException {
+    public static void showMessageDialogAndReturn(HttpServletResponse response,String message,String url) throws ServletException, IOException {
 		response.setContentType("text/html; charset=UTF-8");
 		response.setCharacterEncoding("UTF-8");
-		response.getWriter().append("<script>alert('"+message+"');location.href=document.referrer;</script>");
+		response.getWriter().append("<script>alert('"+message+"');window.location.href='"+url+"';</script>");
     }
 }

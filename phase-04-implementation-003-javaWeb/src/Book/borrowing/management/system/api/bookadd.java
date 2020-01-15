@@ -43,9 +43,9 @@ public class bookadd extends HttpServlet {
 		BookModel bookinfo = new BookModel();
 		bookinfo = new BookModel(request.getParameter("bookno"),request.getParameter("bookname"),request.getParameter("author"),request.getParameter("press"),request.getParameter("price"),request.getParameter("publishdate"),request.getParameter("shopnum"));
 		if (bookinfo.getSqlAddResult()) {
-			Util4Frm.showMessageDialogAndReturn(response,"添加信息成功");
+			Util4Frm.showMessageDialogAndReturn(response,"添加信息成功","../bookmanager.jsp");
 		} else {
-			Util4Frm.showMessageDialogAndReturn(response,"添加信息失败");
+			Util4Frm.showMessageDialogAndReturn(response,"添加信息失败","../bookmanager.jsp");
 		}
 	}
 

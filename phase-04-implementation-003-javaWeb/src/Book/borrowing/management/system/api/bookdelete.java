@@ -43,9 +43,9 @@ public class bookdelete extends HttpServlet {
         BookDBCon.preparedupdateData(sql,bookNO);
         sql = "delete from Book where bookNO=?";
         if (BookDBCon.preparedupdateData(sql,bookNO)) {
-        	Util4Frm.showMessageDialogAndReturn(response,"删除信息成功");
+        	Util4Frm.showMessageDialogAndReturn(response,"删除信息成功","../bookmanager.jsp");
 		} else {
-			Util4Frm.showMessageDialogAndReturn(response,"删除信息失败");
+			Util4Frm.showMessageDialogAndReturn(response,"删除信息失败","../bookmanager.jsp");
 		}
 	}
 

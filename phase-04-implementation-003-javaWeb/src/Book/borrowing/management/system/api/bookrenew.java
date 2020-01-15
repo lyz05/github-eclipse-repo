@@ -43,9 +43,9 @@ public class bookrenew extends HttpServlet {
 		request.setCharacterEncoding("UTF-8");
 		response.setCharacterEncoding("UTF-8");
 		if(BookDBCon.preparedupdateData(sql,readerNO,bookNO)) {
-			Util4Frm.showMessageDialogAndReturn(response,"续借成功");
+			Util4Frm.showMessageDialogAndReturn(response,"续借成功","../borrowinformation.jsp");
 		} else {
-			Util4Frm.showMessageDialogAndReturn(response,"续借失败");
+			Util4Frm.showMessageDialogAndReturn(response,"续借失败","../borrowinformation.jsp");
 		}
 	}
 

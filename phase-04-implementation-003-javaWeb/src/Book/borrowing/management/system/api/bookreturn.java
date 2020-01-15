@@ -43,9 +43,9 @@ public class bookreturn extends HttpServlet {
 		}
 		
 		if(BookDBCon.preparedupdateData(sql,readerNO,bookNO)) {
-			Util4Frm.showMessageDialogAndReturn(response,"还书成功");
+			Util4Frm.showMessageDialogAndReturn(response,"还书成功","../borrowinformation.jsp");
 		} else {
-			Util4Frm.showMessageDialogAndReturn(response,"还书失败");
+			Util4Frm.showMessageDialogAndReturn(response,"还书失败","../borrowinformation.jsp");
 		}
 	}
 
