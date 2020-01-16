@@ -49,39 +49,64 @@
 	<head>
 		<meta charset="UTF-8">
 		<title>图书信息管理 - 图书借阅管理系统</title>
+		<!-- bootstrap样式 -->
+		<link rel="stylesheet" href="/static/bootstrap/css/bootstrap.min.css">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
 		<link rel="stylesheet" href="css/style.css">
 	</head>
 
 	<body>
 		<div class="header">
 			<p>
-				您好，<%=username%>
+				您好，管理员：<%=username%>
 				<span class="right">
 					<a href="api/logout">注销</a>
 				</span>
 			</p>
 		</div>
 
-		<div class="screen">
-			<form method="POST" name="form1">
-				<fieldset>
-				<legend>筛选模式（左栏信息可筛选）</legend>
-				<p>图书编号：<input name="bookno" value="<%=bookinfo.bookno%>">
-				<span class="right">价格：<input name="price" value="<%=bookinfo.price%>"></span></p>
-				<p>图书名称：<input name="bookname" value="<%=bookinfo.bookname%>">
-				<span class="right">出版日期：<input name="publishdate" value="<%=bookinfo.publishdate%>"></span></p>
-				<p>作者：<input name="author" value="<%=bookinfo.author%>">
-				<span class="right">入库数量：<input name="shopnum" value="<%=bookinfo.shopnum%>"></span></p>
-				<p>出版社：<input name="press" value="<%=bookinfo.press%>"></p>
-				<input type="button" value="查询" class="btn" onclick="search()" >
-				<input type="button" value="添加" class="btn" onclick="add()">
-				<input type="button" value="保存" class="btn" onclick="save()" style="<%=style %>" >
-				</fieldset>
-			</form>
+		<div class="panel panel-primary">
+			<div class="panel-heading">
+				<h3 class="panel-title">
+					筛选模式（左栏信息可筛选）
+				</h3>
+			</div>
+			<div class="panel-body">
+				<form method="POST" name="form1">
+					<p>
+					<label>图书编号：</label>
+					<input name="bookno" value="<%=bookinfo.bookno%>">
+					<span class="right">
+					<label>价格：</label>
+					<input name="price" value="<%=bookinfo.price%>"></span>
+					</p>
+					<p>
+					<label>图书名称：</label>
+					<input name="bookname" value="<%=bookinfo.bookname%>">
+					<span class="right">
+					<label>出版日期：</label>
+					<input name="publishdate" value="<%=bookinfo.publishdate%>"></span>
+					</p>
+					<p>
+					<label>作者：</label>
+					<input name="author" value="<%=bookinfo.author%>">
+					<span class="right">
+					<label>入库数量：</label>
+					<input name="shopnum" value="<%=bookinfo.shopnum%>"></span>
+					</p>
+					<p>
+					<label>出版社：</label>
+					<input name="press" value="<%=bookinfo.press%>">
+					</p>
+					<input type="button" value="查询" class="btn btn-primary" onclick="search()" >
+					<input type="button" value="添加" class="btn" onclick="add()">
+					<input type="button" value="保存" class="btn" onclick="save()" style="<%=style %>" >
+				</form>
+			</div>
 		</div>
 
 		<div id="tabs">
-			<table border="1">
+			<table class="table table-striped table-bordered table-hover">
 			  	<thead>
 					<tr>
 						<% for (String item:BookTable.name) { %>
@@ -106,6 +131,7 @@
 				</tbody>
 			</table>
 		</div>
+		
 	</body>
 	<script>
 		function search(){

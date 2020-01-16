@@ -49,37 +49,44 @@
 	<head>
 		<meta charset="UTF-8">
 		<title>读者信息管理 - 图书借阅管理系统</title>
+		<!-- bootstrap样式 -->
+		<link rel="stylesheet" href="/static/bootstrap/css/bootstrap.min.css">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
 		<link rel="stylesheet" href="css/style.css">
 	</head>
 
 	<body>
 		<div class="header">
 			<p>
-				您好，<%=username%>
+				您好，管理员：<%=username%>
 				<span class="right">
 					<a href="api/logout">注销</a>
 				</span>
 			</p>
 		</div>
 
-		<div class="screen">
-			<form method="POST" name="form1" action="readerinformation.jsp">
-				<fieldset>
-				<legend>筛选模式</legend>
-				<p>读者编号：<input name="readerno" value="<%=readerinfo.readerno%>">
-				<span class="right">身份证号：<input name="idnum" value="<%=readerinfo.idnum%>"></span></p>
-				<p>姓名：<input name="readername" value="<%=readerinfo.readername%>">
-				<span class="right">工作单位：<input name="workunit" value="<%=readerinfo.workunit%>"></span></p>
-				<p>性别：<input name="sex" value="<%=readerinfo.sex%>"></p>
-				<input type="button" value="查询" class="btn" onclick="search()" >
-				<input type="button" value="添加" class="btn" onclick="add()">
-				<input type="button" value="保存" class="btn" onclick="save()" style="<%=style %>" >
-				</fieldset>
-			</form>
+		<div class="panel panel-primary">
+			<div class="panel-heading">
+				<h3 class="panel-title">
+					筛选模式
+				</h3>
+			</div>
+			<div class="panel-body">
+				<form method="POST" name="form1" action="readerinformation.jsp">
+					<p><label>读者编号：</label><input name="readerno" value="<%=readerinfo.readerno%>">
+					<span class="right"><label>身份证号：</label><input name="idnum" value="<%=readerinfo.idnum%>"></span></p>
+					<p><label>姓名：</label><input name="readername" value="<%=readerinfo.readername%>">
+					<span class="right"><label>工作单位：</label><input name="workunit" value="<%=readerinfo.workunit%>"></span></p>
+					<p><label>性别：</label><input name="sex" value="<%=readerinfo.sex%>"></p>
+					<input type="button" value="查询" class="btn btn-primary" onclick="search()" >
+					<input type="button" value="添加" class="btn" onclick="add()">
+					<input type="button" value="保存" class="btn" onclick="save()" style="<%=style %>" >
+				</form>
+			</div>
 		</div>
 
 		<div id="tabs">
-			<table border="1">
+			<table class="table table-striped table-bordered table-hover">
 			  	<thead>
 					<tr>
 						<% for (String item:BookTable.name) { %>

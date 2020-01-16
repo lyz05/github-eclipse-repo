@@ -200,7 +200,10 @@ public class Util4Frm {
     public static void showMessageDialogAndReturn(HttpServletResponse response,String message,String url) throws ServletException, IOException {
 		response.setContentType("text/html; charset=UTF-8");
 		response.setCharacterEncoding("UTF-8");
-		response.getWriter().append("<script>alert('"+message+"');window.location.href='"+url+"';</script>");
+		response.getWriter().append("<script>");
+		response.getWriter().append("alert('"+message+"');");
+		if (!url.equals("")) response.getWriter().append("window.location.href='"+url+"';");
+		response.getWriter().append("</script>");
     }
     
     public static boolean judgeusername(HttpServletRequest request,HttpServletResponse response) throws ServletException, IOException {

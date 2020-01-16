@@ -10,9 +10,15 @@ td {
   white-space: nowrap;
   text-overflow: ellipsis;
 }
-.btn{
+/* .btn{
 	height: 30px;
-}
+} */
 .right{
 	float:right;
+}
+.screen{
+	width: 90%;
+}
+div{
+	margin:10px 10px 10px 10px
 }
