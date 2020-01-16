@@ -35,7 +35,7 @@ public class bookrenew extends HttpServlet {
 		HttpSession session = request.getSession(true);
 		String bookNO = request.getParameter("bookno");
 		String readerNO = session.getAttribute("username").toString();
-		String sql = "update Borrow set shouldDate=dateadd(mm,1,getdate()) from Borrow where readerNO=? and bookNO=? and returnDate is null";
+		String sql = "update Borrow set shouldDate=date_add(NOW(), interval 1 MONTH) where readerNO=? and bookNO=? and returnDate is null";
 		if (bookNO==null || session.getAttribute("username")==null) {
 			//«Î«Û∑«∑®
 			response.sendRedirect("../borrowinformation.jsp");

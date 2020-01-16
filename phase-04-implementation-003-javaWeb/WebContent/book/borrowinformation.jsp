@@ -171,7 +171,7 @@
   		function reload() {
   		    setTimeout(function(){
   		        location.reload(true);
-  		    }, 100);
+  		    }, 2000);
   		}
   	</script>
 </html>

@@ -10,7 +10,7 @@
         newpwd = Util4Frm.encodeInp(newpwd);
         
         if (BookDBCon.preparedqueryResult("select readerNO from Reader where readerNo=? and password=?", username,pwd) != null) {
-            if (BookDBCon.preparedupdateData("update Reader set password=? from Reader where readerNo=?",newpwd,username)) {
+            if (BookDBCon.preparedupdateData("update Reader set password=? where readerNo=?",newpwd,username)) {
             	response.getWriter().append("<script>alert('修改密码成功');window.history.go(-2);</script>");
             } else{
             	response.getWriter().append("<script>alert('修改密码失败');</script>");

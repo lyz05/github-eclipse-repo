@@ -37,7 +37,7 @@ public class bookreturn extends HttpServlet {
 		HttpSession session = request.getSession(true);
 		String bookNO = request.getParameter("bookno");
 		String readerNO = session.getAttribute("username").toString();
-		String sql = "update Borrow set returnDate=getdate() from borrow where readerNO=? and bookNO=? and returnDate is null";
+		String sql = "update Borrow set returnDate=now() where readerNO=? and bookNO=? and returnDate is null";
 		if (bookNO==null || session.getAttribute("username")==null) {
 			//«Î«Û∑«∑®
 			response.sendRedirect("../borrowinformation.jsp");

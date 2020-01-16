@@ -22,11 +22,12 @@ import java.util.Vector;
  * 数据库连接层
  */
 public class BookDBCon {
-    private static final String DBdriver="com.microsoft.sqlserver.jdbc.SQLServerDriver";
-    private static final String DBURL="jdbc:sqlserver://localhost:1433;DatabaseName=BookDB";       //内网数据库
-    //private static final String DBURL="jdbc:sqlserver://s1.natfrp.com:62776;DatabaseName=BookDB"; //外网数据库
-    private static final String DBUSER="BookDB"; 
-    private static final String DBPASS="bookdb"; 
+    private static final String DBdriver="com.mysql.cj.jdbc.Driver";
+    static final String DBURL = "jdbc:mysql://localhost:3306/BookDB?useSSL=false&serverTimezone=UTC&characterEncoding=UTF-8&allowPublicKeyRetrieval=true";
+    //private static final String DBURL="jdbc:sqlserver://localhost:1433;DatabaseName=BookDB";       //内网数据库
+    //private static final String DBURL="jdbc:sqlserver://s24.natfrp.org:62776;DatabaseName=BookDB"; //外网数据库
+    private static final String DBUSER="root"; 
+    private static final String DBPASS="5137"; 
     private BookDBCon() {} //禁止实例化
     
     /**

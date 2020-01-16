@@ -35,7 +35,9 @@ public class bookborrow extends HttpServlet {
 		HttpSession session = request.getSession(true);
 		String bookNO = request.getParameter("bookno");
 		String readerNO = session.getAttribute("username").toString();
-		String sql = "insert Borrow values(?,?,getdate(),dateadd(mm,1,getdate()),null)";
+		//String sql = "insert Borrow values(?,?,getdate(),dateadd(mm,1,getdate()),null)";
+		String sql = "insert Borrow values(?,?,now(),date_add(NOW(),interval 1 MONTH),null)";
+		
 		if (bookNO==null || session.getAttribute("username")==null) {
 			//«Î«Û∑«∑®
 			response.sendRedirect("../borrowinformation.jsp");

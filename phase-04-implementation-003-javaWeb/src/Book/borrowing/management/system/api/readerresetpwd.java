@@ -32,7 +32,7 @@ public class readerresetpwd extends HttpServlet {
 		// TODO Auto-generated method stub
 		if (!Util4Frm.judgeusername(request,response)) return;
 		String readerno = request.getParameter("readerno");
-        if (BookDBCon.preparedupdateData("update Reader set password='' from Reader where readerNo=?",readerno)) {
+        if (BookDBCon.preparedupdateData("update Reader set password='' where readerNo=?",readerno)) {
         	Util4Frm.showMessageDialogAndReturn(response,"ÖØÖÃÃÜÂë³É¹¦","../readerinformation.jsp");
         } else {
         	Util4Frm.showMessageDialogAndReturn(response,"ÖØÖÃÃÜÂëÊ§°Ü","../readerinformation.jsp");
