@@ -2,6 +2,9 @@
     <wb-module deploy-name="phase-04-implementation-003-javaWeb">
         <wb-resource deploy-path="/" source-path="/WebContent" tag="defaultRootSource"/>
         <wb-resource deploy-path="/WEB-INF/classes" source-path="/src"/>
+        <dependent-module archiveName="mysql-connector-java-8.0.16.jar" deploy-path="/WEB-INF/lib" handle="module:/classpath/lib/phase-04-implementation-003-javaWeb/lib/mysql-connector-java-8.0.16.jar">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
         <property name="context-root" value="phase-04-implementation-003-javaWeb"/>
         <property name="java-output-path" value="/phase-04-implementation-003-javaWeb/build/classes"/>
     </wb-module>
