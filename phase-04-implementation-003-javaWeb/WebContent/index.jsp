@@ -97,9 +97,10 @@
 	</audio>
 	
 	<div id="link" style="display:block;color:white;">
-	<p>	<a href="/hello.jsp" style="font-size:30px" >跳转hello JSP</a> <br>
-	 	<a href="/WanderingServlet" style="font-size:30px" >跳转WanderingServlet</a> <br>
-	 	<a href="/chat" style="font-size:30px" >跳转聊天室</a><br>
+	<p>	<a href="/hello.jsp" style="font-size:20px" >跳转hello JSP</a> <br>
+	 	<a href="/WanderingServlet" style="font-size:20px" >跳转WanderingServlet</a> <br>
+	 	<a href="/chat" style="font-size:20px" >跳转聊天室</a> <br>
+	 	<a href="/book" style="font-size:20px" >跳转图书借阅系统</a><br>
 	</p>
 	</div>
     

@@ -68,7 +68,7 @@
 				$('#myTab li:eq('+tabs+') a').tab('show');
 				console.log('#myTab li:eq('+tabs+') a');
 	  		}
-	  		setTimeout(function(){ reload(<%=tabs%>) }, 0);
+	  		setTimeout(function(){ reload(<%=tabs%>) }, 200);
 		</script>
 	</head>
 
