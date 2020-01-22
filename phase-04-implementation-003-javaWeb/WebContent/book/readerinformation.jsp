@@ -42,7 +42,7 @@
 		} else session.setAttribute("sort", "");
 		appendsql = " order by "+orderby+" "+session.getAttribute("sort");
 	}
-	TableModel BookTable = new TableModel("select * from View_Reader "+querysql+appendsql);
+	TableModel readerTable= new TableModel("select * from View_Reader "+querysql+appendsql);
 %>
 <!DOCTYPE html>
 <html>
@@ -52,6 +52,7 @@
 		<!-- bootstrap样式 -->
 		<link rel="stylesheet" href="/static/bootstrap/css/bootstrap.min.css">
 		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<!-- 自定义样式 -->
 		<link rel="stylesheet" href="css/style.css">
 	</head>
 
@@ -72,7 +73,7 @@
 				</h3>
 			</div>
 			<div class="panel-body">
-				<form method="POST" name="form1" action="readerinformation.jsp">
+				<form method="POST" name="form1" action="readerinformation.jsp" id="form1">
 					<p><label>读者编号：</label><input name="readerno" value="<%=readerinfo.readerno%>">
 					<span class="right"><label>身份证号：</label><input name="idnum" value="<%=readerinfo.idnum%>"></span></p>
 					<p><label>姓名：</label><input name="readername" value="<%=readerinfo.readername%>">
@@ -89,7 +90,7 @@
 			<table class="table table-striped table-bordered table-hover">
 			  	<thead>
 					<tr>
-						<% for (String item:BookTable.name) { %>
+						<% for (String item:readerTable.name) { %>
 							<th><a href="?orderby=<%=item %>"><%=item %></a></th>
 						<%}
 						%>
@@ -97,15 +98,15 @@
 					</tr>
 				</thead>
 				<tbody>
-					<% for (Vector<String> row:BookTable.data) { %>
+					<% for (Vector<String> row:readerTable.data) { %>
 						<tr>
 							<% for (String item:row) { %>
 								<td><%=item %></td>
 							<%}%>
 							<td>
 								<a href="?readerno=<%=row.get(0)%>">编辑</a> |
-								<a href="api/readerdelete?readerno=<%=row.get(0)%>">删除</a> |
-								<a href="api/readerresetpwd?readerno=<%=row.get(0)%>">重置读者密码</a>
+								<a href="javascript:del('<%=row.get(0)%>')">删除</a> |
+								<a href="javascript:resetpwd('<%=row.get(0)%>')">重置读者密码</a>
 							</td>
 						</tr>
 					<%}%>
@@ -114,17 +115,46 @@
 		</div>
 	</body>
 		<script>
+		//发送ajax请求，成功刷新当前页面
+		function ajaxRequest(type, url, data) {
+	        $.ajax({
+				url: url,
+				type: type,
+				dataType: "json",
+				data: data,
+				success:function(result,testStatus)
+				{
+					alert(result.message);
+					if (result.code=="200"){
+						window.location.href = window.location.pathname;
+					}
+					if (result.code=="601") {
+						window.location.href='./';
+					}
+				},
+				error:function(xhr,errorMessage,e)
+				{
+					alert("发送请求失败，请检查网络状态");
+				}
+			});
+		}
 		function search(){
 	        document.form1.action="readerinformation.jsp";
 	        document.form1.submit();
 		}
-		function add() {
-			document.form1.action="api/readeradd";
-			document.form1.submit();
+		function add()
+		{
+			ajaxRequest("post","api/readeradd",$('#form1').serialize());
+		}
+		function del(readerno) {
+			ajaxRequest("get","api/readerdelete","readerno="+readerno);
 		}
 		function save() {
-			document.form1.action="api/readeredit";
-			document.form1.submit();
+	        ajaxRequest("post","api/readeredit",$('#form1').serialize());
+		}
+		function resetpwd(readerno) {
+			ajaxRequest("get","api/readerresetpwd","readerno="+readerno);
 		}
 	</script>
+	<script src="/static/jquery.min.js"></script>
 </html>

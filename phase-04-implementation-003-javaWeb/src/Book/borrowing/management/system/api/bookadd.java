@@ -1,6 +1,7 @@
 package Book.borrowing.management.system.api;
 
 import java.io.IOException;
+import com.alibaba.fastjson.*;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -31,7 +32,7 @@ public class bookadd extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		response.getWriter().append("This Pages isn't support GET");
+		response.getWriter().append("This Page isn't support GET");
 	}
 
 	/**
@@ -40,14 +41,15 @@ public class bookadd extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		if (!Util4Frm.judgeusername(request,response)) return;
-		request.setCharacterEncoding("UTF-8");
 		BookModel bookinfo = new BookModel();
 		bookinfo = new BookModel(request.getParameter("bookno"),request.getParameter("bookname"),request.getParameter("author"),request.getParameter("press"),request.getParameter("price"),request.getParameter("publishdate"),request.getParameter("shopnum"));
-		if (bookinfo.getSqlAddResult()) {
-			Util4Frm.showMessageDialogAndReturn(response,"添加信息成功","../bookmanager.jsp");
+		MessageJSONModel ret;
+		if (bookinfo.getSqlAndResult()) {
+			ret = new MessageJSONModel("200","添加信息成功");
 		} else {
-			Util4Frm.showMessageDialogAndReturn(response,"添加信息失败","../bookmanager.jsp");
+			ret = new MessageJSONModel("403","添加信息失败");
 		}
+		response.getWriter().append(JSON.toJSONString(ret));
 	}
 
 }

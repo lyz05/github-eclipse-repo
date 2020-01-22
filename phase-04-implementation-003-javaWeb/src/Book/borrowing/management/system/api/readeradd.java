@@ -8,6 +8,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.alibaba.fastjson.JSON;
+
 import Book.borrowing.management.system.*;
 import Book.borrowing.management.system.model.*;
 
@@ -40,14 +42,16 @@ public class readeradd extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		if (!Util4Frm.judgeusername(request,response)) return;
-		request.setCharacterEncoding("UTF-8");
+		
 		ReaderModel readerinfo = new ReaderModel();
 		readerinfo = new ReaderModel(request.getParameter("readerno"),request.getParameter("readername"),request.getParameter("sex"),request.getParameter("idnum"),request.getParameter("workunit"));
+		MessageJSONModel ret;
 		if (readerinfo.getSqlAddResult()) {
-			Util4Frm.showMessageDialogAndReturn(response,"添加信息成功","../readerinformation.jsp");
+			ret = new MessageJSONModel("200","添加信息成功");
 		} else {
-			Util4Frm.showMessageDialogAndReturn(response,"添加信息失败","../readerinformation.jsp");
+			ret = new MessageJSONModel("403","添加信息失败");
 		}
+		response.getWriter().append(JSON.toJSONString(ret));
 	}
 
 }

@@ -7,8 +7,11 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.alibaba.fastjson.JSON;
+
 import Book.borrowing.management.system.BookDBCon;
 import Book.borrowing.management.system.Util4Frm;
+import Book.borrowing.management.system.model.MessageJSONModel;
 
 /**
  * Servlet implementation class bookedit
@@ -39,11 +42,11 @@ public class bookedit extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		if (!Util4Frm.judgeusername(request,response)) return;
-		request.setCharacterEncoding("UTF-8");
+		
 		if (BookDBCon.preparedupdateData("update Book set bookName=?,authorName=?,publishingName=?,price=?,publishingDate=?,shopNum=? where bookNO=?",request.getParameter("bookname"),request.getParameter("author"),request.getParameter("press"),request.getParameter("price"),request.getParameter("publishdate"),request.getParameter("shopnum"),request.getParameter("bookno"))) {
-            Util4Frm.showMessageDialogAndReturn(response,"修改信息成功","../bookmanager.jsp");
+			response.getWriter().append(JSON.toJSONString(new MessageJSONModel("200","修改信息成功")));
         } else {
-            Util4Frm.showMessageDialogAndReturn(response,"修改信息失败","../bookmanager.jsp");
+        	response.getWriter().append(JSON.toJSONString(new MessageJSONModel("403","修改信息失败")));
         }
 
 	}

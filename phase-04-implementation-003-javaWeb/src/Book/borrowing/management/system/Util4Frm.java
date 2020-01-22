@@ -6,7 +6,6 @@
 
 package Book.borrowing.management.system;
 
-import java.awt.Component;
 import java.io.IOException;
 
 import javax.servlet.ServletException;
@@ -19,6 +18,11 @@ import javax.swing.UIManager;
 import javax.swing.table.TableCellRenderer;
 import javax.swing.table.TableColumnModel;
 
+import com.alibaba.fastjson.JSON;
+import com.sun.org.apache.bcel.internal.generic.NEW;
+
+import Book.borrowing.management.system.model.*;
+
 
 /**
  *
@@ -27,69 +31,9 @@ import javax.swing.table.TableColumnModel;
  */
 public class Util4Frm {
     private Util4Frm() {}       //禁止实例化
-    /**
     
-    /**
-     * 设置窗口显示效果，原界面丑拒
-     * @param comp 提供界面对应的Component
-     */
-    public static void setUI(Component comp) {
-        try {
-            UIManager.setLookAndFeel(UIManager.getCrossPlatformLookAndFeelClassName());
-            SwingUtilities.updateComponentTreeUI(comp);
-        } catch(Exception err) {
-            System.out.println("设置窗口效果异常:"+err);
-        }
-    }
     
-    /**
-     * 根据表格内容自动调整JTable列宽度
-     * @param table 修改的jtable
-     */
-    public static void resizeColumnWidth(JTable table) {
-        final TableColumnModel columnModel = table.getColumnModel();
-        for (int column = 0; column < table.getColumnCount(); column++) {
-            int width = 15; // Min width
-            for (int row = 0; row < table.getRowCount(); row++) {
-                TableCellRenderer renderer = table.getCellRenderer(row, column);
-                Component comp = table.prepareRenderer(renderer, row, column);
-                width = Math.max(comp.getPreferredSize().width +1 , width);
-            }
-            if(width > 300)
-                width=300;
-            columnModel.getColumn(column).setPreferredWidth(width);
-        }
-    }
-    
-    /**
-     * 移动jTable当前选中行的光标
-     * @param jtable 要移动光标的jTable
-     * @param dis 位置相较于原来的位移，+1表示向下，-1表示向上
-     */
-    public static void moveFormRow(JTable jtable,int dis)
-    {
-        int tmp =  jtable.getSelectedRow() + dis;
-        if (tmp<0) {
-            JOptionPane.showMessageDialog(null,"已经是第一条数据了","系统提示",JOptionPane.INFORMATION_MESSAGE);
-        } else if (tmp>=jtable.getRowCount()) {
-            JOptionPane.showMessageDialog(null,"已经是最后一条数据了","系统提示",JOptionPane.INFORMATION_MESSAGE);
-        } else 
-        jtable.setRowSelectionInterval(tmp, tmp);
-    }
 
-    /**
-     * 移动jTable当前选中行光标到顶部或底部
-     * @param jtable
-     * @param status 
-     */
-    public static void moveFormRowToTop(JTable jtable,int status)
-    {
-        int tmp = 0;
-        if (status==1) {
-            tmp = jtable.getRowCount()-1;
-        }
-        jtable.setRowSelectionInterval(tmp, tmp);
-    }
 
     /**
      * 刷新底部状态栏的标签显示
@@ -122,37 +66,6 @@ public class Util4Frm {
         //再次运行方法，更换排序方向
         //sort = !sort;
         return appendsql;
-    }
-    
-    /**
-     * 锁定控件
-     * @param jtextfield 待锁定控件
-     */
-    public static void locktextfiled(JTextField jtextfield){
-        jtextfield.setEnabled(false);
-    }
-    
-    /**
-     * 解锁控件
-     * @param jtextfield 待解锁空间 
-     */
-    public static void unlocktextfiled(JTextField jtextfield){
-        jtextfield.setEnabled(true);
-    }
-    
-    /**
-     * 确认删除对话框
-     * @return 是否按下确认按钮
-     */
-    public static boolean confirmdelete() {
-         return JOptionPane.showConfirmDialog(null,"你确认删除该条数据吗？","系统提示",JOptionPane.YES_NO_OPTION,JOptionPane.QUESTION_MESSAGE)==JOptionPane.YES_OPTION;
-    }
-    /**
-     * 确认重置密码对话框
-     * @return 是否按下确认按钮
-     */
-    public static boolean confirmresetpwd() {
-         return JOptionPane.showConfirmDialog(null,"你确认重置该用户密码吗？","系统提示",JOptionPane.YES_NO_OPTION,JOptionPane.QUESTION_MESSAGE)==JOptionPane.YES_OPTION;
     }
     
     /**
@@ -207,8 +120,11 @@ public class Util4Frm {
     }
     
     public static boolean judgeusername(HttpServletRequest request,HttpServletResponse response) throws ServletException, IOException {
+    	response.setContentType("application/json;charset=utf-8");
+    	request.setCharacterEncoding("UTF-8");
+		response.setCharacterEncoding("UTF-8");
     	if (request.getSession().getAttribute("username")==null) {
-    		Util4Frm.showMessageDialogAndReturn(response,"非法操作","../index.jsp");
+    		response.getWriter().append(JSON.toJSONString(new MessageJSONModel("601","您还未登录，请先登录系统")));
     	}
     	return request.getSession().getAttribute("username")!=null;
     }

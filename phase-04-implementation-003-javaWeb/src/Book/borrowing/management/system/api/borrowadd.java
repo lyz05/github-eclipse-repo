@@ -8,20 +8,23 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import com.alibaba.fastjson.JSON;
+
 import Book.borrowing.management.system.BookDBCon;
 import Book.borrowing.management.system.Util4Frm;
+import Book.borrowing.management.system.model.MessageJSONModel;
 
 /**
  * Servlet implementation class bookborrow
  */
-@WebServlet("/book/api/bookborrow")
-public class bookborrow extends HttpServlet {
+@WebServlet("/book/api/borrowadd")
+public class borrowadd extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public bookborrow() {
+    public borrowadd() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -32,6 +35,7 @@ public class bookborrow extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		if (!Util4Frm.judgeusername(request,response)) return;
+		
 		HttpSession session = request.getSession(true);
 		String bookNO = request.getParameter("bookno");
 		String readerNO = session.getAttribute("username").toString();
@@ -40,23 +44,23 @@ public class bookborrow extends HttpServlet {
 		
 		if (bookNO==null || session.getAttribute("username")==null) {
 			//请求非法
-			response.sendRedirect("../borrowinformation.jsp");
+			response.getWriter().append(JSON.toJSONString(new MessageJSONModel("602","请求非法")));
+			return;
 		}
-		response.setContentType("text/html; charset=UTF-8");
-		request.setCharacterEncoding("UTF-8");
-		response.setCharacterEncoding("UTF-8");
+
         if (Integer.parseInt(BookDBCon.preparedqueryResult("select 在库数量 from View_Book where 图书编号=?",bookNO)) <= 0) {
-        	response.getWriter().append("<script>alert('这本书已经被借光了');window.location.href='../borrowinformation.jsp#tabs-3'</script>");
+        	response.getWriter().append(JSON.toJSONString(new MessageJSONModel("901","这本书已经被借光了")));
             return;
         }
         if (BookDBCon.preparedqueryResult("select readerNO from Borrow where readerNO=? and bookNO=? and returnDate is null",readerNO,bookNO) != null){
-        	response.getWriter().append("<script>alert('这本书你已经借过了');window.location.href='../borrowinformation.jsp#tabs-3'</script>");
+        	
+        	response.getWriter().append(JSON.toJSONString(new MessageJSONModel("902","这本书你已经借过了")));
             return;
         }
 		if(BookDBCon.preparedupdateData(sql,readerNO,bookNO)) {
-			Util4Frm.showMessageDialogAndReturn(response,"借书成功","../borrowinformation.jsp");
+			response.getWriter().append(JSON.toJSONString(new MessageJSONModel("200","借书成功")));
 		} else {
-			Util4Frm.showMessageDialogAndReturn(response,"借书失败","../borrowinformation.jsp");
+			response.getWriter().append(JSON.toJSONString(new MessageJSONModel("403","借书失败")));
 		}
 	}
 
@@ -65,7 +69,7 @@ public class bookborrow extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		doGet(request, response);
+		response.getWriter().append("This Pages isn't support Post");
 	}
 
 }

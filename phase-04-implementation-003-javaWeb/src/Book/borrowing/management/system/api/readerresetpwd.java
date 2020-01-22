@@ -7,8 +7,11 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.alibaba.fastjson.JSON;
+
 import Book.borrowing.management.system.BookDBCon;
 import Book.borrowing.management.system.Util4Frm;
+import Book.borrowing.management.system.model.MessageJSONModel;
 
 /**
  * Servlet implementation class readerresetpwd
@@ -33,9 +36,9 @@ public class readerresetpwd extends HttpServlet {
 		if (!Util4Frm.judgeusername(request,response)) return;
 		String readerno = request.getParameter("readerno");
         if (BookDBCon.preparedupdateData("update Reader set password='' where readerNo=?",readerno)) {
-        	Util4Frm.showMessageDialogAndReturn(response,"÷ÿ÷√√‹¬Î≥…π¶","../readerinformation.jsp");
+        	response.getWriter().append(JSON.toJSONString(new MessageJSONModel("200","÷ÿ÷√√‹¬Î≥…π¶")));
         } else {
-        	Util4Frm.showMessageDialogAndReturn(response,"÷ÿ÷√√‹¬Î ß∞‹","../readerinformation.jsp");
+        	response.getWriter().append(JSON.toJSONString(new MessageJSONModel("403","÷ÿ÷√√‹¬Î ß∞‹")));
         }
 	}
 
@@ -44,7 +47,7 @@ public class readerresetpwd extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		doGet(request, response);
+		response.getWriter().append("This Pages isn't support Post");
 	}
 
 }

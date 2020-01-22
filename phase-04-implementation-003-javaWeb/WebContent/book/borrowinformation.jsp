@@ -59,17 +59,6 @@
 	    <script src="/static/jquery.min.js"></script>
 	    <!-- 加载 Bootstrap 的所有 JavaScript 插件。你也可以根据需要只加载单个插件。 -->
 	    <script src="/static/bootstrap/js/bootstrap.min.js"></script>
-	    
-		<!-- 执行选项卡跳转 -->
-		<script>
-			//用于实现延时刷新网页
-	  		function reload(tabs) {
-				if (tabs!=0) tabs --;
-				$('#myTab li:eq('+tabs+') a').tab('show');
-				console.log('#myTab li:eq('+tabs+') a');
-	  		}
-	  		setTimeout(function(){ reload(<%=tabs%>) }, 200);
-		</script>
 	</head>
 
 	<body>
@@ -150,8 +139,8 @@
 								<td><%=item %></td>
 							<%}%>
 							<td>
-								<a href="api/bookreturn?bookno=<%=row.get(0)%>">还书</a> |
-								<a href="api/bookrenew?bookno=<%=row.get(0)%>">续借</a>
+								<a href="javascript:ret('<%=row.get(0)%>')">还书</a> |
+								<a href="javascript:renew('<%=row.get(0)%>')">续借</a>
 							</td>
 						</tr>
 					<%}%>
@@ -198,7 +187,7 @@
 							<% for (String item:row) { %>
 								<td><%=item %></td>
 							<%}%>
-							<td><a href="api/bookborrow?bookno=<%=row.get(0)%>">借书</a></td>
+							<td><a href="javascript:borrow('<%=row.get(0)%>')">借书</a></td>
 						</tr>
 					<%}%>
 				</tbody>
@@ -208,10 +197,42 @@
 	</body>
 	
 	<script>
+		//发送ajax请求，成功刷新当前页面
+		function ajaxRequest(type, url, data) {
+	        $.ajax({
+				url: url,
+				type: type,
+				dataType: "json",
+				data: data,
+				success:function(result,testStatus)
+				{
+					alert(result.message);
+					if (result.code=="200"){
+						window.location.href = window.location.pathname;
+					}
+					if (result.code=="601") {
+						window.location.href='./';
+					}
+				},
+				error:function(xhr,errorMessage,e)
+				{
+					alert("发送请求失败，请检查网络状态");
+				}
+			});
+		}
 		//用于实现tabs切换
 		$('#myTab a').click(function (e) {
 		  e.preventDefault()
 		  $(this).tab('show')
 		})
+		function borrow(bookno){
+			ajaxRequest("get","api/borrowadd","bookno="+bookno);
+		}
+		function ret(bookno){
+			ajaxRequest("get","api/borrowreturn","bookno="+bookno);
+		}
+		function renew(bookno){
+			ajaxRequest("get","api/borrowrenew","bookno="+bookno);
+		}
   	</script>
 </html>

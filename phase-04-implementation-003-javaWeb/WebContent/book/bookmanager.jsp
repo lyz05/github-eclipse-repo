@@ -52,6 +52,7 @@
 		<!-- bootstrap样式 -->
 		<link rel="stylesheet" href="/static/bootstrap/css/bootstrap.min.css">
 		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<!-- 自定义样式 -->
 		<link rel="stylesheet" href="css/style.css">
 	</head>
 
@@ -72,7 +73,7 @@
 				</h3>
 			</div>
 			<div class="panel-body">
-				<form method="POST" name="form1">
+				<form method="POST" name="form1" id="form1">
 					<p>
 					<label>图书编号：</label>
 					<input name="bookno" value="<%=bookinfo.bookno%>">
@@ -124,7 +125,7 @@
 							<%}%>
 							<td>
 								<a href="?bookno=<%=row.get(0)%>">编辑</a> |
-								<a href="api/bookdelete?bookno=<%=row.get(0)%>">删除</a>
+								<a href="javascript:del('<%=row.get(0)%>')">删除</a>
 							</td>
 						</tr>
 					<%}%>
@@ -134,17 +135,42 @@
 		
 	</body>
 	<script>
+	//发送ajax请求，成功刷新当前页面
+		function ajaxRequest(type, url, data) {
+	        $.ajax({
+				url: url,
+				type: type,
+				dataType: "json",
+				data: data,
+				success:function(result,testStatus)
+				{
+					alert(result.message);
+					if (result.code=="200"){
+						window.location.href = window.location.pathname;
+					}
+					if (result.code=="601") {
+						window.location.href='./';
+					}
+				},
+				error:function(xhr,errorMessage,e)
+				{
+					alert("发送请求失败，请检查网络状态");
+				}
+			});
+		}
 		function search(){
 	        document.form1.action="bookmanager.jsp";
 	        document.form1.submit();
 		}
-		function add() {
-			document.form1.action="api/bookadd";
-			document.form1.submit();
+		function add()
+		{
+			ajaxRequest("post","api/bookadd",$('#form1').serialize());
+		}
+		function del(bookno){
+	        ajaxRequest("get","api/bookdelete","bookno="+bookno);
 		}
 		function save() {
-			document.form1.action="api/bookedit";
-			document.form1.submit();
+	        ajaxRequest("post","api/bookedit",$('#form1').serialize());
 		}
 	</script>
 	<script src="/static/jquery.min.js"></script>

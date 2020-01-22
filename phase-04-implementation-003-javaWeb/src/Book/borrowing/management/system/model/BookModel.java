@@ -69,8 +69,8 @@ public class BookModel {
 		String sql= "where 图书编号 like '%"+bookno+"%' and 图书名称 like '%"+bookname+"%' and 作者 like '%"+author +"%' and 出版社 like '%"+press+"%'";
 		return sql;
 	}
-	public boolean getSqlAddResult() {
+	public boolean getSqlAndResult() {
 		String sql= "INSERT INTO Book VALUES(?,?,?,?,?,?,?)";
-		 return BookDBCon.preparedupdateData(sql,bookno,bookname,author,press,price,publishdate,shopnum);
+		return BookDBCon.preparedupdateData(sql,bookno,bookname,author,press,price,publishdate,shopnum);
 	}
 }
