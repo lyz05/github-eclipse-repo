@@ -61,7 +61,7 @@
 			<p>
 				您好，管理员：<%=username%>
 				<span class="right">
-					<a href="api/logout">注销</a>
+					<a href="javascript:logout()">注销</a>
 				</span>
 			</p>
 		</div>
@@ -136,7 +136,7 @@
 	</body>
 	<script>
 	//发送ajax请求，成功刷新当前页面
-		function ajaxRequest(type, url, data) {
+		function ajaxRequest(type, url, data ,ref) {
 	        $.ajax({
 				url: url,
 				type: type,
@@ -146,7 +146,7 @@
 				{
 					alert(result.message);
 					if (result.code=="200"){
-						window.location.href = window.location.pathname;
+						window.location.href = ref;
 					}
 					if (result.code=="601") {
 						window.location.href='./';
@@ -164,13 +164,16 @@
 		}
 		function add()
 		{
-			ajaxRequest("post","api/bookadd",$('#form1').serialize());
+			ajaxRequest("post","api/bookadd",$('#form1').serialize(),window.location.pathname);
 		}
 		function del(bookno){
-	        ajaxRequest("get","api/bookdelete","bookno="+bookno);
+	        ajaxRequest("get","api/bookdelete","bookno="+bookno,window.location.pathname);
 		}
 		function save() {
-	        ajaxRequest("post","api/bookedit",$('#form1').serialize());
+	        ajaxRequest("post","api/bookedit",$('#form1').serialize(),window.location.pathname);
+		}
+		function logout(){
+			ajaxRequest("get","api/logout","","index.html");
 		}
 	</script>
 	<script src="/static/jquery.min.js"></script>

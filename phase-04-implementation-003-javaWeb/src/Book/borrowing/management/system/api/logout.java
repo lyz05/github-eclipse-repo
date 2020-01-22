@@ -8,6 +8,10 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import com.alibaba.fastjson.JSON;
+
+import Book.borrowing.management.system.model.MessageJSONModel;
+
 /**
  * Servlet implementation class logout
  */
@@ -28,9 +32,13 @@ public class logout extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
+    	response.setContentType("application/json;charset=utf-8");
+    	request.setCharacterEncoding("UTF-8");
+		response.setCharacterEncoding("UTF-8");
+		
 		HttpSession session = request.getSession(true);
 		session.setAttribute("username", null);
-		response.sendRedirect("../index.jsp");
+		response.getWriter().append(JSON.toJSONString(new MessageJSONModel("200","注销操作完成")));
 	}
 
 	/**
@@ -38,7 +46,7 @@ public class logout extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		doGet(request, response);
+		response.getWriter().append("This Pages isn't support POST");
 	}
 
 }

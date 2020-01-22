@@ -66,8 +66,8 @@
 			<p>
 				您好，<%=BookDBCon.preparedqueryResult("select readerName from Reader where readerNO=?",username)%>
 				<span class="right">
-					<a href="alterpassword.jsp?username=<%=username%>">修改密码</a>
-					<a href="api/logout">注销</a>
+					<a href="alterpassword.html?username=<%=username%>">修改密码</a>
+					<a href="javascript:logout()">注销</a>
 				</span>
 			</p>
 		</div>
@@ -198,7 +198,7 @@
 	
 	<script>
 		//发送ajax请求，成功刷新当前页面
-		function ajaxRequest(type, url, data) {
+		function ajaxRequest(type, url, data, ref) {
 	        $.ajax({
 				url: url,
 				type: type,
@@ -208,7 +208,7 @@
 				{
 					alert(result.message);
 					if (result.code=="200"){
-						window.location.href = window.location.pathname;
+						window.location.href = ref;
 					}
 					if (result.code=="601") {
 						window.location.href='./';
@@ -226,13 +226,16 @@
 		  $(this).tab('show')
 		})
 		function borrow(bookno){
-			ajaxRequest("get","api/borrowadd","bookno="+bookno);
+			ajaxRequest("get","api/borrowadd","bookno="+bookno, window.location.pathname);
 		}
 		function ret(bookno){
-			ajaxRequest("get","api/borrowreturn","bookno="+bookno);
+			ajaxRequest("get","api/borrowreturn","bookno="+bookno, window.location.pathname);
 		}
 		function renew(bookno){
-			ajaxRequest("get","api/borrowrenew","bookno="+bookno);
+			ajaxRequest("get","api/borrowrenew","bookno="+bookno, window.location.pathname);
+		}
+		function logout(){
+			ajaxRequest("get","api/logout","","index.html");
 		}
   	</script>
 </html>

@@ -48,7 +48,7 @@ public class borrowrenew extends HttpServlet {
 		if(BookDBCon.preparedupdateData(sql,readerNO,bookNO)) {
 			response.getWriter().append(JSON.toJSONString(new MessageJSONModel("200","续借成功")));
 		} else {
-			response.getWriter().append(JSON.toJSONString(new MessageJSONModel("200","续借失败")));
+			response.getWriter().append(JSON.toJSONString(new MessageJSONModel("403","续借失败")));
 		}
 	}
 

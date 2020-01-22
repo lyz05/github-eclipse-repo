@@ -12,15 +12,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.swing.*;
-import javax.swing.JOptionPane;
-import javax.swing.SwingUtilities;
-import javax.swing.UIManager;
-import javax.swing.table.TableCellRenderer;
-import javax.swing.table.TableColumnModel;
-
 import com.alibaba.fastjson.JSON;
-import com.sun.org.apache.bcel.internal.generic.NEW;
-
 import Book.borrowing.management.system.model.*;
 
 
@@ -32,9 +24,6 @@ import Book.borrowing.management.system.model.*;
 public class Util4Frm {
     private Util4Frm() {}       //禁止实例化
     
-    
-
-
     /**
      * 刷新底部状态栏的标签显示
      * @param jtable 待处理的表格

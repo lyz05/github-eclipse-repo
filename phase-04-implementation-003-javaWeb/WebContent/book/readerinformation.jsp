@@ -61,7 +61,7 @@
 			<p>
 				您好，管理员：<%=username%>
 				<span class="right">
-					<a href="api/logout">注销</a>
+					<a href="javascript:logout()">注销</a>
 				</span>
 			</p>
 		</div>
@@ -116,7 +116,7 @@
 	</body>
 		<script>
 		//发送ajax请求，成功刷新当前页面
-		function ajaxRequest(type, url, data) {
+		function ajaxRequest(type, url, data, ref) {
 	        $.ajax({
 				url: url,
 				type: type,
@@ -126,7 +126,7 @@
 				{
 					alert(result.message);
 					if (result.code=="200"){
-						window.location.href = window.location.pathname;
+						window.location.href = ref;
 					}
 					if (result.code=="601") {
 						window.location.href='./';
@@ -144,16 +144,19 @@
 		}
 		function add()
 		{
-			ajaxRequest("post","api/readeradd",$('#form1').serialize());
+			ajaxRequest("post","api/readeradd",$('#form1').serialize(), window.location.pathname);
 		}
 		function del(readerno) {
-			ajaxRequest("get","api/readerdelete","readerno="+readerno);
+			ajaxRequest("get","api/readerdelete","readerno="+readerno, window.location.pathname);
 		}
 		function save() {
-	        ajaxRequest("post","api/readeredit",$('#form1').serialize());
+	        ajaxRequest("post","api/readeredit",$('#form1').serialize(), window.location.pathname);
 		}
 		function resetpwd(readerno) {
-			ajaxRequest("get","api/readerresetpwd","readerno="+readerno);
+			ajaxRequest("get","api/readerresetpwd","readerno="+readerno, window.location.pathname);
+		}
+		function logout(){
+			ajaxRequest("get","api/logout","","index.html");
 		}
 	</script>
 	<script src="/static/jquery.min.js"></script>

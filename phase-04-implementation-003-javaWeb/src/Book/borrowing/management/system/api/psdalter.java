@@ -6,24 +6,24 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
 import com.alibaba.fastjson.JSON;
 
-import Book.borrowing.management.system.*;
+import Book.borrowing.management.system.BookDBCon;
+import Book.borrowing.management.system.Util4Frm;
 import Book.borrowing.management.system.model.MessageJSONModel;
 
 /**
- * Servlet implementation class login
+ * Servlet implementation class psdalter
  */
-@WebServlet("/book/api/login")
-public class login extends HttpServlet {
+@WebServlet("/book/api/psdalter")
+public class psdalter extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public login() {
+    public psdalter() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -33,7 +33,7 @@ public class login extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		response.getWriter().append("This Pages isn't support GET");
+        response.getWriter().append("This Page isn't support GET");
 	}
 
 	/**
@@ -41,24 +41,23 @@ public class login extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-    	response.setContentType("application/json;charset=utf-8");
-    	request.setCharacterEncoding("UTF-8");
-		response.setCharacterEncoding("UTF-8");
+		if (!Util4Frm.judgeusername(request,response)) return;
 		
-		HttpSession session = request.getSession(true);
         String username = request.getParameter("username");
-        String pwd = request.getParameter("password");
+        String pwd = request.getParameter("pwd");
+        String newpwd = request.getParameter("newpwd");
         pwd = Util4Frm.encodeInp(pwd);
-		//System.out.println(username+"\t"+pwd);
-		
+        newpwd = Util4Frm.encodeInp(newpwd);
+        
         if (BookDBCon.preparedqueryResult("select readerNO from Reader where readerNo=? and password=?", username,pwd) != null) {
-        	session.setAttribute("username", username);
-        	response.getWriter().append(JSON.toJSONString(new MessageJSONModel("603","读者登录成功")));
-        } else if (BookDBCon.preparedqueryResult("select username from AdminUsers where username=? and password=?", username,pwd) != null){
-        	session.setAttribute("username", username);
-        	response.getWriter().append(JSON.toJSONString(new MessageJSONModel("604","管理员登录成功")));
-        	//进入到管理员选择界面后跳转到指定页面
-        } else response.getWriter().append(JSON.toJSONString(new MessageJSONModel("403","用户名或密码错误")));
+            if (BookDBCon.preparedupdateData("update Reader set password=? where readerNo=?",newpwd,username)) {
+            	response.getWriter().append(JSON.toJSONString(new MessageJSONModel("200","修改密码成功")));
+            } else{
+            	response.getWriter().append(JSON.toJSONString(new MessageJSONModel("403","修改密码失败")));
+            }
+        } else {
+        	response.getWriter().append(JSON.toJSONString(new MessageJSONModel("403","用户名或原密码错误")));
+        }
 	}
 
 }
