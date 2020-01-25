@@ -44,17 +44,17 @@ public class borrowadd extends HttpServlet {
 		
 		if (bookNO==null || session.getAttribute("username")==null) {
 			//请求非法
-			response.getWriter().append(JSON.toJSONString(new MessageJSONModel("602","请求非法")));
+			response.getWriter().append(JSON.toJSONString(new MessageJSONModel("602","请求内容或格式非法")));
 			return;
 		}
 
         if (Integer.parseInt(BookDBCon.preparedqueryResult("select 在库数量 from View_Book where 图书编号=?",bookNO)) <= 0) {
-        	response.getWriter().append(JSON.toJSONString(new MessageJSONModel("901","这本书已经被借光了")));
+        	response.getWriter().append(JSON.toJSONString(new MessageJSONModel("403","这本书已经被借光了")));
             return;
         }
         if (BookDBCon.preparedqueryResult("select readerNO from Borrow where readerNO=? and bookNO=? and returnDate is null",readerNO,bookNO) != null){
         	
-        	response.getWriter().append(JSON.toJSONString(new MessageJSONModel("902","这本书你已经借过了")));
+        	response.getWriter().append(JSON.toJSONString(new MessageJSONModel("403","这本书你已经借过了")));
             return;
         }
 		if(BookDBCon.preparedupdateData(sql,readerNO,bookNO)) {

@@ -12,7 +12,7 @@
 	<body>
 		<div style="text-align: center; margin:0px 20% 0px 20%">
 			<h1>登录</h1>
-			<form id="form1" class="form-horizontal">
+			<form id="form1" class="form-horizontal" onkeydown="if(event.keyCode==13)login();">
 				<div class="col-sm-3"></div>
 				<div class="col-sm-6">
 				<div class="form-group">					
@@ -44,7 +44,7 @@
 					window.location.href = 'bookmanager.html';
 				else
 					window.location.href = 'readerinformation.html';
-			} else alert(result.message);
+			}
 		}
 	</script>
 </html>

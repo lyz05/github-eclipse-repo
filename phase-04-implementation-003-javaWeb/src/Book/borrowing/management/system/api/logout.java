@@ -38,7 +38,7 @@ public class logout extends HttpServlet {
 		
 		HttpSession session = request.getSession(true);
 		session.setAttribute("username", null);
-		response.getWriter().append(JSON.toJSONString(new MessageJSONModel("200","注销操作完成")));
+		response.getWriter().append(JSON.toJSONString(new MessageJSONModel("605","注销操作完成")));
 	}
 
 	/**

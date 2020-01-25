@@ -137,9 +137,8 @@
             }
             table.appendChild(tbody);
 		}
+		//回调函数
 		function callBack(result){
-			if (result.message!=null && result.message!="")
-				alert(result.message);
 			if (result.code == 200) {
 				search();
 			}

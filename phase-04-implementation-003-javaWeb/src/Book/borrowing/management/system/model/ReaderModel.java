@@ -41,6 +41,12 @@ public class ReaderModel {
 		return sql;
 	}
 	public MessageJSONModel addReader() {
+		if (textFiledIsNull()) 
+			return new MessageJSONModel("403","请填写欲添加读者的所有信息");
+		if (!checkIDNum()) 
+			return new MessageJSONModel("403","身份证位数不正确");
+		if (!checksex())
+			return new MessageJSONModel("403","性别填写有误");
 		String sql= "INSERT INTO Reader VALUES(?,?,?,?,?,'')";
 		if (BookDBCon.preparedupdateData(sql,readerno,readername,sex,idnum,workunit)) {
 			return new MessageJSONModel("200","添加信息成功");
@@ -51,11 +57,11 @@ public class ReaderModel {
 	public MessageJSONModel delReader() {
 		String sql = "select * from View_reader where 读者编号=?";
 		if (BookDBCon.preparedqueryResult(sql, readerno) == null) {
-			return new MessageJSONModel("801", "此位读者不存在");
+			return new MessageJSONModel("403", "此位读者不存在");
 		}
 		sql = "select * from View_reader where 读者编号=? and 未归还数量=0";
 		if (BookDBCon.preparedqueryResult(sql, readerno) == null) {
-			return new MessageJSONModel("802", "该读者还有未归还的图书，因此无法删除该读者");
+			return new MessageJSONModel("403", "该读者还有未归还的图书，因此无法删除该读者");
 		}
 		sql = "delete from Borrow where readerNO=? and returnDate is not null";
 		BookDBCon.preparedupdateData(sql, readerno);
@@ -67,10 +73,25 @@ public class ReaderModel {
 		}
 	}
 	public MessageJSONModel editReader() {
+		if (textFiledIsNull()) 
+			return new MessageJSONModel("403","请填写欲修改读者的所有信息");
+		if (!checkIDNum()) 
+			return new MessageJSONModel("403","身份证位数不正确");
+		if (!checksex())
+			return new MessageJSONModel("403","性别填写有误");
 		if (BookDBCon.preparedupdateData("update Reader set readerName=?,sex=?,identitycard=?,workUnit=? where readerNO=?",readername,sex,idnum,workunit,readerno)) {
 			return new MessageJSONModel("200","修改信息成功");
         } else {
         	return new MessageJSONModel("403","修改信息失败");
         }
+	}
+	public boolean textFiledIsNull() {
+		return ("").equals(readerno) || ("").equals(readername) || ("").equals(sex) || ("").equals(idnum) || ("").equals(workunit);
+	}
+	public boolean checkIDNum() {
+		return idnum.length()==18;
+	}
+	public boolean checksex() {
+		return sex.equals("男") || sex.equals("女");
 	}
 }

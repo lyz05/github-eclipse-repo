@@ -43,7 +43,7 @@ public class borrowreturn extends HttpServlet {
 		String sql = "update Borrow set returnDate=now() where readerNO=? and bookNO=? and returnDate is null";
 		if (bookNO==null || session.getAttribute("username")==null) {
 			//请求非法
-			response.getWriter().append(JSON.toJSONString(new MessageJSONModel("602","请求非法")));
+			response.getWriter().append(JSON.toJSONString(new MessageJSONModel("602","请求内容或格式非法")));
 			return;
 		}
 		
