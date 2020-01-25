@@ -2,6 +2,8 @@ package Book.borrowing.management.system.model;
 
 import java.util.Vector;
 
+import com.alibaba.fastjson.JSON;
+
 import Book.borrowing.management.system.BookDBCon;
 
 public class ReaderModel {
@@ -35,11 +37,40 @@ public class ReaderModel {
 		this.workunit=workunit;
 	}
 	public String getSqlQueryString() {
-		String sql="where 读者编号 like '%"+readerno+"%' and 姓名 like '%"+readername+"%' and 性别 like '%"+sex+"%' and 身份证号 like '%"+idnum+"%' and 工作单位 like '%"+workunit+"%'";
+		String sql=" where 读者编号 like '%"+readerno+"%' and 姓名 like '%"+readername+"%' and 性别 like '%"+sex+"%' and 身份证号 like '%"+idnum+"%' and 工作单位 like '%"+workunit+"%'";
 		return sql;
 	}
-	public boolean getSqlAddResult() {
+	public MessageJSONModel addReader() {
 		String sql= "INSERT INTO Reader VALUES(?,?,?,?,?,'')";
-		return BookDBCon.preparedupdateData(sql,readerno,readername,sex,idnum,workunit);
+		if (BookDBCon.preparedupdateData(sql,readerno,readername,sex,idnum,workunit)) {
+			return new MessageJSONModel("200","添加信息成功");
+		} else {
+			return new MessageJSONModel("403","添加信息失败");
+		}
+	}
+	public MessageJSONModel delReader() {
+		String sql = "select * from View_reader where 读者编号=?";
+		if (BookDBCon.preparedqueryResult(sql, readerno) == null) {
+			return new MessageJSONModel("801", "此位读者不存在");
+		}
+		sql = "select * from View_reader where 读者编号=? and 未归还数量=0";
+		if (BookDBCon.preparedqueryResult(sql, readerno) == null) {
+			return new MessageJSONModel("802", "该读者还有未归还的图书，因此无法删除该读者");
+		}
+		sql = "delete from Borrow where readerNO=? and returnDate is not null";
+		BookDBCon.preparedupdateData(sql, readerno);
+		sql = "delete from reader where readerNO=?";
+		if (BookDBCon.preparedupdateData(sql, readerno)) {
+        	return new MessageJSONModel("200","删除读者信息成功");
+		} else {
+			return new MessageJSONModel("403","删除读者信息失败");
+		}
+	}
+	public MessageJSONModel editReader() {
+		if (BookDBCon.preparedupdateData("update Reader set readerName=?,sex=?,identitycard=?,workUnit=? where readerNO=?",readername,sex,idnum,workunit,readerno)) {
+			return new MessageJSONModel("200","修改信息成功");
+        } else {
+        	return new MessageJSONModel("403","修改信息失败");
+        }
 	}
 }

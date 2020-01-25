@@ -5,56 +5,46 @@
 		<title>登录 - 图书借阅管理系统</title>
 		<link rel="stylesheet" href="/static/bootstrap/css/bootstrap.min.css">
 		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<script src="/static/jquery.min.js"></script>
+		<script src="/static/js/ajaxrequest.js"></script>
 	</head>
 
 	<body>
-		<div align="center">
+		<div style="text-align: center; margin:0px 20% 0px 20%">
 			<h1>登录</h1>
-			<form id="form1" action="api/login">
-				<p>读者号：<input name="username" type="text"><br></p>
-				<p>密码：<input name="password" type="password"><br></p>
-				<p>
-					<input type="button" value="登录" class="btn btn-primary" onclick="login()"/>
-					<input type="reset" value="重置" class="btn btn-default"/>
-				</p>
+			<form id="form1" class="form-horizontal">
+				<div class="col-sm-3"></div>
+				<div class="col-sm-6">
+				<div class="form-group">					
+					<input name="username" type="text" placeholder="账号" class="form-control">
+				</div>
+				<div class="form-group">
+					<input name="password" type="password" class="form-control" placeholder="密码">
+				</div>
+				<div class="form-group">
+					<input type="button" value="登录" class="btn btn-primary btn-block" onclick="login()"/>
+					<input type="reset" value="重置" class="btn btn-default btn-block"/>
+					</div>
+				</div>
 			</form>
 		</div>
 	</body>
 	<script>
-		//发送ajax请求，成功刷新当前页面
-		function ajaxRequest(type, url, data) {
-	        $.ajax({
-				url: url,
-				type: type,
-				dataType: "json",
-				data: data,
-				success:function(result,testStatus)
-				{
-					if (result.code=="603") {
-						window.location.href="borrowinformation.jsp";
-					} else
-					if (result.code=="604") {
-						var res=confirm('您好，管理员\n确定 进入图书管理界面\n取消 进入读者管理界面');
-						if (res)
-							window.location.href='bookmanager.jsp';
-						else
-							window.location.href='readerinformation.jsp';
-					} else alert(result.message);
-					
-					if (result.code=="601") {
-						window.location.href='./';
-					}
-				},
-				error:function(xhr,errorMessage,e)
-				{
-					alert("发送请求失败，请检查网络状态");
-				}
-			});
-		}
 		function login()
 		{
-			ajaxRequest("post","api/login",$('#form1').serialize());
+			ajaxRequest("post","api/login",$('#form1').serialize(),null,loginCallBack);
+		}
+		function loginCallBack(result)
+		{
+			if (result.code == "603") {
+				window.location.href = "borrowinformation.html";
+			} else if (result.code == "604") {
+				var res = confirm('您好，管理员\n确定 进入图书管理界面\n取消 进入读者管理界面');
+				if (res)
+					window.location.href = 'bookmanager.html';
+				else
+					window.location.href = 'readerinformation.html';
+			} else alert(result.message);
 		}
 	</script>
-	<script src="/static/jquery.min.js"></script>
 </html>

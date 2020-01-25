@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>读者信息管理 - 图书借阅管理系统</title>
+		<!-- bootstrap样式 -->
+		<link rel="stylesheet" href="/static/bootstrap/css/bootstrap.min.css">
+		<!-- 自定义样式 -->
+		<link rel="stylesheet" href="css/style.css">
+		<script src="/static/jquery.min.js"></script>
+		<script src="/static/js/jquery-form.js"></script>
+		<script src="/static/js/ajaxrequest.js"></script>
+	</head>
+
+	<body>
+		<div class="header">
+			<p>
+				您好，管理员：<span id="username"></span>
+				<span class="right">
+					<a href="javascript:logout()">注销</a>
+				</span>
+			</p>
+		</div>
+
+		<div class="panel panel-primary">
+			<div class="panel-heading">
+				<h3 class="panel-title">
+					筛选模式
+				</h3>
+			</div>
+			<div class="panel-body">
+				<form method="POST" name="form1" action="readerinformation.jsp" id="form1">
+					<p><label>读者编号：</label><input name="readerno">
+					<span class="right"><label>身份证号：</label><input name="idnum"></span></p>
+					<p><label>姓名：</label><input name="readername">
+					<span class="right"><label>工作单位：</label><input name="workunit"></span></p>
+					<p><label>性别：</label><input name="sex"></p>
+					<input type="button" value="查询" class="btn btn-primary" onclick="search()" >
+					<input type="button" value="添加" class="btn" onclick="add()">
+					<input type="button" value="保存" class="btn" onclick="save()" style="display:none" id="savebtn">
+				</form>
+			</div>
+		</div>
+
+		<div id="tabs container">
+			<table id="table" class="table table-striped table-bordered table-hover">
+				<tr><td>正在加载...</td></tr>
+				<!-- <a href="?readerno=<%=row.get(0)%>">编辑</a> |
+				<a href="javascript:del('<%=row.get(0)%>')">删除</a> |
+				<a href="javascript:resetpwd('<%=row.get(0)%>')">重置读者密码</a> -->
+
+			</table>
+		</div>
+	</body>
+		<script>
+		function search(){
+			ajaxRequest("post","api/table",$('#form1').serialize()+"&table=View_Reader",null,displayforminfo);
+		}
+		function add()
+		{
+			ajaxRequest("post","api/readeradd",$('#form1').serialize(), window.location.pathname,null);
+		}
+		function del(readerno) {
+			ajaxRequest("get","api/readerdelete","readerno="+readerno, null, callBack);
+		}
+		function save() {
+	        ajaxRequest("post","api/readeredit",$('#form1').serialize(), window.location.pathname,null);
+		}
+		function edit(bookno) {
+			$('#savebtn').css('display','inline');
+			ajaxRequest("post","api/reader","readerno="+bookno,window.location.pathname,editCallBack);
+		}
+		function editCallBack(bookinfo){
+			$('#form1').setForm(bookinfo);
+		}
+		function orderby(name){
+			ajaxRequest("post","api/table",$('#form1').serialize()+"&table=View_Reader"+"&orderby="+name,null,displayforminfo);
+		}
+		function resetpwd(readerno) {
+			ajaxRequest("get","api/readerresetpwd","readerno="+readerno, null,callBack);
+		}
+		function displayforminfo(forminfo){
+			var username = window.document.getElementById("username");
+			username.innerHTML = forminfo.username;
+			var table = window.document.getElementById("table");
+			table.innerHTML='';
+			
+            //创建标题行
+            var thead = window.document.createElement("thead");
+            var tr = window.document.createElement("tr");
+            var itemHead = forminfo.name;
+            for (var index in itemHead) {
+                //创建标题单元格添加到thead
+                var th = window.document.createElement("th");
+                var a = window.document.createElement("a");
+                a.innerText = itemHead[index];
+                a.href="javascript:orderby('"+itemHead[index]+"')"
+                th.appendChild(a);
+                tr.appendChild(th);
+            }
+            var th = window.document.createElement("th");
+            th.innerText = "操作"
+            tr.appendChild(th);
+            thead.appendChild(tr);
+            table.appendChild(thead);
+            
+            var tbody = window.document.createElement("tbody");
+            //遍历对象，创建行和单元格
+            for (var i = 0; i < forminfo.rows; i++) {
+                var item = forminfo.data[i];
+                //创建行
+                var tr = window.document.createElement("tr");
+                tbody.appendChild(tr);
+                for (var index in item) {
+                    //创建单元格
+                    var td = window.document.createElement("td");
+                    td.innerText = item[index];
+                    tr.appendChild(td);
+                }
+                var td = window.document.createElement("td");
+                var a = window.document.createElement("a");
+                a.href = "javascript:edit('"+forminfo.data[i][0]+"')";
+                a.innerText = "编辑";
+              	td.appendChild(a);
+              	td.append(" | ");
+              	a = window.document.createElement("a");
+              	a.href = "javascript:del('"+forminfo.data[i][0]+"')";
+                a.innerText = "删除";
+              	td.appendChild(a);
+              	td.append(" | ");
+              	a = window.document.createElement("a");
+              	a.href = "javascript:resetpwd('"+forminfo.data[i][0]+"')";
+                a.innerText = "重置读者密码";
+              	td.appendChild(a);
+              	
+                tr.appendChild(td);
+            }
+            table.appendChild(tbody);
+		}
+		function callBack(result){
+			if (result.message!=null && result.message!="")
+				alert(result.message);
+			if (result.code == 200) {
+				search();
+			}
+		}
+		window.onload = callBack({code:200});
+	</script>
+</html>

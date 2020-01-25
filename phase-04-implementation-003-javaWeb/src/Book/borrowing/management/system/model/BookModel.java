@@ -2,12 +2,12 @@ package Book.borrowing.management.system.model;
 
 import java.util.Vector;
 
+import com.alibaba.fastjson.JSON;
+
 import Book.borrowing.management.system.BookDBCon;
 
 public class BookModel {
-	public String bookno,bookname,author,press,publishdate_1,publishdate_2,price,publishdate,shopnum;
-	public boolean check;
-	public String readerno;
+	public String bookno,bookname,author,press,price,publishdate,shopnum;
 	public BookModel(String bookno) {
 		this.bookno=bookno;
 		String sql = "select * from View_Book_Admin where 图书编号='"+bookno+"'";
@@ -21,30 +21,7 @@ public class BookModel {
 		this.publishdate=data.get(0).get(5);
 		this.shopnum=data.get(0).get(6);
 	}
-	public BookModel() {
-		this.bookno=new String();
-		this.bookname=new String();
-		this.author=new String();
-		this.press=new String();
-		this.publishdate_1=new String();
-		this.publishdate_2=new String();
-		this.price=new String();
-		this.publishdate=new String();
-		this.shopnum=new String();
-		this.check=false;
-		this.readerno=new String();
-	}
-	public BookModel(String bookno,String bookname,String author,String press,String publishdate_1,String publishdate_2,boolean check,String readerno)
-	{
-		this.bookno=bookno;
-		this.bookname=bookname;
-		this.author=author;
-		this.press=press;
-		this.publishdate_1=publishdate_1;
-		this.publishdate_2=publishdate_2;
-		this.check=check;
-		this.readerno=readerno;
-	}
+	
 	public BookModel(String bookno,String bookname,String author,String press,String price,String publishdate,String shopnum)
 	{
 		this.bookno=bookno;
@@ -55,22 +32,44 @@ public class BookModel {
 		this.publishdate=publishdate;
 		this.shopnum=shopnum;
 	}
-	public String getSqlQueryString() {
-		String sql = "where 图书编号 like '%"+ bookno + "%' and 图书名称 like '%" + bookname + "%' and 作者 like '%" + author + "%' and 出版社 like '%" + press + "%'";
-        if (!publishdate_1.equals("")) 
-            sql += " and 出版日期>='" + publishdate_1+"'";
-        if (!publishdate_2.equals("")) 
-            sql += " and 出版日期<='" + publishdate_2+"'";
-        if (check)
-            sql += " and 在库数量>0 and 图书编号 not in (select 图书编号 from View_Borrow where 读者编号='"+readerno+"' and 归还日期 is null)";
-        return sql;
-	}
+	
 	public String getSqlQueryString1() {
-		String sql= "where 图书编号 like '%"+bookno+"%' and 图书名称 like '%"+bookname+"%' and 作者 like '%"+author +"%' and 出版社 like '%"+press+"%'";
+		String sql= " where 图书编号 like '%"+bookno+"%' and 图书名称 like '%"+bookname+"%' and 作者 like '%"+author +"%' and 出版社 like '%"+press+"%'";
 		return sql;
 	}
-	public boolean getSqlAndResult() {
+	
+	public MessageJSONModel addBook() {
 		String sql= "INSERT INTO Book VALUES(?,?,?,?,?,?,?)";
-		return BookDBCon.preparedupdateData(sql,bookno,bookname,author,press,price,publishdate,shopnum);
+		if (BookDBCon.preparedupdateData(sql,bookno,bookname,author,press,price,publishdate,shopnum)) {
+			return new MessageJSONModel("200","添加信息成功");
+		} else {
+			return new MessageJSONModel("403","添加信息失败");
+		}
+	}
+	public MessageJSONModel delBook() {
+		String sql = "select * from View_Book where 图书编号=?";
+		if (BookDBCon.preparedqueryResult(sql,bookno) == null) {
+			return new MessageJSONModel("701","该本图书不存在");
+		}
+		sql = "select * from View_Book where 图书编号=? and 在库数量=入库数量";
+		if (BookDBCon.preparedqueryResult(sql,bookno) == null)
+		{
+			return new MessageJSONModel("702","还有读者未归还此本图书，因此无法删除此书");
+		}
+		sql = "delete from Borrow where bookno=? and returnDate is not null";
+        BookDBCon.preparedupdateData(sql,bookno);
+        sql = "delete from Book where bookNO=?";
+        if (BookDBCon.preparedupdateData(sql,bookno)) {
+        	return new MessageJSONModel("200","删除图书信息成功");
+		} else {
+			return new MessageJSONModel("403","删除图书信息失败");
+		}
+	}
+	public MessageJSONModel editBook() {
+		if (BookDBCon.preparedupdateData("update Book set bookName=?,authorName=?,publishingName=?,price=?,publishingDate=?,shopNum=? where bookNO=?",bookname,author,press,price,publishdate,shopnum,bookno)) {
+			return new MessageJSONModel("200","修改图书信息成功");
+        } else {
+        	return new MessageJSONModel("403","修改图书信息失败");
+        }
 	}
 }

@@ -11,7 +11,9 @@ import com.alibaba.fastjson.JSON;
 
 import Book.borrowing.management.system.BookDBCon;
 import Book.borrowing.management.system.Util4Frm;
+import Book.borrowing.management.system.model.BookModel;
 import Book.borrowing.management.system.model.MessageJSONModel;
+import Book.borrowing.management.system.model.ReaderModel;
 
 /**
  * Servlet implementation class readeredit
@@ -43,10 +45,9 @@ public class readeredit extends HttpServlet {
 		// TODO Auto-generated method stub
 		if (!Util4Frm.judgeusername(request,response)) return;
 		
-		if (BookDBCon.preparedupdateData("update Reader set readerName=?,sex=?,identitycard=?,workUnit=? where readerNO=?",request.getParameter("readername"),request.getParameter("sex"),request.getParameter("idnum"),request.getParameter("workunit"),request.getParameter("readerno"))) {
-			response.getWriter().append(JSON.toJSONString(new MessageJSONModel("200","修改信息成功")));
-        } else {
-        	response.getWriter().append(JSON.toJSONString(new MessageJSONModel("403","修改信息失败")));
-        }
+		ReaderModel readerinfo;
+		readerinfo = new ReaderModel(request.getParameter("readerno"),request.getParameter("readername"),request.getParameter("sex"),request.getParameter("idnum"),request.getParameter("workunit"));
+		MessageJSONModel ret = readerinfo.editReader();
+		response.getWriter().append(JSON.toJSONString(ret));
 	}
 }

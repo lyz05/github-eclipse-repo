@@ -1,23 +1,5 @@
-table {
-  table-layout: fixed;
-  width: 100%;
-  border: 1px solid rgb(82, 79, 79);
-}
-
-td {
-  border: 1px solid rgb(127, 127, 128);
-  overflow: hidden;
-  white-space: nowrap;
-  text-overflow: ellipsis;
-}
-/* .btn{
-	height: 30px;
-} */
 .right{
 	float:right;
-}
-.screen{
-	width: 90%;
 }
 div{
 	margin:10px 10px 10px 10px

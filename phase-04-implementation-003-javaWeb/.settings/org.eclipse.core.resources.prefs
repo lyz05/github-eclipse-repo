@@ -1,5 +1,7 @@
 eclipse.preferences.version=1
 encoding//WebContent/book/alterpassword.html=UTF-8
+encoding//WebContent/book/borrowinformation.html=UTF-8
+encoding//WebContent/book/readerinformation.html=UTF-8
 encoding//src/Book/borrowing/management/system/BookDBCon.java=UTF-8
 encoding//src/chat/WebSocketTest.java=UTF-8
 encoding//src/ws/WebSocket.java=UTF-8

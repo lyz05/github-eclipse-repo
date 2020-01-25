@@ -11,6 +11,7 @@ import com.alibaba.fastjson.JSON;
 
 import Book.borrowing.management.system.BookDBCon;
 import Book.borrowing.management.system.Util4Frm;
+import Book.borrowing.management.system.model.BookModel;
 import Book.borrowing.management.system.model.MessageJSONModel;
 
 /**
@@ -43,12 +44,10 @@ public class bookedit extends HttpServlet {
 		// TODO Auto-generated method stub
 		if (!Util4Frm.judgeusername(request,response)) return;
 		
-		if (BookDBCon.preparedupdateData("update Book set bookName=?,authorName=?,publishingName=?,price=?,publishingDate=?,shopNum=? where bookNO=?",request.getParameter("bookname"),request.getParameter("author"),request.getParameter("press"),request.getParameter("price"),request.getParameter("publishdate"),request.getParameter("shopnum"),request.getParameter("bookno"))) {
-			response.getWriter().append(JSON.toJSONString(new MessageJSONModel("200","修改信息成功")));
-        } else {
-        	response.getWriter().append(JSON.toJSONString(new MessageJSONModel("403","修改信息失败")));
-        }
-
+		BookModel bookinfo;
+		bookinfo = new BookModel(request.getParameter("bookno"),request.getParameter("bookname"),request.getParameter("author"),request.getParameter("press"),request.getParameter("price"),request.getParameter("publishdate"),request.getParameter("shopnum"));
+		MessageJSONModel ret = bookinfo.editBook();
+		response.getWriter().append(JSON.toJSONString(ret));
 	}
 
 }
