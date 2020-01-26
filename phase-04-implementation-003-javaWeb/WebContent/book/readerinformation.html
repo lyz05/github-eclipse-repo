@@ -20,6 +20,9 @@
 					<a href="javascript:logout()">注销</a>
 				</span>
 			</p>
+			<div class="alert alert-info fade in" style="display: none;" role="alert" id="alert">
+		   		alert message
+			</div>
 		</div>
 
 		<div class="panel panel-primary">
@@ -42,15 +45,16 @@
 			</div>
 		</div>
 
-		<div id="tabs container">
+		<div id="tabs">
 			<table id="table" class="table table-striped table-bordered table-hover">
 				<tr><td>正在加载...</td></tr>
-				<!-- <a href="?readerno=<%=row.get(0)%>">编辑</a> |
-				<a href="javascript:del('<%=row.get(0)%>')">删除</a> |
-				<a href="javascript:resetpwd('<%=row.get(0)%>')">重置读者密码</a> -->
-
 			</table>
 		</div>
+		<footer>
+			<div style="text-align: center;">
+				<label id="footer">正在加载...</label>
+			</div>
+		</footer>
 	</body>
 		<script>
 		function search(){
@@ -58,19 +62,20 @@
 		}
 		function add()
 		{
-			ajaxRequest("post","api/readeradd",$('#form1').serialize(), window.location.pathname,null);
+			ajaxRequest("post","api/readeradd",$('#form1').serialize(), null, callBackReset);
 		}
 		function del(readerno) {
 			ajaxRequest("get","api/readerdelete","readerno="+readerno, null, callBack);
 		}
 		function save() {
-	        ajaxRequest("post","api/readeredit",$('#form1').serialize(), window.location.pathname,null);
+	        ajaxRequest("post","api/readeredit",$('#form1').serialize(), null, callBackReset);
 		}
 		function edit(bookno) {
 			$('#savebtn').css('display','inline');
-			ajaxRequest("post","api/reader","readerno="+bookno,window.location.pathname,editCallBack);
+			ajaxRequest("post","api/reader","readerno="+bookno,null,editCallBack);
 		}
 		function editCallBack(bookinfo){
+			$('#form1')[0].reset();
 			$('#form1').setForm(bookinfo);
 		}
 		function orderby(name){
@@ -80,8 +85,12 @@
 			ajaxRequest("get","api/readerresetpwd","readerno="+readerno, null,callBack);
 		}
 		function displayforminfo(forminfo){
+			//管理员用户名
 			var username = window.document.getElementById("username");
 			username.innerHTML = forminfo.username;
+			//底部标签
+			var footer = window.document.getElementById("footer");
+			footer.innerHTML = "共查询到"+forminfo.rows+"条记录";
 			var table = window.document.getElementById("table");
 			table.innerHTML='';
 			
@@ -137,12 +146,6 @@
             }
             table.appendChild(tbody);
 		}
-		//回调函数
-		function callBack(result){
-			if (result.code == 200) {
-				search();
-			}
-		}
-		window.onload = callBack({code:200});
+		window.onload = search();
 	</script>
 </html>

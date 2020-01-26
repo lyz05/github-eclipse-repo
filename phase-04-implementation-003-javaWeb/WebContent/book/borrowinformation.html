@@ -24,6 +24,9 @@
 					<a href="javascript:logout()">注销</a>
 				</span>
 			</p>
+			<div class="alert alert-info fade in" style="display: none;" role="alert" id="alert">
+		   		alert message
+			</div>
 		</div>
 
 		<!-- 过滤器 -->
@@ -37,22 +40,22 @@
 				<form id="form1" onkeydown="if(event.keyCode==13)search(true);">
 					<p>
 					<label>图书编号</label>
-					<input name="bookno" value="">
+					<input name="bookno">
 					<span class="right">
 					<label>出版社</label>
-					<input name="press" value="">
+					<input name="press">
 					</span>
 					</p>
 					<p>
 					<label>图书名称</label>
-					<input name="bookname" value="">
+					<input name="bookname">
 					<span class="right">
 					<label>出版日期</label>
-					<input name="publishdate_1" value="">&nbsp;至&nbsp;<input name="publishdate_2"></span>
+					<input name="publishdate_1">&nbsp;至&nbsp;<input name="publishdate_2"></span>
 					</p>
 					<p>
 					<label>作者</label>
-					<input name="author" value="">
+					<input name="author">
 					<span class="right">
 					<label class="checkbox-inline">
 					<input name="check" type="checkbox">
@@ -68,31 +71,43 @@
 		</div>
 
 		<!-- 导航栏 -->
-		<ul class="nav nav-tabs" role="tablist" id="myTab">
-		    <li role="presentation" class="active"><a href="#tabs-1" aria-controls="tabs-1" role="tab" data-toggle="tab">当前借阅</a></li>
-		    <li role="presentation"><a href="#tabs-2" aria-controls="tabs-2" role="tab" data-toggle="tab">历史借阅</a></li>
-		    <li role="presentation"><a href="#tabs-3" aria-controls="tabs-3" role="tab" data-toggle="tab">图书信息</a></li>
-	  	</ul>
-	  	<div class="tab-content">
-	  	<!-- 当前借阅 -->
-		  <div role="tabpanel" class="tab-pane fade in active" id="tabs-1">
-			<table class="table table-striped table-bordered table-hover" id="table-1">
-				<tr><td>正在加载...</td></tr>
-			</table>
-		  </div>
-		  <!-- 历史借阅 -->
-		  <div role="tabpanel" class="tab-pane fade" id="tabs-2">
-	   	    <table class="table table-striped table-bordered table-hover" id="table-2">
-	   	    	<tr><td>正在加载...</td></tr>
-			</table>
-		  </div>
-		  <!-- 图书信息 -->
-		  <div role="tabpanel" class="tab-pane fade" id="tabs-3">
-	   	    <table class="table table-striped table-bordered table-hover" id="table-3">
-	   	    	<tr><td>正在加载...</td></tr>
-			</table>
-		  </div>
+		<div id="tabs">
+			<ul class="nav nav-tabs" role="tablist" id="myTab">
+			    <li role="presentation" class="active"><a href="#tabs-1" aria-controls="tabs-1" role="tab" data-toggle="tab">当前借阅</a></li>
+			    <li role="presentation"><a href="#tabs-2" aria-controls="tabs-2" role="tab" data-toggle="tab">历史借阅</a></li>
+				<li role="presentation"><a href="#tabs-3" aria-controls="tabs-3" role="tab" data-toggle="tab">图书信息</a></li>
+		  	</ul>
+		  	<div class="tab-content">
+		  		<!-- 当前借阅 -->
+				<div role="tabpanel" class="tab-pane fade in active" id="tabs-1">
+				<table class="table table-striped table-bordered table-hover" id="table-1">
+					<tr><td>正在加载...</td></tr>
+				</table>
+				<footer style="text-align: center;">
+					<label id="footer-table-1">正在加载...</label>
+				</footer>
+				</div>
+				<!-- 历史借阅 -->
+				<div role="tabpanel" class="tab-pane fade" id="tabs-2">
+					    <table class="table table-striped table-bordered table-hover" id="table-2">
+					    	<tr><td>正在加载...</td></tr>
+				</table>
+				<footer style="text-align: center;">
+					<label id="footer-table-2">正在加载...</label>
+				</footer>
+				</div>
+				<!-- 图书信息 -->
+				<div role="tabpanel" class="tab-pane fade" id="tabs-3">
+					    <table class="table table-striped table-bordered table-hover" id="table-3">
+					    	<tr><td>正在加载...</td></tr>
+				</table>
+				<footer style="text-align: center;">
+					<label id="footer-table-3">正在加载...</label>
+				</footer>
+				</div>
+			</div>
 		</div>
+
 	</body>
 	
 	<script>
@@ -170,6 +185,8 @@
 			alterpwd.href = "alterpassword.html?username="+forminfo.username;
 			var readername = window.document.getElementById("readername");
 			readername.innerHTML = forminfo.readername;
+			var footer = window.document.getElementById("footer-"+tablename);
+			footer.innerHTML = "共查询到"+forminfo.rows+"条记录";
 			var table = window.document.getElementById(tablename);
 			table.innerHTML='';
 			
@@ -207,12 +224,6 @@
                 //tr.appendChild(operatortd);
             }
             table.appendChild(tbody);
-		}
-		//回调函数
-		function callBack(result){
-			if (result.code == 200) {
-				search();
-			}
 		}
 		window.onload = search();
   	</script>

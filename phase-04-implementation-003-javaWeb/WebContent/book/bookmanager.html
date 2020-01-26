@@ -7,7 +7,10 @@
 		<link rel="stylesheet" href="/static/bootstrap/css/bootstrap.min.css">
 		<!-- 自定义样式 -->
 		<link rel="stylesheet" href="css/style.css">
+		<!-- Bootstrap -->
 		<script src="/static/jquery.min.js"></script>
+		<script src="/static/bootstrap/js/bootstrap.js"></script>
+		<!-- 自定义js -->
 		<script src="/static/js/jquery-form.js"></script>
 		<script src="/static/js/ajaxrequest.js"></script>
 	</head>
@@ -20,6 +23,9 @@
 					<a href="javascript:logout()">注销</a>
 				</span>
 			</p>
+			<div class="alert alert-info fade in" style="display: none;" role="alert" id="alert">
+	        	alert message
+			</div>
 		</div>
 
 		<div class="panel panel-primary">
@@ -29,7 +35,7 @@
 				</h3>
 			</div>
 			<div class="panel-body">
-				<form id="form1" onkeydown="if(event.keyCode==13)search();">
+				<form id="form1" onkeydown="if(event.keyCode==13) if ($('#savebtn').is(':hidden')) search(); else save();">
 					<p>
 					<label>图书编号：</label>
 					<input id="bookno" name="bookno" value="">
@@ -55,7 +61,7 @@
 					<label>出版社：</label>
 					<input name="press" value="">
 					</p>
-					<input type="button" value="查询" class="btn btn-primary" onclick="search()" >
+					<input type="button" value="查询" class="btn btn-primary" onclick="search()" id="searchbtn">
 					<input type="button" value="添加" class="btn" onclick="add()">
 					<input type="button" value="保存" class="btn" onclick="save()" style="display:none" id="savebtn">
 				</form>
@@ -67,7 +73,12 @@
 				<tr><td>正在加载...</td></tr>
 			</table>
 		</div>
-		
+		<footer>
+			<div style="text-align: center;">
+				<label id="footer">正在加载...</label>
+			</div>
+		</footer>
+
 	</body>
 	<script>
 		function search(){
@@ -75,27 +86,37 @@
 		}
 		function add()
 		{
-			ajaxRequest("post","api/bookadd",$('#form1').serialize(),window.location.pathname,null);
+			ajaxRequest("post","api/bookadd",$('#form1').serialize(),null,callBackReset);
 		}
 		function del(bookno){
 	        ajaxRequest("get","api/bookdelete","bookno="+bookno,null,callBack);
 		}
 		function save() {
-	        ajaxRequest("post","api/bookedit",$('#form1').serialize(),window.location.pathname,null);
+			$('#searchbtn').addClass('btn-primary');
+			$('#savebtn').removeClass('btn-primary');
+	        ajaxRequest("post","api/bookedit",$('#form1').serialize(),null,callBackReset);
 		}
 		function edit(bookno) {
-			$('#savebtn').css('display','inline');
-			ajaxRequest("post","api/book","bookno="+bookno,window.location.pathname,editCallBack);
+			$('#savebtn').show();
+			$('#searchbtn').removeClass('btn-primary');
+			$('#savebtn').addClass('btn-primary');
+			ajaxRequest("post","api/book","bookno="+bookno,null,editCallBack);
 		}
 		function editCallBack(bookinfo){
+			$('#form1')[0].reset();
 			$('#form1').setForm(bookinfo);
 		}
 		function orderby(name){
 			ajaxRequest("post","api/table",$('#form1').serialize()+"&table=View_Book_Admin"+"&orderby="+name,null,displayforminfo);
 		}
 		function displayforminfo(forminfo){
+			//管理员用户名
 			var username = window.document.getElementById("username");
 			username.innerHTML = forminfo.username;
+			//底部标签
+			var footer = window.document.getElementById("footer");
+			footer.innerHTML = "共查询到"+forminfo.rows+"条记录";
+			
 			var table = window.document.getElementById("table");
 			table.innerHTML='';
 			
@@ -145,12 +166,6 @@
                 tr.appendChild(td);
             }
             table.appendChild(tbody);
-		}
-		//回调函数
-		function callBack(result){
-			if (result.code == 200) {
-				search();
-			}
 		}
 		window.onload = search();
 	</script>
