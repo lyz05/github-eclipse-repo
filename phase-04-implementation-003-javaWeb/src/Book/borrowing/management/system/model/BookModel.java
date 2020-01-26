@@ -90,7 +90,7 @@ public class BookModel {
 	public boolean checkShopNum() {
 		String sql;
 		String subshopnum;
-		sql = "select 入库数量-在库数量 from view_book where 图书编号=?";
+		sql = "select 入库数量-在库数量 from View_Book where 图书编号=?";
 		if((subshopnum = BookDBCon.preparedqueryResult(sql, bookno)) != null) {
 			return Integer.parseInt(shopnum)>=Integer.parseInt(subshopnum);
 		} else return Integer.parseInt(shopnum)>=0;

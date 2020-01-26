@@ -29,7 +29,8 @@ function ajaxRequest(type, url, data, href, func) {
 				func(result);
 		},
 		error : function(xhr, errorMessage, e) {
-			alert("发送请求失败，请检查网络状态");
+			alert(xhr.statusText);
+			//alert("发送请求失败，请检查网络状态");
 		}
 	});
 }
