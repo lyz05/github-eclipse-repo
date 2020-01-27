@@ -22,10 +22,10 @@
 		<div class="container-fluid">
 			<!-- 顶栏 -->
 			<div class="row">
-				<div class="col-xs-6" style="margin:5px 0px">
+				<div class="col-xs-6 text-left" style="margin:5px 0px">
 					<span data-locale="hello">您好</span><span data-locale="admin">管理员</span>：<span id="username"></span>
 				</div>
-				<div class="col-xs-6" style="text-align: right;margin:2px 0px">
+				<div class="col-xs-6 text-right" style="margin:2px 0px">
 					<a data-locale="logout" role="button" class="btn btn-primary btn-sm" href="javascript:logout()">注销</a>
 				</div>
 			</div>
@@ -104,11 +104,9 @@
 					<tr><td>正在加载...</td></tr>
 				</table>
 			</div>
-			<footer>
-				<div style="text-align: center;">
-					<label id="footer">正在加载...</label>
-				</div>
-			</footer>
+			<div class="text-center">
+				<label id="footer">正在加载...</label>
+			</div>
 		</div>
 	</body>
 	<script>
@@ -146,7 +144,7 @@
 			username.innerHTML = forminfo.username;
 			//底部标签
 			var footer = window.document.getElementById("footer");
-			footer.innerHTML = "共查询到"+forminfo.rows+"条记录";
+			footer.innerHTML = $.i18n.prop('recordsfound')+forminfo.rows;
 			
 			var table = window.document.getElementById("table");
 			table.innerHTML='';
@@ -165,7 +163,7 @@
                 tr.appendChild(th);
             }
             var th = window.document.createElement("th");
-            th.innerText = "操作"
+            th.innerText = $.i18n.prop('operation');
             tr.appendChild(th);
             thead.appendChild(tr);
             table.appendChild(thead);
@@ -187,12 +185,12 @@
                 var a = window.document.createElement("a");
                 a.href = "javascript:edit('"+forminfo.data[i][0]+"')";
                 a.className="";
-                a.innerText = "编辑";
+                a.innerText = $.i18n.prop('edit');
               	td.appendChild(a);
               	td.append(" | ");
               	a = window.document.createElement("a");
               	a.href = "javascript:del('"+forminfo.data[i][0]+"')";
-                a.innerText = "删除";
+                a.innerText = $.i18n.prop('delete');
               	td.appendChild(a);
                 tr.appendChild(td);
             }
@@ -200,7 +198,7 @@
 		}
 		function i18nCallBack()
 		{
-            $('#title').html($.i18n.prop('bookinfo')+" - "+$.i18n.prop('systemname'));
+            $('#title').html($.i18n.prop('bookinfo')+$.i18n.prop('management')+" - "+$.i18n.prop('systemname'));
             $('#panel-title').html($.i18n.prop('bookinfo')+" "+$.i18n.prop('filter')+" "+$.i18n.prop('filterleft'));			
 		}
 		window.onload = search();

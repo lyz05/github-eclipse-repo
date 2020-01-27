@@ -22,19 +22,13 @@ function loadProperties(type, func) {
 	});
 }
 
-function switchLang() {
-	localStorage.setItem("LANGUAGE_CODE", (localStorage
-			.getItem("LANGUAGE_CODE") == 'zh_CN') ? 'en_US' : 'zh_CN');
-	loadProperties(localStorage.getItem("LANGUAGE_CODE"), i18nCallBack);
-}
-
-$(document)
-		.ready(
-				function() {
-					if (localStorage.getItem("LANGUAGE_CODE") == null)
-						// 获取浏览器的语言
-						localStorage.setItem("LANGUAGE_CODE", jQuery.i18n
-								.normaliseLanguageCode({}));
-					loadProperties(localStorage.getItem("LANGUAGE_CODE"),
-							i18nCallBack);
-				});
+$(document).ready(
+	function() {
+		var LANGUAGE_CODE = localStorage.getItem("LANGUAGE_CODE");
+		if (LANGUAGE_CODE == null)
+			// 获取浏览器的语言
+			localStorage.setItem("LANGUAGE_CODE", jQuery.i18n
+					.normaliseLanguageCode({}));
+		LANGUAGE_CODE = localStorage.getItem("LANGUAGE_CODE");
+		loadProperties(LANGUAGE_CODE, i18nCallBack);
+	});

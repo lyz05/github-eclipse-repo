@@ -2,7 +2,7 @@
 <html>
 	<head>
 		<meta charset="UTF-8">
-		<title id="title">借阅信息 - 图书借阅管理系统</title>
+		<title id="title">借阅信息管理 - 图书借阅管理系统</title>
 		<!-- bootstrap样式 -->
 		<link rel="stylesheet" href="/static/bootstrap/css/bootstrap.min.css">
 		<!-- jQuery (Bootstrap 的所有 JavaScript 插件都依赖 jQuery，所以必须放在前边) -->
@@ -113,27 +113,27 @@
 				<table class="table table-striped table-bordered table-hover" id="table-1">
 					<tr><td>正在加载...</td></tr>
 				</table>
-				<footer style="text-align: center;">
+				<div class="text-center">
 					<label id="footer-table-1">正在加载...</label>
-				</footer>
+				</div>
 				</div>
 				<!-- 历史借阅 -->
 				<div role="tabpanel" class="tab-pane fade" id="tabs-2">
 					    <table class="table table-striped table-bordered table-hover" id="table-2">
 					    	<tr><td>正在加载...</td></tr>
 				</table>
-				<footer style="text-align: center;">
+				<div class="text-center">
 					<label id="footer-table-2">正在加载...</label>
-				</footer>
+				</div>
 				</div>
 				<!-- 图书信息 -->
 				<div role="tabpanel" class="tab-pane fade" id="tabs-3">
 					    <table class="table table-striped table-bordered table-hover" id="table-3">
 					    	<tr><td>正在加载...</td></tr>
 				</table>
-				<footer style="text-align: center;">
+				<div class="text-center">
 					<label id="footer-table-3">正在加载...</label>
-				</footer>
+				</div>
 				</div>
 			</div>
 			</div>
@@ -157,14 +157,14 @@
 			displayforminfo("table-3",forminfo,function(tr,i){
 				if (i == -1) {
 					var th = window.document.createElement("th");
-		            th.innerText = "操作"
+		            th.innerText = $.i18n.prop('operation');
 		            tr.appendChild(th);
 					return;
 				}
 				var td = window.document.createElement("td");
             	var a = window.document.createElement("a");
             	a.href = "javascript:borrow('"+forminfo.data[i][0]+"')";
-            	a.innerText = "借书";
+            	a.innerText = $.i18n.prop('borrowbook');
           		td.appendChild(a);
           		tr.appendChild(td);
 			});
@@ -173,19 +173,19 @@
 			displayforminfo("table-1",forminfo,function (tr,i){
 				if (i == -1) {
 					var th = window.document.createElement("th");
-		            th.innerText = "操作"
+		            th.innerText = $.i18n.prop('operation');
 		            tr.appendChild(th);
 					return;
 				}
 				var td = window.document.createElement("td");
             	var a = window.document.createElement("a");
             	a.href = "javascript:ret('"+forminfo.data[i][0]+"')";
-            	a.innerText = "还书";
+            	a.innerText = $.i18n.prop('returnbook');
           		td.appendChild(a);
           		td.append(" | ");
             	var a = window.document.createElement("a");
             	a.href = "javascript:renew('"+forminfo.data[i][0]+"')";
-            	a.innerText = "续借";
+            	a.innerText = $.i18n.prop('renewbook');
           		td.appendChild(a);
           		tr.appendChild(td);
 			});
@@ -216,7 +216,7 @@
 			var readername = window.document.getElementById("readername");
 			readername.innerHTML = forminfo.readername;
 			var footer = window.document.getElementById("footer-"+tablename);
-			footer.innerHTML = "共查询到"+forminfo.rows+"条记录";
+			footer.innerHTML = $.i18n.prop('recordsfound')+forminfo.rows;
 			var table = window.document.getElementById(tablename);
 			table.innerHTML='';
 			
@@ -257,7 +257,7 @@
 		}
 		function i18nCallBack()
 		{
-            $('#title').html($.i18n.prop('borrowinfo')+" - "+$.i18n.prop('systemname'));
+            $('#title').html($.i18n.prop('borrowinfo')+$.i18n.prop('management')+" - "+$.i18n.prop('systemname'));
             $('#panel-title').html($.i18n.prop('borrowinfo')+" "+$.i18n.prop('filter'));			
 		}
 		window.onload = search();
