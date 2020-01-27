@@ -2,8 +2,6 @@ package Book.borrowing.management.system.model;
 
 import java.util.Vector;
 
-import com.alibaba.fastjson.JSON;
-
 import Book.borrowing.management.system.BookDBCon;
 
 public class ReaderModel {

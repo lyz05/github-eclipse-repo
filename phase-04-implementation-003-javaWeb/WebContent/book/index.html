@@ -3,7 +3,7 @@
 	<head>
 		<meta charset="UTF-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1">
-		<title id="title">登录 - 图书借阅管理系统</title>
+		<title>登录 - 图书借阅管理系统</title>
 		<link rel="stylesheet" href="/static/bootstrap/css/bootstrap.min.css">
 		<!-- Bootstrap -->
 		<script src="/static/jquery.min.js"></script>
@@ -80,7 +80,7 @@
 		
 		function i18nCallBack()
 		{
-            $('#title').html($.i18n.prop('login')+" - "+$.i18n.prop('systemname'));
+            $('title').html($.i18n.prop('login')+" - "+$.i18n.prop('systemname'));
 		}
 		 //切换语言
 		$("#lang").on('change',function(){
