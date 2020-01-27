@@ -3,37 +3,42 @@
 	<head>
 		<meta charset="UTF-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1">
-		<title>登录 - 图书借阅管理系统</title>
+		<title id="title">登录 - 图书借阅管理系统</title>
 		<link rel="stylesheet" href="/static/bootstrap/css/bootstrap.min.css">
 		<!-- Bootstrap -->
 		<script src="/static/jquery.min.js"></script>
 		<script src="/static/bootstrap/js/bootstrap.js"></script>
 		<!-- 自定义js -->
 		<script src="/static/js/ajaxrequest.js"></script>
+		<!-- jQuery i18n -->
+		<script src="/static/js/jquery.json.min.js"></script>
+		<script src="/static/js/jquery.i18n.properties.js"></script>
+		<script src="/static/js/i18n.js"></script>
 	</head>
 
 	<body>
-		<div style="text-align: center; margin:0px 20% 0px 20%">
-			<div class="col-sm-3"></div>
-			<div class="col-sm-6">
-				<h1>登录</h1>
+		<div class="container">
+		<div class="row text-center" >
+			<div class="col-sm-4 col-sm-offset-4">
+				<h1 data-locale="login">登录</h1>
 				<div class="alert alert-info fade in" style="display: none;" role="alert" id="alert">
 		        	alert message
 				</div>
 				<form id="form1" class="form-horizontal" onkeydown="if(event.keyCode==13)login();">
 					<div class="form-group">					
-						<input name="username" type="text" placeholder="账号" class="form-control">
+						<input data-locale-placeholder="account" id="username" name="username" type="text" placeholder="账号" class="form-control">
 					</div>
 					<div class="form-group">
-						<input name="password" type="password" class="form-control" placeholder="密码">
+						<input data-locale-placeholder="password" id="password" name="password" type="password" class="form-control" placeholder="密码">
 					</div>
 					<div class="form-group">
-						<input type="button" value="登录" class="btn btn-primary btn-block" onclick="login()"/>
-						<input type="reset" value="重置" class="btn btn-default btn-block"/>
+						<input data-locale-btn="login" id="loginbtn" type="button" value="登录" class="btn btn-primary btn-block" onclick="login()"/>
+						<input data-locale-btn="reset" id="resetbtn" type="reset" value="重置" class="btn btn-default btn-block"/>
 					</div>
 				</form>
 			</div>
-			<div class="col-sm-3"></div>
+			
+		</div>
 		</div>
 		<!-- 模态框（Modal） -->
 		<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
@@ -41,12 +46,12 @@
 		        <div class="modal-content">
 		            <div class="modal-header">
 		                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-		                <h4 class="modal-title" id="myModalLabel">系统提示</h4>
+		                <h4 data-locale="sysinfo" class="modal-title" id="myModalLabel">系统提示</h4>
 		            </div>
-		            <div class="modal-body">您好，管理员<br>请选择将要进入的管理界面</div>
+		            <div data-locale="adminwelcom" class="modal-body">您好，管理员<br>请选择将要进入的管理界面</div>
 		            <div class="modal-footer">
-		                <button type="button" class="btn btn-success" onclick="window.location.href = 'bookmanager.html';">图书管理界面</button>
-		                <button type="button" class="btn btn-info" onclick="window.location.href = 'readerinformation.html';">读者管理界面</button>
+		                <button data-locale="bookmanagesys" type="button" class="btn btn-success" onclick="window.location.href = 'bookmanager.html';">图书管理界面</button>
+		                <button data-locale="readermanagesys" type="button" class="btn btn-info" onclick="window.location.href = 'readerinformation.html';">读者管理界面</button>
 		            </div>
 		        </div><!-- /.modal-content -->
 		    </div><!-- /.modal -->
@@ -65,5 +70,11 @@
 				$('#myModal').modal('show');
 			}
 		}
+		
+		function i18nCallBack()
+		{
+            $('#title').html($.i18n.prop('login')+" - "+$.i18n.prop('systemname'));
+		}
 	</script>
+
 </html>

@@ -22,7 +22,7 @@ function ajaxRequest(type, url, data, href, func) {
 			}
 			if (result.code == "601") {
 				//未登录
-				alertjs(result);
+				alert(result.message);
 				window.location.href = './';
 			}
 			if (func!=null) 
@@ -30,6 +30,7 @@ function ajaxRequest(type, url, data, href, func) {
 		},
 		error : function(xhr, errorMessage, e) {
 			alert(xhr.statusText);
+			window.location.href = './';
 			//alert("发送请求失败，请检查网络状态");
 		}
 	});
@@ -37,8 +38,9 @@ function ajaxRequest(type, url, data, href, func) {
 function logout(){
 	ajaxRequest("get","api/logout",null,"index.html",null);
 }
-//alert弹窗需要alert组件
+//alert弹窗 需要在网页中添加alert组件
 function alertjs(result){
+	scrollTo(0,0);					//回到顶部
 	var fadetimes = 300,showtimes = 3000;
 	$("#alert").removeClass("alert-success");
 	$("#alert").removeClass("alert-info");
@@ -50,10 +52,10 @@ function alertjs(result){
 		$("#alert").addClass("alert-danger");
 	else $("#alert").addClass("alert-info");
 	
-	$("#alert").show(fadetimes);
 	$("#alert").text(result.message);
+	$("#alert").show(fadetimes);
 	setTimeout( function(){
-		$("#alert").hide(fadetimes)
+		$("#alert").hide(fadetimes);
 	},showtimes);
 }
 //回调函数
@@ -65,7 +67,9 @@ function callBack(result){
 function callBackReset(result) {
 	if (result.code == 200) {
 		$('#form1')[0].reset();
-		$('#savebtn').hide();	
+		$('#savebtn').hide();
+		$('#searchbtn').addClass('btn-primary');
+		$('#savebtn').removeClass('btn-primary');
 		search();
 	}
 }
