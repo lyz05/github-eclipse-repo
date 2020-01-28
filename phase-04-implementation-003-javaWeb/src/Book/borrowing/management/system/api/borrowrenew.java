@@ -42,13 +42,13 @@ public class borrowrenew extends HttpServlet {
 		String sql = "update Borrow set shouldDate=date_add(NOW(), interval 1 MONTH) where readerNO=? and bookNO=? and returnDate is null";
 		if (bookNO==null || session.getAttribute("username")==null) {
 			//请求非法
-			response.getWriter().append(JSON.toJSONString(new MessageJSONModel("602","请求内容或格式非法")));
+			response.getWriter().append(JSON.toJSONString(new MessageJSONModel("602","illegal",Util4Frm.getlanguage(request))));
 			return;
 		}
 		if(BookDBCon.preparedupdateData(sql,readerNO,bookNO)) {
-			response.getWriter().append(JSON.toJSONString(new MessageJSONModel("200","续借成功")));
+			response.getWriter().append(JSON.toJSONString(new MessageJSONModel("200","renewbookok",Util4Frm.getlanguage(request))));
 		} else {
-			response.getWriter().append(JSON.toJSONString(new MessageJSONModel("403","续借失败")));
+			response.getWriter().append(JSON.toJSONString(new MessageJSONModel("403","renewbookok",Util4Frm.getlanguage(request))));
 		}
 	}
 

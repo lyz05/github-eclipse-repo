@@ -44,23 +44,23 @@ public class borrowadd extends HttpServlet {
 		
 		if (bookNO==null || session.getAttribute("username")==null) {
 			//请求非法
-			response.getWriter().append(JSON.toJSONString(new MessageJSONModel("602","请求内容或格式非法")));
+			response.getWriter().append(JSON.toJSONString(new MessageJSONModel("602","illegal",Util4Frm.getlanguage(request))));
 			return;
 		}
 
         if (Integer.parseInt(BookDBCon.preparedqueryResult("select 在库数量 from View_Book where 图书编号=?",bookNO)) <= 0) {
-        	response.getWriter().append(JSON.toJSONString(new MessageJSONModel("403","这本书已经被借光了")));
+        	response.getWriter().append(JSON.toJSONString(new MessageJSONModel("403","booknull",Util4Frm.getlanguage(request))));
             return;
         }
         if (BookDBCon.preparedqueryResult("select readerNO from Borrow where readerNO=? and bookNO=? and returnDate is null",readerNO,bookNO) != null){
         	
-        	response.getWriter().append(JSON.toJSONString(new MessageJSONModel("403","这本书你已经借过了")));
+        	response.getWriter().append(JSON.toJSONString(new MessageJSONModel("403","youhaveborrow",Util4Frm.getlanguage(request))));
             return;
         }
 		if(BookDBCon.preparedupdateData(sql,readerNO,bookNO)) {
-			response.getWriter().append(JSON.toJSONString(new MessageJSONModel("200","借书成功")));
+			response.getWriter().append(JSON.toJSONString(new MessageJSONModel("200","borrowbookok",Util4Frm.getlanguage(request))));
 		} else {
-			response.getWriter().append(JSON.toJSONString(new MessageJSONModel("403","借书失败")));
+			response.getWriter().append(JSON.toJSONString(new MessageJSONModel("403","borrowbookfail",Util4Frm.getlanguage(request))));
 		}
 	}
 

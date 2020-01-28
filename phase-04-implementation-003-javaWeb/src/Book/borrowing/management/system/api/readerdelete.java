@@ -39,7 +39,7 @@ public class readerdelete extends HttpServlet {
 			return;
 
 		ReaderModel readerinfo;
-		readerinfo = new ReaderModel(request.getParameter("readerno"));
+		readerinfo = new ReaderModel(Util4Frm.getlanguage(request),request.getParameter("readerno"));
 		MessageJSONModel ret = readerinfo.delReader();
 		response.getWriter().append(JSON.toJSONString(ret));
 	}

@@ -43,14 +43,14 @@ public class borrowreturn extends HttpServlet {
 		String sql = "update Borrow set returnDate=now() where readerNO=? and bookNO=? and returnDate is null";
 		if (bookNO==null || session.getAttribute("username")==null) {
 			//请求非法
-			response.getWriter().append(JSON.toJSONString(new MessageJSONModel("602","请求内容或格式非法")));
+			response.getWriter().append(JSON.toJSONString(new MessageJSONModel("602","illegal",Util4Frm.getlanguage(request))));
 			return;
 		}
 		
 		if(BookDBCon.preparedupdateData(sql,readerNO,bookNO)) {
-			response.getWriter().append(JSON.toJSONString(new MessageJSONModel("200","还书成功")));
+			response.getWriter().append(JSON.toJSONString(new MessageJSONModel("200","returnbookok",Util4Frm.getlanguage(request))));
 		} else {
-			response.getWriter().append(JSON.toJSONString(new MessageJSONModel("403","还书失败")));
+			response.getWriter().append(JSON.toJSONString(new MessageJSONModel("403","returnbookfail",Util4Frm.getlanguage(request))));
 		}
 	}
 

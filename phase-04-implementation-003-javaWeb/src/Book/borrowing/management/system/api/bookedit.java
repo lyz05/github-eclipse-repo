@@ -44,7 +44,7 @@ public class bookedit extends HttpServlet {
 		if (!Util4Frm.judgeusername(request,response)) return;
 		
 		BookModel bookinfo;
-		bookinfo = new BookModel(request.getParameter("bookno"),request.getParameter("bookname"),request.getParameter("author"),request.getParameter("press"),request.getParameter("price"),request.getParameter("publishdate"),request.getParameter("shopnum"));
+		bookinfo = new BookModel(Util4Frm.getlanguage(request),request.getParameter("bookno"),request.getParameter("bookname"),request.getParameter("author"),request.getParameter("press"),request.getParameter("price"),request.getParameter("publishdate"),request.getParameter("shopnum"));
 		MessageJSONModel ret = bookinfo.editBook();
 		response.getWriter().append(JSON.toJSONString(ret));
 	}

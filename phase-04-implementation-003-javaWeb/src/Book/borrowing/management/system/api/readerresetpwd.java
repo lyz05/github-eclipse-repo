@@ -36,9 +36,9 @@ public class readerresetpwd extends HttpServlet {
 		if (!Util4Frm.judgeusername(request,response)) return;
 		String readerno = request.getParameter("readerno");
         if (BookDBCon.preparedupdateData("update Reader set password='' where readerNo=?",readerno)) {
-        	response.getWriter().append(JSON.toJSONString(new MessageJSONModel("200","÷ÿ÷√√‹¬Î≥…π¶")));
+        	response.getWriter().append(JSON.toJSONString(new MessageJSONModel("200","resetpwdok",Util4Frm.getlanguage(request))));
         } else {
-        	response.getWriter().append(JSON.toJSONString(new MessageJSONModel("403","÷ÿ÷√√‹¬Î ß∞‹")));
+        	response.getWriter().append(JSON.toJSONString(new MessageJSONModel("403","resetpwdfail",Util4Frm.getlanguage(request))));
         }
 	}
 

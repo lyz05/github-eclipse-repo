@@ -35,7 +35,7 @@ public class bookdelete extends HttpServlet {
 		if (!Util4Frm.judgeusername(request,response)) return;
 
 		BookModel bookinfo;
-		bookinfo = new BookModel(request.getParameter("bookno"));
+		bookinfo = new BookModel(Util4Frm.getlanguage(request),request.getParameter("bookno"));
 		MessageJSONModel ret = bookinfo.delBook();
 		response.getWriter().append(JSON.toJSONString(ret));
 	}

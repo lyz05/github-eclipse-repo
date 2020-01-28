@@ -42,7 +42,7 @@ public class reader extends HttpServlet {
 		// TODO Auto-generated method stub
 		if (!Util4Frm.judgeusername(request,response)) return;
 		
-		ReaderModel reader = new ReaderModel(request.getParameter("readerno"));
+		ReaderModel reader = new ReaderModel(Util4Frm.getlanguage(request),request.getParameter("readerno"));
 		response.getWriter().append(JSON.toJSONString(reader));
 	}
 

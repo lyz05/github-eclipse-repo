@@ -36,9 +36,11 @@ public class logout extends HttpServlet {
     	request.setCharacterEncoding("UTF-8");
 		response.setCharacterEncoding("UTF-8");
 		
+		response.getWriter().append(JSON.toJSONString(new MessageJSONModel("605","注销操作完成")));
 		HttpSession session = request.getSession(true);
 		session.setAttribute("username", null);
-		response.getWriter().append(JSON.toJSONString(new MessageJSONModel("605","注销操作完成")));
+		session.setAttribute("language", null);
+		
 	}
 
 	/**

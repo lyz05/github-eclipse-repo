@@ -4,9 +4,11 @@ import java.util.Vector;
 
 import Book.borrowing.management.system.BookDBCon;
 
-public class BookModel {
+public class BookModel{
 	public String bookno,bookname,author,press,price,publishdate,shopnum,curnum;
-	public BookModel(String bookno) {
+	private String language;
+	public BookModel(String language,String bookno) {
+		this.language = language;
 		this.bookno=bookno;
 		String sql = "select * from View_Book_Admin where 图书编号='"+bookno+"'";
 		Vector<String> name = new Vector<String>();
@@ -20,8 +22,9 @@ public class BookModel {
 		this.shopnum=data.get(0).get(6);
 	}
 	
-	public BookModel(String bookno,String bookname,String author,String press,String price,String publishdate,String shopnum)
+	public BookModel(String language,String bookno,String bookname,String author,String press,String price,String publishdate,String shopnum)
 	{
+		this.language = language;
 		this.bookno=bookno;
 		this.bookname=bookname;
 		this.author=author;
@@ -31,8 +34,9 @@ public class BookModel {
 		this.shopnum=shopnum;
 	}
 	
-	public BookModel(String bookno,String bookname,String author,String press,String price,String publishdate,String shopnum,String curnum)
+	public BookModel(String language,String bookno,String bookname,String author,String press,String price,String publishdate,String shopnum,String curnum)
 	{
+		this.language = language;
 		this.bookno=bookno;
 		this.bookname=bookname;
 		this.author=author;
@@ -49,48 +53,48 @@ public class BookModel {
 	
 	public MessageJSONModel addBook() {
 		if (textFiledIsNull()) {
-			return new MessageJSONModel("403","请填写欲添加图书的所有信息");
+			return new MessageJSONModel("403","addbookallinfo",language);
 		}
 		if (!checkShopNum()) {
-			return new MessageJSONModel("403","入库数量必须大于等于0");
+			return new MessageJSONModel("403","checkshopnum",language);
 		}
 		String sql= "INSERT INTO Book VALUES(?,?,?,?,?,?,?)";
 		if (BookDBCon.preparedupdateData(sql,bookno,bookname,author,press,price,publishdate,shopnum)) {
-			return new MessageJSONModel("200","添加信息成功");
+			return new MessageJSONModel("200","addbookok",language);
 		} else {
-			return new MessageJSONModel("403","添加信息失败");
+			return new MessageJSONModel("403","addbookfail",language);
 		}
 	}
 	public MessageJSONModel delBook() {
 		String sql = "select * from View_Book where 图书编号=?";
 		if (BookDBCon.preparedqueryResult(sql,bookno) == null) {
-			return new MessageJSONModel("403","该本图书不存在");
+			return new MessageJSONModel("403","booknotfound",language);
 		}
 		sql = "select * from View_Book where 图书编号=? and 在库数量=入库数量";
 		if (BookDBCon.preparedqueryResult(sql,bookno) == null)
 		{
-			return new MessageJSONModel("403","还有读者未归还此本图书，因此无法删除此书");
+			return new MessageJSONModel("403","somebody",language);
 		}
 		sql = "delete from Borrow where bookno=? and returnDate is not null";
         BookDBCon.preparedupdateData(sql,bookno);
         sql = "delete from Book where bookNO=?";
         if (BookDBCon.preparedupdateData(sql,bookno)) {
-        	return new MessageJSONModel("200","删除图书信息成功");
+        	return new MessageJSONModel("200","deletebookok",language);
 		} else {
-			return new MessageJSONModel("403","删除图书信息失败");
+			return new MessageJSONModel("403","deletebookfail",language);
 		}
 	}
 	public MessageJSONModel editBook() {
 		if (textFiledIsNull()) {
-			return new MessageJSONModel("403","请填写欲修改图书的所有信息");
+			return new MessageJSONModel("403","editbookallinfo",language);
 		}
 		if (!checkShopNum()) {
-			return new MessageJSONModel("403","在库数量必须大于等于0");
+			return new MessageJSONModel("403","checkshopnum",language);
 		}
 		if (BookDBCon.preparedupdateData("update Book set bookName=?,authorName=?,publishingName=?,price=?,publishingDate=?,shopNum=? where bookNO=?",bookname,author,press,price,publishdate,shopnum,bookno)) {
-			return new MessageJSONModel("200","修改图书信息成功");
+			return new MessageJSONModel("200","editbookok",language);
         } else {
-        	return new MessageJSONModel("403","修改图书信息失败");
+        	return new MessageJSONModel("403","editbookfail",language);
         }
 	}
 	public boolean textFiledIsNull() {

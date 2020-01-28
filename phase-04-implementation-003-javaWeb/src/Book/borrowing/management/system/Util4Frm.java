@@ -11,9 +11,13 @@ import java.io.IOException;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import javax.swing.*;
 import com.alibaba.fastjson.JSON;
+import com.mysql.cj.Session;
+
 import Book.borrowing.management.system.model.*;
+import sun.security.action.GetBooleanAction;
 
 
 /**
@@ -113,8 +117,12 @@ public class Util4Frm {
     	request.setCharacterEncoding("UTF-8");
 		response.setCharacterEncoding("UTF-8");
     	if (request.getSession().getAttribute("username")==null) {
-    		response.getWriter().append(JSON.toJSONString(new MessageJSONModel("601","Äú»¹Î´µÇÂ¼£¬ÇëÏÈµÇÂ¼ÏµÍ³")));
+    		response.getWriter().append(JSON.toJSONString(new MessageJSONModel("601","notlogin",getlanguage(request))));
     	}
     	return request.getSession().getAttribute("username")!=null;
+    }
+    
+    public static String getlanguage(HttpServletRequest request) {
+    	return request.getSession().getAttribute("language").toString();
     }
 }

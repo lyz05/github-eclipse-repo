@@ -44,7 +44,7 @@ public class readeradd extends HttpServlet {
 		if (!Util4Frm.judgeusername(request,response)) return;
 		
 		ReaderModel readerinfo;
-		readerinfo = new ReaderModel(request.getParameter("readerno"),request.getParameter("readername"),request.getParameter("sex"),request.getParameter("idnum"),request.getParameter("workunit"));
+		readerinfo = new ReaderModel(Util4Frm.getlanguage(request),request.getParameter("readerno"),request.getParameter("readername"),request.getParameter("sex"),request.getParameter("idnum"),request.getParameter("workunit"));
 		MessageJSONModel ret=readerinfo.addReader();
 		response.getWriter().append(JSON.toJSONString(ret));
 	}

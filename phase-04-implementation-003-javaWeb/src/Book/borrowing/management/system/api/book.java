@@ -42,7 +42,7 @@ public class book extends HttpServlet {
 		// TODO Auto-generated method stub
 		if (!Util4Frm.judgeusername(request,response)) return;
 		
-		BookModel book = new BookModel(request.getParameter("bookno"));
+		BookModel book = new BookModel(Util4Frm.getlanguage(request),request.getParameter("bookno"));
 		response.getWriter().append(JSON.toJSONString(book));
 	}
 

@@ -3,10 +3,13 @@ package Book.borrowing.management.system.model;
 import java.util.Vector;
 
 import Book.borrowing.management.system.BookDBCon;
+import Book.borrowing.management.system.Util4Frm;
 
 public class ReaderModel {
 	public String readerno,readername,sex,idnum,workunit;
-	public ReaderModel(String readerno) {
+	private String language;
+	public ReaderModel(String language,String readerno) {
+		this.language = language;
 		this.readerno=readerno;
 		String sql = "select * from View_Reader where 读者编号='"+readerno+"'";
 		Vector<String> name = new Vector<String>();
@@ -27,7 +30,8 @@ public class ReaderModel {
 		this.workunit=new String();
 	}
 	
-	public ReaderModel(String readerno,String readername,String sex,String idnum,String workunit) {
+	public ReaderModel(String language,String readerno,String readername,String sex,String idnum,String workunit) {
+		this.language=language;
 		this.readerno=readerno;
 		this.readername=readername;
 		this.sex=sex;
@@ -40,47 +44,47 @@ public class ReaderModel {
 	}
 	public MessageJSONModel addReader() {
 		if (textFiledIsNull()) 
-			return new MessageJSONModel("403","请填写欲添加读者的所有信息");
+			return new MessageJSONModel("403","addreaderallinfo",language);
 		if (!checkIDNum()) 
-			return new MessageJSONModel("403","身份证位数不正确");
+			return new MessageJSONModel("403","idnumerror",language);
 		if (!checksex())
-			return new MessageJSONModel("403","性别填写有误");
+			return new MessageJSONModel("403","sexerror",language);
 		String sql= "INSERT INTO Reader VALUES(?,?,?,?,?,'')";
 		if (BookDBCon.preparedupdateData(sql,readerno,readername,sex,idnum,workunit)) {
-			return new MessageJSONModel("200","添加信息成功");
+			return new MessageJSONModel("200","addreaderok",language);
 		} else {
-			return new MessageJSONModel("403","添加信息失败");
+			return new MessageJSONModel("403","addreaderfail",language);
 		}
 	}
 	public MessageJSONModel delReader() {
 		String sql = "select * from View_reader where 读者编号=?";
 		if (BookDBCon.preparedqueryResult(sql, readerno) == null) {
-			return new MessageJSONModel("403", "此位读者不存在");
+			return new MessageJSONModel("403", "readernotfound",language);
 		}
 		sql = "select * from View_reader where 读者编号=? and 未归还数量=0";
 		if (BookDBCon.preparedqueryResult(sql, readerno) == null) {
-			return new MessageJSONModel("403", "该读者还有未归还的图书，因此无法删除该读者");
+			return new MessageJSONModel("403", "somebody1",language);
 		}
 		sql = "delete from Borrow where readerNO=? and returnDate is not null";
 		BookDBCon.preparedupdateData(sql, readerno);
 		sql = "delete from reader where readerNO=?";
 		if (BookDBCon.preparedupdateData(sql, readerno)) {
-        	return new MessageJSONModel("200","删除读者信息成功");
+        	return new MessageJSONModel("200","deletereaderok",language);
 		} else {
-			return new MessageJSONModel("403","删除读者信息失败");
+			return new MessageJSONModel("403","deletereaderfail",language);
 		}
 	}
 	public MessageJSONModel editReader() {
 		if (textFiledIsNull()) 
-			return new MessageJSONModel("403","请填写欲修改读者的所有信息");
+			return new MessageJSONModel("403","editbookallinfo",language);
 		if (!checkIDNum()) 
-			return new MessageJSONModel("403","身份证位数不正确");
+			return new MessageJSONModel("403","idnumerror",language);
 		if (!checksex())
-			return new MessageJSONModel("403","性别填写有误");
+			return new MessageJSONModel("403","sexerror",language);
 		if (BookDBCon.preparedupdateData("update Reader set readerName=?,sex=?,identitycard=?,workUnit=? where readerNO=?",readername,sex,idnum,workunit,readerno)) {
-			return new MessageJSONModel("200","修改信息成功");
+			return new MessageJSONModel("200","editreaderok",language);
         } else {
-        	return new MessageJSONModel("403","修改信息失败");
+        	return new MessageJSONModel("403","editreaderfail",language);
         }
 	}
 	public boolean textFiledIsNull() {

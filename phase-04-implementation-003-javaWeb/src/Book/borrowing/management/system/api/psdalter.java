@@ -8,6 +8,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.alibaba.fastjson.JSON;
+import com.mysql.cj.util.Util;
 
 import Book.borrowing.management.system.BookDBCon;
 import Book.borrowing.management.system.Util4Frm;
@@ -51,12 +52,12 @@ public class psdalter extends HttpServlet {
         
         if (BookDBCon.preparedqueryResult("select readerNO from Reader where readerNo=? and password=?", username,pwd) != null) {
             if (BookDBCon.preparedupdateData("update Reader set password=? where readerNo=?",newpwd,username)) {
-            	response.getWriter().append(JSON.toJSONString(new MessageJSONModel("200","修改密码成功")));
+            	response.getWriter().append(JSON.toJSONString(new MessageJSONModel("200","alterpwdok",Util4Frm.getlanguage(request))));
             } else{
-            	response.getWriter().append(JSON.toJSONString(new MessageJSONModel("403","修改密码失败")));
+            	response.getWriter().append(JSON.toJSONString(new MessageJSONModel("403","alterpwdfail",Util4Frm.getlanguage(request))));
             }
         } else {
-        	response.getWriter().append(JSON.toJSONString(new MessageJSONModel("403","用户名或原密码错误")));
+        	response.getWriter().append(JSON.toJSONString(new MessageJSONModel("403","loginerror",Util4Frm.getlanguage(request))));
         }
 	}
 

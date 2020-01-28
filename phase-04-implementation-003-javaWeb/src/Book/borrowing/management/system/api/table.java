@@ -65,10 +65,10 @@ public class table extends HttpServlet {
 		//where¥¶¿Ì
 		String querysql=new String();
 		if (tableName.equals("View_Book_Admin")) {
-			BookModel bookinfo = new BookModel(request.getParameter("bookno"),request.getParameter("bookname"),request.getParameter("author"),request.getParameter("press"),request.getParameter("price"),request.getParameter("publishdate"),request.getParameter("shopnum"));
+			BookModel bookinfo = new BookModel(Util4Frm.getlanguage(request),request.getParameter("bookno"),request.getParameter("bookname"),request.getParameter("author"),request.getParameter("press"),request.getParameter("price"),request.getParameter("publishdate"),request.getParameter("shopnum"));
 			querysql = bookinfo.getSqlQueryString1();
 		} else if (tableName.equals("View_Reader")) {
-			ReaderModel readerinfo = new ReaderModel(request.getParameter("readerno"),request.getParameter("readername"),request.getParameter("sex"),request.getParameter("idnum"),request.getParameter("workunit"));
+			ReaderModel readerinfo = new ReaderModel(Util4Frm.getlanguage(request),request.getParameter("readerno"),request.getParameter("readername"),request.getParameter("sex"),request.getParameter("idnum"),request.getParameter("workunit"));
 			querysql = readerinfo.getSqlQueryString();
 		} else if (tableName.equals("View_Book")) {
 			boolean check;
