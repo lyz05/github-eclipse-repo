@@ -4,18 +4,22 @@
 		<meta charset="UTF-8">
 		<title>图书信息管理 - 图书借阅管理系统</title>
 		<!-- bootstrap样式 -->
-		<link rel="stylesheet" href="/static/bootstrap/css/bootstrap.min.css">
+		<link rel="stylesheet" href="static/bootstrap/css/bootstrap.min.css">	
 		<!-- jQuery (Bootstrap 的所有 JavaScript 插件都依赖 jQuery，所以必须放在前边) -->
-		<script src="/static/jquery.min.js"></script>
+		<script src="static/js/jquery.min.js"></script>
 		<!-- 加载 Bootstrap 的所有 JavaScript 插件。你也可以根据需要只加载单个插件。 -->
-		<script src="/static/bootstrap/js/bootstrap.min.js"></script>
+		<script src="static/bootstrap/js/bootstrap.min.js"></script>
 		<!-- 自定义js -->
-		<script src="/static/js/ajaxrequest.js"></script>
-		<script src="/static/js/jquery-form.js"></script>
+		<script src="static/js/ajaxrequest.js"></script>
+		<script src="static/js/jquery-form.js"></script>
 		<!-- jQuery i18n -->
-		<script src="/static/js/jquery.json.min.js"></script>
-		<script src="/static/js/jquery.i18n.properties.js"></script>
-		<script src="/static/js/i18n.js"></script>
+		<script src="static/js/jquery.json.min.js"></script>
+		<script src="static/js/jquery.i18n.properties.js"></script>
+		<script src="static/js/i18n.js"></script>
+		<!-- Bootstrap日期插件 -->
+		<link href="static/bootstrap/css/bootstrap-datetimepicker.min.css" rel="stylesheet">
+		<script src="static/js/moment-with-locales.js"></script>
+		<script src="static/js/bootstrap-datetimepicker.min.js"></script>
 	</head>
 
 	<body>
@@ -51,40 +55,45 @@
 						<div class="form-group">
 						<label data-locale="bookno" class="col-sm-2 control-label">图书编号</label>
 						<div class="col-sm-3">
-						<input class="form-control" id="bookno" name="bookno" value="">
+						<input class="form-control" id="bookno" name="bookno">
 						</div>
 						<label data-locale="price" class="col-sm-2 col-sm-offset-2 control-label">价格</label>
 						<div class="col-sm-3">
-						<input class="form-control" name="price" value="">
+						<input class="form-control" name="price">
 						</div>
 						</div>
 						
 						<div class="form-group">
 						<label data-locale="bookname" class="col-sm-2 control-label">图书名称</label>
 						<div class="col-sm-3">
-						<input class="form-control" name="bookname" value="">
+						<input class="form-control" name="bookname">
 						</div>
 						<label data-locale="publishdate" class="col-sm-2 col-sm-offset-2 control-label">出版日期</label>
 						<div class="col-sm-3">
-						<input class="form-control" name="publishdate" value="">
+						<div class="input-group date" id="datetimepicker">
+							<input class="form-control" name="publishdate">
+							<span class="input-group-addon">
+					            	<span class="glyphicon glyphicon-calendar"></span>
+				            </span>
+						</div>
 						</div>
 						</div>
 						
 						<div class="form-group">
 						<label data-locale="author" class="col-sm-2 control-label">作者</label>
 						<div class="col-sm-3">
-							<input class="form-control" name="author" value="">
+							<input class="form-control" name="author">
 						</div>
 						<label data-locale="shopnum" class="col-sm-2 col-sm-offset-2 control-label">入库数量</label>
 						<div class="col-sm-3">
-							<input class="form-control" name="shopnum" value="">
+							<input class="form-control" name="shopnum">
 						</div>
 						</div>
 						
 						<div class="form-group">
 						<label data-locale="press" class="col-sm-2 control-label">出版社：</label>
 						<div class="col-sm-3">
-							<input class="form-control" name="press" value="">
+							<input class="form-control" name="press">
 						</div>
 						</div>
 						
@@ -110,6 +119,13 @@
 		</div>
 	</body>
 	<script>
+		$(function () {
+		    var picker1 = $('#datetimepicker').datetimepicker({
+		        format: 'YYYY-MM-DD',
+		        locale: moment.locale('zh-cn'),
+		        //minDate: '2016-7-1'
+		    });
+		});
 		function search(){
 			ajaxRequest("post","api/table",$('#form1').serialize()+"&table=View_Book_Admin",null,displayforminfo);
 		}

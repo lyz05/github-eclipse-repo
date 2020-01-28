@@ -1,5 +1,4 @@
 function loadProperties(type, func) {
-	console.log(type);
 	jQuery.i18n.properties({
 		name : 'i18n', // 资源文件名称
 		path : 'i18n/', // 资源文件所在目录路径
