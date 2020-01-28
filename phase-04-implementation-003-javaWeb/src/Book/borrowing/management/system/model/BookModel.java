@@ -5,7 +5,7 @@ import java.util.Vector;
 import Book.borrowing.management.system.BookDBCon;
 
 public class BookModel {
-	public String bookno,bookname,author,press,price,publishdate,shopnum;
+	public String bookno,bookname,author,press,price,publishdate,shopnum,curnum;
 	public BookModel(String bookno) {
 		this.bookno=bookno;
 		String sql = "select * from View_Book_Admin where 图书编号='"+bookno+"'";
@@ -31,6 +31,17 @@ public class BookModel {
 		this.shopnum=shopnum;
 	}
 	
+	public BookModel(String bookno,String bookname,String author,String press,String price,String publishdate,String shopnum,String curnum)
+	{
+		this.bookno=bookno;
+		this.bookname=bookname;
+		this.author=author;
+		this.press=press;
+		this.price=price;
+		this.publishdate=publishdate;
+		this.shopnum=shopnum;
+		this.curnum=curnum;
+	}
 	public String getSqlQueryString1() {
 		String sql= " where 图书编号 like '%"+bookno+"%' and 图书名称 like '%"+bookname+"%' and 作者 like '%"+author +"%' and 出版社 like '%"+press+"%'";
 		return sql;
