@@ -1,10 +1,11 @@
 package Book.borrowing.management.system.model;
 
-//借阅过滤器
+//借阅图书过滤器及借阅图书
 public class BorrowBookModel {
 	public String bookno,bookname,author,press,publishdate_1,publishdate_2,price,publishdate,shopnum,curnum;
 	public boolean check;
 	public String readerno;
+	//过滤器构造函数
 	public BorrowBookModel(String bookno,String bookname,String author,String press,String publishdate_1,String publishdate_2,boolean check,String readerno)
 	{
 		this.bookno=bookno;
@@ -16,6 +17,7 @@ public class BorrowBookModel {
 		this.check=check;
 		this.readerno=readerno;
 	}
+	//借阅图书构造函数
 	public BorrowBookModel(String bookno,String bookname,String author,String press,String publishdate,String shopnum,String curnum)
 	{
 		this.bookno=bookno;

@@ -167,7 +167,6 @@
  		});
 		function search(){
 			$('#table').bootstrapTable('refresh');
-			//ajaxRequest("post","api/table",$('#form1').serialize()+"&table=View_Book_Admin",null,displayforminfo);
 		}
 		function add(){
 			ajaxRequest("post","api/bookadd",$('#form1').serialize(),null,callBackReset);

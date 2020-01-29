@@ -3,6 +3,7 @@ package Book.borrowing.management.system.model;
 import java.util.Locale;
 import java.util.ResourceBundle;
 
+//返回操作信息
 public class MessageJSONModel {
 	private String message;
 	private String code;
@@ -10,12 +11,13 @@ public class MessageJSONModel {
 	public MessageJSONModel() {
 		// TODO 自动生成的构造函数存根
 	}
+	//国际化信息
 	public MessageJSONModel(String code,String message,String language) {
 		setCode(code);
 		setlocale(language);
 		setMessage(message);
 	}
-	
+	//非国际化信息
 	public MessageJSONModel(String code,String message) {
 		setCode(code);
 		this.message=message; 

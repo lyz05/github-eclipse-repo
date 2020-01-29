@@ -147,7 +147,6 @@
  		});
 		function search(){
 			$('#table').bootstrapTable('refresh');
-			//ajaxRequest("post","api/table",$('#form1').serialize()+"&table=View_Reader",null,displayforminfo);
 		}
 		function add() {
 			ajaxRequest("post","api/readeradd",$('#form1').serialize(), null, callBackReset);

@@ -1,5 +1,6 @@
 package Book.borrowing.management.system.model;
 
+//ΩË‘ƒ–≈œ¢
 public class BorrowModel {
 	public String bookno,bookname,author,press,borrowdate,shoulddate,returndate;
 	public BorrowModel(String bookno,String bookname,String author,String press,String borrowdate,String shoulddate,String returndate) {
