@@ -13,7 +13,6 @@ import com.alibaba.fastjson.JSON;
 import Book.borrowing.management.system.BookDBCon;
 import Book.borrowing.management.system.Util4Frm;
 import Book.borrowing.management.system.model.TableBootstrapModel;
-import Book.borrowing.management.system.model.TableModel;
 
 /**
  * Servlet implementation class tablebootstrap
@@ -43,7 +42,7 @@ public class tablebootstrap extends HttpServlet {
 		//获取读者姓名
 		String readername = BookDBCon.preparedqueryResult("select readerName from Reader where readerNO=?",username);
 		
-		TableBootstrapModel BookTable = new TableBootstrapModel("select * from View_Book_Admin");
+		TableBootstrapModel BookTable = new TableBootstrapModel("select * from View_Book_Admin",Util4Frm.getlanguage(request));
 		response.getWriter().append(JSON.toJSONString(BookTable));
 	}
 

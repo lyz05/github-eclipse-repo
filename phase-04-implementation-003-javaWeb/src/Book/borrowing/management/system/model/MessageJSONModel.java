@@ -14,7 +14,6 @@ public class MessageJSONModel {
 		setCode(code);
 		setlocale(language);
 		setMessage(message);
-		System.out.println(language);
 	}
 	
 	public MessageJSONModel(String code,String message) {
@@ -39,7 +38,6 @@ public class MessageJSONModel {
     }
 	protected String geti18nString(String keys) {
 		ResourceBundle bundle=ResourceBundle.getBundle("i18n",locale);
-		System.out.println(keys+" "+locale+" "+bundle.getString(keys));
 		return bundle.getString(keys);
 	}
     @Override

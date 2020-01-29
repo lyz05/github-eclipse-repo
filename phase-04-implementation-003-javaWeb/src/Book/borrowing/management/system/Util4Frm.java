@@ -11,13 +11,9 @@ import java.io.IOException;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 import javax.swing.*;
 import com.alibaba.fastjson.JSON;
-import com.mysql.cj.Session;
-
 import Book.borrowing.management.system.model.*;
-import sun.security.action.GetBooleanAction;
 
 
 /**
@@ -123,6 +119,9 @@ public class Util4Frm {
     }
     
     public static String getlanguage(HttpServletRequest request) {
-    	return request.getSession().getAttribute("language").toString();
+    	if (request.getSession().getAttribute("language")==null)
+    		return "zh_CN";
+    	else 
+    		return request.getSession().getAttribute("language").toString();
     }
 }

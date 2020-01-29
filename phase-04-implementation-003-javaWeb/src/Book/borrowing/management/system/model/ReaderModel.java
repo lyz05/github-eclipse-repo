@@ -3,7 +3,6 @@ package Book.borrowing.management.system.model;
 import java.util.Vector;
 
 import Book.borrowing.management.system.BookDBCon;
-import Book.borrowing.management.system.Util4Frm;
 
 public class ReaderModel {
 	public String readerno,readername,sex,idnum,workunit;
