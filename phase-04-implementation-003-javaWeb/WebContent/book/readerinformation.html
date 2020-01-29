@@ -47,7 +47,8 @@
 			<div class="panel panel-primary">
 				<div class="panel-heading">
 					<h3 class="panel-title" id="panel-title">
-						读者信息过滤器
+						<span data-locale="readerinfo">读者信息</span>&nbsp;
+						<span data-locale="filter">过滤器</span>
 					</h3>
 				</div>
 				<div class="panel-body">
@@ -108,12 +109,15 @@
 		</footer>
 		</div>
 	</body>
-		<script>
+	<script>
+		$(document).ready(function(){
+           $('title').html($.i18n.prop('readerinfo')+$.i18n.prop('management')+" - "+$.i18n.prop('systemname'));
+			search();
+ 		});
 		function search(){
 			ajaxRequest("post","api/table",$('#form1').serialize()+"&table=View_Reader",null,displayforminfo);
 		}
-		function add()
-		{
+		function add() {
 			ajaxRequest("post","api/readeradd",$('#form1').serialize(), null, callBackReset);
 		}
 		function del(readerno) {
@@ -200,11 +204,5 @@
             }
             table.appendChild(tbody);
 		}
-		function i18nCallBack()
-		{
-            $('title').html($.i18n.prop('readerinfo')+$.i18n.prop('management')+" - "+$.i18n.prop('systemname'));
-            $('#panel-title').html($.i18n.prop('readerinfo')+" "+$.i18n.prop('filter'));			
-		}
-		window.onload = search();
 	</script>
 </html>

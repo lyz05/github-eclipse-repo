@@ -1,6 +1,4 @@
-/**
- * ajax请求相关操作
- */
+//ajax请求相关操作
 // 发送ajax请求，成功跳转href链接
 function ajaxRequest(type, url, data, href, func) {
 	$.ajax({

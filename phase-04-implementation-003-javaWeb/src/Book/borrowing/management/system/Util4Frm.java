@@ -23,40 +23,7 @@ import Book.borrowing.management.system.model.*;
  */
 public class Util4Frm {
     private Util4Frm() {}       //禁止实例化
-    
-    /**
-     * 刷新底部状态栏的标签显示
-     * @param jtable 待处理的表格
-     * @param jlabel 底部状态栏标签
-     */
-    public static void resetBackText(JTable jtable,JLabel jlabel) {
-        int row = jtable.getSelectedRow();
-        int tot = jtable.getRowCount();
-        if (row >=0  && row < tot)
-        {
-            jlabel.setText("这是第"+(row+1)+"条记录，共查询到"+tot+"条记录");
-        } else
-            jlabel.setText("共查询到"+tot+"条记录");
-    }
-
-    /**
-     * 获取对jTable列排序时需要追加的sql文本
-     * @param jtable 对哪个jTable操作
-     * @param col 对应的列
-     * @return 返回排序需要追加的sql文本
-     */
-    public static String getappendsqlbyorder(String colName){
-        //获取列名
-        String appendsql = " order by "+colName;
-        //根据排序方向选择升序或降序
-        //if (sort) {
-        //    appendsql += " desc";
-        //}
-        //再次运行方法，更换排序方向
-        //sort = !sort;
-        return appendsql;
-    }
-    
+       
     /**
      * 密码加密函数
      * @param input 输入的密码
@@ -99,15 +66,14 @@ public class Util4Frm {
          return output;
     }
     
-    public static void showMessageDialogAndReturn(HttpServletResponse response,String message,String url) throws ServletException, IOException {
-		response.setContentType("text/html; charset=UTF-8");
-		response.setCharacterEncoding("UTF-8");
-		response.getWriter().append("<script>");
-		response.getWriter().append("alert('"+message+"');");
-		if (!url.equals("")) response.getWriter().append("window.location.href='"+url+"';");
-		response.getWriter().append("</script>");
-    }
-    
+    /**
+     * 判断是否登录，同时设置请求和响应编码信息
+     * @param request 请求信息
+     * @param response 回应信息
+     * @return 是否登录
+     * @throws ServletException
+     * @throws IOException
+     */
     public static boolean judgeusername(HttpServletRequest request,HttpServletResponse response) throws ServletException, IOException {
     	response.setContentType("application/json;charset=utf-8");
     	request.setCharacterEncoding("UTF-8");
@@ -118,6 +84,11 @@ public class Util4Frm {
     	return request.getSession().getAttribute("username")!=null;
     }
     
+    /**
+     * 获取当前用户所用的语言
+     * @param request
+     * @return
+     */
     public static String getlanguage(HttpServletRequest request) {
     	if (request.getSession().getAttribute("language")==null)
     		return "zh_CN";

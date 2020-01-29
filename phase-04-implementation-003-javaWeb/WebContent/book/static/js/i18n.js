@@ -1,4 +1,4 @@
-function loadProperties(type, func) {
+function loadProperties(type) {
 	jQuery.i18n.properties({
 		name : 'i18n', // 资源文件名称
 		path : 'i18n/', // 资源文件所在目录路径
@@ -16,7 +16,6 @@ function loadProperties(type, func) {
 			$("[data-locale-placeholder]").each(function(){
 				$(this).attr('placeholder',$.i18n.prop($(this).data("locale-placeholder")));
 			});
-			func();
 		}
 	});
 }
@@ -26,8 +25,8 @@ $(document).ready(
 		var LANGUAGE_CODE = localStorage.getItem("LANGUAGE_CODE");
 		if (LANGUAGE_CODE == null)
 			// 获取浏览器的语言
-			localStorage.setItem("LANGUAGE_CODE", jQuery.i18n
-					.normaliseLanguageCode({}));
+			localStorage.setItem("LANGUAGE_CODE", jQuery.i18n.normaliseLanguageCode({}));
 		LANGUAGE_CODE = localStorage.getItem("LANGUAGE_CODE");
-		loadProperties(LANGUAGE_CODE, i18nCallBack);
-	});
+		loadProperties(LANGUAGE_CODE);
+	}
+);

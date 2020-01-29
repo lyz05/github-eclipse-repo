@@ -52,7 +52,8 @@
 			<div class="panel panel-primary">
 				<div class="panel-heading">
 					<h3 class="panel-title" id="panel-title">
-						图书信息过滤器
+						<span data-locale="bookinfo">图书信息</span>&nbsp;
+						<span data-locale="filter">过滤器</span>
 					</h3>
 				</div>
 				<div class="panel-body">
@@ -154,8 +155,7 @@
 	</body>
 	
 	<script>
-		//日期选择器
-		$(function () {
+		$(document).ready(function(){
 		    var picker1 = $('#datetimepicker1').datetimepicker({
 		        format: 'YYYY-MM-DD',
 		        locale: moment.locale(localStorage.getItem('LANGUAGE_CODE')),
@@ -173,6 +173,8 @@
 		    picker2.on('dp.change', function (e) {
 		        picker1.data('DateTimePicker').maxDate(e.date);
 		    });
+            $('title').html($.i18n.prop('borrowinfo')+$.i18n.prop('management')+" - "+$.i18n.prop('systemname'));
+		    search();
 		});	
 		//用于实现tabs切换
 		$('#myTab a').click(function (e) {
@@ -288,11 +290,6 @@
             }
             table.appendChild(tbody);
 		}
-		function i18nCallBack()
-		{
-            $('title').html($.i18n.prop('borrowinfo')+$.i18n.prop('management')+" - "+$.i18n.prop('systemname'));
-            $('#panel-title').html($.i18n.prop('borrowinfo')+" "+$.i18n.prop('filter'));			
-		}
-		window.onload = search();
+
   	</script>
 </html>

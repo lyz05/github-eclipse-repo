@@ -97,6 +97,15 @@ public class BookDBCon {
             name = null;
         }
     }
+    
+    /** 
+    * 预查询数据库表的完整信息<br>
+    * 主要用于jTable显示查询结果<br>
+    * @param presql 查询对应的sql语句 
+    * @param data 查询得到的每一条记录
+    * @param name 查询得到的字段名
+    * @param content 查询参数
+    */ 
     public static void preparedqueryVector2(String presql,Vector<Vector<String>> data,Vector<String> name,int... content){
         System.out.println(presql);
         data.clear();
@@ -138,6 +147,7 @@ public class BookDBCon {
             name = null;
         }
     }
+    
     /**
      * 预编译查询数据的方法，查询数据库第一行第一个数据
      * @param presql 预编译sql语句
