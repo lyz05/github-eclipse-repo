@@ -33,6 +33,22 @@ function ajaxRequest(type, url, data, href, func) {
 		}
 	});
 }
+//回调函数
+function callBack(result){
+	if (result.code == 200) {
+		search();
+	}
+}
+function callBackReset(result) {
+	if (result.code == 200) {
+		$('#form1')[0].reset();
+		$('#savebtn').hide();
+		$('#searchbtn').addClass('btn-primary');
+		$('#savebtn').removeClass('btn-primary');
+		search();
+	}
+}
+//登出
 function logout(){
 	ajaxRequest("get","api/logout",null,"index.html",null);
 }
@@ -55,19 +71,4 @@ function alertjs(result){
 	setTimeout( function(){
 		$("#alert").hide(fadetimes);
 	},showtimes);
-}
-//回调函数
-function callBack(result){
-	if (result.code == 200) {
-		search();
-	}
-}
-function callBackReset(result) {
-	if (result.code == 200) {
-		$('#form1')[0].reset();
-		$('#savebtn').hide();
-		$('#searchbtn').addClass('btn-primary');
-		$('#savebtn').removeClass('btn-primary');
-		search();
-	}
 }

@@ -4,6 +4,7 @@ function loadProperties(type) {
 		path : 'i18n/', // 资源文件所在目录路径
 		mode : 'map', // 模式：变量或 Map
 		language : type, // 对应的语言
+		async: false,
 		cache : false,
 		encoding : 'UTF-8',
 		callback : function(){

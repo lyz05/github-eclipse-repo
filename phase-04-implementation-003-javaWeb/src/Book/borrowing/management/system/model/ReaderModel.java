@@ -5,7 +5,7 @@ import java.util.Vector;
 import Book.borrowing.management.system.BookDBCon;
 
 public class ReaderModel {
-	public String readerno,readername,sex,idnum,workunit;
+	public String readerno,readername,sex,idnum,workunit,totalborrownum,notreturnnum;
 	private String language;
 	public ReaderModel(String language,String readerno) {
 		this.language = language;
@@ -36,6 +36,16 @@ public class ReaderModel {
 		this.sex=sex;
 		this.idnum=idnum;
 		this.workunit=workunit;
+	}
+	public ReaderModel(String readerno,String readername,String sex,String idnum,String workunit,String totalborrownum,String notreturnnum)
+	{
+		this.readerno=readerno;
+		this.readername=readername;
+		this.sex=sex;
+		this.idnum=idnum;
+		this.workunit=workunit;
+		this.totalborrownum=totalborrownum;
+		this.notreturnnum=notreturnnum;
 	}
 	public String getSqlQueryString() {
 		String sql=" where 读者编号 like '%"+readerno+"%' and 姓名 like '%"+readername+"%' and 性别 like '%"+sex+"%' and 身份证号 like '%"+idnum+"%' and 工作单位 like '%"+workunit+"%'";

@@ -74,7 +74,7 @@ public class table extends HttpServlet {
 			boolean check;
 			if ("on".equals(request.getParameter("check"))) check=true; else check=false;
 			BorrowBookModel bookinfo = new BorrowBookModel(request.getParameter("bookno"),request.getParameter("bookname"),request.getParameter("author"),request.getParameter("press"),request.getParameter("publishdate_1"),request.getParameter("publishdate_2"),check,username);
-			querysql = bookinfo.getSqlQueryString();
+			querysql = bookinfo.sqlQueryString();
 		}
 		//order by¥¶¿Ì
 		String orderby=new String("");

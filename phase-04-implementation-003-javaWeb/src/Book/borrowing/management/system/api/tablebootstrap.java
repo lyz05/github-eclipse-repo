@@ -6,13 +6,12 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
-
 import com.alibaba.fastjson.JSON;
 
-import Book.borrowing.management.system.BookDBCon;
 import Book.borrowing.management.system.Util4Frm;
 import Book.borrowing.management.system.model.BookModel;
+import Book.borrowing.management.system.model.BorrowBookModel;
+import Book.borrowing.management.system.model.ReaderModel;
 import Book.borrowing.management.system.model.TableBootstrapModel;
 
 /**
@@ -35,18 +34,7 @@ public class tablebootstrap extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		if (!Util4Frm.judgeusername(request,response)) return;
-		
-		//获取用户名
-		HttpSession session = request.getSession(true);
-		String username = session.getAttribute("username").toString();
-		//获取读者姓名
-		System.out.println(request.getParameter("bookname"));
-		String readername = BookDBCon.preparedqueryResult("select readerName from Reader where readerNO=?",username);
-		BookModel bookinfo = new BookModel(Util4Frm.getlanguage(request),request.getParameter("bookno"),request.getParameter("bookname"),request.getParameter("author"),request.getParameter("press"),request.getParameter("price"),request.getParameter("publishdate"),request.getParameter("shopnum"));
-		String querysql = bookinfo.getSqlQueryString1();
-		TableBootstrapModel BookTable = new TableBootstrapModel("select * from View_Book_Admin"+querysql,Util4Frm.getlanguage(request));
-		response.getWriter().append(JSON.toJSONString(BookTable));
+		response.getWriter().append("This Page isn't support GET");
 	}
 
 	/**
@@ -54,7 +42,34 @@ public class tablebootstrap extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		doGet(request, response);
+		if (!Util4Frm.judgeusername(request,response)) return;
+		
+		String username = request.getSession().getAttribute("username").toString();
+		String tableName = request.getParameter("table");
+		//where处理
+		String querysql=new String();
+		if (tableName.equals("View_Book_Admin")) {
+			BookModel bookinfo = new BookModel(Util4Frm.getlanguage(request),request.getParameter("bookno"),request.getParameter("bookname"),request.getParameter("author"),request.getParameter("press"),request.getParameter("price"),request.getParameter("publishdate"),request.getParameter("shopnum"));
+			querysql = bookinfo.getSqlQueryString1();
+		} else if (tableName.equals("View_Reader")) {
+			ReaderModel readerinfo = new ReaderModel(Util4Frm.getlanguage(request),request.getParameter("readerno"),request.getParameter("readername"),request.getParameter("sex"),request.getParameter("idnum"),request.getParameter("workunit"));
+			querysql = readerinfo.getSqlQueryString();
+		} else if (tableName.equals("View_Book")) {
+			boolean check;
+			if ("on".equals(request.getParameter("check"))) check=true; else check=false;
+			BorrowBookModel bookinfo = new BorrowBookModel(request.getParameter("bookno"),request.getParameter("bookname"),request.getParameter("author"),request.getParameter("press"),request.getParameter("publishdate_1"),request.getParameter("publishdate_2"),check,username);
+			querysql = bookinfo.sqlQueryString();
+		}
+		//各种视图与表处理
+		if (tableName.equals("Borrow")) {
+			TableBootstrapModel BorrowTable = new TableBootstrapModel("select 图书编号,图书名称,作者,出版社,借书时间,应归还日期,归还日期 from View_Borrow where 读者编号='"+ username + "' and 归还日期 is null",tableName);
+			response.getWriter().append(JSON.toJSONString(BorrowTable));
+		} else if (tableName.equals("BorrowHistory")) {
+			TableBootstrapModel BorrowHistoryTable = new TableBootstrapModel("select 图书编号,图书名称,作者,出版社,借书时间,应归还日期,归还日期 from View_Borrow where 读者编号='"+ username + "' and 归还日期 is not null",tableName);
+			response.getWriter().append(JSON.toJSONString(BorrowHistoryTable));
+		} else {
+			TableBootstrapModel BookTable = new TableBootstrapModel("select * from "+tableName+querysql,tableName);
+			response.getWriter().append(JSON.toJSONString(BookTable));
+		}
 	}
-
 }

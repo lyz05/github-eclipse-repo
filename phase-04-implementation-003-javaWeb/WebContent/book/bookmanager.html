@@ -20,6 +20,11 @@
 		<link href="static/bootstrap/css/bootstrap-datetimepicker.min.css" rel="stylesheet">
 		<script src="static/js/moment-with-locales.js"></script>
 		<script src="static/js/bootstrap-datetimepicker.min.js"></script>
+		<!-- Bootstrap Table -->
+		<link rel="stylesheet" href="static/bootstrap/css/bootstrap-table.min.css">
+		<script src="static/bootstrap/js/bootstrap-table.js"></script>
+		<script src="static/bootstrap/locale/bootstrap-table-zh-CN.min.js"></script>
+		<script src="static/bootstrap/locale/bootstrap-table-zh-TW.min.js"></script>
 	</head>
 
 	<body>
@@ -110,113 +115,83 @@
 			</div>
 			</div>
 			</div>
-
-			<div id="tabs">
-				<table id="table" class="table table-striped table-bordered table-hover">
-					<tr><td>正在加载...</td></tr>
-				</table>
-			</div>
-			<div class="text-center">
-				<label id="footer">正在加载...</label>
-			</div>
+			<!-- 表格 -->
+			<div class="table-responsive">
+			<table id="table" class="table table-striped table-bordered table-hover">
+				  <thead>
+				    <tr>
+				      <th data-sortable="true" data-locale="bookno" data-field="bookno"></th>
+				      <th data-sortable="true" data-locale="bookname" data-field="bookname"></th>
+				      <th data-sortable="true" data-locale="author" data-field="author"></th>
+				      <th data-sortable="true" data-locale="press" data-field="press"></th>
+				      <th data-sortable="true" data-locale="price" data-field="price"></th>
+				      <th data-sortable="true" data-locale="publishdate" data-field="publishdate"></th>
+				      <th data-sortable="true" data-locale="shopnum" data-field="shopnum"></th>
+				      <th data-sortable="true" data-locale="curnum" data-field="curnum"></th>
+				      <th data-locale="operation" data-field="operation" data-formatter="operation"></th>
+				    </tr>
+				  </thead>
+            </table>
+            </div>
 		</div>
 	</body>
 	<script>
+		//页面加载完成
 		$(document).ready(function(){
-			//页面加载完成
+			$('#table').bootstrapTable({
+				url: "api/tablebootstrap",
+				method: "post",
+				contentType: "application/x-www-form-urlencoded; charset=UTF-8",
+				locale: localStorage.getItem('LANGUAGE_CODE'),
+		        cache: false,
+		        sortable: true,
+				striped: true,
+		        pagination: true,
+		        sortable: true,
+		        sortOrder: "asc",
+		        sidePagination: "client",
+		        pageNumber: 1,
+		        pageSize: 5,
+		        pageList: [2,3,4,5,6,7,8,9,10],
+		        queryParams : $('#form1').serialize()+"&table=View_Book_Admin"
+			});
 			$('#datetimepicker').datetimepicker({
 		        format: 'YYYY-MM-DD',
 		        locale: moment.locale(localStorage.getItem('LANGUAGE_CODE')),
 		        //minDate: '2016-7-1'
 		    });
 	        $('title').html($.i18n.prop('bookinfo')+$.i18n.prop('management')+" - "+$.i18n.prop('systemname'));
-			search();
+			ajaxRequest("get","api/userinfo",null,null,function(info){
+				$('#username').html(info.username);
+			});
  		});
 		function search(){
-			ajaxRequest("post","api/table",$('#form1').serialize()+"&table=View_Book_Admin",null,displayforminfo);
+			$('#table').bootstrapTable('refresh');
+			//ajaxRequest("post","api/table",$('#form1').serialize()+"&table=View_Book_Admin",null,displayforminfo);
 		}
-		function add()
-		{
+		function add(){
 			ajaxRequest("post","api/bookadd",$('#form1').serialize(),null,callBackReset);
 		}
 		function del(bookno){
 	        ajaxRequest("get","api/bookdelete","bookno="+bookno,null,callBack);
 		}
 		function save() {
-			$('#searchbtn').addClass('btn-primary');
-			$('#savebtn').removeClass('btn-primary');
 	        ajaxRequest("post","api/bookedit",$('#form1').serialize(),null,callBackReset);
 		}
 		function edit(bookno) {
-			$('#savebtn').show();
-			$('#searchbtn').removeClass('btn-primary');
-			$('#savebtn').addClass('btn-primary');
-			ajaxRequest("post","api/book","bookno="+bookno,null,editCallBack);
+			ajaxRequest("post","api/book","bookno="+bookno,null,function(info){
+				$('#savebtn').show();
+				$('#searchbtn').removeClass('btn-primary');
+				$('#savebtn').addClass('btn-primary');
+				$('#form1')[0].reset();
+				$('#form1').setForm(info);
+			});
 		}
-		function editCallBack(bookinfo){
-			$('#form1')[0].reset();
-			$('#form1').setForm(bookinfo);
-		}
-		function orderby(name){
-			ajaxRequest("post","api/table",$('#form1').serialize()+"&table=View_Book_Admin"+"&orderby="+name,null,displayforminfo);
-		}
-		function displayforminfo(forminfo){
-			//管理员用户名
-			var username = window.document.getElementById("username");
-			username.innerHTML = forminfo.username;
-			//底部标签
-			var footer = window.document.getElementById("footer");
-			footer.innerHTML = $.i18n.prop('recordsfound')+forminfo.rows;
-			
-			var table = window.document.getElementById("table");
-			table.innerHTML='';
-			
-            //创建标题行
-            var thead = window.document.createElement("thead");
-            var tr = window.document.createElement("tr");
-            var itemHead = forminfo.name;
-            for (var index in itemHead) {
-                //创建标题单元格添加到thead
-                var th = window.document.createElement("th");
-                var a = window.document.createElement("a");
-                a.innerText = itemHead[index];
-                a.href="javascript:orderby('"+itemHead[index]+"')"
-                th.appendChild(a);
-                tr.appendChild(th);
-            }
-            var th = window.document.createElement("th");
-            th.innerText = $.i18n.prop('operation');
-            tr.appendChild(th);
-            thead.appendChild(tr);
-            table.appendChild(thead);
-            
-            var tbody = window.document.createElement("tbody");
-            //遍历对象，创建行和单元格
-            for (var i = 0; i < forminfo.rows; i++) {
-                var item = forminfo.data[i];
-                //创建行
-                var tr = window.document.createElement("tr");
-                tbody.appendChild(tr);
-                for (var index in item) {
-                    //创建单元格
-                    var td = window.document.createElement("td");
-                    td.innerText = item[index];
-                    tr.appendChild(td);
-                }
-                var td = window.document.createElement("td");
-                var a = window.document.createElement("a");
-                a.href = "javascript:edit('"+forminfo.data[i][0]+"')";
-                a.className="";
-                a.innerText = $.i18n.prop('edit');
-              	td.appendChild(a);
-              	td.append(" | ");
-              	a = window.document.createElement("a");
-              	a.href = "javascript:del('"+forminfo.data[i][0]+"')";
-                a.innerText = $.i18n.prop('delete');
-              	td.appendChild(a);
-                tr.appendChild(td);
-            }
-            table.appendChild(tbody);
+		//row当前行数据，index当前行索引，
+		function operation(value, row, index) {
+		    var html = "<a href=javascript:edit('"+row["bookno"]+"')>"+$.i18n.prop('edit')+"</a> | " +
+		        "<a href=javascript:del('"+row["bookno"]+"')>"+$.i18n.prop('delete')+"</a>"
+		    return html;
 		}
 	</script>
 </html>

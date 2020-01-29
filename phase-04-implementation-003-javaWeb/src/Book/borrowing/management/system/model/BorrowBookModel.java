@@ -2,7 +2,7 @@ package Book.borrowing.management.system.model;
 
 //借阅过滤器
 public class BorrowBookModel {
-	public String bookno,bookname,author,press,publishdate_1,publishdate_2,price,publishdate,shopnum;
+	public String bookno,bookname,author,press,publishdate_1,publishdate_2,price,publishdate,shopnum,curnum;
 	public boolean check;
 	public String readerno;
 	public BorrowBookModel(String bookno,String bookname,String author,String press,String publishdate_1,String publishdate_2,boolean check,String readerno)
@@ -16,7 +16,17 @@ public class BorrowBookModel {
 		this.check=check;
 		this.readerno=readerno;
 	}
-	public String getSqlQueryString() {
+	public BorrowBookModel(String bookno,String bookname,String author,String press,String publishdate,String shopnum,String curnum)
+	{
+		this.bookno=bookno;
+		this.bookname=bookname;
+		this.author=author;
+		this.press=press;
+		this.publishdate=publishdate;
+		this.shopnum=shopnum;
+		this.curnum=curnum;
+	}
+	public String sqlQueryString() {
 		String sql = " where 图书编号 like '%"+ bookno + "%' and 图书名称 like '%" + bookname + "%' and 作者 like '%" + author + "%' and 出版社 like '%" + press + "%'";
         if (!publishdate_1.equals("")) 
             sql += " and 出版日期>='" + publishdate_1+"'";

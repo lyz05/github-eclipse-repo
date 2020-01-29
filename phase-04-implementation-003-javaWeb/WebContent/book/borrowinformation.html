@@ -20,6 +20,11 @@
 		<link href="static/bootstrap/css/bootstrap-datetimepicker.min.css" rel="stylesheet">
 		<script src="static/js/moment-with-locales.js"></script>
 		<script src="static/js/bootstrap-datetimepicker.min.js"></script>
+		<!-- Bootstrap Table -->
+		<link rel="stylesheet" href="static/bootstrap/css/bootstrap-table.min.css">
+		<script src="static/bootstrap/js/bootstrap-table.js"></script>
+		<script src="static/bootstrap/locale/bootstrap-table-zh-CN.min.js"></script>
+		<script src="static/bootstrap/locale/bootstrap-table-zh-TW.min.js"></script>
 	</head>
 
 	<body>
@@ -124,30 +129,53 @@
 		  	<div class="tab-content">
 		  		<!-- 当前借阅 -->
 				<div role="tabpanel" class="tab-pane fade in active" id="tabs-1">
-				<table class="table table-striped table-bordered table-hover" id="table-1">
-					<tr><td>正在加载...</td></tr>
-				</table>
-				<div class="text-center">
-					<label id="footer-table-1">正在加载...</label>
-				</div>
+					<table id="table-1" class="table table-striped table-bordered table-hover">
+					  <thead>
+					    <tr>
+						  <th data-sortable="true" data-locale="bookno" data-field="bookno"></th>
+					      <th data-sortable="true" data-locale="bookname" data-field="bookname"></th>
+					      <th data-sortable="true" data-locale="author" data-field="author"></th>
+					      <th data-sortable="true" data-locale="press" data-field="press"></th>
+					      <th data-sortable="true" data-locale="borrowdate" data-field="borrowdate"></th>
+					      <th data-sortable="true" data-locale="shoulddate" data-field="shoulddate"></th>
+					      <th data-sortable="true" data-locale="returndate" data-field="returndate"></th>
+					      <th data-locale="operation" data-field="operation" data-formatter="operation1"></th>
+					    </tr>
+					  </thead>
+	            	</table>
 				</div>
 				<!-- 历史借阅 -->
 				<div role="tabpanel" class="tab-pane fade" id="tabs-2">
-					    <table class="table table-striped table-bordered table-hover" id="table-2">
-					    	<tr><td>正在加载...</td></tr>
-				</table>
-				<div class="text-center">
-					<label id="footer-table-2">正在加载...</label>
-				</div>
+					<table id="table-2" class="table table-striped table-bordered table-hover">
+					  <thead>
+					    <tr>
+						  <th data-sortable="true" data-locale="bookno" data-field="bookno"></th>
+					      <th data-sortable="true" data-locale="bookname" data-field="bookname"></th>
+					      <th data-sortable="true" data-locale="author" data-field="author"></th>
+					      <th data-sortable="true" data-locale="press" data-field="press"></th>
+					      <th data-sortable="true" data-locale="borrowdate" data-field="borrowdate"></th>
+					      <th data-sortable="true" data-locale="shoulddate" data-field="shoulddate"></th>
+					      <th data-sortable="true" data-locale="returndate" data-field="returndate"></th>
+					    </tr>
+					  </thead>
+	            	</table>
 				</div>
 				<!-- 图书信息 -->
 				<div role="tabpanel" class="tab-pane fade" id="tabs-3">
-					    <table class="table table-striped table-bordered table-hover" id="table-3">
-					    	<tr><td>正在加载...</td></tr>
-				</table>
-				<div class="text-center">
-					<label id="footer-table-3">正在加载...</label>
-				</div>
+					<table id="table-3" class="table table-striped table-bordered table-hover">
+					  <thead>
+					    <tr>
+						  <th data-sortable="true" data-locale="bookno" data-field="bookno"></th>
+					      <th data-sortable="true" data-locale="bookname" data-field="bookname"></th>
+					      <th data-sortable="true" data-locale="author" data-field="author"></th>
+					      <th data-sortable="true" data-locale="press" data-field="press"></th>
+					      <th data-sortable="true" data-locale="publishdate" data-field="publishdate"></th>
+					      <th data-sortable="true" data-locale="shopnum" data-field="shopnum"></th>
+					      <th data-sortable="true" data-locale="curnum" data-field="curnum"></th>
+					      <th data-locale="operation" data-field="operation" data-formatter="operation3"></th>
+					    </tr>
+					  </thead>
+	            	</table>
 				</div>
 			</div>
 			</div>
@@ -156,6 +184,57 @@
 	
 	<script>
 		$(document).ready(function(){
+			$('#table-1').bootstrapTable({
+				url: "api/tablebootstrap",
+				method: "post",
+				contentType: "application/x-www-form-urlencoded; charset=UTF-8",
+				locale: localStorage.getItem('LANGUAGE_CODE'),
+		        cache: false,
+		        sortable: true,
+				striped: true,
+		        pagination: true,
+		        sortable: true,
+		        sortOrder: "asc",
+		        sidePagination: "client",
+		        pageNumber: 1,
+		        pageSize: 5,
+		        pageList: [2,3,4,5,6,7,8,9,10],
+		        queryParams : "table=Borrow"
+			});
+			$('#table-2').bootstrapTable({
+				url: "api/tablebootstrap",
+				method: "post",
+				contentType: "application/x-www-form-urlencoded; charset=UTF-8",
+				locale: localStorage.getItem('LANGUAGE_CODE'),
+		        cache: false,
+		        sortable: true,
+				striped: true,
+		        pagination: true,
+		        sortable: true,
+		        sortOrder: "asc",
+		        sidePagination: "client",
+		        pageNumber: 1,
+		        pageSize: 5,
+		        pageList: [2,3,4,5,6,7,8,9,10],
+		        queryParams : "table=BorrowHistory"
+			});
+			$('#table-3').bootstrapTable({
+				url: "api/tablebootstrap",
+				method: "post",
+				contentType: "application/x-www-form-urlencoded; charset=UTF-8",
+				locale: localStorage.getItem('LANGUAGE_CODE'),
+		        cache: false,
+		        sortable: true,
+				striped: true,
+		        pagination: true,
+		        sortable: true,
+		        sortOrder: "asc",
+		        sidePagination: "client",
+		        pageNumber: 1,
+		        pageSize: 5,
+		        pageList: [2,3,4,5,6,7,8,9,10],
+		        queryParams : $('#form1').serialize()+"&table=View_Book"
+			});
 		    var picker1 = $('#datetimepicker1').datetimepicker({
 		        format: 'YYYY-MM-DD',
 		        locale: moment.locale(localStorage.getItem('LANGUAGE_CODE')),
@@ -174,7 +253,10 @@
 		        picker1.data('DateTimePicker').maxDate(e.date);
 		    });
             $('title').html($.i18n.prop('borrowinfo')+$.i18n.prop('management')+" - "+$.i18n.prop('systemname'));
-		    search();
+			ajaxRequest("get","api/userinfo",null,null,function(info){
+				$('#readername').html(info.readername);
+				$('#alterpwd').attr('href','alterpassword.html?username='+info.username);
+			});
 		});	
 		//用于实现tabs切换
 		$('#myTab a').click(function (e) {
@@ -182,51 +264,14 @@
 		  $(this).tab('show')
 		})
 		function search(flag){
-			ajaxRequest("post","api/table",$('#form1').serialize()+"&table=View_Book",null,searchcallback3);
-			ajaxRequest("post","api/table","table=Borrow",null,searchcallback1);
-			ajaxRequest("post","api/table","table=BorrowHistory",null,searchcallback2);
+			$('#table-1').bootstrapTable('refresh');
+			$('#table-2').bootstrapTable('refresh');
+			$('#table-3').bootstrapTable('refresh');
+			//ajaxRequest("post","api/table",$('#form1').serialize()+"&table=View_Book",null,searchcallback3);
+			//ajaxRequest("post","api/table","table=Borrow",null,searchcallback1);
+			//ajaxRequest("post","api/table","table=BorrowHistory",null,searchcallback2);
 			if (flag)
 				$('#myTab a[href="#tabs-3"]').tab('show');
-		}
-		function searchcallback3(forminfo){
-			displayforminfo("table-3",forminfo,function(tr,i){
-				if (i == -1) {
-					var th = window.document.createElement("th");
-		            th.innerText = $.i18n.prop('operation');
-		            tr.appendChild(th);
-					return;
-				}
-				var td = window.document.createElement("td");
-            	var a = window.document.createElement("a");
-            	a.href = "javascript:borrow('"+forminfo.data[i][0]+"')";
-            	a.innerText = $.i18n.prop('borrowbook');
-          		td.appendChild(a);
-          		tr.appendChild(td);
-			});
-		}
-		function searchcallback1(forminfo){
-			displayforminfo("table-1",forminfo,function (tr,i){
-				if (i == -1) {
-					var th = window.document.createElement("th");
-		            th.innerText = $.i18n.prop('operation');
-		            tr.appendChild(th);
-					return;
-				}
-				var td = window.document.createElement("td");
-            	var a = window.document.createElement("a");
-            	a.href = "javascript:ret('"+forminfo.data[i][0]+"')";
-            	a.innerText = $.i18n.prop('returnbook');
-          		td.appendChild(a);
-          		td.append(" | ");
-            	var a = window.document.createElement("a");
-            	a.href = "javascript:renew('"+forminfo.data[i][0]+"')";
-            	a.innerText = $.i18n.prop('renewbook');
-          		td.appendChild(a);
-          		tr.appendChild(td);
-			});
-		}
-		function searchcallback2(forminfo){
-			displayforminfo("table-2",forminfo,function (tr,i){});
 		}
 		function borrow(bookno){
 			ajaxRequest("get","api/borrowadd","bookno="+bookno, null, callBack);
@@ -237,59 +282,16 @@
 		function renew(bookno){
 			ajaxRequest("get","api/borrowrenew","bookno="+bookno, null, callBack);
 		}
-		function orderby(name, table){
-			if (table=="table-1")
-				ajaxRequest("post","api/table","table=Borrow&orderby="+name,null,searchcallback1);	
-			if (table=="table-2")
-				ajaxRequest("post","api/table","table=BorrowHistory&orderby="+name,null,searchcallback2);
-			if (table=="table-3")
-				ajaxRequest("post","api/table",$('#form1').serialize()+"&table=View_Book&orderby="+name,null,searchcallback3);
+		//row当前行数据，index当前行索引，
+		function operation1(value, row, index) {
+		    var html = "<a href=javascript:ret('"+row["bookno"]+"')>"+$.i18n.prop('returnbook')+"</a> | " +
+		        "<a href=javascript:renew('"+row["bookno"]+"')>"+$.i18n.prop('renewbook')+"</a>"
+		    return html;
 		}
-		function displayforminfo(tablename,forminfo,operator){
-			var alterpwd = window.document.getElementById("alterpwd");
-			alterpwd.href = "alterpassword.html?username="+forminfo.username;
-			var readername = window.document.getElementById("readername");
-			readername.innerHTML = forminfo.readername;
-			var footer = window.document.getElementById("footer-"+tablename);
-			footer.innerHTML = $.i18n.prop('recordsfound')+forminfo.rows;
-			var table = window.document.getElementById(tablename);
-			table.innerHTML='';
-			
-            //创建标题行
-            var thead = window.document.createElement("thead");
-            var tr = window.document.createElement("tr");
-            var itemHead = forminfo.name;
-            for (var index in itemHead) {
-                //创建标题单元格添加到thead
-                var th = window.document.createElement("th");
-                var a = window.document.createElement("a");
-                a.innerText = itemHead[index];
-                a.href="javascript:orderby('"+itemHead[index]+"','"+tablename+"')"
-                th.appendChild(a);
-                tr.appendChild(th);
-            }
-            operator(tr,-1);
-            thead.appendChild(tr);
-            table.appendChild(thead);
-            
-            var tbody = window.document.createElement("tbody");
-            //遍历对象，创建行和单元格
-            for (var i = 0; i < forminfo.rows; i++) {
-                var item = forminfo.data[i];
-                //创建行
-                var tr = window.document.createElement("tr");
-                for (var index in item) {
-                    //创建单元格
-                    var td = window.document.createElement("td");
-                    td.innerText = item[index];
-                    tr.appendChild(td);
-                }
-                operator(tr,i);
-                tbody.appendChild(tr);
-                //tr.appendChild(operatortd);
-            }
-            table.appendChild(tbody);
+		//row当前行数据，index当前行索引，
+		function operation3(value, row, index) {
+		    var html = "<a href=javascript:borrow('"+row["bookno"]+"')>"+$.i18n.prop('borrowbook')+"</a>"
+		    return html;
 		}
-
   	</script>
 </html>
