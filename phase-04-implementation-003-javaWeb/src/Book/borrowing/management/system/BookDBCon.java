@@ -97,7 +97,47 @@ public class BookDBCon {
             name = null;
         }
     }
-    
+    public static void preparedqueryVector2(String presql,Vector<Vector<String>> data,Vector<String> name,int... content){
+        System.out.println(presql);
+        data.clear();
+        name.clear();
+        Connection conn=JdbcCon();
+        PreparedStatement pstmt; //预编译会话对象
+        ResultSet rs; //结果集
+        ResultSetMetaData metaData;  //列集
+        try{
+        	pstmt=conn.prepareStatement(presql);            //创建会话对象
+            //设置参数
+            for (int i=0;i<content.length;i ++)
+            {
+                pstmt.setInt(i+1, content[i]);
+            }
+            rs=pstmt.executeQuery();                  //执行SQL语句
+            metaData = rs.getMetaData();            //获取列集
+            int columnCount = metaData.getColumnCount(); //获取列的数量
+            for (int i=1;i<=columnCount;i ++) 
+                name.add(metaData.getColumnName(i));        //获取字段名
+            // Vector ret=new Vector();
+            //循环遍历
+            while(rs.next()){
+                Vector<String> line=new Vector<String>();
+                for (int i=1;i<=columnCount;i ++)  {
+                    String item = String.valueOf(rs.getString(i)).trim();
+                    line.add(item);                       //添加一条数据并过滤首尾空格
+                }
+                data.add(line);   
+            }
+            //释放资源
+            rs.close();
+            pstmt.close();
+            conn.close();
+        }catch(SQLException ex){
+            ex.printStackTrace();
+            System.out.println("查询数据失败");
+            data = null;
+            name = null;
+        }
+    }
     /**
      * 预编译查询数据的方法，查询数据库第一行第一个数据
      * @param presql 预编译sql语句

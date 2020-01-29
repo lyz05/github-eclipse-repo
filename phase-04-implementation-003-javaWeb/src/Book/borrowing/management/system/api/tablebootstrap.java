@@ -12,6 +12,7 @@ import com.alibaba.fastjson.JSON;
 
 import Book.borrowing.management.system.BookDBCon;
 import Book.borrowing.management.system.Util4Frm;
+import Book.borrowing.management.system.model.BookModel;
 import Book.borrowing.management.system.model.TableBootstrapModel;
 
 /**
@@ -40,9 +41,11 @@ public class tablebootstrap extends HttpServlet {
 		HttpSession session = request.getSession(true);
 		String username = session.getAttribute("username").toString();
 		//获取读者姓名
+		System.out.println(request.getParameter("bookname"));
 		String readername = BookDBCon.preparedqueryResult("select readerName from Reader where readerNO=?",username);
-		
-		TableBootstrapModel BookTable = new TableBootstrapModel("select * from View_Book_Admin",Util4Frm.getlanguage(request));
+		BookModel bookinfo = new BookModel(Util4Frm.getlanguage(request),request.getParameter("bookno"),request.getParameter("bookname"),request.getParameter("author"),request.getParameter("press"),request.getParameter("price"),request.getParameter("publishdate"),request.getParameter("shopnum"));
+		String querysql = bookinfo.getSqlQueryString1();
+		TableBootstrapModel BookTable = new TableBootstrapModel("select * from View_Book_Admin"+querysql,Util4Frm.getlanguage(request));
 		response.getWriter().append(JSON.toJSONString(BookTable));
 	}
 

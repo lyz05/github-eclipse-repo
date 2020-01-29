@@ -4,6 +4,7 @@ import java.util.Vector;
 
 import Book.borrowing.management.system.BookDBCon;
 
+//管理员图书
 public class BookModel{
 	public String bookno,bookname,author,press,price,publishdate,shopnum,curnum;
 	private String language;

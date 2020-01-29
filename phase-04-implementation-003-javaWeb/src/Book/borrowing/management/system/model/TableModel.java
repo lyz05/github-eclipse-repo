@@ -3,6 +3,7 @@ import java.util.*;
 
 import Book.borrowing.management.system.BookDBCon;
 
+//传统二维表格形式的Model
 public class TableModel {
 	public int rows,cols;
 	public Vector<Vector<String>> data = new Vector<Vector<String>>();

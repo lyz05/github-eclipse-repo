@@ -1,5 +1,6 @@
 package Book.borrowing.management.system.model;
 
+//½èÔÄ¹ıÂËÆ÷
 public class BorrowBookModel {
 	public String bookno,bookname,author,press,publishdate_1,publishdate_2,price,publishdate,shopnum;
 	public boolean check;
