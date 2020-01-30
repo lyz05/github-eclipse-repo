@@ -2,6 +2,7 @@
 <html>
 	<head>
 		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
 		<title>读者信息管理 - 图书借阅管理系统</title>
 		<!-- bootstrap样式 -->
 		<link rel="stylesheet" href="static/bootstrap/css/bootstrap.min.css">	
@@ -122,28 +123,32 @@
 		</div>
 	</body>
 	<script>
+		function tableautoresize() {
+			tableresize('#table');
+		}
 		function documentready(){
 			$('#table').bootstrapTable({
 				url: "api/tablebootstrap",
 				method: "post",
 				contentType: "application/x-www-form-urlencoded; charset=UTF-8",
 				locale: localStorage.getItem('LANGUAGE_CODE'),
-		        cache: false,
+		        //height: Math.max($(window).height()-$("#filter").outerHeight()-$("#header").outerHeight(),285),
+				cache: false,
 		        sortable: true,
 				striped: true,
 		        pagination: true,
 		        sortable: true,
-		        sortOrder: "asc",
 		        sidePagination: "client",
-		        pageNumber: 1,
 		        pageSize: 5,
-		        pageList: [2,3,4,5,6,7,8,9,10],
+		        pageList: [3,5,8,10,15,20],
+		        paginationLoop: false,
 		        queryParams : $('#form1').serialize()+"&table=View_Reader"
 			});
            $('title').html($.i18n.prop('readerinfo')+$.i18n.prop('management')+" - "+$.i18n.prop('systemname'));
 			ajaxRequest("get","api/userinfo",null,null,function(info){
 				$('#username').html(info.username);
 			});
+			tableautoresize();
  		}
 		function search(){
 			$('#table').bootstrapTable('refresh');
@@ -176,5 +181,6 @@
 		        "<a href=javascript:resetpwd('"+row["readerno"]+"')>"+$.i18n.prop('resetpwd')+"</a>"
 		    return html;
 		}
+
 	</script>
 </html>

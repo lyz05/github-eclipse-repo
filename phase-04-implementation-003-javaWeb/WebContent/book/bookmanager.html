@@ -2,6 +2,7 @@
 <html>
 	<head>
 		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
 		<title>图书信息管理 - 图书借阅管理系统</title>
 		<!-- bootstrap样式 -->
 		<link rel="stylesheet" href="static/bootstrap/css/bootstrap.min.css">	
@@ -30,7 +31,7 @@
 	<body>
 		<div class="container-fluid">
 			<!-- 顶栏 -->
-			<div class="row">
+			<div class="row"  id="header">
 				<div class="col-xs-6 text-left" style="margin:5px 0px">
 					<span data-locale="hello">您好</span>
 					<span data-locale="admin">管理员</span>：<span id="username"></span>
@@ -48,7 +49,7 @@
 			</div>
 			</div>
 			<!-- 过滤器 -->
-			<div class="row">
+			<div class="row" id="filter">
 			<div class="col-xs-12">
 			<div class="panel panel-primary">
 				<div class="panel-heading">
@@ -136,6 +137,9 @@
 		</div>
 	</body>
 	<script>
+		function tableautoresize() {
+			tableresize('#table');
+		}
 		//页面加载完成
 		function documentready(){
 			$('#table').bootstrapTable({
@@ -143,27 +147,27 @@
 				method: "post",
 				contentType: "application/x-www-form-urlencoded; charset=UTF-8",
 				locale: localStorage.getItem('LANGUAGE_CODE'),
-		        cache: false,
+		        //height: Math.max($(window).height()-$("#filter").outerHeight()-$("#header").outerHeight(),285),
+				cache: false,
 		        sortable: true,
 				striped: true,
 		        pagination: true,
 		        sortable: true,
-		        sortOrder: "asc",
 		        sidePagination: "client",
-		        pageNumber: 1,
 		        pageSize: 5,
-		        pageList: [2,3,4,5,6,7,8,9,10],
+		        pageList: [3,5,8,10,15,20],
+		        paginationLoop: false,
 		        queryParams : $('#form1').serialize()+"&table=View_Book_Admin"
 			});
 			$('#datetimepicker').datetimepicker({
 		        format: 'YYYY-MM-DD',
-		        locale: moment.locale(localStorage.getItem('LANGUAGE_CODE')),
-		        //minDate: '2016-7-1'
+		        locale: moment.locale(localStorage.getItem('LANGUAGE_CODE'))
 		    });
 	        $('title').html($.i18n.prop('bookinfo')+$.i18n.prop('management')+" - "+$.i18n.prop('systemname'));
 			ajaxRequest("get","api/userinfo",null,null,function(info){
 				$('#username').html(info.username);
 			});
+			tableautoresize();
  		}
 		function search(){
 			$('#table').bootstrapTable('refresh');
@@ -192,5 +196,6 @@
 		        "<a href=javascript:del('"+row["bookno"]+"')>"+$.i18n.prop('delete')+"</a>"
 		    return html;
 		}
+
 	</script>
 </html>

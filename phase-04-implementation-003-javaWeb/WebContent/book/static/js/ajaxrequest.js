@@ -8,33 +8,34 @@ function ajaxRequest(type, url, data, href, func) {
 		data : data,
 		success : function(result, testStatus) {
 			if (result.code == "200") {
-				//命令执行成功跳转
+				// 命令执行成功跳转
 				alertjs(result);
-				if (href!=null)
+				if (href != null)
 					window.location.href = href;
 			}
-			if (result.code == "605" && href!=null) window.location.href = href;
+			if (result.code == "605" && href != null)
+				window.location.href = href;
 			if (result.code == "403") {
-				//命令执行失败，或有错误消息需要显示
+				// 命令执行失败，或有错误消息需要显示
 				alertjs(result);
 			}
 			if (result.code == "601") {
-				//未登录
+				// 未登录
 				alert(result.message);
 				window.location.href = './';
 			}
-			if (func!=null) 
+			if (func != null)
 				func(result);
 		},
 		error : function(xhr, errorMessage, e) {
 			alert(xhr.statusText);
 			window.location.href = './';
-			//alert("发送请求失败，请检查网络状态");
+			// alert("发送请求失败，请检查网络状态");
 		}
 	});
 }
-//回调函数
-function callBack(result){
+// 回调函数
+function callBack(result) {
 	if (result.code == 200) {
 		search();
 	}
@@ -48,27 +49,51 @@ function callBackReset(result) {
 		search();
 	}
 }
-//登出
-function logout(){
-	ajaxRequest("get","api/logout",null,"index.html",null);
+// 登出
+function logout() {
+	ajaxRequest("get", "api/logout", null, "index.html", null);
 }
-//alert弹窗 需要在网页中添加alert组件
-function alertjs(result){
-	scrollTo(0,0);					//回到顶部
-	var fadetimes = 300,showtimes = 3000;
+// alert弹窗 需要在网页中添加alert组件
+function alertjs(result) {
+	scrollTo(0, 0); // 回到顶部
+	var fadetimes = 300, showtimes = 3000;
 	$("#alert").removeClass("alert-success");
 	$("#alert").removeClass("alert-info");
 	$("#alert").removeClass("alert-warning");
 	$("#alert").removeClass("alert-danger");
-	if (result.code==200) 
+	if (result.code == 200)
 		$("#alert").addClass("alert-success");
-	else if (result.code==403) 
+	else if (result.code == 403)
 		$("#alert").addClass("alert-danger");
-	else $("#alert").addClass("alert-info");
-	
+	else
+		$("#alert").addClass("alert-info");
+
 	$("#alert").text(result.message);
 	$("#alert").show(fadetimes);
-	setTimeout( function(){
+	setTimeout(function() {
 		$("#alert").hide(fadetimes);
-	},showtimes);
+	}, showtimes);
 }
+// 封装好的视图切换方法
+function setDataCardView(id) {
+	var options = $(id).bootstrapTable('getOptions');
+	if ($(window).width() < 768) {
+		if (options.cardView === false) {
+			$(id).bootstrapTable('toggleView');
+		}
+	} else {
+		if (options.cardView === true) {
+			$(id).bootstrapTable('toggleView');
+		}
+	}
+}
+function tableresize() {
+	for (var i = 0; i < arguments.length; i++) {
+		setDataCardView(arguments[i]);
+	}
+}
+
+// 窗口缩放时调用
+$(window).resize(function() {
+	tableautoresize();
+});

@@ -2,6 +2,7 @@
 <html>
 	<head>
 		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
 		<title>借阅信息管理 - 图书借阅管理系统</title>
 		<!-- bootstrap样式 -->
 		<link rel="stylesheet" href="static/bootstrap/css/bootstrap.min.css">	
@@ -36,7 +37,9 @@
 				</div>
 				<div class="col-xs-6 text-right" style="margin:2px 0px">
 				<div class="btn-group btn-group-sm">
-					<a data-locale="alterpwd" role="button" class="btn btn-default" id="alterpwd" href="alterpassword.html">修改密码</a>
+					<a role="button" class="btn btn-default" id="alterpwd" href="alterpassword.html">
+						<span data-locale="alterpwd">修改密码</span>
+					</a>
 					<a data-locale="logout" role="button" class="btn btn-primary" href="javascript:logout()">注销</a>
 				</div>
 				</div>
@@ -183,22 +186,25 @@
 	</body>
 	
 	<script>
+		function tableautoresize() {
+			tableresize('#table-1','#table-2','#table-3');
+		}
 		function documentready(){
 			$('#table-1').bootstrapTable({
 				url: "api/tablebootstrap",
 				method: "post",
 				contentType: "application/x-www-form-urlencoded; charset=UTF-8",
 				locale: localStorage.getItem('LANGUAGE_CODE'),
-		        cache: false,
+		        //height: Math.max($(window).height()-$("#filter").outerHeight()-$("#header").outerHeight(),285),
+				cache: false,
 		        sortable: true,
 				striped: true,
 		        pagination: true,
 		        sortable: true,
-		        sortOrder: "asc",
 		        sidePagination: "client",
-		        pageNumber: 1,
 		        pageSize: 5,
-		        pageList: [2,3,4,5,6,7,8,9,10],
+		        pageList: [3,5,8,10,15,20],
+		        paginationLoop: false,
 		        queryParams : "table=Borrow"
 			});
 			$('#table-2').bootstrapTable({
@@ -206,16 +212,16 @@
 				method: "post",
 				contentType: "application/x-www-form-urlencoded; charset=UTF-8",
 				locale: localStorage.getItem('LANGUAGE_CODE'),
-		        cache: false,
+		        //height: Math.max($(window).height()-$("#filter").outerHeight()-$("#header").outerHeight(),285),
+				cache: false,
 		        sortable: true,
 				striped: true,
 		        pagination: true,
 		        sortable: true,
-		        sortOrder: "asc",
 		        sidePagination: "client",
-		        pageNumber: 1,
 		        pageSize: 5,
-		        pageList: [2,3,4,5,6,7,8,9,10],
+		        pageList: [3,5,8,10,15,20],
+		        paginationLoop: false,
 		        queryParams : "table=BorrowHistory"
 			});
 			$('#table-3').bootstrapTable({
@@ -223,16 +229,16 @@
 				method: "post",
 				contentType: "application/x-www-form-urlencoded; charset=UTF-8",
 				locale: localStorage.getItem('LANGUAGE_CODE'),
-		        cache: false,
+		        //height: Math.max($(window).height()-$("#filter").outerHeight()-$("#header").outerHeight(),285),
+				cache: false,
 		        sortable: true,
 				striped: true,
 		        pagination: true,
 		        sortable: true,
-		        sortOrder: "asc",
 		        sidePagination: "client",
-		        pageNumber: 1,
 		        pageSize: 5,
-		        pageList: [2,3,4,5,6,7,8,9,10],
+		        pageList: [3,5,8,10,15,20],
+		        paginationLoop: false,
 		        queryParams : $('#form1').serialize()+"&table=View_Book"
 			});
 		    var picker1 = $('#datetimepicker1').datetimepicker({
@@ -257,6 +263,7 @@
 				$('#readername').html(info.readername);
 				$('#alterpwd').attr('href','alterpassword.html?username='+info.username);
 			});
+			tableautoresize();
 		}	
 		//用于实现tabs切换
 		$('#myTab a').click(function (e) {
@@ -290,5 +297,6 @@
 		    var html = "<a href=javascript:borrow('"+row["bookno"]+"')>"+$.i18n.prop('borrowbook')+"</a>"
 		    return html;
 		}
+
   	</script>
 </html>
