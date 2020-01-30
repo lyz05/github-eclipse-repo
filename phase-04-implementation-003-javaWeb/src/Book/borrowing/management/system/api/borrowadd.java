@@ -6,12 +6,10 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
-
 import com.alibaba.fastjson.JSON;
 
-import Book.borrowing.management.system.BookDBCon;
 import Book.borrowing.management.system.Util4Frm;
+import Book.borrowing.management.system.model.BorrowModel;
 import Book.borrowing.management.system.model.MessageJSONModel;
 
 /**
@@ -36,32 +34,11 @@ public class borrowadd extends HttpServlet {
 		// TODO Auto-generated method stub
 		if (!Util4Frm.judgeusername(request,response)) return;
 		
-		HttpSession session = request.getSession(true);
-		String bookNO = request.getParameter("bookno");
-		String readerNO = session.getAttribute("username").toString();
-		//String sql = "insert Borrow values(?,?,getdate(),dateadd(mm,1,getdate()),null)";
-		String sql = "insert Borrow values(?,?,now(),date_add(NOW(),interval 1 MONTH),null)";
-		
-		if (bookNO==null || session.getAttribute("username")==null) {
-			//请求非法
-			response.getWriter().append(JSON.toJSONString(new MessageJSONModel("602","illegal",Util4Frm.getlanguage(request))));
-			return;
-		}
-
-        if (Integer.parseInt(BookDBCon.preparedqueryResult("select 在库数量 from View_Book where 图书编号=?",bookNO)) <= 0) {
-        	response.getWriter().append(JSON.toJSONString(new MessageJSONModel("403","booknull",Util4Frm.getlanguage(request))));
-            return;
-        }
-        if (BookDBCon.preparedqueryResult("select readerNO from Borrow where readerNO=? and bookNO=? and returnDate is null",readerNO,bookNO) != null){
-        	
-        	response.getWriter().append(JSON.toJSONString(new MessageJSONModel("403","youhaveborrow",Util4Frm.getlanguage(request))));
-            return;
-        }
-		if(BookDBCon.preparedupdateData(sql,readerNO,bookNO)) {
-			response.getWriter().append(JSON.toJSONString(new MessageJSONModel("200","borrowbookok",Util4Frm.getlanguage(request))));
-		} else {
-			response.getWriter().append(JSON.toJSONString(new MessageJSONModel("403","borrowbookfail",Util4Frm.getlanguage(request))));
-		}
+		BorrowModel borrowinfo;
+		borrowinfo = new BorrowModel(request.getParameter("bookno"),request.getSession().getAttribute("username").toString());
+		borrowinfo.setlanguage(Util4Frm.getlanguage(request));
+		MessageJSONModel ret = borrowinfo.add();
+		response.getWriter().append(JSON.toJSONString(ret));
 	}
 
 	/**
