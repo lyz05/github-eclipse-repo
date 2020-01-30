@@ -183,7 +183,7 @@
 	</body>
 	
 	<script>
-		$(document).ready(function(){
+		function documentready(){
 			$('#table-1').bootstrapTable({
 				url: "api/tablebootstrap",
 				method: "post",
@@ -257,7 +257,7 @@
 				$('#readername').html(info.readername);
 				$('#alterpwd').attr('href','alterpassword.html?username='+info.username);
 			});
-		});	
+		}	
 		//用于实现tabs切换
 		$('#myTab a').click(function (e) {
 		  e.preventDefault()

@@ -137,7 +137,7 @@
 	</body>
 	<script>
 		//页面加载完成
-		$(document).ready(function(){
+		function documentready(){
 			$('#table').bootstrapTable({
 				url: "api/tablebootstrap",
 				method: "post",
@@ -164,7 +164,7 @@
 			ajaxRequest("get","api/userinfo",null,null,function(info){
 				$('#username').html(info.username);
 			});
- 		});
+ 		}
 		function search(){
 			$('#table').bootstrapTable('refresh');
 		}

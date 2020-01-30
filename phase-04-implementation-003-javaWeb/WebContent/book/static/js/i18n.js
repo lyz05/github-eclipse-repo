@@ -4,7 +4,7 @@ function loadProperties(type) {
 		path : 'i18n/', // 资源文件所在目录路径
 		mode : 'map', // 模式：变量或 Map
 		language : type, // 对应的语言
-		async: false,
+		async: true,
 		cache : false,
 		encoding : 'UTF-8',
 		callback : function(){
@@ -17,11 +17,13 @@ function loadProperties(type) {
 			$("[data-locale-placeholder]").each(function(){
 				$(this).attr('placeholder',$.i18n.prop($(this).data("locale-placeholder")));
 			});
+			documentready();
 		}
 	});
 }
 
 $(document).ready(
+	//加载国际化语言文件
 	function() {
 		var LANGUAGE_CODE = localStorage.getItem("LANGUAGE_CODE");
 		if (LANGUAGE_CODE == null)
