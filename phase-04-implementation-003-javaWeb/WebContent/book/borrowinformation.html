@@ -239,7 +239,9 @@
 		        pageSize: 5,
 		        pageList: [3,5,8,10,15,20],
 		        paginationLoop: false,
-		        queryParams : $('#form1').serialize()+"&table=View_Book"
+		        queryParams : function(params){
+		        	return $('#form1').serialize()+"&table=View_Book";
+		        }
 			});
 		    var picker1 = $('#datetimepicker1').datetimepicker({
 		        format: 'YYYY-MM-DD',

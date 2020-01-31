@@ -142,7 +142,9 @@
 		        pageSize: 5,
 		        pageList: [3,5,8,10,15,20],
 		        paginationLoop: false,
-		        queryParams : $('#form1').serialize()+"&table=View_Reader"
+		        queryParams : function (params){
+		        	return $('#form1').serialize()+"&table=View_Reader";
+		        }
 			});
            $('title').html($.i18n.prop('readerinfo')+$.i18n.prop('management')+" - "+$.i18n.prop('systemname'));
 			ajaxRequest("get","api/userinfo",null,null,function(info){

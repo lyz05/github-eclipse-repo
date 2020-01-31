@@ -157,7 +157,9 @@
 		        pageSize: 5,
 		        pageList: [3,5,8,10,15,20],
 		        paginationLoop: false,
-		        queryParams : $('#form1').serialize()+"&table=View_Book_Admin"
+		        queryParams : function(params){
+		        	return $('#form1').serialize()+"&table=View_Book_Admin";
+		        }
 			});
 			$('#datetimepicker').datetimepicker({
 		        format: 'YYYY-MM-DD',
