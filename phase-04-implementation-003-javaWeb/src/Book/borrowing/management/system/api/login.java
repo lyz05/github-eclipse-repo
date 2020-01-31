@@ -41,15 +41,13 @@ public class login extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-    	response.setContentType("application/json;charset=utf-8");
-    	request.setCharacterEncoding("UTF-8");
-		response.setCharacterEncoding("UTF-8");
+		Util.setRequestResponseAccess(request, response);
 		
 		HttpSession session = request.getSession(true);
         String username = request.getParameter("username");
         String pwd = request.getParameter("password");
         String language = request.getParameter("language");
-        pwd = Util4Frm.encodeInp(pwd);
+        pwd = Util.encodeInp(pwd);
         
         //…Ë÷√session
     	session.setAttribute("username", username);

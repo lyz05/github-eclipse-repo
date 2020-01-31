@@ -10,6 +10,7 @@ import javax.servlet.http.HttpSession;
 
 import com.alibaba.fastjson.JSON;
 
+import Book.borrowing.management.system.Util;
 import Book.borrowing.management.system.model.MessageJSONModel;
 
 /**
@@ -32,9 +33,7 @@ public class logout extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-    	response.setContentType("application/json;charset=utf-8");
-    	request.setCharacterEncoding("UTF-8");
-		response.setCharacterEncoding("UTF-8");
+		Util.setRequestResponseAccess(request, response);
 		
 		response.getWriter().append(JSON.toJSONString(new MessageJSONModel("605","注销操作完成")));
 		HttpSession session = request.getSession(true);

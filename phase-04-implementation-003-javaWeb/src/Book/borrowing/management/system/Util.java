@@ -7,6 +7,7 @@
 package Book.borrowing.management.system;
 
 import java.io.IOException;
+import java.io.UnsupportedEncodingException;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
@@ -22,8 +23,8 @@ import Book.borrowing.management.system.model.*;
  * @author congcong
  * 通用类
  */
-public class Util4Frm {
-    private Util4Frm() {}       //禁止实例化
+public class Util {
+    private Util() {}       //禁止实例化
        
     /**
      * 密码加密函数
@@ -76,13 +77,11 @@ public class Util4Frm {
      * @throws IOException
      */
     public static boolean judgeusername(HttpServletRequest request,HttpServletResponse response) throws ServletException, IOException {
-    	response.setContentType("application/json;charset=utf-8");
-    	request.setCharacterEncoding("UTF-8");
-		response.setCharacterEncoding("UTF-8");
-    	if (request.getSession().getAttribute("username")==null) {
+    	boolean flag = request.getSession().getAttribute("username")!=null;
+    	if (!flag) {
     		response.getWriter().append(JSON.toJSONString(new MessageJSONModel("601","notlogin",getlanguage(request))));
     	}
-    	return request.getSession().getAttribute("username")!=null;
+    	return flag;
     }
     
     /**
@@ -125,7 +124,25 @@ public class Util4Frm {
     public static String getlanguage(HttpServletRequest request) {
     	if (request.getSession().getAttribute("language")==null)
     		return "zh_CN";
-    	else 
+    	else
     		return request.getSession().getAttribute("language").toString();
+    }
+    
+    public static void setRequestResponseAccess(HttpServletRequest request,HttpServletResponse response) throws UnsupportedEncodingException {
+    	//设置字体编码及返回json的header
+    	response.setContentType("application/json;charset=utf-8");
+    	request.setCharacterEncoding("UTF-8");
+		response.setCharacterEncoding("UTF-8");
+    	// 允许该域发起跨域请求
+		response.setHeader("Access-Control-Allow-Origin",request.getHeader("origin"));
+        // 允许的外域请求方式
+        response.setHeader("Access-Control-Allow-Methods", "POST, GET");
+        // 在999999秒内，不需要再发送预检验请求，可以缓存该结果
+        response.setHeader("Access-Control-Max-Age", "0");
+        // 允许跨域请求包含某请求头,x-requested-with请求头为异步请求
+        response.setHeader("Access-Control-Allow-Headers",
+        		"Origin, No-Cache, X-Requested-With, If-Modified-Since, Pragma, Last-Modified, Cache-Control, Expires, Content-Type, X-E4M-With,userId,token");
+        response.setHeader("Access-Control-Allow-Credentials", "true");
+        response.setHeader("XDomainRequestAllowed","1");
     }
 }

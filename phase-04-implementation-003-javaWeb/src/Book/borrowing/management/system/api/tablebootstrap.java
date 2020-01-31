@@ -8,7 +8,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import com.alibaba.fastjson.JSON;
 
-import Book.borrowing.management.system.Util4Frm;
+import Book.borrowing.management.system.Util;
 import Book.borrowing.management.system.model.BookModel;
 import Book.borrowing.management.system.model.BorrowBookModel;
 import Book.borrowing.management.system.model.ReaderModel;
@@ -42,24 +42,25 @@ public class tablebootstrap extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		if (!Util4Frm.judgeusername(request,response)) return;
+		Util.setRequestResponseAccess(request, response);
+		if (!Util.judgeusername(request,response)) return;
 		
 		//数据准备
 		String username = request.getSession().getAttribute("username").toString();
 		String tableName = request.getParameter("table");
 		//用户所属角色判断
 		if (tableName.equals("Borrow") || tableName.equals("BorrowHistory") || tableName.equals("View_Book")) {
-			if (!Util4Frm.judgereader(request, response)) return;
+			if (!Util.judgereader(request, response)) return;
 		} else {
-			if (!Util4Frm.judgeadmin(request, response)) return;
+			if (!Util.judgeadmin(request, response)) return;
 		}
 		//where处理
 		String querysql=new String();
 		if (tableName.equals("View_Book_Admin")) {
-			BookModel bookinfo = new BookModel(Util4Frm.getlanguage(request),request.getParameter("bookno"),request.getParameter("bookname"),request.getParameter("author"),request.getParameter("press"),request.getParameter("price"),request.getParameter("publishdate"),request.getParameter("shopnum"));
+			BookModel bookinfo = new BookModel(Util.getlanguage(request),request.getParameter("bookno"),request.getParameter("bookname"),request.getParameter("author"),request.getParameter("press"),request.getParameter("price"),request.getParameter("publishdate"),request.getParameter("shopnum"));
 			querysql = bookinfo.getSqlQueryString1();
 		} else if (tableName.equals("View_Reader")) {
-			ReaderModel readerinfo = new ReaderModel(Util4Frm.getlanguage(request),request.getParameter("readerno"),request.getParameter("readername"),request.getParameter("sex"),request.getParameter("idnum"),request.getParameter("workunit"));
+			ReaderModel readerinfo = new ReaderModel(Util.getlanguage(request),request.getParameter("readerno"),request.getParameter("readername"),request.getParameter("sex"),request.getParameter("idnum"),request.getParameter("workunit"));
 			querysql = readerinfo.getSqlQueryString();
 		} else if (tableName.equals("View_Book")) {
 			boolean check;

@@ -9,7 +9,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.alibaba.fastjson.JSON;
 
-import Book.borrowing.management.system.Util4Frm;
+import Book.borrowing.management.system.Util;
 import Book.borrowing.management.system.model.ReaderModel;
 
 /**
@@ -40,9 +40,10 @@ public class reader extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		if (!Util4Frm.judgeusername(request,response) || !Util4Frm.judgeadmin(request, response)) return;
+		Util.setRequestResponseAccess(request, response);
+		if (!Util.judgeusername(request,response) || !Util.judgeadmin(request, response)) return;
 		
-		ReaderModel reader = new ReaderModel(Util4Frm.getlanguage(request),request.getParameter("readerno"));
+		ReaderModel reader = new ReaderModel(Util.getlanguage(request),request.getParameter("readerno"));
 		response.getWriter().append(JSON.toJSONString(reader));
 	}
 

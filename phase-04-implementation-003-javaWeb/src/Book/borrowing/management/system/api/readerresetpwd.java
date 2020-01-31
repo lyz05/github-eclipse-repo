@@ -10,7 +10,7 @@ import javax.servlet.http.HttpServletResponse;
 import com.alibaba.fastjson.JSON;
 
 import Book.borrowing.management.system.BookDBCon;
-import Book.borrowing.management.system.Util4Frm;
+import Book.borrowing.management.system.Util;
 import Book.borrowing.management.system.model.MessageJSONModel;
 
 /**
@@ -33,12 +33,13 @@ public class readerresetpwd extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		if (!Util4Frm.judgeusername(request,response) || !Util4Frm.judgeadmin(request, response)) return;
+		Util.setRequestResponseAccess(request, response);
+		if (!Util.judgeusername(request,response) || !Util.judgeadmin(request, response)) return;
 		String readerno = request.getParameter("readerno");
         if (BookDBCon.preparedupdateData("update Reader set password='' where readerNo=?",readerno)) {
-        	response.getWriter().append(JSON.toJSONString(new MessageJSONModel("200","resetpwdok",Util4Frm.getlanguage(request))));
+        	response.getWriter().append(JSON.toJSONString(new MessageJSONModel("200","resetpwdok",Util.getlanguage(request))));
         } else {
-        	response.getWriter().append(JSON.toJSONString(new MessageJSONModel("403","resetpwdfail",Util4Frm.getlanguage(request))));
+        	response.getWriter().append(JSON.toJSONString(new MessageJSONModel("403","resetpwdfail",Util.getlanguage(request))));
         }
 	}
 

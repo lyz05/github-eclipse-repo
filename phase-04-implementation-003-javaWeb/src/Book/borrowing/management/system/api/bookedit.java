@@ -9,7 +9,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.alibaba.fastjson.JSON;
 
-import Book.borrowing.management.system.Util4Frm;
+import Book.borrowing.management.system.Util;
 import Book.borrowing.management.system.model.BookModel;
 import Book.borrowing.management.system.model.MessageJSONModel;
 
@@ -41,10 +41,11 @@ public class bookedit extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		if (!Util4Frm.judgeusername(request,response) || !Util4Frm.judgeadmin(request, response)) return;
+		Util.setRequestResponseAccess(request, response);
+		if (!Util.judgeusername(request,response) || !Util.judgeadmin(request, response)) return;
 		
 		BookModel bookinfo;
-		bookinfo = new BookModel(Util4Frm.getlanguage(request),request.getParameter("bookno"),request.getParameter("bookname"),request.getParameter("author"),request.getParameter("press"),request.getParameter("price"),request.getParameter("publishdate"),request.getParameter("shopnum"));
+		bookinfo = new BookModel(Util.getlanguage(request),request.getParameter("bookno"),request.getParameter("bookname"),request.getParameter("author"),request.getParameter("press"),request.getParameter("price"),request.getParameter("publishdate"),request.getParameter("shopnum"));
 		MessageJSONModel ret = bookinfo.editBook();
 		response.getWriter().append(JSON.toJSONString(ret));
 	}

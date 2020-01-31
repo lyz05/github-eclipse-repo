@@ -41,10 +41,11 @@ public class readeradd extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		if (!Util4Frm.judgeusername(request,response) || !Util4Frm.judgeadmin(request, response)) return;
+		Util.setRequestResponseAccess(request, response);
+		if (!Util.judgeusername(request,response) || !Util.judgeadmin(request, response)) return;
 		
 		ReaderModel readerinfo;
-		readerinfo = new ReaderModel(Util4Frm.getlanguage(request),request.getParameter("readerno"),request.getParameter("readername"),request.getParameter("sex"),request.getParameter("idnum"),request.getParameter("workunit"));
+		readerinfo = new ReaderModel(Util.getlanguage(request),request.getParameter("readerno"),request.getParameter("readername"),request.getParameter("sex"),request.getParameter("idnum"),request.getParameter("workunit"));
 		MessageJSONModel ret=readerinfo.addReader();
 		response.getWriter().append(JSON.toJSONString(ret));
 	}

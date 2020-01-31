@@ -11,7 +11,7 @@ import javax.servlet.http.HttpSession;
 import com.alibaba.fastjson.JSON;
 
 import Book.borrowing.management.system.BookDBCon;
-import Book.borrowing.management.system.Util4Frm;
+import Book.borrowing.management.system.Util;
 import Book.borrowing.management.system.model.UserModel;
 
 /**
@@ -34,7 +34,8 @@ public class userinfo extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		if (!Util4Frm.judgeusername(request,response)) return;
+		Util.setRequestResponseAccess(request, response);
+		if (!Util.judgeusername(request,response)) return;
 		
 		//获取用户名
 		HttpSession session = request.getSession(true);

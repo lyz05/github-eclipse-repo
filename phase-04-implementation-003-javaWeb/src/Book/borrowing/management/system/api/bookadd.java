@@ -40,10 +40,11 @@ public class bookadd extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		if (!Util4Frm.judgeusername(request,response) || !Util4Frm.judgeadmin(request, response)) return;
+		Util.setRequestResponseAccess(request, response);
+		if (!Util.judgeusername(request,response) || !Util.judgeadmin(request, response)) return;
 		
 		BookModel bookinfo;
-		bookinfo = new BookModel(Util4Frm.getlanguage(request),request.getParameter("bookno"),request.getParameter("bookname"),request.getParameter("author"),request.getParameter("press"),request.getParameter("price"),request.getParameter("publishdate"),request.getParameter("shopnum"));
+		bookinfo = new BookModel(Util.getlanguage(request),request.getParameter("bookno"),request.getParameter("bookname"),request.getParameter("author"),request.getParameter("press"),request.getParameter("price"),request.getParameter("publishdate"),request.getParameter("shopnum"));
 		MessageJSONModel ret = bookinfo.addBook();
 		response.getWriter().append(JSON.toJSONString(ret));
 	}

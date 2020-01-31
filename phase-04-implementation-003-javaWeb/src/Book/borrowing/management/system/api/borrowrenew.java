@@ -8,7 +8,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import com.alibaba.fastjson.JSON;
 
-import Book.borrowing.management.system.Util4Frm;
+import Book.borrowing.management.system.Util;
 import Book.borrowing.management.system.model.BorrowModel;
 import Book.borrowing.management.system.model.MessageJSONModel;
 
@@ -32,11 +32,12 @@ public class borrowrenew extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		if (!Util4Frm.judgeusername(request,response) || !Util4Frm.judgereader(request, response)) return;
+		Util.setRequestResponseAccess(request, response);
+		if (!Util.judgeusername(request,response) || !Util.judgereader(request, response)) return;
 		
 		BorrowModel borrowinfo;
 		borrowinfo = new BorrowModel(request.getParameter("bookno"),request.getSession().getAttribute("username").toString());
-		borrowinfo.setlanguage(Util4Frm.getlanguage(request));
+		borrowinfo.setlanguage(Util.getlanguage(request));
 		MessageJSONModel ret = borrowinfo.renew();
 		response.getWriter().append(JSON.toJSONString(ret));
 	}
