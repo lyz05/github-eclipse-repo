@@ -50,19 +50,21 @@ public class login extends HttpServlet {
         String pwd = request.getParameter("password");
         String language = request.getParameter("language");
         pwd = Util4Frm.encodeInp(pwd);
-		//System.out.println(username+"\t"+pwd);
         
         //设置session
     	session.setAttribute("username", username);
     	session.setAttribute("language", language);
         if (BookDBCon.preparedqueryResult("select readerNO from Reader where readerNo=? and password=?", username,pwd) != null) {
+        	session.setAttribute("role", "reader");
         	response.getWriter().append(JSON.toJSONString(new MessageJSONModel("603","读者登录成功")));
         } else if (BookDBCon.preparedqueryResult("select username from AdminUsers where username=? and password=?", username,pwd) != null){
+        	session.setAttribute("role", "admin");
         	response.getWriter().append(JSON.toJSONString(new MessageJSONModel("604","管理员登录成功")));
         	//进入到管理员选择界面后跳转到指定页面
         } else {
         	session.setAttribute("username", null);
         	session.setAttribute("language", null);
+        	session.setAttribute("role", null);
         	response.getWriter().append(JSON.toJSONString(new MessageJSONModel("403","loginerror",language)));
         }
 	}

@@ -40,7 +40,7 @@ public class logout extends HttpServlet {
 		HttpSession session = request.getSession(true);
 		session.setAttribute("username", null);
 		session.setAttribute("language", null);
-		
+		session.setAttribute("role", null);
 	}
 
 	/**

@@ -33,7 +33,7 @@ public class readerresetpwd extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		if (!Util4Frm.judgeusername(request,response)) return;
+		if (!Util4Frm.judgeusername(request,response) || !Util4Frm.judgeadmin(request, response)) return;
 		String readerno = request.getParameter("readerno");
         if (BookDBCon.preparedupdateData("update Reader set password='' where readerNo=?",readerno)) {
         	response.getWriter().append(JSON.toJSONString(new MessageJSONModel("200","resetpwdok",Util4Frm.getlanguage(request))));

@@ -33,7 +33,7 @@ public class borrowreturn extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		if (!Util4Frm.judgeusername(request,response)) return;
+		if (!Util4Frm.judgeusername(request,response) || !Util4Frm.judgereader(request, response)) return;
 
 		BorrowModel borrowinfo;
 		borrowinfo = new BorrowModel(request.getParameter("bookno"),request.getSession().getAttribute("username").toString());

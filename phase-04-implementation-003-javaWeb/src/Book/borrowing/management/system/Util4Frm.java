@@ -12,6 +12,8 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import com.alibaba.fastjson.JSON;
+import com.sun.org.apache.bcel.internal.generic.NEW;
+
 import Book.borrowing.management.system.model.*;
 
 
@@ -81,6 +83,38 @@ public class Util4Frm {
     		response.getWriter().append(JSON.toJSONString(new MessageJSONModel("601","notlogin",getlanguage(request))));
     	}
     	return request.getSession().getAttribute("username")!=null;
+    }
+    
+    /**
+     * 判断是否是管理员角色
+     * @param request 请求信息
+     * @param response 回应信息
+     * @return 是否为管理员
+     * @throws ServletException
+     * @throws IOException
+     */
+    public static boolean judgeadmin(HttpServletRequest request,HttpServletResponse response) throws ServletException, IOException {
+    	boolean flag = request.getSession().getAttribute("role").equals("admin");
+    	if (!flag) {
+    		response.getWriter().append(JSON.toJSONString(new MessageJSONModel("602","illegal",getlanguage(request))));
+    	}
+    	return flag;
+    }
+    
+    /**
+     * 判断是否是读者角色
+     * @param request 请求信息
+     * @param response 回应信息
+     * @return 是否为管理员
+     * @throws ServletException
+     * @throws IOException
+     */
+    public static boolean judgereader(HttpServletRequest request,HttpServletResponse response) throws ServletException, IOException {
+    	boolean flag = request.getSession().getAttribute("role").equals("reader");
+    	if (!flag) {
+    		response.getWriter().append(JSON.toJSONString(new MessageJSONModel("602","illegal",getlanguage(request))));
+    	}
+    	return flag;
     }
     
     /**

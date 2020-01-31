@@ -35,7 +35,7 @@ public class readerdelete extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		if (!Util4Frm.judgeusername(request, response))
+		if (!Util4Frm.judgeusername(request, response) || !Util4Frm.judgeadmin(request, response))
 			return;
 
 		ReaderModel readerinfo;

@@ -19,8 +19,8 @@ function ajaxRequest(type, url, data, href, func) {
 				// 命令执行失败，或有错误消息需要显示
 				alertjs(result);
 			}
-			if (result.code == "601") {
-				// 未登录
+			if (result.code == "601" || result.code == "602") {
+				// 未登录或非法访问
 				alert(result.message);
 				window.location.href = './';
 			}

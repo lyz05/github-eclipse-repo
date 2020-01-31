@@ -45,9 +45,16 @@ public class psdalter extends HttpServlet {
         String username = request.getParameter("username");
         String pwd = request.getParameter("pwd");
         String newpwd = request.getParameter("newpwd");
+        String newpwd2 = request.getParameter("newpwd2");
         pwd = Util4Frm.encodeInp(pwd);
         newpwd = Util4Frm.encodeInp(newpwd);
+        newpwd2 = Util4Frm.encodeInp(newpwd2);
         
+        if (!newpwd.equals(newpwd2))
+        {
+        	response.getWriter().append(JSON.toJSONString(new MessageJSONModel("403","confirmpwdfail",Util4Frm.getlanguage(request))));
+            return;
+        }
         if (BookDBCon.preparedqueryResult("select readerNO from Reader where readerNo=? and password=?", username,pwd) != null) {
             if (BookDBCon.preparedupdateData("update Reader set password=? where readerNo=?",newpwd,username)) {
             	response.getWriter().append(JSON.toJSONString(new MessageJSONModel("200","alterpwdok",Util4Frm.getlanguage(request))));

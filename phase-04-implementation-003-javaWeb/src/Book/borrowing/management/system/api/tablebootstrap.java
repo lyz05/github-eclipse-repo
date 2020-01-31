@@ -44,8 +44,15 @@ public class tablebootstrap extends HttpServlet {
 		// TODO Auto-generated method stub
 		if (!Util4Frm.judgeusername(request,response)) return;
 		
+		//数据准备
 		String username = request.getSession().getAttribute("username").toString();
 		String tableName = request.getParameter("table");
+		//用户所属角色判断
+		if (tableName.equals("Borrow") || tableName.equals("BorrowHistory") || tableName.equals("View_Book")) {
+			if (!Util4Frm.judgereader(request, response)) return;
+		} else {
+			if (!Util4Frm.judgeadmin(request, response)) return;
+		}
 		//where处理
 		String querysql=new String();
 		if (tableName.equals("View_Book_Admin")) {
