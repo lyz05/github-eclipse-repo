@@ -6,14 +6,13 @@ import Book.borrowing.management.system.BookDBCon;
 //bootstrap
 public class TableBootstrapModel {
 	public int total;
-	public Vector rows;
-	private String language;
+	public Vector<Object> rows;
 	
 	public TableBootstrapModel(String sql,String tableName) {
         //data是表格中的数据，name是表头字段信息
     	Vector<Vector<String>> data = new Vector<Vector<String>>();
     	Vector<String> name = new Vector<String>();
-        rows = new Vector();
+        rows = new Vector<Object>();
     	BookDBCon.queryVector2(sql, data, name);
         total = data.size();
         
