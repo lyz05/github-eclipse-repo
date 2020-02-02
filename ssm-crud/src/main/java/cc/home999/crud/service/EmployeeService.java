@@ -16,7 +16,6 @@ public class EmployeeService {
 
 	public List<Employee> getAll() {
 		// TODO 自动生成的方法存根
-		
 		return employeeMapper.selectByExampleWithDept(null);
 	}
 	
