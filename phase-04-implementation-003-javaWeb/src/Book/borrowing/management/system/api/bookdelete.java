@@ -10,7 +10,7 @@ import javax.servlet.http.HttpServletResponse;
 import com.alibaba.fastjson.JSON;
 import Book.borrowing.management.system.Util;
 import Book.borrowing.management.system.model.BookModel;
-import Book.borrowing.management.system.model.MessageJSONModel;
+import Book.borrowing.management.system.model.Msg;
 
 /**
  * Servlet implementation class bookdelete
@@ -37,7 +37,7 @@ public class bookdelete extends HttpServlet {
 
 		BookModel bookinfo;
 		bookinfo = new BookModel(Util.getlanguage(request),request.getParameter("bookno"));
-		MessageJSONModel ret = bookinfo.delBook();
+		Msg ret = bookinfo.delBook();
 		response.getWriter().append(JSON.toJSONString(ret));
 	}
 

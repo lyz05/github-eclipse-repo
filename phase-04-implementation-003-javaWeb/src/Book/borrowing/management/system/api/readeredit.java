@@ -10,7 +10,7 @@ import javax.servlet.http.HttpServletResponse;
 import com.alibaba.fastjson.JSON;
 
 import Book.borrowing.management.system.Util;
-import Book.borrowing.management.system.model.MessageJSONModel;
+import Book.borrowing.management.system.model.Msg;
 import Book.borrowing.management.system.model.ReaderModel;
 
 /**
@@ -46,7 +46,7 @@ public class readeredit extends HttpServlet {
 		
 		ReaderModel readerinfo;
 		readerinfo = new ReaderModel(Util.getlanguage(request),request.getParameter("readerno"),request.getParameter("readername"),request.getParameter("sex"),request.getParameter("idnum"),request.getParameter("workunit"));
-		MessageJSONModel ret = readerinfo.editReader();
+		Msg ret = readerinfo.editReader();
 		response.getWriter().append(JSON.toJSONString(ret));
 	}
 }

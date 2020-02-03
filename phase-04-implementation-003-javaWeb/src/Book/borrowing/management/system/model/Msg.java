@@ -4,25 +4,39 @@ import java.util.Locale;
 import java.util.ResourceBundle;
 
 //返回操作信息
-public class MessageJSONModel {
+public class Msg {
 	private String message;
 	private String code;
 	private Locale locale;
-	public MessageJSONModel() {
-		// TODO 自动生成的构造函数存根
-	}
-	//国际化信息
-	public MessageJSONModel(String code,String message,String language) {
+	
+	public Msg() {}
+	
+	//国际化信息构造函数
+	public Msg(String code,String message,String language) {
 		setCode(code);
 		setlocale(language);
 		setMessage(message);
 	}
-	//非国际化信息
-	public MessageJSONModel(String code,String message) {
+	//非国际化信息构造函数
+	public Msg(String code,String message) {
 		setCode(code);
 		this.message=message; 
 	}
-	 
+	
+	public static Msg success(String message) {
+		Msg result = new Msg();
+		result.setCode("200");
+		result.setMessage(message);
+		return result;
+	}
+	
+	public static Msg fail(String message) {
+		Msg result = new Msg();
+		result.setCode("403");
+		result.setMessage(message);
+		return result;
+	}
+	
 	public String getMessage() {
         return message;
     }
@@ -36,14 +50,11 @@ public class MessageJSONModel {
         this.code = code;
     }
     public void setlocale(String language) {
-    	this.locale = new Locale(language.split("_")[0],language.split("_")[1]);
+    	String[] locale = language.split("_");
+    	this.locale = new Locale(locale[0],locale[1]);
     }
 	protected String geti18nString(String keys) {
 		ResourceBundle bundle=ResourceBundle.getBundle("i18n",locale);
 		return bundle.getString(keys);
 	}
-    @Override
-    public String toString() {
-        return "User [code=" + code + ", message=" + message + "]";
-    }
 }

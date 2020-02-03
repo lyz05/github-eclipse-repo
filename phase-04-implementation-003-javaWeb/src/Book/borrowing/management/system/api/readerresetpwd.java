@@ -11,7 +11,7 @@ import com.alibaba.fastjson.JSON;
 
 import Book.borrowing.management.system.BookDBCon;
 import Book.borrowing.management.system.Util;
-import Book.borrowing.management.system.model.MessageJSONModel;
+import Book.borrowing.management.system.model.Msg;
 
 /**
  * Servlet implementation class readerresetpwd
@@ -37,9 +37,9 @@ public class readerresetpwd extends HttpServlet {
 		if (!Util.judgeusername(request,response) || !Util.judgeadmin(request, response)) return;
 		String readerno = request.getParameter("readerno");
         if (BookDBCon.preparedupdateData("update Reader set password='' where readerNo=?",readerno)) {
-        	response.getWriter().append(JSON.toJSONString(new MessageJSONModel("200","resetpwdok",Util.getlanguage(request))));
+        	response.getWriter().append(JSON.toJSONString(new Msg("200","resetpwdok",Util.getlanguage(request))));
         } else {
-        	response.getWriter().append(JSON.toJSONString(new MessageJSONModel("403","resetpwdfail",Util.getlanguage(request))));
+        	response.getWriter().append(JSON.toJSONString(new Msg("403","resetpwdfail",Util.getlanguage(request))));
         }
 	}
 

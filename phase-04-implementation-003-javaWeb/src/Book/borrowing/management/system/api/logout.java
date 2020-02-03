@@ -11,7 +11,7 @@ import javax.servlet.http.HttpSession;
 import com.alibaba.fastjson.JSON;
 
 import Book.borrowing.management.system.Util;
-import Book.borrowing.management.system.model.MessageJSONModel;
+import Book.borrowing.management.system.model.Msg;
 
 /**
  * Servlet implementation class logout
@@ -35,7 +35,7 @@ public class logout extends HttpServlet {
 		// TODO Auto-generated method stub
 		Util.setRequestResponseAccess(request, response);
 		
-		response.getWriter().append(JSON.toJSONString(new MessageJSONModel("605","注销操作完成")));
+		response.getWriter().append(JSON.toJSONString(new Msg("605","注销操作完成")));
 		HttpSession session = request.getSession(true);
 		session.setAttribute("username", null);
 		session.setAttribute("language", null);

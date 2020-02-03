@@ -51,49 +51,49 @@ public class ReaderModel {
 		String sql=" where 读者编号 like '%"+readerno+"%' and 姓名 like '%"+readername+"%' and 性别 like '%"+sex+"%' and 身份证号 like '%"+idnum+"%' and 工作单位 like '%"+workunit+"%'";
 		return sql;
 	}
-	public MessageJSONModel addReader() {
+	public Msg addReader() {
 		if (textFiledIsNull()) 
-			return new MessageJSONModel("403","addreaderallinfo",language);
+			return new Msg("403","addreaderallinfo",language);
 		if (!checkIDNum()) 
-			return new MessageJSONModel("403","idnumerror",language);
+			return new Msg("403","idnumerror",language);
 		if (!checksex())
-			return new MessageJSONModel("403","sexerror",language);
+			return new Msg("403","sexerror",language);
 		String sql= "INSERT INTO Reader VALUES(?,?,?,?,?,'')";
 		if (BookDBCon.preparedupdateData(sql,readerno,readername,sex,idnum,workunit)) {
-			return new MessageJSONModel("200","addreaderok",language);
+			return new Msg("200","addreaderok",language);
 		} else {
-			return new MessageJSONModel("403","addreaderfail",language);
+			return new Msg("403","addreaderfail",language);
 		}
 	}
-	public MessageJSONModel delReader() {
+	public Msg delReader() {
 		String sql = "select * from View_reader where 读者编号=?";
 		if (BookDBCon.preparedqueryResult(sql, readerno) == null) {
-			return new MessageJSONModel("403", "readernotfound",language);
+			return new Msg("403", "readernotfound",language);
 		}
 		sql = "select * from View_reader where 读者编号=? and 未归还数量=0";
 		if (BookDBCon.preparedqueryResult(sql, readerno) == null) {
-			return new MessageJSONModel("403", "somebody1",language);
+			return new Msg("403", "somebody1",language);
 		}
 		sql = "delete from Borrow where readerNO=? and returnDate is not null";
 		BookDBCon.preparedupdateData(sql, readerno);
 		sql = "delete from reader where readerNO=?";
 		if (BookDBCon.preparedupdateData(sql, readerno)) {
-        	return new MessageJSONModel("200","deletereaderok",language);
+        	return new Msg("200","deletereaderok",language);
 		} else {
-			return new MessageJSONModel("403","deletereaderfail",language);
+			return new Msg("403","deletereaderfail",language);
 		}
 	}
-	public MessageJSONModel editReader() {
+	public Msg editReader() {
 		if (textFiledIsNull()) 
-			return new MessageJSONModel("403","editbookallinfo",language);
+			return new Msg("403","editbookallinfo",language);
 		if (!checkIDNum()) 
-			return new MessageJSONModel("403","idnumerror",language);
+			return new Msg("403","idnumerror",language);
 		if (!checksex())
-			return new MessageJSONModel("403","sexerror",language);
+			return new Msg("403","sexerror",language);
 		if (BookDBCon.preparedupdateData("update Reader set readerName=?,sex=?,identitycard=?,workUnit=? where readerNO=?",readername,sex,idnum,workunit,readerno)) {
-			return new MessageJSONModel("200","editreaderok",language);
+			return new Msg("200","editreaderok",language);
         } else {
-        	return new MessageJSONModel("403","editreaderfail",language);
+        	return new Msg("403","editreaderfail",language);
         }
 	}
 	public boolean textFiledIsNull() {

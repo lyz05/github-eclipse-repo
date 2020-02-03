@@ -10,7 +10,7 @@ import com.alibaba.fastjson.JSON;
 
 import Book.borrowing.management.system.Util;
 import Book.borrowing.management.system.model.BorrowModel;
-import Book.borrowing.management.system.model.MessageJSONModel;
+import Book.borrowing.management.system.model.Msg;
 
 /**
  * Servlet implementation class bookborrow
@@ -38,7 +38,7 @@ public class borrowadd extends HttpServlet {
 		BorrowModel borrowinfo;
 		borrowinfo = new BorrowModel(request.getParameter("bookno"),request.getSession().getAttribute("username").toString());
 		borrowinfo.setlanguage(Util.getlanguage(request));
-		MessageJSONModel ret = borrowinfo.add();
+		Msg ret = borrowinfo.add();
 		response.getWriter().append(JSON.toJSONString(ret));
 	}
 

@@ -11,7 +11,7 @@ import javax.servlet.http.HttpSession;
 import com.alibaba.fastjson.JSON;
 
 import Book.borrowing.management.system.*;
-import Book.borrowing.management.system.model.MessageJSONModel;
+import Book.borrowing.management.system.model.Msg;
 
 /**
  * Servlet implementation class login
@@ -54,16 +54,16 @@ public class login extends HttpServlet {
     	session.setAttribute("language", language);
         if (BookDBCon.preparedqueryResult("select readerNO from Reader where readerNo=? and password=?", username,pwd) != null) {
         	session.setAttribute("role", "reader");
-        	response.getWriter().append(JSON.toJSONString(new MessageJSONModel("603","读者登录成功")));
+        	response.getWriter().append(JSON.toJSONString(new Msg("603","读者登录成功")));
         } else if (BookDBCon.preparedqueryResult("select username from AdminUsers where username=? and password=?", username,pwd) != null){
         	session.setAttribute("role", "admin");
-        	response.getWriter().append(JSON.toJSONString(new MessageJSONModel("604","管理员登录成功")));
+        	response.getWriter().append(JSON.toJSONString(new Msg("604","管理员登录成功")));
         	//进入到管理员选择界面后跳转到指定页面
         } else {
         	session.setAttribute("username", null);
         	session.setAttribute("language", null);
         	session.setAttribute("role", null);
-        	response.getWriter().append(JSON.toJSONString(new MessageJSONModel("403","loginerror",language)));
+        	response.getWriter().append(JSON.toJSONString(new Msg("403","loginerror",language)));
         }
 	}
 

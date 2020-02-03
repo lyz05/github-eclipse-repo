@@ -10,7 +10,7 @@ import javax.servlet.http.HttpServletResponse;
 import com.alibaba.fastjson.JSON;
 import Book.borrowing.management.system.BookDBCon;
 import Book.borrowing.management.system.Util;
-import Book.borrowing.management.system.model.MessageJSONModel;
+import Book.borrowing.management.system.model.Msg;
 
 /**
  * Servlet implementation class psdalter
@@ -53,17 +53,17 @@ public class psdalter extends HttpServlet {
         
         if (!newpwd.equals(newpwd2))
         {
-        	response.getWriter().append(JSON.toJSONString(new MessageJSONModel("403","confirmpwdfail",Util.getlanguage(request))));
+        	response.getWriter().append(JSON.toJSONString(new Msg("403","confirmpwdfail",Util.getlanguage(request))));
             return;
         }
         if (BookDBCon.preparedqueryResult("select readerNO from Reader where readerNo=? and password=?", username,pwd) != null) {
             if (BookDBCon.preparedupdateData("update Reader set password=? where readerNo=?",newpwd,username)) {
-            	response.getWriter().append(JSON.toJSONString(new MessageJSONModel("200","alterpwdok",Util.getlanguage(request))));
+            	response.getWriter().append(JSON.toJSONString(new Msg("200","alterpwdok",Util.getlanguage(request))));
             } else{
-            	response.getWriter().append(JSON.toJSONString(new MessageJSONModel("403","alterpwdfail",Util.getlanguage(request))));
+            	response.getWriter().append(JSON.toJSONString(new Msg("403","alterpwdfail",Util.getlanguage(request))));
             }
         } else {
-        	response.getWriter().append(JSON.toJSONString(new MessageJSONModel("403","loginerror",Util.getlanguage(request))));
+        	response.getWriter().append(JSON.toJSONString(new Msg("403","loginerror",Util.getlanguage(request))));
         }
 	}
 

@@ -45,7 +45,7 @@ public class bookadd extends HttpServlet {
 		
 		BookModel bookinfo;
 		bookinfo = new BookModel(Util.getlanguage(request),request.getParameter("bookno"),request.getParameter("bookname"),request.getParameter("author"),request.getParameter("press"),request.getParameter("price"),request.getParameter("publishdate"),request.getParameter("shopnum"));
-		MessageJSONModel ret = bookinfo.addBook();
+		Msg ret = bookinfo.addBook();
 		response.getWriter().append(JSON.toJSONString(ret));
 	}
 

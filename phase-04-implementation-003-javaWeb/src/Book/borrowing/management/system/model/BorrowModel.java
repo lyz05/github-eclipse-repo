@@ -20,37 +20,37 @@ public class BorrowModel {
 		this.bookno=bookno;
 		this.readerno=readerno;
 	}
-	public MessageJSONModel add() {
+	public Msg add() {
 		String sql = "insert Borrow values(?,?,now(),date_add(NOW(),interval 1 MONTH),null)";
 		if (Integer.parseInt(BookDBCon.preparedqueryResult("select 在库数量 from View_Book where 图书编号=?",bookno)) <= 0) {
-            return new MessageJSONModel("403","booknull",language);
+            return new Msg("403","booknull",language);
         }
         if (BookDBCon.preparedqueryResult("select readerNO from Borrow where readerNO=? and bookNO=? and returnDate is null",readerno,bookno) != null){
-            return new MessageJSONModel("403","youhaveborrow",language);
+            return new Msg("403","youhaveborrow",language);
         }
 		if(BookDBCon.preparedupdateData(sql,readerno,bookno)) {
-			return new MessageJSONModel("200","borrowbookok",language);
+			return new Msg("200","borrowbookok",language);
 		} else {
-			return new MessageJSONModel("403","borrowbookfail",language);
+			return new Msg("403","borrowbookfail",language);
 		}
 	}
-	public MessageJSONModel renew() {
+	public Msg renew() {
 		String sql = "update Borrow set shouldDate=date_add(NOW(), interval 1 MONTH) where readerNO=? and bookNO=? and returnDate is null";
 
 		if(BookDBCon.preparedupdateData(sql,readerno,bookno)) {
-			return new MessageJSONModel("200","renewbookok",language);
+			return new Msg("200","renewbookok",language);
 		} else {
-			return new MessageJSONModel("403","renewbookok",language);
+			return new Msg("403","renewbookok",language);
 		}
 	}
-	public MessageJSONModel ret() {
+	public Msg ret() {
 
 		String sql = "update Borrow set returnDate=now() where readerNO=? and bookNO=? and returnDate is null";
 		
 		if(BookDBCon.preparedupdateData(sql,readerno,bookno)) {
-			return new MessageJSONModel("200","returnbookok",language);
+			return new Msg("200","returnbookok",language);
 		} else {
-			return new MessageJSONModel("403","returnbookfail",language);
+			return new Msg("403","returnbookfail",language);
 		}
 	}
 	public void setlanguage(String language) {

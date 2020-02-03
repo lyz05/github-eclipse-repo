@@ -52,50 +52,50 @@ public class BookModel{
 		return sql;
 	}
 	
-	public MessageJSONModel addBook() {
+	public Msg addBook() {
 		if (textFiledIsNull()) {
-			return new MessageJSONModel("403","addbookallinfo",language);
+			return new Msg("403","addbookallinfo",language);
 		}
 		if (!checkShopNum()) {
-			return new MessageJSONModel("403","checkshopnum",language);
+			return new Msg("403","checkshopnum",language);
 		}
 		String sql= "INSERT INTO Book VALUES(?,?,?,?,?,?,?)";
 		if (BookDBCon.preparedupdateData(sql,bookno,bookname,author,press,price,publishdate,shopnum)) {
-			return new MessageJSONModel("200","addbookok",language);
+			return new Msg("200","addbookok",language);
 		} else {
-			return new MessageJSONModel("403","addbookfail",language);
+			return new Msg("403","addbookfail",language);
 		}
 	}
-	public MessageJSONModel delBook() {
+	public Msg delBook() {
 		String sql = "select * from View_Book where 图书编号=?";
 		if (BookDBCon.preparedqueryResult(sql,bookno) == null) {
-			return new MessageJSONModel("403","booknotfound",language);
+			return new Msg("403","booknotfound",language);
 		}
 		sql = "select * from View_Book where 图书编号=? and 在库数量=入库数量";
 		if (BookDBCon.preparedqueryResult(sql,bookno) == null)
 		{
-			return new MessageJSONModel("403","somebody",language);
+			return new Msg("403","somebody",language);
 		}
 		sql = "delete from Borrow where bookno=? and returnDate is not null";
         BookDBCon.preparedupdateData(sql,bookno);
         sql = "delete from Book where bookNO=?";
         if (BookDBCon.preparedupdateData(sql,bookno)) {
-        	return new MessageJSONModel("200","deletebookok",language);
+        	return new Msg("200","deletebookok",language);
 		} else {
-			return new MessageJSONModel("403","deletebookfail",language);
+			return new Msg("403","deletebookfail",language);
 		}
 	}
-	public MessageJSONModel editBook() {
+	public Msg editBook() {
 		if (textFiledIsNull()) {
-			return new MessageJSONModel("403","editbookallinfo",language);
+			return new Msg("403","editbookallinfo",language);
 		}
 		if (!checkShopNum()) {
-			return new MessageJSONModel("403","checkshopnum",language);
+			return new Msg("403","checkshopnum",language);
 		}
 		if (BookDBCon.preparedupdateData("update Book set bookName=?,authorName=?,publishingName=?,price=?,publishingDate=?,shopNum=? where bookNO=?",bookname,author,press,price,publishdate,shopnum,bookno)) {
-			return new MessageJSONModel("200","editbookok",language);
+			return new Msg("200","editbookok",language);
         } else {
-        	return new MessageJSONModel("403","editbookfail",language);
+        	return new Msg("403","editbookfail",language);
         }
 	}
 	public boolean textFiledIsNull() {

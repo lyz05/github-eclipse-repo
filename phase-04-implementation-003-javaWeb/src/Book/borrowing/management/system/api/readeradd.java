@@ -46,7 +46,7 @@ public class readeradd extends HttpServlet {
 		
 		ReaderModel readerinfo;
 		readerinfo = new ReaderModel(Util.getlanguage(request),request.getParameter("readerno"),request.getParameter("readername"),request.getParameter("sex"),request.getParameter("idnum"),request.getParameter("workunit"));
-		MessageJSONModel ret=readerinfo.addReader();
+		Msg ret=readerinfo.addReader();
 		response.getWriter().append(JSON.toJSONString(ret));
 	}
 

@@ -77,7 +77,7 @@ public class Util {
     public static boolean judgeusername(HttpServletRequest request,HttpServletResponse response) throws ServletException, IOException {
     	boolean flag = request.getSession().getAttribute("username")!=null;
     	if (!flag) {
-    		response.getWriter().append(JSON.toJSONString(new MessageJSONModel("601","notlogin",getlanguage(request))));
+    		response.getWriter().append(JSON.toJSONString(new Msg("601","notlogin",getlanguage(request))));
     	}
     	return flag;
     }
@@ -93,7 +93,7 @@ public class Util {
     public static boolean judgeadmin(HttpServletRequest request,HttpServletResponse response) throws ServletException, IOException {
     	boolean flag = request.getSession().getAttribute("role").equals("admin");
     	if (!flag) {
-    		response.getWriter().append(JSON.toJSONString(new MessageJSONModel("602","illegal",getlanguage(request))));
+    		response.getWriter().append(JSON.toJSONString(new Msg("602","illegal",getlanguage(request))));
     	}
     	return flag;
     }
@@ -109,7 +109,7 @@ public class Util {
     public static boolean judgereader(HttpServletRequest request,HttpServletResponse response) throws ServletException, IOException {
     	boolean flag = request.getSession().getAttribute("role").equals("reader");
     	if (!flag) {
-    		response.getWriter().append(JSON.toJSONString(new MessageJSONModel("602","illegal",getlanguage(request))));
+    		response.getWriter().append(JSON.toJSONString(new Msg("602","illegal",getlanguage(request))));
     	}
     	return flag;
     }

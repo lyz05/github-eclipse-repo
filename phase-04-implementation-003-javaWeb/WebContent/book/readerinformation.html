@@ -84,11 +84,18 @@
 						<div class="form-group">
 						<label data-locale="sex" class="col-sm-2 control-label">性别</label>
 						<div class="col-sm-3">
-							<select name="sex" class="form-control">
-								<option></option>
-								<option>男</option>
-								<option>女</option>
-							</select>
+							<label class="radio-inline">
+							<input type="radio" name="sex" value="" checked>
+							<span data-locale="unlimit">不限</span>
+							</label>
+							<label class="radio-inline">
+							<input data-locale="male" type="radio" name="sex" value="男">
+							<span data-locale="male">男</span>
+							</label>
+							<label class="radio-inline">
+							<input data-locale="female" type="radio" name="sex" value="女">
+							<span data-locale="female">女</span>
+							</label>
 						</div>
 						</div>
 						
