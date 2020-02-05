@@ -3,8 +3,6 @@ package cc.home999.crud.bean;
 import java.util.HashMap;
 import java.util.Map;
 
-import com.github.pagehelper.PageInfo;
-
 /**
  * 通用的返回类
  * @author congcong

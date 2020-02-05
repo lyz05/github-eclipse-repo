@@ -1,7 +1,5 @@
 package cc.home999.crud.test;
 
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.forwardedUrl;
-
 import java.util.List;
 
 import org.junit.Before;
