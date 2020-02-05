@@ -40,13 +40,14 @@ public class MvcTest {
 		mockmvc = MockMvcBuilders.webAppContextSetup(context).build();
 	}
 	
+	@SuppressWarnings("unchecked")
 	@Test
 	public void testPage() throws Exception {
 		//模拟请求拿到返回值
 		MvcResult result = mockmvc.perform(MockMvcRequestBuilders.get("/emps").param("pn", "5")).andReturn();
 		//请求成功后，请求域中会有PageInfo；我们可以取出PageInfo进行验证
 		MockHttpServletRequest request = result.getRequest();
-		PageInfo pi = (PageInfo) request.getAttribute("pageInfo");
+		PageInfo<Employee> pi = (PageInfo<Employee>) request.getAttribute("pageInfo");
 		System.out.println("当前页码："+pi.getPageNum());
 		System.out.println("总页码："+pi.getPages());
 		System.out.println("总记录数："+pi.getTotal());

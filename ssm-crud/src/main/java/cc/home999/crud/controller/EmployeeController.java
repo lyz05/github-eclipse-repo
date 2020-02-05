@@ -139,7 +139,7 @@ public class EmployeeController {
 		List<Employee> emps = employeeservice.getAll();
 		//使用pageInfo包装查询后的结果，只需要pageInfo交给页面就行了
 		//封装了详细 的分页信息，包括有我们查询出来的数据,传入连续显示的页数
-		PageInfo page = new PageInfo(emps,5);
+		PageInfo<Employee> page = new PageInfo<Employee>(emps,5);
 		return Msg.success().add("pageInfo",page);
 	}
 	/**
@@ -154,7 +154,7 @@ public class EmployeeController {
 		List<Employee> emps = employeeservice.getAll();
 		//使用pageInfo包装查询后的结果，只需要pageInfo交给页面就行了
 		//封装了详细 的分页信息，包括有我们查询出来的数据,传入连续显示的页数
-		PageInfo page = new PageInfo(emps,5);
+		PageInfo<Employee> page = new PageInfo<Employee>(emps,5);
 		model.addAttribute("pageInfo",page);
 		
 		return "list";
