@@ -1,0 +1,197 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cc.home999.book.dao.View_BookMapper">
+  <resultMap id="BaseResultMap" type="cc.home999.book.bean.View_Book">
+    <result column="图书编号" jdbcType="CHAR" property="图书编号" />
+    <result column="图书名称" jdbcType="CHAR" property="图书名称" />
+    <result column="作者" jdbcType="CHAR" property="作者" />
+    <result column="出版社" jdbcType="CHAR" property="出版社" />
+    <result column="出版日期" jdbcType="DATE" property="出版日期" />
+    <result column="入库数量" jdbcType="INTEGER" property="入库数量" />
+    <result column="在库数量" jdbcType="BIGINT" property="在库数量" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    图书编号, 图书名称, 作者, 出版社, 出版日期, 入库数量, 在库数量
+  </sql>
+  <select id="selectByExample" parameterType="cc.home999.book.bean.View_BookExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from view_book
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <delete id="deleteByExample" parameterType="cc.home999.book.bean.View_BookExample">
+    delete from view_book
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="cc.home999.book.bean.View_Book">
+    insert into view_book (图书编号, 图书名称, 作者, 出版社, 
+      出版日期, 入库数量, 在库数量)
+    values (#{图书编号,jdbcType=CHAR}, #{图书名称,jdbcType=CHAR}, #{作者,jdbcType=CHAR}, #{出版社,jdbcType=CHAR}, 
+      #{出版日期,jdbcType=DATE}, #{入库数量,jdbcType=INTEGER}, #{在库数量,jdbcType=BIGINT})
+  </insert>
+  <insert id="insertSelective" parameterType="cc.home999.book.bean.View_Book">
+    insert into view_book
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="图书编号 != null">
+        图书编号,
+      </if>
+      <if test="图书名称 != null">
+        图书名称,
+      </if>
+      <if test="作者 != null">
+        作者,
+      </if>
+      <if test="出版社 != null">
+        出版社,
+      </if>
+      <if test="出版日期 != null">
+        出版日期,
+      </if>
+      <if test="入库数量 != null">
+        入库数量,
+      </if>
+      <if test="在库数量 != null">
+        在库数量,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="图书编号 != null">
+        #{图书编号,jdbcType=CHAR},
+      </if>
+      <if test="图书名称 != null">
+        #{图书名称,jdbcType=CHAR},
+      </if>
+      <if test="作者 != null">
+        #{作者,jdbcType=CHAR},
+      </if>
+      <if test="出版社 != null">
+        #{出版社,jdbcType=CHAR},
+      </if>
+      <if test="出版日期 != null">
+        #{出版日期,jdbcType=DATE},
+      </if>
+      <if test="入库数量 != null">
+        #{入库数量,jdbcType=INTEGER},
+      </if>
+      <if test="在库数量 != null">
+        #{在库数量,jdbcType=BIGINT},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="cc.home999.book.bean.View_BookExample" resultType="java.lang.Long">
+    select count(*) from view_book
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update view_book
+    <set>
+      <if test="record.图书编号 != null">
+        图书编号 = #{record.图书编号,jdbcType=CHAR},
+      </if>
+      <if test="record.图书名称 != null">
+        图书名称 = #{record.图书名称,jdbcType=CHAR},
+      </if>
+      <if test="record.作者 != null">
+        作者 = #{record.作者,jdbcType=CHAR},
+      </if>
+      <if test="record.出版社 != null">
+        出版社 = #{record.出版社,jdbcType=CHAR},
+      </if>
+      <if test="record.出版日期 != null">
+        出版日期 = #{record.出版日期,jdbcType=DATE},
+      </if>
+      <if test="record.入库数量 != null">
+        入库数量 = #{record.入库数量,jdbcType=INTEGER},
+      </if>
+      <if test="record.在库数量 != null">
+        在库数量 = #{record.在库数量,jdbcType=BIGINT},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update view_book
+    set 图书编号 = #{record.图书编号,jdbcType=CHAR},
+      图书名称 = #{record.图书名称,jdbcType=CHAR},
+      作者 = #{record.作者,jdbcType=CHAR},
+      出版社 = #{record.出版社,jdbcType=CHAR},
+      出版日期 = #{record.出版日期,jdbcType=DATE},
+      入库数量 = #{record.入库数量,jdbcType=INTEGER},
+      在库数量 = #{record.在库数量,jdbcType=BIGINT}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+</mapper>

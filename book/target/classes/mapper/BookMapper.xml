@@ -1,0 +1,243 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cc.home999.book.dao.BookMapper">
+  <resultMap id="BaseResultMap" type="cc.home999.book.bean.Book">
+    <id column="bookNO" jdbcType="CHAR" property="bookno" />
+    <result column="bookName" jdbcType="CHAR" property="bookname" />
+    <result column="authorName" jdbcType="CHAR" property="authorname" />
+    <result column="publishingName" jdbcType="CHAR" property="publishingname" />
+    <result column="price" jdbcType="DECIMAL" property="price" />
+    <result column="publishingDate" jdbcType="DATE" property="publishingdate" />
+    <result column="shopNum" jdbcType="INTEGER" property="shopnum" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    bookNO, bookName, authorName, publishingName, price, publishingDate, shopNum
+  </sql>
+  <select id="selectByExample" parameterType="cc.home999.book.bean.BookExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from book
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from book
+    where bookNO = #{bookno,jdbcType=CHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from book
+    where bookNO = #{bookno,jdbcType=CHAR}
+  </delete>
+  <delete id="deleteByExample" parameterType="cc.home999.book.bean.BookExample">
+    delete from book
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="cc.home999.book.bean.Book">
+    insert into book (bookNO, bookName, authorName, 
+      publishingName, price, publishingDate, 
+      shopNum)
+    values (#{bookno,jdbcType=CHAR}, #{bookname,jdbcType=CHAR}, #{authorname,jdbcType=CHAR}, 
+      #{publishingname,jdbcType=CHAR}, #{price,jdbcType=DECIMAL}, #{publishingdate,jdbcType=DATE}, 
+      #{shopnum,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" parameterType="cc.home999.book.bean.Book">
+    insert into book
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="bookno != null">
+        bookNO,
+      </if>
+      <if test="bookname != null">
+        bookName,
+      </if>
+      <if test="authorname != null">
+        authorName,
+      </if>
+      <if test="publishingname != null">
+        publishingName,
+      </if>
+      <if test="price != null">
+        price,
+      </if>
+      <if test="publishingdate != null">
+        publishingDate,
+      </if>
+      <if test="shopnum != null">
+        shopNum,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="bookno != null">
+        #{bookno,jdbcType=CHAR},
+      </if>
+      <if test="bookname != null">
+        #{bookname,jdbcType=CHAR},
+      </if>
+      <if test="authorname != null">
+        #{authorname,jdbcType=CHAR},
+      </if>
+      <if test="publishingname != null">
+        #{publishingname,jdbcType=CHAR},
+      </if>
+      <if test="price != null">
+        #{price,jdbcType=DECIMAL},
+      </if>
+      <if test="publishingdate != null">
+        #{publishingdate,jdbcType=DATE},
+      </if>
+      <if test="shopnum != null">
+        #{shopnum,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="cc.home999.book.bean.BookExample" resultType="java.lang.Long">
+    select count(*) from book
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update book
+    <set>
+      <if test="record.bookno != null">
+        bookNO = #{record.bookno,jdbcType=CHAR},
+      </if>
+      <if test="record.bookname != null">
+        bookName = #{record.bookname,jdbcType=CHAR},
+      </if>
+      <if test="record.authorname != null">
+        authorName = #{record.authorname,jdbcType=CHAR},
+      </if>
+      <if test="record.publishingname != null">
+        publishingName = #{record.publishingname,jdbcType=CHAR},
+      </if>
+      <if test="record.price != null">
+        price = #{record.price,jdbcType=DECIMAL},
+      </if>
+      <if test="record.publishingdate != null">
+        publishingDate = #{record.publishingdate,jdbcType=DATE},
+      </if>
+      <if test="record.shopnum != null">
+        shopNum = #{record.shopnum,jdbcType=INTEGER},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update book
+    set bookNO = #{record.bookno,jdbcType=CHAR},
+      bookName = #{record.bookname,jdbcType=CHAR},
+      authorName = #{record.authorname,jdbcType=CHAR},
+      publishingName = #{record.publishingname,jdbcType=CHAR},
+      price = #{record.price,jdbcType=DECIMAL},
+      publishingDate = #{record.publishingdate,jdbcType=DATE},
+      shopNum = #{record.shopnum,jdbcType=INTEGER}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="cc.home999.book.bean.Book">
+    update book
+    <set>
+      <if test="bookname != null">
+        bookName = #{bookname,jdbcType=CHAR},
+      </if>
+      <if test="authorname != null">
+        authorName = #{authorname,jdbcType=CHAR},
+      </if>
+      <if test="publishingname != null">
+        publishingName = #{publishingname,jdbcType=CHAR},
+      </if>
+      <if test="price != null">
+        price = #{price,jdbcType=DECIMAL},
+      </if>
+      <if test="publishingdate != null">
+        publishingDate = #{publishingdate,jdbcType=DATE},
+      </if>
+      <if test="shopnum != null">
+        shopNum = #{shopnum,jdbcType=INTEGER},
+      </if>
+    </set>
+    where bookNO = #{bookno,jdbcType=CHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="cc.home999.book.bean.Book">
+    update book
+    set bookName = #{bookname,jdbcType=CHAR},
+      authorName = #{authorname,jdbcType=CHAR},
+      publishingName = #{publishingname,jdbcType=CHAR},
+      price = #{price,jdbcType=DECIMAL},
+      publishingDate = #{publishingdate,jdbcType=DATE},
+      shopNum = #{shopnum,jdbcType=INTEGER}
+    where bookNO = #{bookno,jdbcType=CHAR}
+  </update>
+</mapper>
