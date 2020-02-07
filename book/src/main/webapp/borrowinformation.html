@@ -261,7 +261,7 @@
 		        picker1.data('DateTimePicker').maxDate(e.date);
 		    });
             $('title').html($.i18n.prop('borrowinfo')+$.i18n.prop('management')+" - "+$.i18n.prop('systemname'));
-			ajaxRequest("get","api/userinfo",null,null,function(info){
+			ajaxRequest("get","User/userinfo",null,null,function(info){
 				$('#readername').html(info.readername);
 				$('#alterpwd').attr('href','alterpassword.html?username='+info.username);
 			});

@@ -51,7 +51,7 @@ function callBackReset(result) {
 }
 // 登出
 function logout() {
-	ajaxRequest("get", "api/logout", null, "index.html", null);
+	ajaxRequest("get", "User/logout", null, "index.html", null);
 }
 // alert弹窗 需要在网页中添加alert组件
 function alertjs(result) {

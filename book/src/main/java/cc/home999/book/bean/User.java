@@ -6,8 +6,33 @@ public class User {
     private String password;
 
     private String role;
+    
+    private String locale;
 
-    public String getUsername() {
+    public User() {
+		super();
+	}
+
+	public User(String username, String password) {
+		super();
+		this.username = username;
+		this.password = password;
+	}
+
+	@Override
+	public String toString() {
+		return "User [username=" + username + ", password=" + password + ", role=" + role + ", locale=" + locale + "]";
+	}
+
+	public String getLocale() {
+		return locale;
+	}
+
+	public void setLocale(String locale) {
+		this.locale = locale;
+	}
+
+	public String getUsername() {
         return username;
     }
 

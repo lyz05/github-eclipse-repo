@@ -154,7 +154,7 @@
 		        }
 			});
            $('title').html($.i18n.prop('readerinfo')+$.i18n.prop('management')+" - "+$.i18n.prop('systemname'));
-			ajaxRequest("get","api/userinfo",null,null,function(info){
+			ajaxRequest("get","User/userinfo",null,null,function(info){
 				$('#username').html(info.username);
 			});
 			tableautoresize();
