@@ -8,9 +8,9 @@ public class Book {
 
     private String bookname;
 
-    private String authorname;
+    private String author;
 
-    private String publishingname;
+    private String press;
 
     private BigDecimal price;
 
@@ -34,20 +34,20 @@ public class Book {
         this.bookname = bookname == null ? null : bookname.trim();
     }
 
-    public String getAuthorname() {
-        return authorname;
+    public String getAuthor() {
+        return author;
     }
 
-    public void setAuthorname(String authorname) {
-        this.authorname = authorname == null ? null : authorname.trim();
+    public void setAuthor(String author) {
+        this.author = author == null ? null : author.trim();
     }
 
-    public String getPublishingname() {
-        return publishingname;
+    public String getPress() {
+        return press;
     }
 
-    public void setPublishingname(String publishingname) {
-        this.publishingname = publishingname == null ? null : publishingname.trim();
+    public void setPress(String press) {
+        this.press = press == null ? null : press.trim();
     }
 
     public BigDecimal getPrice() {
@@ -73,28 +73,4 @@ public class Book {
     public void setShopnum(Integer shopnum) {
         this.shopnum = shopnum;
     }
-
-	@Override
-	public String toString() {
-		return "Book [bookno=" + bookno + ", bookname=" + bookname + ", authorname=" + authorname + ", publishingname="
-				+ publishingname + ", price=" + price + ", publishingdate=" + publishingdate + ", shopnum=" + shopnum
-				+ "]";
-	}
-
-	public Book(String bookno, String bookname, String authorname, String publishingname, BigDecimal price,
-			Date publishingdate, Integer shopnum) {
-		super();
-		this.bookno = bookno;
-		this.bookname = bookname;
-		this.authorname = authorname;
-		this.publishingname = publishingname;
-		this.price = price;
-		this.publishingdate = publishingdate;
-		this.shopnum = shopnum;
-	}
-
-	public Book() {
-		super();
-	}
-	
 }

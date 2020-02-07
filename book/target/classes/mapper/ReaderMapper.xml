@@ -2,12 +2,11 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="cc.home999.book.dao.ReaderMapper">
   <resultMap id="BaseResultMap" type="cc.home999.book.bean.Reader">
-    <id column="readerNO" jdbcType="CHAR" property="readerno" />
-    <result column="readerName" jdbcType="CHAR" property="readername" />
+    <id column="readerno" jdbcType="CHAR" property="readerno" />
+    <result column="readername" jdbcType="CHAR" property="readername" />
     <result column="sex" jdbcType="CHAR" property="sex" />
     <result column="identitycard" jdbcType="CHAR" property="identitycard" />
-    <result column="workUnit" jdbcType="CHAR" property="workunit" />
-    <result column="password" jdbcType="CHAR" property="password" />
+    <result column="workunit" jdbcType="CHAR" property="workunit" />
   </resultMap>
   <sql id="Example_Where_Clause">
     <where>
@@ -68,7 +67,7 @@
     </where>
   </sql>
   <sql id="Base_Column_List">
-    readerNO, readerName, sex, identitycard, workUnit, password
+    readerno, readername, sex, identitycard, workunit
   </sql>
   <select id="selectByExample" parameterType="cc.home999.book.bean.ReaderExample" resultMap="BaseResultMap">
     select
@@ -88,11 +87,11 @@
     select 
     <include refid="Base_Column_List" />
     from reader
-    where readerNO = #{readerno,jdbcType=CHAR}
+    where readerno = #{readerno,jdbcType=CHAR}
   </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
     delete from reader
-    where readerNO = #{readerno,jdbcType=CHAR}
+    where readerno = #{readerno,jdbcType=CHAR}
   </delete>
   <delete id="deleteByExample" parameterType="cc.home999.book.bean.ReaderExample">
     delete from reader
@@ -101,21 +100,19 @@
     </if>
   </delete>
   <insert id="insert" parameterType="cc.home999.book.bean.Reader">
-    insert into reader (readerNO, readerName, sex, 
-      identitycard, workUnit, password
-      )
+    insert into reader (readerno, readername, sex, 
+      identitycard, workunit)
     values (#{readerno,jdbcType=CHAR}, #{readername,jdbcType=CHAR}, #{sex,jdbcType=CHAR}, 
-      #{identitycard,jdbcType=CHAR}, #{workunit,jdbcType=CHAR}, #{password,jdbcType=CHAR}
-      )
+      #{identitycard,jdbcType=CHAR}, #{workunit,jdbcType=CHAR})
   </insert>
   <insert id="insertSelective" parameterType="cc.home999.book.bean.Reader">
     insert into reader
     <trim prefix="(" suffix=")" suffixOverrides=",">
       <if test="readerno != null">
-        readerNO,
+        readerno,
       </if>
       <if test="readername != null">
-        readerName,
+        readername,
       </if>
       <if test="sex != null">
         sex,
@@ -124,10 +121,7 @@
         identitycard,
       </if>
       <if test="workunit != null">
-        workUnit,
-      </if>
-      <if test="password != null">
-        password,
+        workunit,
       </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
@@ -146,9 +140,6 @@
       <if test="workunit != null">
         #{workunit,jdbcType=CHAR},
       </if>
-      <if test="password != null">
-        #{password,jdbcType=CHAR},
-      </if>
     </trim>
   </insert>
   <select id="countByExample" parameterType="cc.home999.book.bean.ReaderExample" resultType="java.lang.Long">
@@ -161,10 +152,10 @@
     update reader
     <set>
       <if test="record.readerno != null">
-        readerNO = #{record.readerno,jdbcType=CHAR},
+        readerno = #{record.readerno,jdbcType=CHAR},
       </if>
       <if test="record.readername != null">
-        readerName = #{record.readername,jdbcType=CHAR},
+        readername = #{record.readername,jdbcType=CHAR},
       </if>
       <if test="record.sex != null">
         sex = #{record.sex,jdbcType=CHAR},
@@ -173,10 +164,7 @@
         identitycard = #{record.identitycard,jdbcType=CHAR},
       </if>
       <if test="record.workunit != null">
-        workUnit = #{record.workunit,jdbcType=CHAR},
-      </if>
-      <if test="record.password != null">
-        password = #{record.password,jdbcType=CHAR},
+        workunit = #{record.workunit,jdbcType=CHAR},
       </if>
     </set>
     <if test="_parameter != null">
@@ -185,12 +173,11 @@
   </update>
   <update id="updateByExample" parameterType="map">
     update reader
-    set readerNO = #{record.readerno,jdbcType=CHAR},
-      readerName = #{record.readername,jdbcType=CHAR},
+    set readerno = #{record.readerno,jdbcType=CHAR},
+      readername = #{record.readername,jdbcType=CHAR},
       sex = #{record.sex,jdbcType=CHAR},
       identitycard = #{record.identitycard,jdbcType=CHAR},
-      workUnit = #{record.workunit,jdbcType=CHAR},
-      password = #{record.password,jdbcType=CHAR}
+      workunit = #{record.workunit,jdbcType=CHAR}
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
     </if>
@@ -199,7 +186,7 @@
     update reader
     <set>
       <if test="readername != null">
-        readerName = #{readername,jdbcType=CHAR},
+        readername = #{readername,jdbcType=CHAR},
       </if>
       <if test="sex != null">
         sex = #{sex,jdbcType=CHAR},
@@ -208,21 +195,17 @@
         identitycard = #{identitycard,jdbcType=CHAR},
       </if>
       <if test="workunit != null">
-        workUnit = #{workunit,jdbcType=CHAR},
-      </if>
-      <if test="password != null">
-        password = #{password,jdbcType=CHAR},
+        workunit = #{workunit,jdbcType=CHAR},
       </if>
     </set>
-    where readerNO = #{readerno,jdbcType=CHAR}
+    where readerno = #{readerno,jdbcType=CHAR}
   </update>
   <update id="updateByPrimaryKey" parameterType="cc.home999.book.bean.Reader">
     update reader
-    set readerName = #{readername,jdbcType=CHAR},
+    set readername = #{readername,jdbcType=CHAR},
       sex = #{sex,jdbcType=CHAR},
       identitycard = #{identitycard,jdbcType=CHAR},
-      workUnit = #{workunit,jdbcType=CHAR},
-      password = #{password,jdbcType=CHAR}
-    where readerNO = #{readerno,jdbcType=CHAR}
+      workunit = #{workunit,jdbcType=CHAR}
+    where readerno = #{readerno,jdbcType=CHAR}
   </update>
 </mapper>

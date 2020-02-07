@@ -133,322 +133,322 @@ public class BorrowExample {
         }
 
         public Criteria andReadernoIsNull() {
-            addCriterion("readerNO is null");
+            addCriterion("readerno is null");
             return (Criteria) this;
         }
 
         public Criteria andReadernoIsNotNull() {
-            addCriterion("readerNO is not null");
+            addCriterion("readerno is not null");
             return (Criteria) this;
         }
 
         public Criteria andReadernoEqualTo(String value) {
-            addCriterion("readerNO =", value, "readerno");
+            addCriterion("readerno =", value, "readerno");
             return (Criteria) this;
         }
 
         public Criteria andReadernoNotEqualTo(String value) {
-            addCriterion("readerNO <>", value, "readerno");
+            addCriterion("readerno <>", value, "readerno");
             return (Criteria) this;
         }
 
         public Criteria andReadernoGreaterThan(String value) {
-            addCriterion("readerNO >", value, "readerno");
+            addCriterion("readerno >", value, "readerno");
             return (Criteria) this;
         }
 
         public Criteria andReadernoGreaterThanOrEqualTo(String value) {
-            addCriterion("readerNO >=", value, "readerno");
+            addCriterion("readerno >=", value, "readerno");
             return (Criteria) this;
         }
 
         public Criteria andReadernoLessThan(String value) {
-            addCriterion("readerNO <", value, "readerno");
+            addCriterion("readerno <", value, "readerno");
             return (Criteria) this;
         }
 
         public Criteria andReadernoLessThanOrEqualTo(String value) {
-            addCriterion("readerNO <=", value, "readerno");
+            addCriterion("readerno <=", value, "readerno");
             return (Criteria) this;
         }
 
         public Criteria andReadernoLike(String value) {
-            addCriterion("readerNO like", value, "readerno");
+            addCriterion("readerno like", value, "readerno");
             return (Criteria) this;
         }
 
         public Criteria andReadernoNotLike(String value) {
-            addCriterion("readerNO not like", value, "readerno");
+            addCriterion("readerno not like", value, "readerno");
             return (Criteria) this;
         }
 
         public Criteria andReadernoIn(List<String> values) {
-            addCriterion("readerNO in", values, "readerno");
+            addCriterion("readerno in", values, "readerno");
             return (Criteria) this;
         }
 
         public Criteria andReadernoNotIn(List<String> values) {
-            addCriterion("readerNO not in", values, "readerno");
+            addCriterion("readerno not in", values, "readerno");
             return (Criteria) this;
         }
 
         public Criteria andReadernoBetween(String value1, String value2) {
-            addCriterion("readerNO between", value1, value2, "readerno");
+            addCriterion("readerno between", value1, value2, "readerno");
             return (Criteria) this;
         }
 
         public Criteria andReadernoNotBetween(String value1, String value2) {
-            addCriterion("readerNO not between", value1, value2, "readerno");
+            addCriterion("readerno not between", value1, value2, "readerno");
             return (Criteria) this;
         }
 
         public Criteria andBooknoIsNull() {
-            addCriterion("bookNO is null");
+            addCriterion("bookno is null");
             return (Criteria) this;
         }
 
         public Criteria andBooknoIsNotNull() {
-            addCriterion("bookNO is not null");
+            addCriterion("bookno is not null");
             return (Criteria) this;
         }
 
         public Criteria andBooknoEqualTo(String value) {
-            addCriterion("bookNO =", value, "bookno");
+            addCriterion("bookno =", value, "bookno");
             return (Criteria) this;
         }
 
         public Criteria andBooknoNotEqualTo(String value) {
-            addCriterion("bookNO <>", value, "bookno");
+            addCriterion("bookno <>", value, "bookno");
             return (Criteria) this;
         }
 
         public Criteria andBooknoGreaterThan(String value) {
-            addCriterion("bookNO >", value, "bookno");
+            addCriterion("bookno >", value, "bookno");
             return (Criteria) this;
         }
 
         public Criteria andBooknoGreaterThanOrEqualTo(String value) {
-            addCriterion("bookNO >=", value, "bookno");
+            addCriterion("bookno >=", value, "bookno");
             return (Criteria) this;
         }
 
         public Criteria andBooknoLessThan(String value) {
-            addCriterion("bookNO <", value, "bookno");
+            addCriterion("bookno <", value, "bookno");
             return (Criteria) this;
         }
 
         public Criteria andBooknoLessThanOrEqualTo(String value) {
-            addCriterion("bookNO <=", value, "bookno");
+            addCriterion("bookno <=", value, "bookno");
             return (Criteria) this;
         }
 
         public Criteria andBooknoLike(String value) {
-            addCriterion("bookNO like", value, "bookno");
+            addCriterion("bookno like", value, "bookno");
             return (Criteria) this;
         }
 
         public Criteria andBooknoNotLike(String value) {
-            addCriterion("bookNO not like", value, "bookno");
+            addCriterion("bookno not like", value, "bookno");
             return (Criteria) this;
         }
 
         public Criteria andBooknoIn(List<String> values) {
-            addCriterion("bookNO in", values, "bookno");
+            addCriterion("bookno in", values, "bookno");
             return (Criteria) this;
         }
 
         public Criteria andBooknoNotIn(List<String> values) {
-            addCriterion("bookNO not in", values, "bookno");
+            addCriterion("bookno not in", values, "bookno");
             return (Criteria) this;
         }
 
         public Criteria andBooknoBetween(String value1, String value2) {
-            addCriterion("bookNO between", value1, value2, "bookno");
+            addCriterion("bookno between", value1, value2, "bookno");
             return (Criteria) this;
         }
 
         public Criteria andBooknoNotBetween(String value1, String value2) {
-            addCriterion("bookNO not between", value1, value2, "bookno");
+            addCriterion("bookno not between", value1, value2, "bookno");
             return (Criteria) this;
         }
 
         public Criteria andBorrowdateIsNull() {
-            addCriterion("borrowDate is null");
+            addCriterion("borrowdate is null");
             return (Criteria) this;
         }
 
         public Criteria andBorrowdateIsNotNull() {
-            addCriterion("borrowDate is not null");
+            addCriterion("borrowdate is not null");
             return (Criteria) this;
         }
 
         public Criteria andBorrowdateEqualTo(Date value) {
-            addCriterionForJDBCDate("borrowDate =", value, "borrowdate");
+            addCriterionForJDBCDate("borrowdate =", value, "borrowdate");
             return (Criteria) this;
         }
 
         public Criteria andBorrowdateNotEqualTo(Date value) {
-            addCriterionForJDBCDate("borrowDate <>", value, "borrowdate");
+            addCriterionForJDBCDate("borrowdate <>", value, "borrowdate");
             return (Criteria) this;
         }
 
         public Criteria andBorrowdateGreaterThan(Date value) {
-            addCriterionForJDBCDate("borrowDate >", value, "borrowdate");
+            addCriterionForJDBCDate("borrowdate >", value, "borrowdate");
             return (Criteria) this;
         }
 
         public Criteria andBorrowdateGreaterThanOrEqualTo(Date value) {
-            addCriterionForJDBCDate("borrowDate >=", value, "borrowdate");
+            addCriterionForJDBCDate("borrowdate >=", value, "borrowdate");
             return (Criteria) this;
         }
 
         public Criteria andBorrowdateLessThan(Date value) {
-            addCriterionForJDBCDate("borrowDate <", value, "borrowdate");
+            addCriterionForJDBCDate("borrowdate <", value, "borrowdate");
             return (Criteria) this;
         }
 
         public Criteria andBorrowdateLessThanOrEqualTo(Date value) {
-            addCriterionForJDBCDate("borrowDate <=", value, "borrowdate");
+            addCriterionForJDBCDate("borrowdate <=", value, "borrowdate");
             return (Criteria) this;
         }
 
         public Criteria andBorrowdateIn(List<Date> values) {
-            addCriterionForJDBCDate("borrowDate in", values, "borrowdate");
+            addCriterionForJDBCDate("borrowdate in", values, "borrowdate");
             return (Criteria) this;
         }
 
         public Criteria andBorrowdateNotIn(List<Date> values) {
-            addCriterionForJDBCDate("borrowDate not in", values, "borrowdate");
+            addCriterionForJDBCDate("borrowdate not in", values, "borrowdate");
             return (Criteria) this;
         }
 
         public Criteria andBorrowdateBetween(Date value1, Date value2) {
-            addCriterionForJDBCDate("borrowDate between", value1, value2, "borrowdate");
+            addCriterionForJDBCDate("borrowdate between", value1, value2, "borrowdate");
             return (Criteria) this;
         }
 
         public Criteria andBorrowdateNotBetween(Date value1, Date value2) {
-            addCriterionForJDBCDate("borrowDate not between", value1, value2, "borrowdate");
+            addCriterionForJDBCDate("borrowdate not between", value1, value2, "borrowdate");
             return (Criteria) this;
         }
 
         public Criteria andShoulddateIsNull() {
-            addCriterion("shouldDate is null");
+            addCriterion("shoulddate is null");
             return (Criteria) this;
         }
 
         public Criteria andShoulddateIsNotNull() {
-            addCriterion("shouldDate is not null");
+            addCriterion("shoulddate is not null");
             return (Criteria) this;
         }
 
         public Criteria andShoulddateEqualTo(Date value) {
-            addCriterionForJDBCDate("shouldDate =", value, "shoulddate");
+            addCriterionForJDBCDate("shoulddate =", value, "shoulddate");
             return (Criteria) this;
         }
 
         public Criteria andShoulddateNotEqualTo(Date value) {
-            addCriterionForJDBCDate("shouldDate <>", value, "shoulddate");
+            addCriterionForJDBCDate("shoulddate <>", value, "shoulddate");
             return (Criteria) this;
         }
 
         public Criteria andShoulddateGreaterThan(Date value) {
-            addCriterionForJDBCDate("shouldDate >", value, "shoulddate");
+            addCriterionForJDBCDate("shoulddate >", value, "shoulddate");
             return (Criteria) this;
         }
 
         public Criteria andShoulddateGreaterThanOrEqualTo(Date value) {
-            addCriterionForJDBCDate("shouldDate >=", value, "shoulddate");
+            addCriterionForJDBCDate("shoulddate >=", value, "shoulddate");
             return (Criteria) this;
         }
 
         public Criteria andShoulddateLessThan(Date value) {
-            addCriterionForJDBCDate("shouldDate <", value, "shoulddate");
+            addCriterionForJDBCDate("shoulddate <", value, "shoulddate");
             return (Criteria) this;
         }
 
         public Criteria andShoulddateLessThanOrEqualTo(Date value) {
-            addCriterionForJDBCDate("shouldDate <=", value, "shoulddate");
+            addCriterionForJDBCDate("shoulddate <=", value, "shoulddate");
             return (Criteria) this;
         }
 
         public Criteria andShoulddateIn(List<Date> values) {
-            addCriterionForJDBCDate("shouldDate in", values, "shoulddate");
+            addCriterionForJDBCDate("shoulddate in", values, "shoulddate");
             return (Criteria) this;
         }
 
         public Criteria andShoulddateNotIn(List<Date> values) {
-            addCriterionForJDBCDate("shouldDate not in", values, "shoulddate");
+            addCriterionForJDBCDate("shoulddate not in", values, "shoulddate");
             return (Criteria) this;
         }
 
         public Criteria andShoulddateBetween(Date value1, Date value2) {
-            addCriterionForJDBCDate("shouldDate between", value1, value2, "shoulddate");
+            addCriterionForJDBCDate("shoulddate between", value1, value2, "shoulddate");
             return (Criteria) this;
         }
 
         public Criteria andShoulddateNotBetween(Date value1, Date value2) {
-            addCriterionForJDBCDate("shouldDate not between", value1, value2, "shoulddate");
+            addCriterionForJDBCDate("shoulddate not between", value1, value2, "shoulddate");
             return (Criteria) this;
         }
 
         public Criteria andReturndateIsNull() {
-            addCriterion("returnDate is null");
+            addCriterion("returndate is null");
             return (Criteria) this;
         }
 
         public Criteria andReturndateIsNotNull() {
-            addCriterion("returnDate is not null");
+            addCriterion("returndate is not null");
             return (Criteria) this;
         }
 
         public Criteria andReturndateEqualTo(Date value) {
-            addCriterionForJDBCDate("returnDate =", value, "returndate");
+            addCriterionForJDBCDate("returndate =", value, "returndate");
             return (Criteria) this;
         }
 
         public Criteria andReturndateNotEqualTo(Date value) {
-            addCriterionForJDBCDate("returnDate <>", value, "returndate");
+            addCriterionForJDBCDate("returndate <>", value, "returndate");
             return (Criteria) this;
         }
 
         public Criteria andReturndateGreaterThan(Date value) {
-            addCriterionForJDBCDate("returnDate >", value, "returndate");
+            addCriterionForJDBCDate("returndate >", value, "returndate");
             return (Criteria) this;
         }
 
         public Criteria andReturndateGreaterThanOrEqualTo(Date value) {
-            addCriterionForJDBCDate("returnDate >=", value, "returndate");
+            addCriterionForJDBCDate("returndate >=", value, "returndate");
             return (Criteria) this;
         }
 
         public Criteria andReturndateLessThan(Date value) {
-            addCriterionForJDBCDate("returnDate <", value, "returndate");
+            addCriterionForJDBCDate("returndate <", value, "returndate");
             return (Criteria) this;
         }
 
         public Criteria andReturndateLessThanOrEqualTo(Date value) {
-            addCriterionForJDBCDate("returnDate <=", value, "returndate");
+            addCriterionForJDBCDate("returndate <=", value, "returndate");
             return (Criteria) this;
         }
 
         public Criteria andReturndateIn(List<Date> values) {
-            addCriterionForJDBCDate("returnDate in", values, "returndate");
+            addCriterionForJDBCDate("returndate in", values, "returndate");
             return (Criteria) this;
         }
 
         public Criteria andReturndateNotIn(List<Date> values) {
-            addCriterionForJDBCDate("returnDate not in", values, "returndate");
+            addCriterionForJDBCDate("returndate not in", values, "returndate");
             return (Criteria) this;
         }
 
         public Criteria andReturndateBetween(Date value1, Date value2) {
-            addCriterionForJDBCDate("returnDate between", value1, value2, "returndate");
+            addCriterionForJDBCDate("returndate between", value1, value2, "returndate");
             return (Criteria) this;
         }
 
         public Criteria andReturndateNotBetween(Date value1, Date value2) {
-            addCriterionForJDBCDate("returnDate not between", value1, value2, "returndate");
+            addCriterionForJDBCDate("returndate not between", value1, value2, "returndate");
             return (Criteria) this;
         }
     }

@@ -11,8 +11,6 @@ public class Reader {
 
     private String workunit;
 
-    private String password;
-
     public String getReaderno() {
         return readerno;
     }
@@ -51,13 +49,5 @@ public class Reader {
 
     public void setWorkunit(String workunit) {
         this.workunit = workunit == null ? null : workunit.trim();
-    }
-
-    public String getPassword() {
-        return password;
-    }
-
-    public void setPassword(String password) {
-        this.password = password == null ? null : password.trim();
     }
 }

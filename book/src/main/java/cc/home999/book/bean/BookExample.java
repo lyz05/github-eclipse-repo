@@ -134,282 +134,282 @@ public class BookExample {
         }
 
         public Criteria andBooknoIsNull() {
-            addCriterion("bookNO is null");
+            addCriterion("bookno is null");
             return (Criteria) this;
         }
 
         public Criteria andBooknoIsNotNull() {
-            addCriterion("bookNO is not null");
+            addCriterion("bookno is not null");
             return (Criteria) this;
         }
 
         public Criteria andBooknoEqualTo(String value) {
-            addCriterion("bookNO =", value, "bookno");
+            addCriterion("bookno =", value, "bookno");
             return (Criteria) this;
         }
 
         public Criteria andBooknoNotEqualTo(String value) {
-            addCriterion("bookNO <>", value, "bookno");
+            addCriterion("bookno <>", value, "bookno");
             return (Criteria) this;
         }
 
         public Criteria andBooknoGreaterThan(String value) {
-            addCriterion("bookNO >", value, "bookno");
+            addCriterion("bookno >", value, "bookno");
             return (Criteria) this;
         }
 
         public Criteria andBooknoGreaterThanOrEqualTo(String value) {
-            addCriterion("bookNO >=", value, "bookno");
+            addCriterion("bookno >=", value, "bookno");
             return (Criteria) this;
         }
 
         public Criteria andBooknoLessThan(String value) {
-            addCriterion("bookNO <", value, "bookno");
+            addCriterion("bookno <", value, "bookno");
             return (Criteria) this;
         }
 
         public Criteria andBooknoLessThanOrEqualTo(String value) {
-            addCriterion("bookNO <=", value, "bookno");
+            addCriterion("bookno <=", value, "bookno");
             return (Criteria) this;
         }
 
         public Criteria andBooknoLike(String value) {
-            addCriterion("bookNO like", value, "bookno");
+            addCriterion("bookno like", value, "bookno");
             return (Criteria) this;
         }
 
         public Criteria andBooknoNotLike(String value) {
-            addCriterion("bookNO not like", value, "bookno");
+            addCriterion("bookno not like", value, "bookno");
             return (Criteria) this;
         }
 
         public Criteria andBooknoIn(List<String> values) {
-            addCriterion("bookNO in", values, "bookno");
+            addCriterion("bookno in", values, "bookno");
             return (Criteria) this;
         }
 
         public Criteria andBooknoNotIn(List<String> values) {
-            addCriterion("bookNO not in", values, "bookno");
+            addCriterion("bookno not in", values, "bookno");
             return (Criteria) this;
         }
 
         public Criteria andBooknoBetween(String value1, String value2) {
-            addCriterion("bookNO between", value1, value2, "bookno");
+            addCriterion("bookno between", value1, value2, "bookno");
             return (Criteria) this;
         }
 
         public Criteria andBooknoNotBetween(String value1, String value2) {
-            addCriterion("bookNO not between", value1, value2, "bookno");
+            addCriterion("bookno not between", value1, value2, "bookno");
             return (Criteria) this;
         }
 
         public Criteria andBooknameIsNull() {
-            addCriterion("bookName is null");
+            addCriterion("bookname is null");
             return (Criteria) this;
         }
 
         public Criteria andBooknameIsNotNull() {
-            addCriterion("bookName is not null");
+            addCriterion("bookname is not null");
             return (Criteria) this;
         }
 
         public Criteria andBooknameEqualTo(String value) {
-            addCriterion("bookName =", value, "bookname");
+            addCriterion("bookname =", value, "bookname");
             return (Criteria) this;
         }
 
         public Criteria andBooknameNotEqualTo(String value) {
-            addCriterion("bookName <>", value, "bookname");
+            addCriterion("bookname <>", value, "bookname");
             return (Criteria) this;
         }
 
         public Criteria andBooknameGreaterThan(String value) {
-            addCriterion("bookName >", value, "bookname");
+            addCriterion("bookname >", value, "bookname");
             return (Criteria) this;
         }
 
         public Criteria andBooknameGreaterThanOrEqualTo(String value) {
-            addCriterion("bookName >=", value, "bookname");
+            addCriterion("bookname >=", value, "bookname");
             return (Criteria) this;
         }
 
         public Criteria andBooknameLessThan(String value) {
-            addCriterion("bookName <", value, "bookname");
+            addCriterion("bookname <", value, "bookname");
             return (Criteria) this;
         }
 
         public Criteria andBooknameLessThanOrEqualTo(String value) {
-            addCriterion("bookName <=", value, "bookname");
+            addCriterion("bookname <=", value, "bookname");
             return (Criteria) this;
         }
 
         public Criteria andBooknameLike(String value) {
-            addCriterion("bookName like", value, "bookname");
+            addCriterion("bookname like", value, "bookname");
             return (Criteria) this;
         }
 
         public Criteria andBooknameNotLike(String value) {
-            addCriterion("bookName not like", value, "bookname");
+            addCriterion("bookname not like", value, "bookname");
             return (Criteria) this;
         }
 
         public Criteria andBooknameIn(List<String> values) {
-            addCriterion("bookName in", values, "bookname");
+            addCriterion("bookname in", values, "bookname");
             return (Criteria) this;
         }
 
         public Criteria andBooknameNotIn(List<String> values) {
-            addCriterion("bookName not in", values, "bookname");
+            addCriterion("bookname not in", values, "bookname");
             return (Criteria) this;
         }
 
         public Criteria andBooknameBetween(String value1, String value2) {
-            addCriterion("bookName between", value1, value2, "bookname");
+            addCriterion("bookname between", value1, value2, "bookname");
             return (Criteria) this;
         }
 
         public Criteria andBooknameNotBetween(String value1, String value2) {
-            addCriterion("bookName not between", value1, value2, "bookname");
+            addCriterion("bookname not between", value1, value2, "bookname");
             return (Criteria) this;
         }
 
-        public Criteria andAuthornameIsNull() {
-            addCriterion("authorName is null");
+        public Criteria andAuthorIsNull() {
+            addCriterion("author is null");
             return (Criteria) this;
         }
 
-        public Criteria andAuthornameIsNotNull() {
-            addCriterion("authorName is not null");
+        public Criteria andAuthorIsNotNull() {
+            addCriterion("author is not null");
             return (Criteria) this;
         }
 
-        public Criteria andAuthornameEqualTo(String value) {
-            addCriterion("authorName =", value, "authorname");
+        public Criteria andAuthorEqualTo(String value) {
+            addCriterion("author =", value, "author");
             return (Criteria) this;
         }
 
-        public Criteria andAuthornameNotEqualTo(String value) {
-            addCriterion("authorName <>", value, "authorname");
+        public Criteria andAuthorNotEqualTo(String value) {
+            addCriterion("author <>", value, "author");
             return (Criteria) this;
         }
 
-        public Criteria andAuthornameGreaterThan(String value) {
-            addCriterion("authorName >", value, "authorname");
+        public Criteria andAuthorGreaterThan(String value) {
+            addCriterion("author >", value, "author");
             return (Criteria) this;
         }
 
-        public Criteria andAuthornameGreaterThanOrEqualTo(String value) {
-            addCriterion("authorName >=", value, "authorname");
+        public Criteria andAuthorGreaterThanOrEqualTo(String value) {
+            addCriterion("author >=", value, "author");
             return (Criteria) this;
         }
 
-        public Criteria andAuthornameLessThan(String value) {
-            addCriterion("authorName <", value, "authorname");
+        public Criteria andAuthorLessThan(String value) {
+            addCriterion("author <", value, "author");
             return (Criteria) this;
         }
 
-        public Criteria andAuthornameLessThanOrEqualTo(String value) {
-            addCriterion("authorName <=", value, "authorname");
+        public Criteria andAuthorLessThanOrEqualTo(String value) {
+            addCriterion("author <=", value, "author");
             return (Criteria) this;
         }
 
-        public Criteria andAuthornameLike(String value) {
-            addCriterion("authorName like", value, "authorname");
+        public Criteria andAuthorLike(String value) {
+            addCriterion("author like", value, "author");
             return (Criteria) this;
         }
 
-        public Criteria andAuthornameNotLike(String value) {
-            addCriterion("authorName not like", value, "authorname");
+        public Criteria andAuthorNotLike(String value) {
+            addCriterion("author not like", value, "author");
             return (Criteria) this;
         }
 
-        public Criteria andAuthornameIn(List<String> values) {
-            addCriterion("authorName in", values, "authorname");
+        public Criteria andAuthorIn(List<String> values) {
+            addCriterion("author in", values, "author");
             return (Criteria) this;
         }
 
-        public Criteria andAuthornameNotIn(List<String> values) {
-            addCriterion("authorName not in", values, "authorname");
+        public Criteria andAuthorNotIn(List<String> values) {
+            addCriterion("author not in", values, "author");
             return (Criteria) this;
         }
 
-        public Criteria andAuthornameBetween(String value1, String value2) {
-            addCriterion("authorName between", value1, value2, "authorname");
+        public Criteria andAuthorBetween(String value1, String value2) {
+            addCriterion("author between", value1, value2, "author");
             return (Criteria) this;
         }
 
-        public Criteria andAuthornameNotBetween(String value1, String value2) {
-            addCriterion("authorName not between", value1, value2, "authorname");
+        public Criteria andAuthorNotBetween(String value1, String value2) {
+            addCriterion("author not between", value1, value2, "author");
             return (Criteria) this;
         }
 
-        public Criteria andPublishingnameIsNull() {
-            addCriterion("publishingName is null");
+        public Criteria andPressIsNull() {
+            addCriterion("press is null");
             return (Criteria) this;
         }
 
-        public Criteria andPublishingnameIsNotNull() {
-            addCriterion("publishingName is not null");
+        public Criteria andPressIsNotNull() {
+            addCriterion("press is not null");
             return (Criteria) this;
         }
 
-        public Criteria andPublishingnameEqualTo(String value) {
-            addCriterion("publishingName =", value, "publishingname");
+        public Criteria andPressEqualTo(String value) {
+            addCriterion("press =", value, "press");
             return (Criteria) this;
         }
 
-        public Criteria andPublishingnameNotEqualTo(String value) {
-            addCriterion("publishingName <>", value, "publishingname");
+        public Criteria andPressNotEqualTo(String value) {
+            addCriterion("press <>", value, "press");
             return (Criteria) this;
         }
 
-        public Criteria andPublishingnameGreaterThan(String value) {
-            addCriterion("publishingName >", value, "publishingname");
+        public Criteria andPressGreaterThan(String value) {
+            addCriterion("press >", value, "press");
             return (Criteria) this;
         }
 
-        public Criteria andPublishingnameGreaterThanOrEqualTo(String value) {
-            addCriterion("publishingName >=", value, "publishingname");
+        public Criteria andPressGreaterThanOrEqualTo(String value) {
+            addCriterion("press >=", value, "press");
             return (Criteria) this;
         }
 
-        public Criteria andPublishingnameLessThan(String value) {
-            addCriterion("publishingName <", value, "publishingname");
+        public Criteria andPressLessThan(String value) {
+            addCriterion("press <", value, "press");
             return (Criteria) this;
         }
 
-        public Criteria andPublishingnameLessThanOrEqualTo(String value) {
-            addCriterion("publishingName <=", value, "publishingname");
+        public Criteria andPressLessThanOrEqualTo(String value) {
+            addCriterion("press <=", value, "press");
             return (Criteria) this;
         }
 
-        public Criteria andPublishingnameLike(String value) {
-            addCriterion("publishingName like", value, "publishingname");
+        public Criteria andPressLike(String value) {
+            addCriterion("press like", value, "press");
             return (Criteria) this;
         }
 
-        public Criteria andPublishingnameNotLike(String value) {
-            addCriterion("publishingName not like", value, "publishingname");
+        public Criteria andPressNotLike(String value) {
+            addCriterion("press not like", value, "press");
             return (Criteria) this;
         }
 
-        public Criteria andPublishingnameIn(List<String> values) {
-            addCriterion("publishingName in", values, "publishingname");
+        public Criteria andPressIn(List<String> values) {
+            addCriterion("press in", values, "press");
             return (Criteria) this;
         }
 
-        public Criteria andPublishingnameNotIn(List<String> values) {
-            addCriterion("publishingName not in", values, "publishingname");
+        public Criteria andPressNotIn(List<String> values) {
+            addCriterion("press not in", values, "press");
             return (Criteria) this;
         }
 
-        public Criteria andPublishingnameBetween(String value1, String value2) {
-            addCriterion("publishingName between", value1, value2, "publishingname");
+        public Criteria andPressBetween(String value1, String value2) {
+            addCriterion("press between", value1, value2, "press");
             return (Criteria) this;
         }
 
-        public Criteria andPublishingnameNotBetween(String value1, String value2) {
-            addCriterion("publishingName not between", value1, value2, "publishingname");
+        public Criteria andPressNotBetween(String value1, String value2) {
+            addCriterion("press not between", value1, value2, "press");
             return (Criteria) this;
         }
 
@@ -474,122 +474,122 @@ public class BookExample {
         }
 
         public Criteria andPublishingdateIsNull() {
-            addCriterion("publishingDate is null");
+            addCriterion("publishingdate is null");
             return (Criteria) this;
         }
 
         public Criteria andPublishingdateIsNotNull() {
-            addCriterion("publishingDate is not null");
+            addCriterion("publishingdate is not null");
             return (Criteria) this;
         }
 
         public Criteria andPublishingdateEqualTo(Date value) {
-            addCriterionForJDBCDate("publishingDate =", value, "publishingdate");
+            addCriterionForJDBCDate("publishingdate =", value, "publishingdate");
             return (Criteria) this;
         }
 
         public Criteria andPublishingdateNotEqualTo(Date value) {
-            addCriterionForJDBCDate("publishingDate <>", value, "publishingdate");
+            addCriterionForJDBCDate("publishingdate <>", value, "publishingdate");
             return (Criteria) this;
         }
 
         public Criteria andPublishingdateGreaterThan(Date value) {
-            addCriterionForJDBCDate("publishingDate >", value, "publishingdate");
+            addCriterionForJDBCDate("publishingdate >", value, "publishingdate");
             return (Criteria) this;
         }
 
         public Criteria andPublishingdateGreaterThanOrEqualTo(Date value) {
-            addCriterionForJDBCDate("publishingDate >=", value, "publishingdate");
+            addCriterionForJDBCDate("publishingdate >=", value, "publishingdate");
             return (Criteria) this;
         }
 
         public Criteria andPublishingdateLessThan(Date value) {
-            addCriterionForJDBCDate("publishingDate <", value, "publishingdate");
+            addCriterionForJDBCDate("publishingdate <", value, "publishingdate");
             return (Criteria) this;
         }
 
         public Criteria andPublishingdateLessThanOrEqualTo(Date value) {
-            addCriterionForJDBCDate("publishingDate <=", value, "publishingdate");
+            addCriterionForJDBCDate("publishingdate <=", value, "publishingdate");
             return (Criteria) this;
         }
 
         public Criteria andPublishingdateIn(List<Date> values) {
-            addCriterionForJDBCDate("publishingDate in", values, "publishingdate");
+            addCriterionForJDBCDate("publishingdate in", values, "publishingdate");
             return (Criteria) this;
         }
 
         public Criteria andPublishingdateNotIn(List<Date> values) {
-            addCriterionForJDBCDate("publishingDate not in", values, "publishingdate");
+            addCriterionForJDBCDate("publishingdate not in", values, "publishingdate");
             return (Criteria) this;
         }
 
         public Criteria andPublishingdateBetween(Date value1, Date value2) {
-            addCriterionForJDBCDate("publishingDate between", value1, value2, "publishingdate");
+            addCriterionForJDBCDate("publishingdate between", value1, value2, "publishingdate");
             return (Criteria) this;
         }
 
         public Criteria andPublishingdateNotBetween(Date value1, Date value2) {
-            addCriterionForJDBCDate("publishingDate not between", value1, value2, "publishingdate");
+            addCriterionForJDBCDate("publishingdate not between", value1, value2, "publishingdate");
             return (Criteria) this;
         }
 
         public Criteria andShopnumIsNull() {
-            addCriterion("shopNum is null");
+            addCriterion("shopnum is null");
             return (Criteria) this;
         }
 
         public Criteria andShopnumIsNotNull() {
-            addCriterion("shopNum is not null");
+            addCriterion("shopnum is not null");
             return (Criteria) this;
         }
 
         public Criteria andShopnumEqualTo(Integer value) {
-            addCriterion("shopNum =", value, "shopnum");
+            addCriterion("shopnum =", value, "shopnum");
             return (Criteria) this;
         }
 
         public Criteria andShopnumNotEqualTo(Integer value) {
-            addCriterion("shopNum <>", value, "shopnum");
+            addCriterion("shopnum <>", value, "shopnum");
             return (Criteria) this;
         }
 
         public Criteria andShopnumGreaterThan(Integer value) {
-            addCriterion("shopNum >", value, "shopnum");
+            addCriterion("shopnum >", value, "shopnum");
             return (Criteria) this;
         }
 
         public Criteria andShopnumGreaterThanOrEqualTo(Integer value) {
-            addCriterion("shopNum >=", value, "shopnum");
+            addCriterion("shopnum >=", value, "shopnum");
             return (Criteria) this;
         }
 
         public Criteria andShopnumLessThan(Integer value) {
-            addCriterion("shopNum <", value, "shopnum");
+            addCriterion("shopnum <", value, "shopnum");
             return (Criteria) this;
         }
 
         public Criteria andShopnumLessThanOrEqualTo(Integer value) {
-            addCriterion("shopNum <=", value, "shopnum");
+            addCriterion("shopnum <=", value, "shopnum");
             return (Criteria) this;
         }
 
         public Criteria andShopnumIn(List<Integer> values) {
-            addCriterion("shopNum in", values, "shopnum");
+            addCriterion("shopnum in", values, "shopnum");
             return (Criteria) this;
         }
 
         public Criteria andShopnumNotIn(List<Integer> values) {
-            addCriterion("shopNum not in", values, "shopnum");
+            addCriterion("shopnum not in", values, "shopnum");
             return (Criteria) this;
         }
 
         public Criteria andShopnumBetween(Integer value1, Integer value2) {
-            addCriterion("shopNum between", value1, value2, "shopnum");
+            addCriterion("shopnum between", value1, value2, "shopnum");
             return (Criteria) this;
         }
 
         public Criteria andShopnumNotBetween(Integer value1, Integer value2) {
-            addCriterion("shopNum not between", value1, value2, "shopnum");
+            addCriterion("shopnum not between", value1, value2, "shopnum");
             return (Criteria) this;
         }
     }

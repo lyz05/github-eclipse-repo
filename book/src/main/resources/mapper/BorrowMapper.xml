@@ -2,11 +2,11 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="cc.home999.book.dao.BorrowMapper">
   <resultMap id="BaseResultMap" type="cc.home999.book.bean.Borrow">
-    <result column="readerNO" jdbcType="CHAR" property="readerno" />
-    <result column="bookNO" jdbcType="CHAR" property="bookno" />
-    <result column="borrowDate" jdbcType="DATE" property="borrowdate" />
-    <result column="shouldDate" jdbcType="DATE" property="shoulddate" />
-    <result column="returnDate" jdbcType="DATE" property="returndate" />
+    <result column="readerno" jdbcType="CHAR" property="readerno" />
+    <result column="bookno" jdbcType="CHAR" property="bookno" />
+    <result column="borrowdate" jdbcType="DATE" property="borrowdate" />
+    <result column="shoulddate" jdbcType="DATE" property="shoulddate" />
+    <result column="returndate" jdbcType="DATE" property="returndate" />
   </resultMap>
   <sql id="Example_Where_Clause">
     <where>
@@ -67,7 +67,7 @@
     </where>
   </sql>
   <sql id="Base_Column_List">
-    readerNO, bookNO, borrowDate, shouldDate, returnDate
+    readerno, bookno, borrowdate, shoulddate, returndate
   </sql>
   <select id="selectByExample" parameterType="cc.home999.book.bean.BorrowExample" resultMap="BaseResultMap">
     select
@@ -90,8 +90,8 @@
     </if>
   </delete>
   <insert id="insert" parameterType="cc.home999.book.bean.Borrow">
-    insert into borrow (readerNO, bookNO, borrowDate, 
-      shouldDate, returnDate)
+    insert into borrow (readerno, bookno, borrowdate, 
+      shoulddate, returndate)
     values (#{readerno,jdbcType=CHAR}, #{bookno,jdbcType=CHAR}, #{borrowdate,jdbcType=DATE}, 
       #{shoulddate,jdbcType=DATE}, #{returndate,jdbcType=DATE})
   </insert>
@@ -99,19 +99,19 @@
     insert into borrow
     <trim prefix="(" suffix=")" suffixOverrides=",">
       <if test="readerno != null">
-        readerNO,
+        readerno,
       </if>
       <if test="bookno != null">
-        bookNO,
+        bookno,
       </if>
       <if test="borrowdate != null">
-        borrowDate,
+        borrowdate,
       </if>
       <if test="shoulddate != null">
-        shouldDate,
+        shoulddate,
       </if>
       <if test="returndate != null">
-        returnDate,
+        returndate,
       </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
@@ -142,19 +142,19 @@
     update borrow
     <set>
       <if test="record.readerno != null">
-        readerNO = #{record.readerno,jdbcType=CHAR},
+        readerno = #{record.readerno,jdbcType=CHAR},
       </if>
       <if test="record.bookno != null">
-        bookNO = #{record.bookno,jdbcType=CHAR},
+        bookno = #{record.bookno,jdbcType=CHAR},
       </if>
       <if test="record.borrowdate != null">
-        borrowDate = #{record.borrowdate,jdbcType=DATE},
+        borrowdate = #{record.borrowdate,jdbcType=DATE},
       </if>
       <if test="record.shoulddate != null">
-        shouldDate = #{record.shoulddate,jdbcType=DATE},
+        shoulddate = #{record.shoulddate,jdbcType=DATE},
       </if>
       <if test="record.returndate != null">
-        returnDate = #{record.returndate,jdbcType=DATE},
+        returndate = #{record.returndate,jdbcType=DATE},
       </if>
     </set>
     <if test="_parameter != null">
@@ -163,11 +163,11 @@
   </update>
   <update id="updateByExample" parameterType="map">
     update borrow
-    set readerNO = #{record.readerno,jdbcType=CHAR},
-      bookNO = #{record.bookno,jdbcType=CHAR},
-      borrowDate = #{record.borrowdate,jdbcType=DATE},
-      shouldDate = #{record.shoulddate,jdbcType=DATE},
-      returnDate = #{record.returndate,jdbcType=DATE}
+    set readerno = #{record.readerno,jdbcType=CHAR},
+      bookno = #{record.bookno,jdbcType=CHAR},
+      borrowdate = #{record.borrowdate,jdbcType=DATE},
+      shoulddate = #{record.shoulddate,jdbcType=DATE},
+      returndate = #{record.returndate,jdbcType=DATE}
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
     </if>
