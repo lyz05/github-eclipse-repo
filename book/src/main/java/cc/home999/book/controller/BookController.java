@@ -105,6 +105,7 @@ public class BookController {
 	@RequestMapping(value = "{bookno}",method = RequestMethod.DELETE)
 	@ResponseBody
 	public Msg delbook(@PathVariable("bookno") String bookno) {
+		//级联删除
 		if (bookService.delbook(bookno)) {
 			return Msg.success("删除书本成功");
 		} else return Msg.fail("删除书本失败");

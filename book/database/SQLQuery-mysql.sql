@@ -34,7 +34,7 @@ CREATE TABLE Reader
 	sex char(2) not null,
 	identitycard char(18) not null,
 	workunit char(50) not null,
-	foreign key(readerno) references User(username)
+	foreign key(readerno) references User(username) ON DELETE CASCADE
 ) ENGINE=INnoDB DEFAULT CHARSET=utf8;
 
 CREATE TABLE Borrow
@@ -44,8 +44,8 @@ CREATE TABLE Borrow
 	borrowdate date not null,
 	shoulddate date not null,
 	returndate date,
-	foreign key(bookno) references Book(bookno),
-	foreign key(readerno) references Reader(readerno)
+	foreign key(bookno) references Book(bookno) ON DELETE CASCADE,
+	foreign key(readerno) references Reader(readerno) ON DELETE CASCADE
 ) ENGINE=INnoDB DEFAULT CHARSET=utf8;
 
 /* 为JDBC连接创建用户 */

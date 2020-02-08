@@ -15,7 +15,7 @@ public class BookService {
 	BookMapper bookMapper;
 	public boolean updatebook(Book book) {
 		int count = bookMapper.updateByPrimaryKey(book);
-		return count==1;
+		return count==1 || count==0;
 	}
 	
 	public Book getbook(String bookno){

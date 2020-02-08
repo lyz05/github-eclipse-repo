@@ -64,9 +64,9 @@
 						<div class="col-sm-3">
 							<input class="form-control" name="readerno">
 						</div>
-						<label data-locale="idnum" class="col-sm-2 col-sm-offset-2 control-label">身份证号</label>
+						<label data-locale="identitycard" class="col-sm-2 col-sm-offset-2 control-label">身份证号</label>
 						<div class="col-sm-3">
-							<input maxlength="18" class="form-control" name="idnum">
+							<input maxlength="18" class="form-control" name="identitycard">
 						</div>
 						</div>
 						
@@ -118,7 +118,7 @@
 				      <th data-sortable="true" data-locale="readerno" data-field="readerno"></th>
 				      <th data-sortable="true" data-locale="readername" data-field="readername"></th>
 				      <th data-sortable="true" data-locale="sex" data-field="sex"></th>
-				      <th data-sortable="true" data-locale="idnum" data-field="idnum"></th>
+				      <th data-sortable="true" data-locale="identitycard" data-field="identitycard"></th>
 				      <th data-sortable="true" data-locale="workunit" data-field="workunit"></th>
 				      <th data-sortable="true" data-locale="totalborrownum" data-field="totalborrownum"></th>
 				      <th data-sortable="true" data-locale="notreturnnum" data-field="notreturnnum"></th>
@@ -135,7 +135,7 @@
 		}
 		function documentready(){
 			$('#table').bootstrapTable({
-				url: "api/tablebootstrap",
+				url: "Table/readeradmins",
 				method: "post",
 				contentType: "application/x-www-form-urlencoded; charset=UTF-8",
 				locale: localStorage.getItem('LANGUAGE_CODE'),
@@ -150,7 +150,7 @@
 		        pageList: [3,5,8,10,15,20],
 		        paginationLoop: false,
 		        queryParams : function (params){
-		        	return $('#form1').serialize()+"&table=View_Reader";
+		        	return $('#form1').serialize();
 		        }
 			});
            $('title').html($.i18n.prop('readerinfo')+$.i18n.prop('management')+" - "+$.i18n.prop('systemname'));
@@ -163,16 +163,16 @@
 			$('#table').bootstrapTable('refresh');
 		}
 		function add() {
-			ajaxRequest("post","api/readeradd",$('#form1').serialize(), null, callBackReset);
+			ajaxRequest("post","Reader",$('#form1').serialize(), null, callBackReset);
 		}
 		function del(readerno) {
-			ajaxRequest("get","api/readerdelete","readerno="+readerno, null, callBack);
+			ajaxRequest("delete","Reader/"+readerno,null, null, callBack);
 		}
 		function save() {
-	        ajaxRequest("post","api/readeredit",$('#form1').serialize(), null, callBackReset);
+	        ajaxRequest("put","Reader",$('#form1').serialize(), null, callBackReset);
 		}
-		function edit(bookno) {
-			ajaxRequest("post","api/reader","readerno="+bookno,null,function(info){
+		function edit(readerno) {
+			ajaxRequest("get","Reader/"+readerno,null,null,function(info){
 				$('#savebtn').show();
 				$('#searchbtn').removeClass('btn-primary');
 				$('#savebtn').addClass('btn-primary');

@@ -32,6 +32,27 @@ public class UserService {
 	public boolean updateUser(User user) {
 		// TODO 自动生成的方法存根
 		int count = userMapper.updateByPrimaryKey(user);
-		return count!=0;
+		return count==1;
+	}
+	
+	/** 添加用户
+	 * 
+	 * @param user
+	 * @return
+	 */
+	public boolean addUser(User user) {
+		int count = userMapper.insert(user);
+		return count==1;
+	}
+
+	/**
+	 * 删除用户
+	 * @param username
+	 * @return
+	 */
+	public boolean deluser(String username) {
+		// TODO 自动生成的方法存根
+		int count = userMapper.deleteByPrimaryKey(username);
+		return count==1;
 	}
 }
