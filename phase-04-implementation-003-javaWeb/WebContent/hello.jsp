@@ -8,6 +8,6 @@
 </head>
 <body>
     Hello, This is my first JSP running on Tomcat in Eclipse.
-    <a href="/" style="font-size:30px" >返回首页 </a>
+    <a href="./" style="font-size:30px" >返回首页 </a>
 </body>
 </html>

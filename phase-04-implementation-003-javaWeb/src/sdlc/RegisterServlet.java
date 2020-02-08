@@ -30,7 +30,7 @@ public class RegisterServlet extends HttpServlet {
 		response.setContentType("text/html; charset=UTF-8");
 		request.setCharacterEncoding("UTF-8");
 		response.setCharacterEncoding("UTF-8");
-		request.getRequestDispatcher("/information.jsp").forward(request, response);
+		request.getRequestDispatcher("information.jsp").forward(request, response);
 	}
 
 	/**

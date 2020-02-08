@@ -28,7 +28,10 @@ public class WanderingServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		response.setContentType("text/html;charset=UTF-8");
-		response.getWriter().append("您好，我是第一个流浪的 servlet！").append(request.getContextPath());
+		response.getWriter()
+			.append("您好，我是第一个流浪的 servlet！<br>")
+			.append("项目地址 :")
+			.append(request.getContextPath());
 	}
 
 	/**

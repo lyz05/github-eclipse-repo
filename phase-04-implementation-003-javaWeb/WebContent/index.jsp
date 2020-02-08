@@ -8,14 +8,14 @@
     String poemText = poem.getPoemContent(1);
     String wsprotol;
     if (request.isSecure()) wsprotol = "wss"; else wsprotol = "ws"; 
-    String basePath = wsprotol +"://"+request.getServerName()+":"+request.getServerPort();//远程ip地址
+    String basePath = wsprotol +"://"+request.getServerName()+":"+request.getServerPort()+request.getContextPath();//远程ip地址
 %>
 <!DOCTYPE html>
 <html>
 	<head>
 		<style>
 			.background {
-				background: url(/static/imgs/pic002.jpg) no-repeat padding-box content-box;
+				background: url(static/imgs/pic002.jpg) no-repeat padding-box content-box;
 				background-color: #000000;
 				background-size: cover;
 			}    
@@ -33,8 +33,8 @@
 	        	
 	        }
 		</style>
-		<script src="/static/jquery.min.js"></script>
-		<script src="/static/js/websocket.js"></script>
+		<script src="static/jquery.min.js"></script>
+		<script src="static/js/websocket.js"></script>
 		<script>
 			function run(clickedObj) {
 				//隐藏inputinformation,link,firstline
@@ -90,17 +90,17 @@
 
 <body class="background" onload="connect('<%=basePath %>');">
 	<audio id="intr" controls="controls"
-		src="/static/audio/introduction.mp3" autoplay="autoplay">
+		src="static/audio/introduction.mp3" autoplay="autoplay">
 	</audio>
-	<audio id="poem" src="/static/audio/poem.mp3"
+	<audio id="poem" src="static/audio/poem.mp3"
 		preload="auto">
 	</audio>
 	
 	<div id="link" style="display:block;color:white;">
-	<p>	<a href="/hello.jsp" style="font-size:20px" >跳转hello JSP</a> <br>
-	 	<a href="/WanderingServlet" style="font-size:20px" >跳转WanderingServlet</a> <br>
-	 	<a href="/chat" style="font-size:20px" >跳转聊天室</a> <br>
-	 	<a href="/book" style="font-size:20px" >跳转图书借阅系统</a><br>
+	<p>	<a href="hello.jsp" style="font-size:20px" >跳转hello JSP</a> <br>
+	 	<a href="WanderingServlet" style="font-size:20px" >跳转WanderingServlet</a> <br>
+	 	<a href="chat" style="font-size:20px" >跳转聊天室</a> <br>
+	 	<a href="book" style="font-size:20px" >跳转图书借阅系统</a><br>
 	</p>
 	</div>
     
@@ -109,17 +109,17 @@
 	</span>
 	
 	<div id="inputinformation" style="display:block;color:white;">
-		<jsp:include page = "/inputinformation.jsp" />
+		<jsp:include page = "inputinformation.jsp" />
 	</div>
 
-	<audio id="waiting" src="/static/audio/alwayswithme.mp3" preload="auto" onended="onWaitingAudioEnd();"></audio>
+	<audio id="waiting" src="static/audio/alwayswithme.mp3" preload="auto" onended="onWaitingAudioEnd();"></audio>
 	
 	<div id="poem-txt"
 		style="display: none; font-size: 18px; color: red; position:absolute; left :10px;top:100px" >
 		<%=poemText%>
 	</div>
 	
-	<img src="/static/imgs/earth1.png"
+	<img src="static/imgs/earth1.png"
 		style="position: absolute; left: 10px; bottom: 10px; width: 150px"
 		onclick="run(this);return false" 
 		title="点击后，开始流浪 ！"
@@ -131,7 +131,7 @@
 			<iframe src="//player.bilibili.com/player.html?aid=37343342&cid=65633682&page=1" scrolling="no" border="0" frameborder="no" framespacing="0" allowfullscreen="true" onended="onVideoEnd();" id="movie" height="300px" width="25%" > </iframe>
 		-->
 		<video id="movie" height="300px" controls="controls"
-			src="/static/video/movie1.mp4" onended="onVideoEnd();" >
+			src="static/video/movie1.mp4" onended="onVideoEnd();" >
 		</video>
 	</div>
 	

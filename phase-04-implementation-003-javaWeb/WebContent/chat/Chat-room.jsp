@@ -1,18 +1,17 @@
-
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%  String wsprotol;
 	if (request.isSecure()) wsprotol = "wss"; else wsprotol = "ws"; 
-	String basePath = wsprotol +"://"+request.getServerName()+":"+request.getServerPort();//远程ip地址
+	String basePath = wsprotol +"://"+request.getServerName()+":"+request.getServerPort()+request.getContextPath();//远程ip地址
 	String username = new String(session.getAttribute("userName").toString().getBytes("iso-8859-1"),"utf-8");
 %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Insert title here</title>
-<link type="text/css" rel="stylesheet" href="/static/css/style.css" />
-<script src="/static/jquery.min.js" type="text/javascript"></script>
+<title>聊天室</title>
+<link type="text/css" rel="stylesheet" href="../static/css/style.css" />
+<script src="../static/jquery.min.js" type="text/javascript"></script>
 <script type="text/javascript">
 	function setReceiver(obj) {
 		document.getElementById("reply-to").innerHTML = "接收人：" + obj.innerHTML;
