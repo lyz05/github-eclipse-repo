@@ -3,6 +3,8 @@ package cc.home999.book.bean;
 import java.math.BigDecimal;
 import java.util.Date;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+
 public class BookAdmin {
     private String bookno;
 
@@ -14,7 +16,8 @@ public class BookAdmin {
 
     private BigDecimal price;
 
-    private Date publishingdate;
+    @JsonFormat(pattern="yyyy-MM-dd",timezone = "GMT+8")
+    private Date publishdate;
 
     private Integer shopnum;
 
@@ -60,12 +63,12 @@ public class BookAdmin {
         this.price = price;
     }
 
-    public Date getPublishingdate() {
-        return publishingdate;
+    public Date getPublishdate() {
+        return publishdate;
     }
 
-    public void setPublishingdate(Date publishingdate) {
-        this.publishingdate = publishingdate;
+    public void setPublishdate(Date publishdate) {
+        this.publishdate = publishdate;
     }
 
     public Integer getShopnum() {
@@ -83,4 +86,12 @@ public class BookAdmin {
     public void setCurnum(Long curnum) {
         this.curnum = curnum;
     }
+
+	@Override
+	public String toString() {
+		return "BookAdmin [bookno=" + bookno + ", bookname=" + bookname + ", author=" + author + ", press=" + press
+				+ ", price=" + price + ", publishdate=" + publishdate + ", shopnum=" + shopnum + ", curnum=" + curnum
+				+ "]";
+	}
+    
 }

@@ -18,8 +18,6 @@ public class UserService {
 	 */
 	public User judgeUser(User user) {
 		User retUser = userMapper.selectByPrimaryKey(user.getUsername());
-		System.out.println(user);
-		System.out.println(retUser);
 		retUser.setLocale(user.getLocale());
 		if (retUser.getPassword().equals(user.getPassword()))
 			return retUser;

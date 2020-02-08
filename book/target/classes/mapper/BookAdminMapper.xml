@@ -7,7 +7,7 @@
     <result column="author" jdbcType="CHAR" property="author" />
     <result column="press" jdbcType="CHAR" property="press" />
     <result column="price" jdbcType="DECIMAL" property="price" />
-    <result column="publishingdate" jdbcType="DATE" property="publishingdate" />
+    <result column="publishdate" jdbcType="DATE" property="publishdate" />
     <result column="shopNum" jdbcType="INTEGER" property="shopnum" />
     <result column="curnum" jdbcType="BIGINT" property="curnum" />
   </resultMap>
@@ -70,7 +70,7 @@
     </where>
   </sql>
   <sql id="Base_Column_List">
-    bookno, bookname, author, press, price, publishingdate, shopNum, curnum
+    bookno, bookname, author, press, price, publishdate, shopNum, curnum
   </sql>
   <select id="selectByExample" parameterType="cc.home999.book.bean.BookAdminExample" resultMap="BaseResultMap">
     select
@@ -94,10 +94,10 @@
   </delete>
   <insert id="insert" parameterType="cc.home999.book.bean.BookAdmin">
     insert into viewbookadmin (bookno, bookname, author, 
-      press, price, publishingdate, 
+      press, price, publishdate, 
       shopNum, curnum)
     values (#{bookno,jdbcType=CHAR}, #{bookname,jdbcType=CHAR}, #{author,jdbcType=CHAR}, 
-      #{press,jdbcType=CHAR}, #{price,jdbcType=DECIMAL}, #{publishingdate,jdbcType=DATE}, 
+      #{press,jdbcType=CHAR}, #{price,jdbcType=DECIMAL}, #{publishdate,jdbcType=DATE}, 
       #{shopnum,jdbcType=INTEGER}, #{curnum,jdbcType=BIGINT})
   </insert>
   <insert id="insertSelective" parameterType="cc.home999.book.bean.BookAdmin">
@@ -118,8 +118,8 @@
       <if test="price != null">
         price,
       </if>
-      <if test="publishingdate != null">
-        publishingdate,
+      <if test="publishdate != null">
+        publishdate,
       </if>
       <if test="shopnum != null">
         shopNum,
@@ -144,8 +144,8 @@
       <if test="price != null">
         #{price,jdbcType=DECIMAL},
       </if>
-      <if test="publishingdate != null">
-        #{publishingdate,jdbcType=DATE},
+      <if test="publishdate != null">
+        #{publishdate,jdbcType=DATE},
       </if>
       <if test="shopnum != null">
         #{shopnum,jdbcType=INTEGER},
@@ -179,8 +179,8 @@
       <if test="record.price != null">
         price = #{record.price,jdbcType=DECIMAL},
       </if>
-      <if test="record.publishingdate != null">
-        publishingdate = #{record.publishingdate,jdbcType=DATE},
+      <if test="record.publishdate != null">
+        publishdate = #{record.publishdate,jdbcType=DATE},
       </if>
       <if test="record.shopnum != null">
         shopNum = #{record.shopnum,jdbcType=INTEGER},
@@ -200,7 +200,7 @@
       author = #{record.author,jdbcType=CHAR},
       press = #{record.press,jdbcType=CHAR},
       price = #{record.price,jdbcType=DECIMAL},
-      publishingdate = #{record.publishingdate,jdbcType=DATE},
+      publishdate = #{record.publishdate,jdbcType=DATE},
       shopNum = #{record.shopnum,jdbcType=INTEGER},
       curnum = #{record.curnum,jdbcType=BIGINT}
     <if test="_parameter != null">

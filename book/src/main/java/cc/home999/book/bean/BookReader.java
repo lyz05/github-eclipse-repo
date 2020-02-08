@@ -11,7 +11,7 @@ public class BookReader {
 
     private String press;
 
-    private Date publishingdate;
+    private Date publishdate;
 
     private Integer shopnum;
 
@@ -49,12 +49,12 @@ public class BookReader {
         this.press = press == null ? null : press.trim();
     }
 
-    public Date getPublishingdate() {
-        return publishingdate;
+    public Date getPublishdate() {
+        return publishdate;
     }
 
-    public void setPublishingdate(Date publishingdate) {
-        this.publishingdate = publishingdate;
+    public void setPublishdate(Date publishdate) {
+        this.publishdate = publishdate;
     }
 
     public Integer getShopnum() {

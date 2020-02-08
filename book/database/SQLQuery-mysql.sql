@@ -23,7 +23,7 @@ CREATE TABLE Book
 	author char(20) not null,
 	press char(30) not null,
 	price decimal(7,2) not null,
-	publishingdate date not null,
+	publishdate date not null,
 	shopnum int not null
 ) ENGINE=INnoDB DEFAULT CHARSET=utf8;
 
@@ -67,10 +67,10 @@ select Borrow.readerno,readername,Borrow.bookno,bookname,author,press,borrowdate
 -- 读者图书视图
 create view ViewBook
 as
-select Book.bookno,bookname,author,press,publishingdate,shopnum,shopnum-count(ViewBorrownotReturn.bookno) curnum from ViewBorrownotReturn
+select Book.bookno,bookname,author,press,publishdate,shopnum,shopnum-count(ViewBorrownotReturn.bookno) curnum from ViewBorrownotReturn
 right join Book on ViewBorrownotReturn.bookno=Book.bookno 
 left join Reader on ViewBorrownotReturn.readerno=Reader.readerno
-group by Book.bookno,bookname,author,press,publishingdate,shopNum;
+group by Book.bookno,bookname,author,press,publishdate,shopNum;
 
 -- 管理员读者视图
 create view ViewReaderAdmin 
@@ -83,10 +83,10 @@ group by Reader.readerno,Borrow.readerno,readername,sex,identitycard,workUnit;
 -- 管理员图书视图
 create view ViewBookAdmin
 as
-select Book.bookno,bookname,author,press,price,publishingdate,shopNum,shopNum-count(ViewBorrownotReturn.bookno) curnum from ViewBorrownotReturn
+select Book.bookno,bookname,author,press,price,publishdate,shopNum,shopNum-count(ViewBorrownotReturn.bookno) curnum from ViewBorrownotReturn
 right join Book on ViewBorrownotReturn.bookno=Book.bookno 
 left join Reader on ViewBorrownotReturn.readerno=Reader.readerno
-group by Book.bookno,bookname,author,press,publishingdate,shopNum,price;
+group by Book.bookno,bookname,author,press,publishdate,shopNum,price;
 
 /*用户表(User)数据*/
 INSERT INTO User VALUES('admin','','admin');

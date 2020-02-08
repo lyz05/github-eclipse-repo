@@ -143,7 +143,7 @@
 		//页面加载完成
 		function documentready(){
 			$('#table').bootstrapTable({
-				url: "api/tablebootstrap",
+				url: "Table/bookadmins",
 				method: "post",
 				contentType: "application/x-www-form-urlencoded; charset=UTF-8",
 				locale: localStorage.getItem('LANGUAGE_CODE'),
@@ -158,7 +158,7 @@
 		        pageList: [3,5,8,10,15,20],
 		        paginationLoop: false,
 		        queryParams : function(params){
-		        	return $('#form1').serialize()+"&table=View_Book_Admin";
+		        	return $('#form1').serialize();
 		        }
 			});
 			$('#datetimepicker').datetimepicker({
@@ -175,16 +175,16 @@
 			$('#table').bootstrapTable('refresh');
 		}
 		function add(){
-			ajaxRequest("post","api/bookadd",$('#form1').serialize(),null,callBackReset);
+			ajaxRequest("post","Book",$('#form1').serialize(),null,callBackReset);
 		}
 		function del(bookno){
-	        ajaxRequest("get","api/bookdelete","bookno="+bookno,null,callBack);
+	        ajaxRequest("delete","Book/"+bookno,null,null,callBack);
 		}
 		function save() {
-	        ajaxRequest("post","api/bookedit",$('#form1').serialize(),null,callBackReset);
+	        ajaxRequest("put","Book",$('#form1').serialize(),null,callBackReset);
 		}
 		function edit(bookno) {
-			ajaxRequest("post","api/book","bookno="+bookno,null,function(info){
+			ajaxRequest("get","Book/"+bookno,null,null,function(info){
 				$('#savebtn').show();
 				$('#searchbtn').removeClass('btn-primary');
 				$('#savebtn').addClass('btn-primary');

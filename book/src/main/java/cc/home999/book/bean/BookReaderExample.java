@@ -412,63 +412,63 @@ public class BookReaderExample {
             return (Criteria) this;
         }
 
-        public Criteria andPublishingdateIsNull() {
-            addCriterion("publishingdate is null");
+        public Criteria andPublishdateIsNull() {
+            addCriterion("publishdate is null");
             return (Criteria) this;
         }
 
-        public Criteria andPublishingdateIsNotNull() {
-            addCriterion("publishingdate is not null");
+        public Criteria andPublishdateIsNotNull() {
+            addCriterion("publishdate is not null");
             return (Criteria) this;
         }
 
-        public Criteria andPublishingdateEqualTo(Date value) {
-            addCriterionForJDBCDate("publishingdate =", value, "publishingdate");
+        public Criteria andPublishdateEqualTo(Date value) {
+            addCriterionForJDBCDate("publishdate =", value, "publishdate");
             return (Criteria) this;
         }
 
-        public Criteria andPublishingdateNotEqualTo(Date value) {
-            addCriterionForJDBCDate("publishingdate <>", value, "publishingdate");
+        public Criteria andPublishdateNotEqualTo(Date value) {
+            addCriterionForJDBCDate("publishdate <>", value, "publishdate");
             return (Criteria) this;
         }
 
-        public Criteria andPublishingdateGreaterThan(Date value) {
-            addCriterionForJDBCDate("publishingdate >", value, "publishingdate");
+        public Criteria andPublishdateGreaterThan(Date value) {
+            addCriterionForJDBCDate("publishdate >", value, "publishdate");
             return (Criteria) this;
         }
 
-        public Criteria andPublishingdateGreaterThanOrEqualTo(Date value) {
-            addCriterionForJDBCDate("publishingdate >=", value, "publishingdate");
+        public Criteria andPublishdateGreaterThanOrEqualTo(Date value) {
+            addCriterionForJDBCDate("publishdate >=", value, "publishdate");
             return (Criteria) this;
         }
 
-        public Criteria andPublishingdateLessThan(Date value) {
-            addCriterionForJDBCDate("publishingdate <", value, "publishingdate");
+        public Criteria andPublishdateLessThan(Date value) {
+            addCriterionForJDBCDate("publishdate <", value, "publishdate");
             return (Criteria) this;
         }
 
-        public Criteria andPublishingdateLessThanOrEqualTo(Date value) {
-            addCriterionForJDBCDate("publishingdate <=", value, "publishingdate");
+        public Criteria andPublishdateLessThanOrEqualTo(Date value) {
+            addCriterionForJDBCDate("publishdate <=", value, "publishdate");
             return (Criteria) this;
         }
 
-        public Criteria andPublishingdateIn(List<Date> values) {
-            addCriterionForJDBCDate("publishingdate in", values, "publishingdate");
+        public Criteria andPublishdateIn(List<Date> values) {
+            addCriterionForJDBCDate("publishdate in", values, "publishdate");
             return (Criteria) this;
         }
 
-        public Criteria andPublishingdateNotIn(List<Date> values) {
-            addCriterionForJDBCDate("publishingdate not in", values, "publishingdate");
+        public Criteria andPublishdateNotIn(List<Date> values) {
+            addCriterionForJDBCDate("publishdate not in", values, "publishdate");
             return (Criteria) this;
         }
 
-        public Criteria andPublishingdateBetween(Date value1, Date value2) {
-            addCriterionForJDBCDate("publishingdate between", value1, value2, "publishingdate");
+        public Criteria andPublishdateBetween(Date value1, Date value2) {
+            addCriterionForJDBCDate("publishdate between", value1, value2, "publishdate");
             return (Criteria) this;
         }
 
-        public Criteria andPublishingdateNotBetween(Date value1, Date value2) {
-            addCriterionForJDBCDate("publishingdate not between", value1, value2, "publishingdate");
+        public Criteria andPublishdateNotBetween(Date value1, Date value2) {
+            addCriterionForJDBCDate("publishdate not between", value1, value2, "publishdate");
             return (Criteria) this;
         }
 
