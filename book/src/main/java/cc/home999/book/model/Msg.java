@@ -1,8 +1,5 @@
 package cc.home999.book.model;
 
-import java.util.HashMap;
-import java.util.Map;
-
 /**
  * 通用的返回类
  * @author congcong

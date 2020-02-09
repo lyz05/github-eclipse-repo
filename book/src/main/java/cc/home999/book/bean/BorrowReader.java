@@ -2,6 +2,10 @@ package cc.home999.book.bean;
 
 import java.util.Date;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
+import com.fasterxml.jackson.annotation.JsonFormat;
+
 public class BorrowReader {
     private String readerno;
 
@@ -15,10 +19,16 @@ public class BorrowReader {
 
     private String press;
 
+    @DateTimeFormat(pattern="yyyy-MM-dd")
+    @JsonFormat(pattern="yyyy-MM-dd",timezone = "GMT+8")
     private Date borrowdate;
 
+    @DateTimeFormat(pattern="yyyy-MM-dd")
+    @JsonFormat(pattern="yyyy-MM-dd",timezone = "GMT+8")
     private Date shoulddate;
 
+    @DateTimeFormat(pattern="yyyy-MM-dd")
+    @JsonFormat(pattern="yyyy-MM-dd",timezone = "GMT+8")
     private Date returndate;
 
     public String getReaderno() {
