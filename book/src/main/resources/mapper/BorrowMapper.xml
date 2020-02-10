@@ -75,7 +75,7 @@
       distinct
     </if>
     <include refid="Base_Column_List" />
-    from borrow
+    from Borrow
     <if test="_parameter != null">
       <include refid="Example_Where_Clause" />
     </if>
@@ -84,19 +84,19 @@
     </if>
   </select>
   <delete id="deleteByExample" parameterType="cc.home999.book.bean.BorrowExample">
-    delete from borrow
+    delete from Borrow
     <if test="_parameter != null">
       <include refid="Example_Where_Clause" />
     </if>
   </delete>
   <insert id="insert" parameterType="cc.home999.book.bean.Borrow">
-    insert into borrow (readerno, bookno, borrowdate, 
+    insert into Borrow (readerno, bookno, borrowdate, 
       shoulddate, returndate)
     values (#{readerno,jdbcType=CHAR}, #{bookno,jdbcType=CHAR}, #{borrowdate,jdbcType=DATE}, 
       #{shoulddate,jdbcType=DATE}, #{returndate,jdbcType=DATE})
   </insert>
   <insert id="insertSelective" parameterType="cc.home999.book.bean.Borrow">
-    insert into borrow
+    insert into Borrow
     <trim prefix="(" suffix=")" suffixOverrides=",">
       <if test="readerno != null">
         readerno,
@@ -133,13 +133,13 @@
     </trim>
   </insert>
   <select id="countByExample" parameterType="cc.home999.book.bean.BorrowExample" resultType="java.lang.Long">
-    select count(*) from borrow
+    select count(*) from Borrow
     <if test="_parameter != null">
       <include refid="Example_Where_Clause" />
     </if>
   </select>
   <update id="updateByExampleSelective" parameterType="map">
-    update borrow
+    update Borrow
     <set>
       <if test="record.readerno != null">
         readerno = #{record.readerno,jdbcType=CHAR},
@@ -162,7 +162,7 @@
     </if>
   </update>
   <update id="updateByExample" parameterType="map">
-    update borrow
+    update Borrow
     set readerno = #{record.readerno,jdbcType=CHAR},
       bookno = #{record.bookno,jdbcType=CHAR},
       borrowdate = #{record.borrowdate,jdbcType=DATE},

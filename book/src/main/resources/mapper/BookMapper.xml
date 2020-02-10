@@ -77,7 +77,7 @@
       distinct
     </if>
     <include refid="Base_Column_List" />
-    from book
+    from Book
     <if test="_parameter != null">
       <include refid="Example_Where_Clause" />
     </if>
@@ -88,21 +88,21 @@
   <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
     select 
     <include refid="Base_Column_List" />
-    from book
+    from Book
     where bookno = #{bookno,jdbcType=CHAR}
   </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
-    delete from book
+    delete from Book
     where bookno = #{bookno,jdbcType=CHAR}
   </delete>
   <delete id="deleteByExample" parameterType="cc.home999.book.bean.BookExample">
-    delete from book
+    delete from Book
     <if test="_parameter != null">
       <include refid="Example_Where_Clause" />
     </if>
   </delete>
   <insert id="insert" parameterType="cc.home999.book.bean.Book">
-    insert into book (bookno, bookname, author, 
+    insert into Book (bookno, bookname, author, 
       press, price, publishdate, 
       shopnum)
     values (#{bookno,jdbcType=CHAR}, #{bookname,jdbcType=CHAR}, #{author,jdbcType=CHAR}, 
@@ -110,7 +110,7 @@
       #{shopnum,jdbcType=INTEGER})
   </insert>
   <insert id="insertSelective" parameterType="cc.home999.book.bean.Book">
-    insert into book
+    insert into Book
     <trim prefix="(" suffix=")" suffixOverrides=",">
       <if test="bookno != null">
         bookno,
@@ -159,13 +159,13 @@
     </trim>
   </insert>
   <select id="countByExample" parameterType="cc.home999.book.bean.BookExample" resultType="java.lang.Long">
-    select count(*) from book
+    select count(*) from Book
     <if test="_parameter != null">
       <include refid="Example_Where_Clause" />
     </if>
   </select>
   <update id="updateByExampleSelective" parameterType="map">
-    update book
+    update Book
     <set>
       <if test="record.bookno != null">
         bookno = #{record.bookno,jdbcType=CHAR},
@@ -194,7 +194,7 @@
     </if>
   </update>
   <update id="updateByExample" parameterType="map">
-    update book
+    update Book
     set bookno = #{record.bookno,jdbcType=CHAR},
       bookname = #{record.bookname,jdbcType=CHAR},
       author = #{record.author,jdbcType=CHAR},
@@ -207,7 +207,7 @@
     </if>
   </update>
   <update id="updateByPrimaryKeySelective" parameterType="cc.home999.book.bean.Book">
-    update book
+    update Book
     <set>
       <if test="bookname != null">
         bookname = #{bookname,jdbcType=CHAR},
@@ -231,7 +231,7 @@
     where bookno = #{bookno,jdbcType=CHAR}
   </update>
   <update id="updateByPrimaryKey" parameterType="cc.home999.book.bean.Book">
-    update book
+    update Book
     set bookname = #{bookname,jdbcType=CHAR},
       author = #{author,jdbcType=CHAR},
       press = #{press,jdbcType=CHAR},

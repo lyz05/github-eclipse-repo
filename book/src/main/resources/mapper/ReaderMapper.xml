@@ -75,7 +75,7 @@
       distinct
     </if>
     <include refid="Base_Column_List" />
-    from reader
+    from Reader
     <if test="_parameter != null">
       <include refid="Example_Where_Clause" />
     </if>
@@ -86,27 +86,27 @@
   <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
     select 
     <include refid="Base_Column_List" />
-    from reader
+    from Reader
     where readerno = #{readerno,jdbcType=CHAR}
   </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
-    delete from reader
+    delete from Reader
     where readerno = #{readerno,jdbcType=CHAR}
   </delete>
   <delete id="deleteByExample" parameterType="cc.home999.book.bean.ReaderExample">
-    delete from reader
+    delete from Reader
     <if test="_parameter != null">
       <include refid="Example_Where_Clause" />
     </if>
   </delete>
   <insert id="insert" parameterType="cc.home999.book.bean.Reader">
-    insert into reader (readerno, readername, sex, 
+    insert into Reader (readerno, readername, sex, 
       identitycard, workunit)
     values (#{readerno,jdbcType=CHAR}, #{readername,jdbcType=CHAR}, #{sex,jdbcType=CHAR}, 
       #{identitycard,jdbcType=CHAR}, #{workunit,jdbcType=CHAR})
   </insert>
   <insert id="insertSelective" parameterType="cc.home999.book.bean.Reader">
-    insert into reader
+    insert into Reader
     <trim prefix="(" suffix=")" suffixOverrides=",">
       <if test="readerno != null">
         readerno,
@@ -143,13 +143,13 @@
     </trim>
   </insert>
   <select id="countByExample" parameterType="cc.home999.book.bean.ReaderExample" resultType="java.lang.Long">
-    select count(*) from reader
+    select count(*) from Reader
     <if test="_parameter != null">
       <include refid="Example_Where_Clause" />
     </if>
   </select>
   <update id="updateByExampleSelective" parameterType="map">
-    update reader
+    update Reader
     <set>
       <if test="record.readerno != null">
         readerno = #{record.readerno,jdbcType=CHAR},
@@ -172,7 +172,7 @@
     </if>
   </update>
   <update id="updateByExample" parameterType="map">
-    update reader
+    update Reader
     set readerno = #{record.readerno,jdbcType=CHAR},
       readername = #{record.readername,jdbcType=CHAR},
       sex = #{record.sex,jdbcType=CHAR},
@@ -183,7 +183,7 @@
     </if>
   </update>
   <update id="updateByPrimaryKeySelective" parameterType="cc.home999.book.bean.Reader">
-    update reader
+    update Reader
     <set>
       <if test="readername != null">
         readername = #{readername,jdbcType=CHAR},
@@ -201,7 +201,7 @@
     where readerno = #{readerno,jdbcType=CHAR}
   </update>
   <update id="updateByPrimaryKey" parameterType="cc.home999.book.bean.Reader">
-    update reader
+    update Reader
     set readername = #{readername,jdbcType=CHAR},
       sex = #{sex,jdbcType=CHAR},
       identitycard = #{identitycard,jdbcType=CHAR},

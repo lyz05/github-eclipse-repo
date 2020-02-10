@@ -77,7 +77,7 @@
       distinct
     </if>
     <include refid="Base_Column_List" />
-    from viewreaderadmin
+    from ViewReaderAdmin
     <if test="_parameter != null">
       <include refid="Example_Where_Clause" />
     </if>
@@ -86,13 +86,13 @@
     </if>
   </select>
   <delete id="deleteByExample" parameterType="cc.home999.book.bean.ReaderAdminExample">
-    delete from viewreaderadmin
+    delete from ViewReaderAdmin
     <if test="_parameter != null">
       <include refid="Example_Where_Clause" />
     </if>
   </delete>
   <insert id="insert" parameterType="cc.home999.book.bean.ReaderAdmin">
-    insert into viewreaderadmin (readerno, readername, sex, 
+    insert into ViewReaderAdmin (readerno, readername, sex, 
       identitycard, workunit, totalborrownum, 
       notreturnnum)
     values (#{readerno,jdbcType=CHAR}, #{readername,jdbcType=CHAR}, #{sex,jdbcType=CHAR}, 
@@ -100,7 +100,7 @@
       #{notreturnnum,jdbcType=BIGINT})
   </insert>
   <insert id="insertSelective" parameterType="cc.home999.book.bean.ReaderAdmin">
-    insert into viewreaderadmin
+    insert into ViewReaderAdmin
     <trim prefix="(" suffix=")" suffixOverrides=",">
       <if test="readerno != null">
         readerno,
@@ -149,13 +149,13 @@
     </trim>
   </insert>
   <select id="countByExample" parameterType="cc.home999.book.bean.ReaderAdminExample" resultType="java.lang.Long">
-    select count(*) from viewreaderadmin
+    select count(*) from ViewReaderAdmin
     <if test="_parameter != null">
       <include refid="Example_Where_Clause" />
     </if>
   </select>
   <update id="updateByExampleSelective" parameterType="map">
-    update viewreaderadmin
+    update ViewReaderAdmin
     <set>
       <if test="record.readerno != null">
         readerno = #{record.readerno,jdbcType=CHAR},
@@ -184,7 +184,7 @@
     </if>
   </update>
   <update id="updateByExample" parameterType="map">
-    update viewreaderadmin
+    update ViewReaderAdmin
     set readerno = #{record.readerno,jdbcType=CHAR},
       readername = #{record.readername,jdbcType=CHAR},
       sex = #{record.sex,jdbcType=CHAR},

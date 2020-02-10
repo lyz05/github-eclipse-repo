@@ -79,7 +79,7 @@
       distinct
     </if>
     <include refid="Base_Column_List" />
-    from viewborrow
+    from ViewBorrow
     <if test="_parameter != null">
       <include refid="Example_Where_Clause" />
     </if>
@@ -88,13 +88,13 @@
     </if>
   </select>
   <delete id="deleteByExample" parameterType="cc.home999.book.bean.BorrowReaderExample">
-    delete from viewborrow
+    delete from ViewBorrow
     <if test="_parameter != null">
       <include refid="Example_Where_Clause" />
     </if>
   </delete>
   <insert id="insert" parameterType="cc.home999.book.bean.BorrowReader">
-    insert into viewborrow (readerno, readername, bookno, 
+    insert into ViewBorrow (readerno, readername, bookno, 
       bookname, author, press, borrowdate, 
       shoulddate, returndate)
     values (#{readerno,jdbcType=CHAR}, #{readername,jdbcType=CHAR}, #{bookno,jdbcType=CHAR}, 
@@ -102,7 +102,7 @@
       #{shoulddate,jdbcType=DATE}, #{returndate,jdbcType=DATE})
   </insert>
   <insert id="insertSelective" parameterType="cc.home999.book.bean.BorrowReader">
-    insert into viewborrow
+    insert into ViewBorrow
     <trim prefix="(" suffix=")" suffixOverrides=",">
       <if test="readerno != null">
         readerno,
@@ -163,13 +163,13 @@
     </trim>
   </insert>
   <select id="countByExample" parameterType="cc.home999.book.bean.BorrowReaderExample" resultType="java.lang.Long">
-    select count(*) from viewborrow
+    select count(*) from ViewBorrow
     <if test="_parameter != null">
       <include refid="Example_Where_Clause" />
     </if>
   </select>
   <update id="updateByExampleSelective" parameterType="map">
-    update viewborrow
+    update ViewBorrow
     <set>
       <if test="record.readerno != null">
         readerno = #{record.readerno,jdbcType=CHAR},
@@ -204,7 +204,7 @@
     </if>
   </update>
   <update id="updateByExample" parameterType="map">
-    update viewborrow
+    update ViewBorrow
     set readerno = #{record.readerno,jdbcType=CHAR},
       readername = #{record.readername,jdbcType=CHAR},
       bookno = #{record.bookno,jdbcType=CHAR},

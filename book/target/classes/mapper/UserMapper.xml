@@ -73,7 +73,7 @@
       distinct
     </if>
     <include refid="Base_Column_List" />
-    from user
+    from User
     <if test="_parameter != null">
       <include refid="Example_Where_Clause" />
     </if>
@@ -84,27 +84,27 @@
   <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
     select 
     <include refid="Base_Column_List" />
-    from user
+    from User
     where username = #{username,jdbcType=CHAR}
   </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
-    delete from user
+    delete from User
     where username = #{username,jdbcType=CHAR}
   </delete>
   <delete id="deleteByExample" parameterType="cc.home999.book.bean.UserExample">
-    delete from user
+    delete from User
     <if test="_parameter != null">
       <include refid="Example_Where_Clause" />
     </if>
   </delete>
   <insert id="insert" parameterType="cc.home999.book.bean.User">
-    insert into user (username, password, role
+    insert into User (username, password, role
       )
     values (#{username,jdbcType=CHAR}, #{password,jdbcType=CHAR}, #{role,jdbcType=CHAR}
       )
   </insert>
   <insert id="insertSelective" parameterType="cc.home999.book.bean.User">
-    insert into user
+    insert into User
     <trim prefix="(" suffix=")" suffixOverrides=",">
       <if test="username != null">
         username,
@@ -129,13 +129,13 @@
     </trim>
   </insert>
   <select id="countByExample" parameterType="cc.home999.book.bean.UserExample" resultType="java.lang.Long">
-    select count(*) from user
+    select count(*) from User
     <if test="_parameter != null">
       <include refid="Example_Where_Clause" />
     </if>
   </select>
   <update id="updateByExampleSelective" parameterType="map">
-    update user
+    update User
     <set>
       <if test="record.username != null">
         username = #{record.username,jdbcType=CHAR},
@@ -152,7 +152,7 @@
     </if>
   </update>
   <update id="updateByExample" parameterType="map">
-    update user
+    update User
     set username = #{record.username,jdbcType=CHAR},
       password = #{record.password,jdbcType=CHAR},
       role = #{record.role,jdbcType=CHAR}
@@ -161,7 +161,7 @@
     </if>
   </update>
   <update id="updateByPrimaryKeySelective" parameterType="cc.home999.book.bean.User">
-    update user
+    update User
     <set>
       <if test="password != null">
         password = #{password,jdbcType=CHAR},
@@ -173,7 +173,7 @@
     where username = #{username,jdbcType=CHAR}
   </update>
   <update id="updateByPrimaryKey" parameterType="cc.home999.book.bean.User">
-    update user
+    update User
     set password = #{password,jdbcType=CHAR},
       role = #{role,jdbcType=CHAR}
     where username = #{username,jdbcType=CHAR}

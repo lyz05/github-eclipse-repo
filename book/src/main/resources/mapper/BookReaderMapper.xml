@@ -77,7 +77,7 @@
       distinct
     </if>
     <include refid="Base_Column_List" />
-    from viewbook
+    from ViewBook
     <if test="_parameter != null">
       <include refid="Example_Where_Clause" />
     </if>
@@ -86,13 +86,13 @@
     </if>
   </select>
   <delete id="deleteByExample" parameterType="cc.home999.book.bean.BookReaderExample">
-    delete from viewbook
+    delete from ViewBook
     <if test="_parameter != null">
       <include refid="Example_Where_Clause" />
     </if>
   </delete>
   <insert id="insert" parameterType="cc.home999.book.bean.BookReader">
-    insert into viewbook (bookno, bookname, author, 
+    insert into ViewBook (bookno, bookname, author, 
       press, publishdate, shopnum, 
       curnum)
     values (#{bookno,jdbcType=CHAR}, #{bookname,jdbcType=CHAR}, #{author,jdbcType=CHAR}, 
@@ -100,7 +100,7 @@
       #{curnum,jdbcType=BIGINT})
   </insert>
   <insert id="insertSelective" parameterType="cc.home999.book.bean.BookReader">
-    insert into viewbook
+    insert into ViewBook
     <trim prefix="(" suffix=")" suffixOverrides=",">
       <if test="bookno != null">
         bookno,
@@ -149,13 +149,13 @@
     </trim>
   </insert>
   <select id="countByExample" parameterType="cc.home999.book.bean.BookReaderExample" resultType="java.lang.Long">
-    select count(*) from viewbook
+    select count(*) from ViewBook
     <if test="_parameter != null">
       <include refid="Example_Where_Clause" />
     </if>
   </select>
   <update id="updateByExampleSelective" parameterType="map">
-    update viewbook
+    update ViewBook
     <set>
       <if test="record.bookno != null">
         bookno = #{record.bookno,jdbcType=CHAR},
@@ -184,7 +184,7 @@
     </if>
   </update>
   <update id="updateByExample" parameterType="map">
-    update viewbook
+    update ViewBook
     set bookno = #{record.bookno,jdbcType=CHAR},
       bookname = #{record.bookname,jdbcType=CHAR},
       author = #{record.author,jdbcType=CHAR},

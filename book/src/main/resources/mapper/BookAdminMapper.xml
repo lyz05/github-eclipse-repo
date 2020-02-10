@@ -78,7 +78,7 @@
       distinct
     </if>
     <include refid="Base_Column_List" />
-    from viewbookadmin
+    from ViewBookAdmin
     <if test="_parameter != null">
       <include refid="Example_Where_Clause" />
     </if>
@@ -87,13 +87,13 @@
     </if>
   </select>
   <delete id="deleteByExample" parameterType="cc.home999.book.bean.BookAdminExample">
-    delete from viewbookadmin
+    delete from ViewBookAdmin
     <if test="_parameter != null">
       <include refid="Example_Where_Clause" />
     </if>
   </delete>
   <insert id="insert" parameterType="cc.home999.book.bean.BookAdmin">
-    insert into viewbookadmin (bookno, bookname, author, 
+    insert into ViewBookAdmin (bookno, bookname, author, 
       press, price, publishdate, 
       shopNum, curnum)
     values (#{bookno,jdbcType=CHAR}, #{bookname,jdbcType=CHAR}, #{author,jdbcType=CHAR}, 
@@ -101,7 +101,7 @@
       #{shopnum,jdbcType=INTEGER}, #{curnum,jdbcType=BIGINT})
   </insert>
   <insert id="insertSelective" parameterType="cc.home999.book.bean.BookAdmin">
-    insert into viewbookadmin
+    insert into ViewBookAdmin
     <trim prefix="(" suffix=")" suffixOverrides=",">
       <if test="bookno != null">
         bookno,
@@ -156,13 +156,13 @@
     </trim>
   </insert>
   <select id="countByExample" parameterType="cc.home999.book.bean.BookAdminExample" resultType="java.lang.Long">
-    select count(*) from viewbookadmin
+    select count(*) from ViewBookAdmin
     <if test="_parameter != null">
       <include refid="Example_Where_Clause" />
     </if>
   </select>
   <update id="updateByExampleSelective" parameterType="map">
-    update viewbookadmin
+    update ViewBookAdmin
     <set>
       <if test="record.bookno != null">
         bookno = #{record.bookno,jdbcType=CHAR},
@@ -194,7 +194,7 @@
     </if>
   </update>
   <update id="updateByExample" parameterType="map">
-    update viewbookadmin
+    update ViewBookAdmin
     set bookno = #{record.bookno,jdbcType=CHAR},
       bookname = #{record.bookname,jdbcType=CHAR},
       author = #{record.author,jdbcType=CHAR},

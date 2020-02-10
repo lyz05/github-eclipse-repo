@@ -1,5 +1,7 @@
 package cc.home999.book.service;
 
+import static org.hamcrest.CoreMatchers.nullValue;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -18,6 +20,7 @@ public class UserService {
 	 */
 	public User judgeUser(User user) {
 		User retUser = userMapper.selectByPrimaryKey(user.getUsername());
+		if (retUser==null) return null;
 		retUser.setLocale(user.getLocale());
 		if (retUser.getPassword().equals(user.getPassword()))
 			return retUser;
