@@ -11,17 +11,17 @@
 
 	<!-- spring的配置文件，这里主要配置和业务逻辑有关的 -->
 	<!-- spring是一个容器，需要在Spring中注册组件，才能让容器来管理和分配组件 -->
-	<context:component-scan base-package="cc.home999">
+	<!-- 扫描Spring标签中的组件，base-package：指定扫描的基础包，将基础包中所有加了注解的类扫描进IOC -->
+	<context:component-scan base-package="cc.home999.book">
+		<!-- 指定排除规则，按照注解进行排除 -->
 		<context:exclude-filter type="annotation" expression="org.springframework.stereotype.Controller"/>
 	</context:component-scan>
 	
 	
 	<!-- ======================数据源，事务控制===================== -->
+	<!-- 加载外部配置文件 -->
 	<context:property-placeholder location="classpath:dbconfig.properties"/>
-	<!-- 一个Bean标签可以注册一个组件
-		class:写要注册组件的类全名
-		id：这个组件的唯一标识
-	 -->
+	<!-- 创建c3p0连接池 -->
 	<bean id="pooledDataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource">
 		<!-- 使用Property标签为ComboPooledDataSource对象的属性赋值 -->
 		<property name="jdbcUrl" value="${jdbc.jdbcUrl}"></property>
@@ -43,7 +43,7 @@
 	<!-- 扫描所有DAO接口的实现加入到ioc容器中 -->
 		<property name="basePackage" value="cc.home999.book.dao"></property>
 	</bean>
-	<!-- 配置一个可以执行批量的sqlSession -->
+	<!-- 配置一个可以执行单个语句的sqlSession -->
 	<bean id="sqlSession" class="org.mybatis.spring.SqlSessionTemplate">
 		<constructor-arg name="sqlSessionFactory" ref="sqlSessionFactory"></constructor-arg>
 		<constructor-arg name="executorType" value="SIMPLE"></constructor-arg>

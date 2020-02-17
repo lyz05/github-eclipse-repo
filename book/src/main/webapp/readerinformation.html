@@ -34,7 +34,12 @@
 					<span data-locale="hello">您好</span><span data-locale="admin">管理员</span>：<span id="username"></span>
 				</div>
 				<div class="col-xs-6 text-right" style="margin:2px 0px">
+				<div class="btn-group btn-group-sm">
+					<a role="button" class="btn btn-default" id="alterpwd" href="alterpassword.html">
+						<span data-locale="alterpwd">修改密码</span>
+					</a>
 					<a data-locale="logout" role="button" class="btn btn-primary btn-sm" href="javascript:logout()">注销</a>
+				</div>
 				</div>
 			</div>
 			<!-- 信息框栏 -->		
@@ -154,6 +159,7 @@
            $('title').html($.i18n.prop('readerinfo')+$.i18n.prop('management')+" - "+$.i18n.prop('systemname'));
 			ajaxRequest("get","User/userinfo",null,null,function(info){
 				$('#username').html(info.username);
+				$('#alterpwd').attr('href','alterpassword.html?username='+info.username);
 			});
 			tableautoresize();
  		}

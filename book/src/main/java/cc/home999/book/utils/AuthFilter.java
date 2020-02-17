@@ -1,8 +1,6 @@
 package cc.home999.book.utils;
 
 import java.io.IOException;
-import java.net.URL;
-
 import javax.servlet.Filter;
 import javax.servlet.FilterChain;
 import javax.servlet.FilterConfig;
