@@ -5,6 +5,7 @@ import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ResourceBundle;
 
 public class PoemWeb {
 	/*
@@ -18,16 +19,23 @@ public class PoemWeb {
     		"           <br /> 仰天大笑出门去，我辈岂是蓬蒿人。";
     */
     // MySQL 8.0 以上版本 - JDBC 驱动名及数据库 URL
-    static final String JDBC_DRIVER = "com.mysql.cj.jdbc.Driver";  
-    static final String DB_URL = "jdbc:mysql://localhost:3306/sdlc?useSSL=false&serverTimezone=UTC&allowPublicKeyRetrieval=true";
- 
+    String JDBC_DRIVER = "com.mysql.cj.jdbc.Driver";  
+    String DB_URL = "jdbc:mysql://tomcat:3306/sdlc?useSSL=false&serverTimezone=UTC&allowPublicKeyRetrieval=true";
+
  
     // 数据库的用户名与密码，需要根据自己的设置
-    static final String USER = "root";
-    static final String PASS = "5137";
+    String USER;
+    String PASS;
  
+    public PoemWeb() {
+    	ResourceBundle resource = ResourceBundle.getBundle("dbconfig");
+    	JDBC_DRIVER = resource.getString("jdbc.driverClass");
+    	DB_URL = resource.getString("jdbc.sdlc.jdbcUrl");
+    	USER = System.getenv("MYSQL_USER");
+    	PASS = System.getenv("MYSQL_PASS");
+	}
+    
 	public static void main(String[] args) {
-		// TODO Auto-generated method stub
 		//PoemWeb poem=new PoemWeb();
 	    //String poemText=poem.getPoemContent();
 		PoemWeb poem=new PoemWeb();

@@ -26,8 +26,8 @@
 		<!-- 使用Property标签为ComboPooledDataSource对象的属性赋值 -->
 		<property name="jdbcUrl" value="${jdbc.jdbcUrl}"></property>
 		<property name="driverClass" value="${jdbc.driverClass}"></property>
-		<property name="user" value="${jdbc.user}"></property>
-		<property name="password" value="${jdbc.password}"></property>
+		<property name="user" value="#{systemEnvironment['MYSQL_USER']}"></property>
+		<property name="password" value="#{systemEnvironment['MYSQL_PASS']}"></property>
 	</bean>
 
 	<!-- =================配置和Mybatis的整合=========================== -->

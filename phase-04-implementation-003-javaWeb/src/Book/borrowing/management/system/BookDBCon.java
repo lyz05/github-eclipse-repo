@@ -14,6 +14,7 @@ import java.sql.ResultSet;
 import java.sql.ResultSetMetaData;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ResourceBundle;
 import java.util.Vector;
 
 /**
@@ -22,19 +23,29 @@ import java.util.Vector;
  * 数据库连接层
  */
 public class BookDBCon {
-    private static final String DBdriver="com.mysql.cj.jdbc.Driver";
-    private static final String DBURL = "jdbc:mysql://localhost:3306/BookDB?useSSL=false&serverTimezone=UTC&characterEncoding=UTF-8&allowPublicKeyRetrieval=true";
-    //private static final String DBURL="jdbc:sqlserver://localhost:1433;DatabaseName=BookDB";       //内网数据库
-    //private static final String DBURL="jdbc:sqlserver://s24.natfrp.org:62776;DatabaseName=BookDB"; //外网数据库
-    private static final String DBUSER="root"; 
-    private static final String DBPASS="5137"; 
+    private static String DBdriver;
+    private static String DBURL;
+    private static String DBUSER;
+    private static String DBPASS;
     private BookDBCon() {} //禁止实例化
+    
+    /**
+     * 加载数据库配置文件
+     */
+    private static void loadConfig() {
+    	ResourceBundle resource = ResourceBundle.getBundle("dbconfig");
+    	DBdriver = resource.getString("jdbc.driverClass");
+    	DBURL = resource.getString("jdbc.book.jdbcUrl");
+    	DBUSER = System.getenv("MYSQL_USER");
+    	DBPASS = System.getenv("MYSQL_PASS");
+	}
     
     /**
      * 加载数据库驱动程序，以jdbc的方式连接数据库
      * @return 返回连接信息
      */
     private static Connection JdbcCon(){
+    	loadConfig();
         try{
             //--2 加载数据库驱动程序
             Class.forName(DBdriver);
