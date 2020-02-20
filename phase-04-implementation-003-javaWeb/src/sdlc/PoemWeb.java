@@ -33,6 +33,9 @@ public class PoemWeb {
     	DB_URL = resource.getString("jdbc.sdlc.jdbcUrl");
     	USER = System.getenv("MYSQL_USER");
     	PASS = System.getenv("MYSQL_PASS");
+    	System.out.println(USER);
+    	System.out.println(PASS);
+    	System.out.println(DB_URL);
 	}
     
 	public static void main(String[] args) {
