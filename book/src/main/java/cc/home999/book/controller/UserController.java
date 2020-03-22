@@ -53,6 +53,9 @@ public class UserController {
 		if (!info.confirmnewpwd()) {
 			return Msg.fail("两次输入的新密码不一致");
 		}
+		if (!info.confirmoldandnewpwd()) {
+			return Msg.fail("旧密码与新密码相同");
+		}
 		User user = new User(info.getUsername(), info.getPwd());
 		user =  userService.judgeUser(user);
 		if (user!=null) {
@@ -60,7 +63,7 @@ public class UserController {
 			if (userService.updateUser(user)) {
 				return Msg.success("更新密码成功");
 			} else {
-				return Msg.success("更新密码失败");
+				return Msg.fail("更新密码失败");
 			}
 		} else return Msg.fail("用户名或密码错误");
 	}

@@ -39,4 +39,11 @@ public class AlterPasswordModel {
 		return newpwd.equals(newpwd2);
 	}
 	
+	/**
+	 * 判断旧密码与新密码是否不同
+	 * @return
+	 */
+	public boolean confirmoldandnewpwd() {
+		return !newpwd.equals(pwd);
+	}
 }
