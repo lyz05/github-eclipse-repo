@@ -65,7 +65,7 @@
 						<div class="form-group">
 						<label data-locale="readerno" class="col-sm-2 control-label">读者编号</label>
 						<div class="col-sm-3">
-							<input class="form-control" name="readerno">
+							<input class="form-control" name="readerno" onkeyup="value=value.replace(/[\u0391-\uFFE5]/gi,'')">
 						</div>
 						<label data-locale="identitycard" class="col-sm-2 col-sm-offset-2 control-label">身份证号</label>
 						<div class="col-sm-3">

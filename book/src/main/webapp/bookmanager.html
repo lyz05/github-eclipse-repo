@@ -62,7 +62,7 @@
 						<div class="form-group">
 						<label data-locale="bookno" class="col-sm-2 control-label">图书编号</label>
 						<div class="col-sm-3">
-						<input class="form-control" id="bookno" name="bookno">
+						<input class="form-control" id="bookno" name="bookno" onkeyup="value=value.replace(/[\u0391-\uFFE5]/gi,'')">
 						</div>
 						<label data-locale="price" class="col-sm-2 col-sm-offset-2 control-label">价格</label>
 						<div class="col-sm-3">

@@ -16,16 +16,29 @@
 		<!-- 自定义js -->
 		<script src="static/js/ajaxrequest.js"></script>
 		<script src="static/js/jquery-form.js"></script>
+		<style>
+			.background {
+				background: url(static/imgs/background.png) no-repeat padding-box content-box;
+				background-color: #0082c9;
+			}
+		</style>
 	</head>
 
-	<body>
+	<body class="background">
 		<div class="container">
 		<div class="row text-center" >
-			<div class="col-sm-4 col-sm-offset-4">
-				<h1 data-locale="login">登录</h1>
+			<div class="page-header">
+				<h1>
+					<span data-locale="systemname" style="color:#fff;">图书借阅管理系统</span>
+				</h1>
 				<div class="alert alert-info fade in" style="display: none;" role="alert" id="alert">
 		        	alert message
 				</div>
+			</div>
+			<div class="col-sm-4 col-sm-offset-4">
+				<h2>
+					<span data-locale="login" style="color:#fff;">登录</span>
+				</h2>
 				<form id="form1" class="form-horizontal" onkeydown="if(event.keyCode==13)login();">
 					<div class="form-group input-group">					
 						<span class="input-group-addon">
@@ -50,12 +63,11 @@
 						</select>
 					</div>
 					<div class="form-group">
-						<input data-locale-btn="login" id="loginbtn" type="button" value="登录" class="btn btn-primary btn-block" onclick="login()"/>
+						<input data-locale-btn="login" id="loginbtn" type="button" value="登录" class="btn btn-success btn-block" onclick="login()"/>
 						<input data-locale-btn="reset" id="resetbtn" type="reset" value="重置" class="btn btn-default btn-block"/>
 					</div>
 				</form>
 			</div>
-			
 		</div>
 		</div>
 		<!-- 模态框（Modal） -->
