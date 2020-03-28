@@ -1,5 +1,8 @@
 package cc.home999.book.service;
 
+import static org.hamcrest.CoreMatchers.nullValue;
+
+import org.aspectj.weaver.reflect.IReflectionWorld;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -25,6 +28,17 @@ public class UserService {
 		else return null;
 	}
 	
+	/** 根据用户名查询读者信息
+	 * 
+	 * @param username
+	 * @return
+	 */
+	public User getUser(String username) {
+		User retUser = userMapper.selectByPrimaryKey(username);
+		if (retUser==null) return null;
+		return retUser;
+	}
+	
 	/**
 	 * 更新用户数据
 	 * @param user
@@ -33,7 +47,7 @@ public class UserService {
 	public boolean updateUser(User user) {
 		// TODO 自动生成的方法存根
 		int count = userMapper.updateByPrimaryKey(user);
-		return count==1;
+		return count==1 || count==0;
 	}
 	
 	/** 添加用户
