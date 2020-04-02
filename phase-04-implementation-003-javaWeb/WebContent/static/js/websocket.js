@@ -1,8 +1,15 @@
 var websocket = null;
-function connect(basepath) {
+function connect() {
 	//判断当前浏览器是否支持WebSocket
 	if ('WebSocket' in window) {
-		var url=basepath+'/WebSocket';
+		if (location.protocol == 'https:')
+			wsprotol = "wss";
+		else 
+			wsprotol = "ws";
+		port = location.port;
+		if (port!="") port = ":"+port;
+		var url = wsprotol+"://"+location.hostname+port+location.pathname+"WebSocket";
+		//alert(url);
 		websocket = new WebSocket(url);
 	} else {
 		alert("Not Support Websocket!");

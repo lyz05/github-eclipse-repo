@@ -29,7 +29,6 @@ public class UserController {
 	@RequestMapping("login")
 	@ResponseBody
 	public Msg login(User user,HttpSession session) {
-
 		User retUser = userService.judgeUser(user);
 		session.setAttribute("user", retUser);
 		if (retUser!=null) {
