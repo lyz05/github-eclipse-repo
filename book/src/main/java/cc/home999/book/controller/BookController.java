@@ -46,6 +46,13 @@ public class BookController {
 		//传入字段检查
 		if (result.hasErrors()) {
 			FieldError fieldError = result.getFieldError();
+			System.out.println(fieldError);
+			System.out.println(fieldError.getField());
+			System.out.println(fieldError.getRejectedValue());
+			System.out.println(fieldError.isBindingFailure());
+			if (fieldError.getField().equals("publishdate") && fieldError.isBindingFailure()){
+				return Msg.fail("日期格式错误！请输入正确的日期格式，形如：2000-01-01");
+			}
 			return Msg.fail(fieldError.getDefaultMessage());
 		}			
 		BookAdmin oldbook = bookAdminService.getbook(book.getBookno());
