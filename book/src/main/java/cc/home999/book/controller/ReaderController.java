@@ -6,10 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.FieldError;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 
 import cc.home999.book.bean.Reader;
 import cc.home999.book.bean.User;
@@ -18,7 +15,7 @@ import cc.home999.book.service.ReaderAdminService;
 import cc.home999.book.service.ReaderService;
 import cc.home999.book.service.UserService;
 
-@Controller
+@RestController
 @RequestMapping("Reader")
 public class ReaderController {
 
@@ -35,7 +32,6 @@ public class ReaderController {
 	 * @return
 	 */
 	@RequestMapping(value="{readerno}",method = RequestMethod.GET)
-	@ResponseBody
 	public Object getreader(@PathVariable("readerno") String readerno){
 		Reader reader = readerService.getreader(readerno);
 		if (reader==null) return Msg.fail("未找到这位读者");
@@ -49,7 +45,6 @@ public class ReaderController {
 	 * @return
 	 */
 	@RequestMapping(method = RequestMethod.POST)
-	@ResponseBody
 	public Msg addreader(@Valid Reader reader,BindingResult result) {
 		//传入字段检查
 		if (result.hasErrors()) {
@@ -74,7 +69,6 @@ public class ReaderController {
 	 * @return
 	 */
 	@RequestMapping(method = RequestMethod.PUT)
-	@ResponseBody
 	public Msg editreader(@Valid Reader reader,BindingResult result) {
 		//传入字段检查
 		if (result.hasErrors()) {
@@ -97,7 +91,6 @@ public class ReaderController {
 	 * @return
 	 */
 	@RequestMapping(value = "{readerno}",method = RequestMethod.DELETE)
-	@ResponseBody
 	public Msg delreader(@PathVariable("readerno") String readerno) {
 		//级联删除
 		if (userService.deluser(readerno)) {

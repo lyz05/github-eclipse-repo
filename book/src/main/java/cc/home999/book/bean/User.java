@@ -1,12 +1,18 @@
 package cc.home999.book.bean;
 
+import javax.validation.constraints.NotNull;
+
 public class User {
+
+    @NotNull
     private String username;
 
+    @NotNull
     private String password;
 
     private String role;
-    
+
+    @NotNull
     private String locale;
 
     public User() {

@@ -3,6 +3,8 @@ package cc.home999.book.controller;
 import java.util.List;
 
 import javax.servlet.http.HttpSession;
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -21,8 +23,9 @@ import cc.home999.book.service.BookAdminService;
 import cc.home999.book.service.BookReaderService;
 import cc.home999.book.service.BorrowReaderService;
 import cc.home999.book.service.ReaderAdminService;
+import org.springframework.web.bind.annotation.RestController;
 
-@Controller
+@RestController
 @RequestMapping("Table")
 public class TableController {
 	
@@ -41,7 +44,6 @@ public class TableController {
 	 * @return
 	 */
 	@RequestMapping("bookadmins")
-	@ResponseBody
 	public TableModel bookadmins(Book book) {
 		List<BookAdmin> books = bookAdminService.getbooks(book);
 		int total = books.size();
@@ -50,11 +52,10 @@ public class TableController {
 	
 	/** 获取读者Table
 	 * 
-	 * @param Reader
+	 * @param reader
 	 * @return
 	 */
 	@RequestMapping("readeradmins")
-	@ResponseBody
 	public TableModel Readeradmins(Reader reader) {
 		List<ReaderAdmin> readers = readerAdminService.getreaders(reader);
 		int total = readers.size();
@@ -63,11 +64,10 @@ public class TableController {
 	
 	/** 获取读者借阅信息Table
 	 * 
-	 * @param Reader
+	 * @param table
 	 * @return
 	 */
 	@RequestMapping("borrowreaders")
-	@ResponseBody
 	public TableModel borrowreaders(String table,HttpSession session) {
 		User user = (User)session.getAttribute("user");
 		boolean isnull = table.equals("Borrow");
@@ -78,11 +78,10 @@ public class TableController {
 	
 	/** 获取读者看到的图书Table
 	 * 
-	 * @param Reader
+	 * @param book
 	 * @return
 	 */
 	@RequestMapping("bookreaders")
-	@ResponseBody
 	public TableModel bookreaders(BookReaderModel book,HttpSession session) {
 		//System.out.println(book);
 		User user = (User) session.getAttribute("user");

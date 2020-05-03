@@ -1,9 +1,16 @@
 package cc.home999.book.model;
 
+import javax.validation.constraints.NotNull;
+
 public class AlterPasswordModel {
+
+	@NotNull
 	private String username;
+	@NotNull
 	private String pwd;
+	@NotNull
 	private String newpwd;
+	@NotNull
 	private String newpwd2;
 	
 	public String getUsername() {

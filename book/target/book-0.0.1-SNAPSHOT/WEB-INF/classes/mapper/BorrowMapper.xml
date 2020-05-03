@@ -1,0 +1,175 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cc.home999.book.dao.BorrowMapper">
+  <resultMap id="BaseResultMap" type="cc.home999.book.bean.Borrow">
+    <result column="readerno" jdbcType="CHAR" property="readerno" />
+    <result column="bookno" jdbcType="CHAR" property="bookno" />
+    <result column="borrowdate" jdbcType="DATE" property="borrowdate" />
+    <result column="shoulddate" jdbcType="DATE" property="shoulddate" />
+    <result column="returndate" jdbcType="DATE" property="returndate" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    readerno, bookno, borrowdate, shoulddate, returndate
+  </sql>
+  <select id="selectByExample" parameterType="cc.home999.book.bean.BorrowExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from Borrow
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <delete id="deleteByExample" parameterType="cc.home999.book.bean.BorrowExample">
+    delete from Borrow
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="cc.home999.book.bean.Borrow">
+    insert into Borrow (readerno, bookno, borrowdate, 
+      shoulddate, returndate)
+    values (#{readerno,jdbcType=CHAR}, #{bookno,jdbcType=CHAR}, #{borrowdate,jdbcType=DATE}, 
+      #{shoulddate,jdbcType=DATE}, #{returndate,jdbcType=DATE})
+  </insert>
+  <insert id="insertSelective" parameterType="cc.home999.book.bean.Borrow">
+    insert into Borrow
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="readerno != null">
+        readerno,
+      </if>
+      <if test="bookno != null">
+        bookno,
+      </if>
+      <if test="borrowdate != null">
+        borrowdate,
+      </if>
+      <if test="shoulddate != null">
+        shoulddate,
+      </if>
+      <if test="returndate != null">
+        returndate,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="readerno != null">
+        #{readerno,jdbcType=CHAR},
+      </if>
+      <if test="bookno != null">
+        #{bookno,jdbcType=CHAR},
+      </if>
+      <if test="borrowdate != null">
+        #{borrowdate,jdbcType=DATE},
+      </if>
+      <if test="shoulddate != null">
+        #{shoulddate,jdbcType=DATE},
+      </if>
+      <if test="returndate != null">
+        #{returndate,jdbcType=DATE},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="cc.home999.book.bean.BorrowExample" resultType="java.lang.Long">
+    select count(*) from Borrow
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update Borrow
+    <set>
+      <if test="record.readerno != null">
+        readerno = #{record.readerno,jdbcType=CHAR},
+      </if>
+      <if test="record.bookno != null">
+        bookno = #{record.bookno,jdbcType=CHAR},
+      </if>
+      <if test="record.borrowdate != null">
+        borrowdate = #{record.borrowdate,jdbcType=DATE},
+      </if>
+      <if test="record.shoulddate != null">
+        shoulddate = #{record.shoulddate,jdbcType=DATE},
+      </if>
+      <if test="record.returndate != null">
+        returndate = #{record.returndate,jdbcType=DATE},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update Borrow
+    set readerno = #{record.readerno,jdbcType=CHAR},
+      bookno = #{record.bookno,jdbcType=CHAR},
+      borrowdate = #{record.borrowdate,jdbcType=DATE},
+      shoulddate = #{record.shoulddate,jdbcType=DATE},
+      returndate = #{record.returndate,jdbcType=DATE}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+</mapper>

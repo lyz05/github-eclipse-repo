@@ -1,9 +1,13 @@
 package cc.home999.book.controller;
 
 import javax.servlet.http.HttpSession;
+import javax.validation.Valid;
+import javax.validation.constraints.NotNull;
 
+import org.hibernate.validator.constraints.NotBlank;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
@@ -15,8 +19,10 @@ import cc.home999.book.model.Msg;
 import cc.home999.book.model.UserInfoModel;
 import cc.home999.book.service.ReaderService;
 import cc.home999.book.service.UserService;
+import org.springframework.web.bind.annotation.RestController;
 
-@Controller
+@Validated
+@RestController
 @RequestMapping("User")
 public class UserController {
 
@@ -27,8 +33,7 @@ public class UserController {
 	ReaderService readerService;
 	
 	@RequestMapping("login")
-	@ResponseBody
-	public Msg login(User user,HttpSession session) {
+	public Msg login(@Valid User user, HttpSession session) {
 		User retUser = userService.judgeUser(user);
 		session.setAttribute("user", retUser);
 		if (retUser!=null) {
@@ -42,15 +47,13 @@ public class UserController {
 	}
 	
 	@RequestMapping("logout")
-	@ResponseBody
 	public Msg logout(HttpSession session) {
 		session.setAttribute("user", null);
 		return new Msg(605,"注销操作完成");
 	}
 	
 	@RequestMapping("psdalter")
-	@ResponseBody
-	public Msg psdalter(AlterPasswordModel info) {
+	public Msg psdalter(@Valid AlterPasswordModel info) {
 		if (!info.confirmnewpwd()) {
 			return Msg.fail("两次输入的新密码不一致");
 		}
@@ -70,7 +73,6 @@ public class UserController {
 	}
 	
 	@RequestMapping("userinfo")
-	@ResponseBody
 	public UserInfoModel userinfo(HttpSession session) {
 		User user = (User)session.getAttribute("user");
 		String username = user.getUsername();
@@ -82,8 +84,7 @@ public class UserController {
 	}
 	
 	@RequestMapping("resetpwd")
-	@ResponseBody
-	public Msg resetpwd(HttpSession session,String readerno) {
+	public Msg resetpwd(String readerno, HttpSession session) {
 		User user = (User)session.getAttribute("user");
 		if (user.getRole().equals("admin")) {
 			User reader = userService.getUser(readerno);

@@ -6,10 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.FieldError;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 
 import cc.home999.book.bean.Book;
 import cc.home999.book.bean.BookAdmin;
@@ -17,7 +14,7 @@ import cc.home999.book.model.Msg;
 import cc.home999.book.service.BookAdminService;
 import cc.home999.book.service.BookService;
 
-@Controller
+@RestController
 @RequestMapping("Book")
 public class BookController {
 
@@ -32,7 +29,6 @@ public class BookController {
 	 * @return
 	 */
 	@RequestMapping(value="{bookno}",method = RequestMethod.GET)
-	@ResponseBody
 	public Object getbook(@PathVariable("bookno") String bookno){
 		Book book = bookService.getbook(bookno);
 		if (book==null) return Msg.fail("未找到这本书");
@@ -46,7 +42,6 @@ public class BookController {
 	 * @return
 	 */
 	@RequestMapping(method = RequestMethod.POST)
-	@ResponseBody
 	public Msg addbook(@Valid Book book,BindingResult result) {
 		//传入字段检查
 		if (result.hasErrors()) {
@@ -71,7 +66,6 @@ public class BookController {
 	 * @return
 	 */
 	@RequestMapping(method = RequestMethod.PUT)
-	@ResponseBody
 	public Msg editbook(@Valid Book book,BindingResult result) {
 		//传入字段检查
 		if (result.hasErrors()) {
@@ -99,7 +93,6 @@ public class BookController {
 	 * @return
 	 */
 	@RequestMapping(value = "{bookno}",method = RequestMethod.DELETE)
-	@ResponseBody
 	public Msg delbook(@PathVariable("bookno") String bookno) {
 		//级联删除
 		if (bookService.delbook(bookno)) {
