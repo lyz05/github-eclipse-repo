@@ -28,7 +28,7 @@ function ajaxRequest(type, url, data, href, func) {
 				func(result);
 		},
 		error : function(xhr, errorMessage, e) {
-			alert(xhr.statusText);
+			alert("Http Status Code:"+xhr.status+",Text:"+xhr.statusText);
 			window.location.href = './';
 			// alert("发送请求失败，请检查网络状态");
 		}

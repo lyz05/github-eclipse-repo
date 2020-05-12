@@ -56,7 +56,7 @@
 	<!-- 登录认证过滤器 -->
      <filter>
          <filter-name>Auth</filter-name>
-         <filter-class>cc.home999.book.utils.AuthFilter</filter-class>
+         <filter-class>cc.home999.book.filter.AuthFilter</filter-class>
      </filter>
      <filter-mapping>
          <filter-name>Auth</filter-name>

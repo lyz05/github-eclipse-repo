@@ -38,7 +38,7 @@ public class TableController {
 	@Autowired
 	BookReaderService bookReaderService;
 	
-	/** 获取图书Table
+	/** 管理员获取图书Table
 	 * 
 	 * @param book
 	 * @return
@@ -50,7 +50,7 @@ public class TableController {
 		return new TableModel(total,books);
 	}
 	
-	/** 获取读者Table
+	/** 管理员获取读者Table
 	 * 
 	 * @param reader
 	 * @return
