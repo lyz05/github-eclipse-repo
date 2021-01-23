@@ -1,29 +1,17 @@
 package cc.home999.book.controller;
 
-import java.util.List;
-
-import javax.servlet.http.HttpSession;
-import javax.validation.Valid;
-
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
-
-import cc.home999.book.bean.Book;
-import cc.home999.book.bean.BookAdmin;
-import cc.home999.book.bean.BookReader;
-import cc.home999.book.bean.BorrowReader;
-import cc.home999.book.bean.Reader;
-import cc.home999.book.bean.ReaderAdmin;
-import cc.home999.book.bean.User;
+import cc.home999.book.bean.*;
 import cc.home999.book.model.BookReaderModel;
 import cc.home999.book.model.TableModel;
 import cc.home999.book.service.BookAdminService;
 import cc.home999.book.service.BookReaderService;
 import cc.home999.book.service.BorrowReaderService;
 import cc.home999.book.service.ReaderAdminService;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.*;
+
+import javax.servlet.http.HttpSession;
+import java.util.List;
 
 @RestController
 @RequestMapping("Table")
@@ -45,6 +33,7 @@ public class TableController {
 	 */
 	@RequestMapping("bookadmins")
 	public TableModel bookadmins(Book book) {
+		System.out.println(book);
 		List<BookAdmin> books = bookAdminService.getbooks(book);
 		int total = books.size();
 		return new TableModel(total,books);
@@ -69,6 +58,7 @@ public class TableController {
 	 */
 	@RequestMapping("borrowreaders")
 	public TableModel borrowreaders(String table,HttpSession session) {
+		System.out.println("borrowreaders Controller:table:"+table);
 		User user = (User)session.getAttribute("user");
 		boolean isnull = table.equals("Borrow");
 		List<BorrowReader> borrowReaders = borrowReaderService.getborrowReaders(user.getUsername(),isnull);
@@ -82,7 +72,7 @@ public class TableController {
 	 * @return
 	 */
 	@RequestMapping("bookreaders")
-	public TableModel bookreaders(BookReaderModel book,HttpSession session) {
+	public TableModel bookreaders(BookReaderModel book, HttpSession session) {
 		//System.out.println(book);
 		User user = (User) session.getAttribute("user");
 		List<String> booknos = borrowReaderService.getbooknosnotreturn(user.getUsername());

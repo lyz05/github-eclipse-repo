@@ -1,25 +1,18 @@
 package cc.home999.book.controller;
 
-import javax.servlet.http.HttpSession;
-import javax.validation.Valid;
-import javax.validation.constraints.NotNull;
-
-import org.hibernate.validator.constraints.NotBlank;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
-import org.springframework.validation.annotation.Validated;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
-
-import com.mysql.cj.Session;
-
 import cc.home999.book.bean.User;
 import cc.home999.book.model.AlterPasswordModel;
 import cc.home999.book.model.Msg;
 import cc.home999.book.model.UserInfoModel;
 import cc.home999.book.service.ReaderService;
 import cc.home999.book.service.UserService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.validation.annotation.Validated;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+
+import javax.servlet.http.HttpSession;
+import javax.validation.Valid;
 
 @Validated
 @RestController
@@ -75,12 +68,16 @@ public class UserController {
 	@RequestMapping("userinfo")
 	public UserInfoModel userinfo(HttpSession session) {
 		User user = (User)session.getAttribute("user");
+		if (user == null) {
+			return new UserInfoModel();
+		}
 		String username = user.getUsername();
 		String readername = null;
-		if (user.getRole().equals("reader")) {
+		String role = user.getRole();
+		if (role.equals("reader")) {
 			readername = readerService.getReadername(user.getUsername());
 		}
-		return new UserInfoModel(username, readername);
+		return new UserInfoModel(username, readername, role);
 	}
 	
 	@RequestMapping("resetpwd")

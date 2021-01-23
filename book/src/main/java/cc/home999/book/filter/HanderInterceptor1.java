@@ -21,8 +21,9 @@ public class HanderInterceptor1 implements HandlerInterceptor {
     }
 
     @Override
-    public boolean preHandle(HttpServletRequest arg0, HttpServletResponse arg1,
+    public boolean preHandle(HttpServletRequest request, HttpServletResponse response,
                              Object arg2) throws Exception {
+
         return true;
     }
 }

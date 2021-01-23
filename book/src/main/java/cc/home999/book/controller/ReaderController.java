@@ -1,19 +1,17 @@
 package cc.home999.book.controller;
 
-import javax.validation.Valid;
-
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
-import org.springframework.validation.BindingResult;
-import org.springframework.validation.FieldError;
-import org.springframework.web.bind.annotation.*;
-
 import cc.home999.book.bean.Reader;
 import cc.home999.book.bean.User;
 import cc.home999.book.model.Msg;
 import cc.home999.book.service.ReaderAdminService;
 import cc.home999.book.service.ReaderService;
 import cc.home999.book.service.UserService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.validation.BindingResult;
+import org.springframework.validation.FieldError;
+import org.springframework.web.bind.annotation.*;
+
+import javax.validation.Valid;
 
 @RestController
 @RequestMapping("Reader")
@@ -46,6 +44,7 @@ public class ReaderController {
 	 */
 	@RequestMapping(method = RequestMethod.POST)
 	public Msg addreader(@Valid Reader reader,BindingResult result) {
+		System.out.println("addreader");
 		//传入字段检查
 		if (result.hasErrors()) {
 			FieldError fieldError = result.getFieldError();
@@ -54,10 +53,15 @@ public class ReaderController {
 		if (!(reader.getSex().equals("男") || reader.getSex().equals("女"))) {
 			return Msg.fail("性别字段非法");
 		}
+		Reader olduser = readerService.getreader(reader.getReaderno());
+		if (olduser != null) {
+			return Msg.fail("已经有读者号相同的读者了");
+		}
 		User user = new User(reader.getReaderno(),"","reader");
 		if (userService.addUser(user) && readerService.addreader(reader)) {
 			return Msg.success("添加读者成功");
 		} else {
+			System.out.println("fail");
 			return Msg.fail("添加读者失败");
 		}
 	}

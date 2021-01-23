@@ -21,7 +21,7 @@ public class AuthFilter implements Filter{
     }
 
     /**
-     * 前端接口权限认证
+     * 前端接口权限认证(拦截*.html)
      * @param req
      * @param resp
      * @param chain

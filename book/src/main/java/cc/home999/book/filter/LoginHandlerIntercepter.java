@@ -39,13 +39,17 @@ public class LoginHandlerIntercepter implements HandlerInterceptor {
         System.out.println("MVC:" + requestURI);
         //System.out.println("MVC Context Path:" + request.getContextPath());
         boolean flag = false;
+        //黑名单机制
         if (user == null) {
             flag |= requestfilter(request, "Book");
             flag |= requestfilter(request, "Borrow");
             flag |= requestfilter(request, "Reader");
-            flag |= requestfilter(request, "Table");
-            flag |= requestfilter(request, "User","psdalter");
-            flag |= requestfilter(request, "User","userinfo");
+            //flag |= requestfilter(request, "Table","bookadmins");
+            flag |= requestfilter(request, "Table","readeradmins");
+            flag |= requestfilter(request, "Table","borrowreaders");
+            flag |= requestfilter(request, "Table","readeradmins");
+            flag |= requestfilter(request, "User","bookreaders");
+            //flag |= requestfilter(request, "User","userinfo");
             flag |= requestfilter(request, "User","resetpwd");
         } else if (user.hasRole("reader")) {
             flag |= requestfilter(request, "Book");
@@ -55,9 +59,8 @@ public class LoginHandlerIntercepter implements HandlerInterceptor {
             flag |= requestfilter(request, "User","resetpwd");
         } else if (user.hasRole("admin")) {
             flag |= requestfilter(request, "Borrow");
-            flag |= requestfilter(request, "User","resetpwd");
         }
-        if (flag) response.sendError(403,"Permission denied");
+        if (flag && !request.getMethod().equals("OPTIONS")) response.sendError(403,"Permission denied");
         return !flag;
     }
 

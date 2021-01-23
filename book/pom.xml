@@ -7,6 +7,15 @@
     <version>0.0.1-SNAPSHOT</version>
     <packaging>war</packaging>
 
+    <!--  指定java版本，及源代码编码格式  -->
+    <properties>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <encoding>UTF-8</encoding>
+        <java.version>1.8</java.version>
+        <maven.compiler.source>1.8</maven.compiler.source>
+        <maven.compiler.target>1.8</maven.compiler.target>
+    </properties>
+
     <dependencies>
         <!-- 引入项目依赖 -->
         <!-- MBG 逆向工程生成bean -->
@@ -24,7 +33,7 @@
             <artifactId>spring-webmvc</artifactId>
             <version>4.3.7.RELEASE</version>
         </dependency>
-        <!-- jackson，json转换 -->
+        <!-- jackson，json转换，将controller返回的对象转换为json -->
         <!-- https://mvnrepository.com/artifact/com.fasterxml.jackson.core/jackson-databind -->
         <dependency>
             <groupId>com.fasterxml.jackson.core</groupId>
@@ -137,5 +146,13 @@
             <artifactId>shiro-quartz</artifactId>
             <version>1.2.3</version>
         </dependency>
+        <!-- Tomcat -->
+        <dependency>
+            <groupId>org.apache.tomcat</groupId>
+            <artifactId>tomcat-catalina</artifactId>
+            <version>8.0.22</version>
+            <scope>provided</scope>
+        </dependency>
     </dependencies>
+
 </project>

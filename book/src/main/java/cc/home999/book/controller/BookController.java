@@ -1,18 +1,16 @@
 package cc.home999.book.controller;
 
-import javax.validation.Valid;
-
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
-import org.springframework.validation.BindingResult;
-import org.springframework.validation.FieldError;
-import org.springframework.web.bind.annotation.*;
-
 import cc.home999.book.bean.Book;
 import cc.home999.book.bean.BookAdmin;
 import cc.home999.book.model.Msg;
 import cc.home999.book.service.BookAdminService;
 import cc.home999.book.service.BookService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.validation.BindingResult;
+import org.springframework.validation.FieldError;
+import org.springframework.web.bind.annotation.*;
+
+import javax.validation.Valid;
 
 @RestController
 @RequestMapping("Book")
@@ -74,6 +72,7 @@ public class BookController {
 	 */
 	@RequestMapping(method = RequestMethod.PUT)
 	public Msg editbook(@Valid Book book,BindingResult result) {
+		System.out.println("Book PUT Request");
 		//传入字段检查
 		if (result.hasErrors()) {
 			FieldError fieldError = result.getFieldError();
