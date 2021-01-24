@@ -150,6 +150,7 @@ INSERT INTO Borrow VALUES('R2007002','B200201003','20110917','20111017','2011101
 
 
 /* 测试用 */
+/*
 delete from Borrow where bookno='B200301002'
 select bookno from book where shopNum=1;
 select * from User;
@@ -160,3 +161,4 @@ select * from ViewBorrow;
 select * from ViewBook;
 select * from ViewReaderAdmin;
 select * from ViewBookAdmin;
+*/

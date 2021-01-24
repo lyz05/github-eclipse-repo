@@ -8,6 +8,9 @@ import org.mybatis.generator.config.*;
 import org.mybatis.generator.config.xml.ConfigurationParser;
 import org.mybatis.generator.internal.DefaultShellCallback;
 
+/**
+ * 根据mbg.xml从数据库逆向生成Modal。
+ */
 public class MBGTest {
 	public static void main(String[] args) throws Exception {
 		List<String> warnings = new ArrayList<String>();

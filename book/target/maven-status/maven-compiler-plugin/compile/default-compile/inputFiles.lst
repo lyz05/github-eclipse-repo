@@ -1,6 +1,7 @@
 D:\git\github-eclipse-repo\book\src\main\java\cc\home999\book\bean\ReaderAdmin.java
 D:\git\github-eclipse-repo\book\src\main\java\cc\home999\book\model\BookReaderModel.java
 D:\git\github-eclipse-repo\book\src\main\java\cc\home999\book\bean\BookAdminExample.java
+D:\git\github-eclipse-repo\book\src\main\java\cc\home999\book\filter\CorsFilter.java
 D:\git\github-eclipse-repo\book\src\main\java\cc\home999\book\bean\Borrow.java
 D:\git\github-eclipse-repo\book\src\main\java\cc\home999\book\model\AlterPasswordModel.java
 D:\git\github-eclipse-repo\book\src\main\java\cc\home999\book\bean\UserExample.java

@@ -44,6 +44,7 @@ cc\home999\book\bean\BorrowReader.class
 cc\home999\book\bean\BookAdminExample$Criterion.class
 cc\home999\book\bean\BookReaderExample$Criterion.class
 cc\home999\book\bean\BookReader.class
+cc\home999\book\filter\CorsFilter.class
 cc\home999\book\dao\BookReaderMapper.class
 cc\home999\book\bean\BorrowReaderExample$Criteria.class
 cc\home999\book\bean\BorrowExample$Criterion.class
