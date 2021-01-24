@@ -1,16 +1,15 @@
 cc\home999\book\bean\ReaderExample$Criterion.class
 cc\home999\book\service\BorrowService.class
 cc\home999\book\bean\ReaderExample.class
-cc\home999\book\controller\BookController.class
 cc\home999\book\controller\TableController.class
 cc\home999\book\filter\HanderInterceptor1.class
 cc\home999\book\bean\ReaderExample$GeneratedCriteria.class
 cc\home999\book\model\Msg.class
 cc\home999\book\bean\Reader.class
 cc\home999\book\bean\UserExample$Criteria.class
-cc\home999\book\controller\ReaderController.class
 cc\home999\book\dao\ReaderMapper.class
 cc\home999\book\bean\BorrowExample$GeneratedCriteria.class
+cc\home999\book\controller\ReadersController.class
 cc\home999\book\test\MBGTest.class
 cc\home999\book\model\BookReaderModel.class
 cc\home999\book\model\AlterPasswordModel.class
@@ -58,6 +57,7 @@ cc\home999\book\bean\Book.class
 cc\home999\book\service\BookService.class
 cc\home999\book\bean\BookExample.class
 cc\home999\book\bean\UserExample$GeneratedCriteria.class
+cc\home999\book\controller\BooksController.class
 cc\home999\book\model\UserInfoModel.class
 cc\home999\book\bean\BookAdminExample.class
 cc\home999\book\filter\AuthFilter.class

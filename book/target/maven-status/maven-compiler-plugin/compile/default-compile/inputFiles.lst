@@ -21,9 +21,9 @@ D:\git\github-eclipse-repo\book\src\main\java\cc\home999\book\controller\UserCon
 D:\git\github-eclipse-repo\book\src\main\java\cc\home999\book\dao\BookMapper.java
 D:\git\github-eclipse-repo\book\src\main\java\cc\home999\book\service\ReaderAdminService.java
 D:\git\github-eclipse-repo\book\src\main\java\cc\home999\book\bean\User.java
-D:\git\github-eclipse-repo\book\src\main\java\cc\home999\book\controller\ReaderController.java
 D:\git\github-eclipse-repo\book\src\main\java\cc\home999\book\dao\BorrowReaderMapper.java
 D:\git\github-eclipse-repo\book\src\main\java\cc\home999\book\bean\BorrowReader.java
+D:\git\github-eclipse-repo\book\src\main\java\cc\home999\book\controller\BooksController.java
 D:\git\github-eclipse-repo\book\src\main\java\cc\home999\book\service\BorrowReaderService.java
 D:\git\github-eclipse-repo\book\src\main\java\cc\home999\book\controller\BorrowController.java
 D:\git\github-eclipse-repo\book\src\main\java\cc\home999\book\bean\Book.java
@@ -43,5 +43,5 @@ D:\git\github-eclipse-repo\book\src\main\java\cc\home999\book\dao\BookReaderMapp
 D:\git\github-eclipse-repo\book\src\main\java\cc\home999\book\test\MBGTest.java
 D:\git\github-eclipse-repo\book\src\main\java\cc\home999\book\dao\UserMapper.java
 D:\git\github-eclipse-repo\book\src\main\java\cc\home999\book\service\UserService.java
-D:\git\github-eclipse-repo\book\src\main\java\cc\home999\book\controller\BookController.java
+D:\git\github-eclipse-repo\book\src\main\java\cc\home999\book\controller\ReadersController.java
 D:\git\github-eclipse-repo\book\src\main\java\cc\home999\book\bean\ReaderAdminExample.java

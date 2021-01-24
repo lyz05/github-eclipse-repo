@@ -61,13 +61,7 @@ public class UserService {
      * @return
      */
     public boolean addUser(User user) {
-        int count;
-        try {
-            count = userMapper.insert(user);
-        } catch (DataIntegrityViolationException e) {
-            System.out.println("SQL Error:"+e.getCause());
-            return false;
-        }
+        int count = userMapper.insert(user);
         return count == 1;
     }
 

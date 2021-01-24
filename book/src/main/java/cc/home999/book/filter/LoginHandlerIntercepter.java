@@ -24,6 +24,7 @@ public class LoginHandlerIntercepter implements HandlerInterceptor {
 
     /**
      * 后端接口权限认证
+     *
      * @param request
      * @param response
      * @param arg2
@@ -38,29 +39,29 @@ public class LoginHandlerIntercepter implements HandlerInterceptor {
         String requestURI = request.getRequestURI();
         System.out.println("MVC:" + requestURI);
         //System.out.println("MVC Context Path:" + request.getContextPath());
+        //return true;
+        //复杂请求跨域预指令不会携带cookies需要白名单放行
+        if (request.getMethod().equals("OPTIONS"))
+            return true;
         boolean flag = false;
         //黑名单机制
         if (user == null) {
-            flag |= requestfilter(request, "Book");
-            flag |= requestfilter(request, "Borrow");
             flag |= requestfilter(request, "Reader");
-            //flag |= requestfilter(request, "Table","bookadmins");
-            flag |= requestfilter(request, "Table","readeradmins");
-            flag |= requestfilter(request, "Table","borrowreaders");
-            flag |= requestfilter(request, "Table","readeradmins");
-            flag |= requestfilter(request, "User","bookreaders");
-            //flag |= requestfilter(request, "User","userinfo");
-            flag |= requestfilter(request, "User","resetpwd");
+            flag |= requestfilter(request, "Table");
         } else if (user.hasRole("reader")) {
             flag |= requestfilter(request, "Book");
             flag |= requestfilter(request, "Reader");
-            flag |= requestfilter(request, "Table" , "bookadmins");
-            flag |= requestfilter(request, "Table" , "readeradmins");
-            flag |= requestfilter(request, "User","resetpwd");
+            flag |= requestfilter(request, "User", "resetpwd");
         } else if (user.hasRole("admin")) {
             flag |= requestfilter(request, "Borrow");
         }
-        if (flag && !request.getMethod().equals("OPTIONS")) response.sendError(403,"Permission denied");
+
+        if (flag) {
+            //没有认证过
+            if (user == null) response.setStatus(401);
+            //认证过，但没有相应的权限
+            else response.setStatus(403);
+        }
         return !flag;
     }
 

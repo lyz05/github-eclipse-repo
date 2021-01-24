@@ -33,27 +33,27 @@ public class AuthFilter implements Filter{
             FilterChain chain) throws IOException, ServletException {
         HttpServletResponse response = (HttpServletResponse)resp;
         HttpServletRequest request = (HttpServletRequest)req;
-        HttpSession session = request.getSession();
-        String uri = request.getRequestURI();
-        User user = (User) session.getAttribute("user");
-        System.out.println(request.getRequestURI());
-        if (user==null && !uri.endsWith("index.html")) {
-        	//用户未登录(白名单)
-        	response.sendRedirect(request.getContextPath()+"/index.html");
-        	return;
-        }
-        if (user!=null) {
-        	//读者访问管理员页面(黑名单)
-        	if (user.hasRole("reader") && (uri.endsWith("readerinformation.html") || uri.endsWith("bookmanager.html"))) {
-        		response.sendError(403);
-        		return;
-        	}
-        	//管理员访问读者页面(黑名单)
-        	if (user.hasRole("admin") && uri.endsWith("borrowinformation.html")) {
-        		response.sendError(403);
-        		return;
-        	}
-		}
+//        HttpSession session = request.getSession();
+//        String uri = request.getRequestURI();
+//        User user = (User) session.getAttribute("user");
+//        System.out.println(request.getRequestURI());
+//        if (user==null && !uri.endsWith("index.html")) {
+//        	//用户未登录(白名单)
+//        	response.sendRedirect(request.getContextPath()+"/index.html");
+//        	return;
+//        }
+//        if (user!=null) {
+//        	//读者访问管理员页面(黑名单)
+//        	if (user.hasRole("reader") && (uri.endsWith("readerinformation.html") || uri.endsWith("bookmanager.html"))) {
+//        		response.sendError(403);
+//        		return;
+//        	}
+//        	//管理员访问读者页面(黑名单)
+//        	if (user.hasRole("admin") && uri.endsWith("borrowinformation.html")) {
+//        		response.sendError(403);
+//        		return;
+//        	}
+//		}
     	chain.doFilter(request, response);
     }
 

@@ -10,6 +10,10 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpSession;
 
+/**
+ * url:			/Borrow/{bookno}
+ * methods:		POST DELETE PUT
+ */
 @RestController
 @RequestMapping("Borrow")
 public class BorrowController {

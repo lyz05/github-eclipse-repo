@@ -16,68 +16,42 @@ import java.util.List;
 @RestController
 @RequestMapping("Table")
 public class TableController {
-	
-	@Autowired
-	BookAdminService bookAdminService;
-	@Autowired
-	ReaderAdminService readerAdminService;
-	@Autowired
-	BorrowReaderService borrowReaderService;
-	@Autowired
-	BookReaderService bookReaderService;
-	
-	/** 管理员获取图书Table
-	 * 
-	 * @param book
-	 * @return
-	 */
-	@RequestMapping("bookadmins")
-	public TableModel bookadmins(Book book) {
-		System.out.println(book);
-		List<BookAdmin> books = bookAdminService.getbooks(book);
-		int total = books.size();
-		return new TableModel(total,books);
-	}
-	
-	/** 管理员获取读者Table
-	 * 
-	 * @param reader
-	 * @return
-	 */
-	@RequestMapping("readeradmins")
-	public TableModel Readeradmins(Reader reader) {
-		List<ReaderAdmin> readers = readerAdminService.getreaders(reader);
-		int total = readers.size();
-		return new TableModel(total,readers);
-	}
-	
-	/** 获取读者借阅信息Table
-	 * 
-	 * @param table
-	 * @return
-	 */
-	@RequestMapping("borrowreaders")
-	public TableModel borrowreaders(String table,HttpSession session) {
-		System.out.println("borrowreaders Controller:table:"+table);
-		User user = (User)session.getAttribute("user");
-		boolean isnull = table.equals("Borrow");
-		List<BorrowReader> borrowReaders = borrowReaderService.getborrowReaders(user.getUsername(),isnull);
-		int total = borrowReaders.size();
-		return new TableModel(total,borrowReaders);
-	}
-	
-	/** 获取读者看到的图书Table
-	 * 
-	 * @param book
-	 * @return
-	 */
-	@RequestMapping("bookreaders")
-	public TableModel bookreaders(BookReaderModel book, HttpSession session) {
-		//System.out.println(book);
-		User user = (User) session.getAttribute("user");
-		List<String> booknos = borrowReaderService.getbooknosnotreturn(user.getUsername());
-		List<BookReader> rows = bookReaderService.getbookreaders(book,booknos);
-		int total = rows.size();
-		return new TableModel(total, rows);
-	}
+
+
+    @Autowired
+    BorrowReaderService borrowReaderService;
+    @Autowired
+    BookReaderService bookReaderService;
+
+
+    /**
+     * 获取读者借阅信息Table
+     *
+     * @param table
+     * @return
+     */
+    @RequestMapping("borrowreaders")
+    public TableModel borrowreaders(String table, HttpSession session) {
+        User user = (User) session.getAttribute("user");
+        boolean isnull = table.equals("Borrow");
+        List<BorrowReader> borrowReaders = borrowReaderService.getborrowReaders(user.getUsername(), isnull);
+        int total = borrowReaders.size();
+        return new TableModel(total, borrowReaders);
+    }
+
+    /**
+     * 获取读者看到的图书Table
+     *
+     * @param book
+     * @return
+     */
+    @RequestMapping("bookreaders")
+    public TableModel bookreaders(BookReaderModel book, HttpSession session) {
+        //System.out.println(book);
+        User user = (User) session.getAttribute("user");
+        List<String> booknos = borrowReaderService.getbooknosnotreturn(user.getUsername());
+        List<BookReader> rows = bookReaderService.getbookreaders(book, booknos);
+        int total = rows.size();
+        return new TableModel(total, rows);
+    }
 }
