@@ -1,6 +1,6 @@
 /* 删除BookDB1数据库及用户 */
 use mysql;
-drop database BookDB1;
+-- drop database BookDB1;
 
 /*创建数据库（BookDB1）*/
 CREATE DATABASE BookDB1;

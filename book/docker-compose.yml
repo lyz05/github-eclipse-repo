@@ -1,0 +1,28 @@
+version: '3'
+
+services:
+  mysql:
+    container_name: mysql
+    build: ./database
+    restart: always
+    # volumes:
+    #   - ./mysql/data:/var/lib/mysql
+    ports:
+      - "3306:3306"
+    environment:
+      - MYSQL_ROOT_PASSWORD=16a8aa61
+
+  tomcat:
+    container_name: tomcat
+    restart: always
+    build: .
+    ports:
+      - 8080:8080
+#      - 8009:8009
+    # volumes:
+    #   - ./tomcat/webapps:/usr/local/tomcat/webapps
+    depends_on:
+      - mysql
+    environment:
+      - MYSQL_USER=root
+      - MYSQL_PASS=16a8aa61

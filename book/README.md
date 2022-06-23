@@ -19,6 +19,7 @@
 ## Project setup
 使用IDEA IDE打开项目，设置该项目为Maven项目，配置Tomcat7服务器，配置mysql数据库，并执行[SQLQuery-mysql](./database/SQLQuery-mysql.sql)下的SQL语句。
 
+### 项目依赖
  - mvn clean
  - mvn compile
  - mvn package
