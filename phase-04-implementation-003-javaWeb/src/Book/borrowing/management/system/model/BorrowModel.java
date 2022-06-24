@@ -2,7 +2,7 @@ package Book.borrowing.management.system.model;
 
 import Book.borrowing.management.system.BookDBCon;
 
-//½èÔÄĞÅÏ¢
+//å€Ÿé˜…ä¿¡æ¯
 public class BorrowModel {
 	public String bookno,bookname,author,press,borrowdate,shoulddate,returndate;
 	private String readerno,language;
@@ -15,14 +15,14 @@ public class BorrowModel {
 		this.shoulddate=shoulddate;
 		this.returndate=returndate;
 	}
-	//½èÔÄ²Ù×÷¹¹Ôìº¯Êı
+	//å€Ÿé˜…æ“ä½œæ„é€ å‡½æ•°
 	public BorrowModel(String bookno,String readerno) {
 		this.bookno=bookno;
 		this.readerno=readerno;
 	}
 	public Msg add() {
 		String sql = "insert Borrow values(?,?,now(),date_add(NOW(),interval 1 MONTH),null)";
-		if (Integer.parseInt(BookDBCon.preparedqueryResult("select ÔÚ¿âÊıÁ¿ from View_Book where Í¼Êé±àºÅ=?",bookno)) <= 0) {
+		if (Integer.parseInt(BookDBCon.preparedqueryResult("select åœ¨åº“æ•°é‡ from View_Book where å›¾ä¹¦ç¼–å·=?",bookno)) <= 0) {
             return new Msg("403","booknull",language);
         }
         if (BookDBCon.preparedqueryResult("select readerNO from Borrow where readerNO=? and bookNO=? and returnDate is null",readerno,bookno) != null){

@@ -4,14 +4,14 @@ import java.util.Vector;
 
 import Book.borrowing.management.system.BookDBCon;
 
-//¹ÜÀíÔ±Í¼Êé
+//ç®¡ç†å‘˜å›¾ä¹¦
 public class BookModel{
 	public String bookno,bookname,author,press,price,publishdate,shopnum,curnum;
 	private String language;
 	public BookModel(String language,String bookno) {
 		this.language = language;
 		this.bookno=bookno;
-		String sql = "select * from View_Book_Admin where Í¼Êé±àºÅ='"+bookno+"'";
+		String sql = "select * from View_Book_Admin where å›¾ä¹¦ç¼–å·='"+bookno+"'";
 		Vector<String> name = new Vector<String>();
 		Vector<Vector<String>> data = new Vector<Vector<String>>();
 		BookDBCon.queryVector2(sql, data, name);
@@ -48,7 +48,7 @@ public class BookModel{
 		this.curnum=curnum;
 	}
 	public String getSqlQueryString1() {
-		String sql= " where Í¼Êé±àºÅ like '%"+bookno+"%' and Í¼ÊéÃû³Æ like '%"+bookname+"%' and ×÷Õß like '%"+author +"%' and ³ö°æÉç like '%"+press+"%'";
+		String sql= " where å›¾ä¹¦ç¼–å· like '%"+bookno+"%' and å›¾ä¹¦åç§° like '%"+bookname+"%' and ä½œè€… like '%"+author +"%' and å‡ºç‰ˆç¤¾ like '%"+press+"%'";
 		return sql;
 	}
 	
@@ -67,11 +67,11 @@ public class BookModel{
 		}
 	}
 	public Msg delBook() {
-		String sql = "select * from View_Book where Í¼Êé±àºÅ=?";
+		String sql = "select * from View_Book where å›¾ä¹¦ç¼–å·=?";
 		if (BookDBCon.preparedqueryResult(sql,bookno) == null) {
 			return new Msg("403","booknotfound",language);
 		}
-		sql = "select * from View_Book where Í¼Êé±àºÅ=? and ÔÚ¿âÊıÁ¿=Èë¿âÊıÁ¿";
+		sql = "select * from View_Book where å›¾ä¹¦ç¼–å·=? and åœ¨åº“æ•°é‡=å…¥åº“æ•°é‡";
 		if (BookDBCon.preparedqueryResult(sql,bookno) == null)
 		{
 			return new Msg("403","somebody",language);
@@ -104,7 +104,7 @@ public class BookModel{
 	public boolean checkShopNum() {
 		String sql;
 		String subshopnum;
-		sql = "select Èë¿âÊıÁ¿-ÔÚ¿âÊıÁ¿ from View_Book where Í¼Êé±àºÅ=?";
+		sql = "select å…¥åº“æ•°é‡-åœ¨åº“æ•°é‡ from View_Book where å›¾ä¹¦ç¼–å·=?";
 		if((subshopnum = BookDBCon.preparedqueryResult(sql, bookno)) != null) {
 			return Integer.parseInt(shopnum)>=Integer.parseInt(subshopnum);
 		} else return Integer.parseInt(shopnum)>=0;

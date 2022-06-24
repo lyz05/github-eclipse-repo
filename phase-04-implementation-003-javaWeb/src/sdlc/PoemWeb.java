@@ -9,21 +9,21 @@ import java.util.ResourceBundle;
 
 public class PoemWeb {
 	/*
-	public  String poemTest="¡¶ÄÏÁê±ğ¶ùÍ¯Èë¾©¡·<br /> <span style=\"font-size: 18px; color: grey\">\r\n" + 
-    		"			[ÌÆ] Àî°× </span><br /> \r\n" + 
-    		"			<br /> °×¾ÆĞÂÊìÉ½ÖĞ¹é£¬»Æ¼¦×ÄÊòÇïÕı·Ê¡£ \r\n" + 
-    		"			<br /> ºôÍ¯Åë¼¦×Ã°×¾Æ£¬¶ùÅ®æÒĞ¦Ç£ÈËÒÂ¡£\r\n" +
-    		"           <br /> ¸ß¸èÈ¡×íÓû×ÔÎ¿£¬ÆğÎèÂäÈÕÕù¹â»Ô¡£\r\n" +
-    		"           <br /> ÓÎËµÍò³Ë¿à²»Ôç£¬Öø±Ş¿çÂíÉæÔ¶µÀ¡£\r\n" +
-    		"           <br /> »á»üÓŞ¸¾ÇáÂò³¼£¬ÓàÒà´Ç¼ÒÎ÷ÈëÇØ¡£\r\n" +
-    		"           <br /> ÑöÌì´óĞ¦³öÃÅÈ¥£¬ÎÒ±²ÆñÊÇÅîİïÈË¡£";
+	public  String poemTest="ã€Šå—é™µåˆ«å„¿ç«¥å…¥äº¬ã€‹<br /> <span style=\"font-size: 18px; color: grey\">\r\n" + 
+    		"			[å”] æç™½ </span><br /> \r\n" + 
+    		"			<br /> ç™½é…’æ–°ç†Ÿå±±ä¸­å½’ï¼Œé»„é¸¡å•„é»ç§‹æ­£è‚¥ã€‚ \r\n" + 
+    		"			<br /> å‘¼ç«¥çƒ¹é¸¡é…Œç™½é…’ï¼Œå„¿å¥³å¬‰ç¬‘ç‰µäººè¡£ã€‚\r\n" +
+    		"           <br /> é«˜æ­Œå–é†‰æ¬²è‡ªæ…°ï¼Œèµ·èˆè½æ—¥äº‰å…‰è¾‰ã€‚\r\n" +
+    		"           <br /> æ¸¸è¯´ä¸‡ä¹˜è‹¦ä¸æ—©ï¼Œè‘—é­è·¨é©¬æ¶‰è¿œé“ã€‚\r\n" +
+    		"           <br /> ä¼šç¨½æ„šå¦‡è½»ä¹°è‡£ï¼Œä½™äº¦è¾å®¶è¥¿å…¥ç§¦ã€‚\r\n" +
+    		"           <br /> ä»°å¤©å¤§ç¬‘å‡ºé—¨å»ï¼Œæˆ‘è¾ˆå²‚æ˜¯è“¬è’¿äººã€‚";
     */
-    // MySQL 8.0 ÒÔÉÏ°æ±¾ - JDBC Çı¶¯Ãû¼°Êı¾İ¿â URL
+    // MySQL 8.0 ä»¥ä¸Šç‰ˆæœ¬ - JDBC é©±åŠ¨ååŠæ•°æ®åº“ URL
     String JDBC_DRIVER = "com.mysql.cj.jdbc.Driver";  
     String DB_URL = "jdbc:mysql://tomcat:3306/sdlc?useSSL=false&serverTimezone=UTC&allowPublicKeyRetrieval=true";
 
  
-    // Êı¾İ¿âµÄÓÃ»§ÃûÓëÃÜÂë£¬ĞèÒª¸ù¾İ×Ô¼ºµÄÉèÖÃ
+    // æ•°æ®åº“çš„ç”¨æˆ·åä¸å¯†ç ï¼Œéœ€è¦æ ¹æ®è‡ªå·±çš„è®¾ç½®
     String USER;
     String PASS;
  
@@ -50,55 +50,55 @@ public class PoemWeb {
         Statement stmt = null;
         String poemTest = "";
         try{
-            // ×¢²á JDBC Çı¶¯
+            // æ³¨å†Œ JDBC é©±åŠ¨
             Class.forName(JDBC_DRIVER);
         
-            // ´ò¿ªÁ´½Ó
-            System.out.println("Á¬½ÓÊı¾İ¿â...");
+            // æ‰“å¼€é“¾æ¥
+            System.out.println("è¿æ¥æ•°æ®åº“...");
             conn = DriverManager.getConnection(DB_URL,USER,PASS);
         
-            // Ö´ĞĞ²éÑ¯
-            System.out.println(" ÊµÀı»¯Statement¶ÔÏó...");
+            // æ‰§è¡ŒæŸ¥è¯¢
+            System.out.println(" å®ä¾‹åŒ–Statementå¯¹è±¡...");
             stmt = conn.createStatement();
             String sql;
             sql = "SELECT id, content FROM poem";
             ResultSet rs = stmt.executeQuery(sql);
         
-            // Õ¹¿ª½á¹û¼¯Êı¾İ¿â
+            // å±•å¼€ç»“æœé›†æ•°æ®åº“
             int cnt = 0;
             while(rs.next()){
             	cnt ++;
-                // Í¨¹ı×Ö¶Î¼ìË÷
+                // é€šè¿‡å­—æ®µæ£€ç´¢
                 int id  = rs.getInt("id");
                 String content = rs.getString("content");
     
-                // Êä³öÊı¾İ
+                // è¾“å‡ºæ•°æ®
                 System.out.print("ID: " + id);
                 System.out.print(", content: " + content);
                 System.out.print("\n");
                 
-                //¶Á³öÊ«´Êµ½±äÁ¿
+                //è¯»å‡ºè¯—è¯åˆ°å˜é‡
                 if (cnt == num)
                 {
                 	poemTest = content;
                 }
             }
-            // Íê³Éºó¹Ø±Õ
+            // å®Œæˆåå…³é—­
             rs.close();
             stmt.close();
             conn.close();
         }catch(SQLException se){
-            // ´¦Àí JDBC ´íÎó
+            // å¤„ç† JDBC é”™è¯¯
             se.printStackTrace();
         }catch(Exception e){
-            // ´¦Àí Class.forName ´íÎó
+            // å¤„ç† Class.forName é”™è¯¯
             e.printStackTrace();
         }finally{
-            // ¹Ø±Õ×ÊÔ´
+            // å…³é—­èµ„æº
             try{
                 if(stmt!=null) stmt.close();
             }catch(SQLException se2){
-            }// Ê²Ã´¶¼²»×ö
+            }// ä»€ä¹ˆéƒ½ä¸åš
             try{
                 if(conn!=null) conn.close();
             }catch(SQLException se){
@@ -112,5 +112,5 @@ public class PoemWeb {
 //create database sdlc;
 //use sdlc
 //create table if not exists `poem`(`id` int primary key,`content` char(255)) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-//INSERT INTO `poem` VALUES ('1', '¡¶ÄÏÁê±ğ¶ùÍ¯Èë¾©¡·<br /> <span style=\"font-size: 18px; color: grey\">[ÌÆ] Àî°× </span><br /> <br /> °×¾ÆĞÂÊìÉ½ÖĞ¹é£¬»Æ¼¦×ÄÊòÇïÕı·Ê¡£<br /> ºôÍ¯Åë¼¦×Ã°×¾Æ£¬¶ùÅ®æÒĞ¦Ç£ÈËÒÂ¡£<br /> ¸ß¸èÈ¡×íÓû×ÔÎ¿£¬ÆğÎèÂäÈÕÕù¹â»Ô¡£<br /> ÓÎËµÍò³Ë¿à²»Ôç£¬Öø±Ş¿çÂíÉæÔ¶µÀ¡£<br /> »á»üÓŞ¸¾ÇáÂò³¼£¬ÓàÒà´Ç¼ÒÎ÷ÈëÇØ¡£<br /> ÑöÌì´óĞ¦³öÃÅÈ¥£¬ÎÒ±²ÆñÊÇÅîİïÈË¡£');
-//INSERT INTO `poem` VALUES ('2', '¡¶Ê«´Ê°æ\"Á÷ÀËµØÇò\"¡·<br /> <span style=\"font-size: 18px; color: grey\">-¹ùÅô </span><br /> <br /> Î÷·ç´µÖå¶«·½ºÓ£¬ÍòÄêµØÇò°×·¢¶à¡£ <br /> Á÷ÀËĞÇ¼Ê¼ÒºÎÈ¥£¬Âú´¬ÇåÃÎ³öÒøºÓ¡£');
+//INSERT INTO `poem` VALUES ('1', 'ã€Šå—é™µåˆ«å„¿ç«¥å…¥äº¬ã€‹<br /> <span style=\"font-size: 18px; color: grey\">[å”] æç™½ </span><br /> <br /> ç™½é…’æ–°ç†Ÿå±±ä¸­å½’ï¼Œé»„é¸¡å•„é»ç§‹æ­£è‚¥ã€‚<br /> å‘¼ç«¥çƒ¹é¸¡é…Œç™½é…’ï¼Œå„¿å¥³å¬‰ç¬‘ç‰µäººè¡£ã€‚<br /> é«˜æ­Œå–é†‰æ¬²è‡ªæ…°ï¼Œèµ·èˆè½æ—¥äº‰å…‰è¾‰ã€‚<br /> æ¸¸è¯´ä¸‡ä¹˜è‹¦ä¸æ—©ï¼Œè‘—é­è·¨é©¬æ¶‰è¿œé“ã€‚<br /> ä¼šç¨½æ„šå¦‡è½»ä¹°è‡£ï¼Œä½™äº¦è¾å®¶è¥¿å…¥ç§¦ã€‚<br /> ä»°å¤©å¤§ç¬‘å‡ºé—¨å»ï¼Œæˆ‘è¾ˆå²‚æ˜¯è“¬è’¿äººã€‚');
+//INSERT INTO `poem` VALUES ('2', 'ã€Šè¯—è¯ç‰ˆ\"æµæµªåœ°çƒ\"ã€‹<br /> <span style=\"font-size: 18px; color: grey\">-éƒ­é¹ </span><br /> <br /> è¥¿é£å¹çš±ä¸œæ–¹æ²³ï¼Œä¸‡å¹´åœ°çƒç™½å‘å¤šã€‚ <br /> æµæµªæ˜Ÿé™…å®¶ä½•å»ï¼Œæ»¡èˆ¹æ¸…æ¢¦å‡ºé“¶æ²³ã€‚');

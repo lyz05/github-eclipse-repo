@@ -35,7 +35,7 @@ public class logout extends HttpServlet {
 		// TODO Auto-generated method stub
 		Util.setRequestResponseAccess(request, response);
 		
-		response.getWriter().append(JSON.toJSONString(new Msg("605","注销操作完成")));
+		response.getWriter().append(JSON.toJSONString(new Msg("605","娉ㄩ攢鎿嶄綔瀹屾垚")));
 		HttpSession session = request.getSession(true);
 		session.setAttribute("username", null);
 		session.setAttribute("language", null);

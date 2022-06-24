@@ -19,15 +19,15 @@ import Book.borrowing.management.system.model.*;
 /**
  *
  * @author congcong
- * Í¨ÓÃÀà
+ * é€šç”¨ç±»
  */
 public class Util {
-    private Util() {}       //½ûÖ¹ÊµÀı»¯
+    private Util() {}       //ç¦æ­¢å®ä¾‹åŒ–
        
     /**
-     * ÃÜÂë¼ÓÃÜº¯Êı
-     * @param input ÊäÈëµÄÃÜÂë
-     * @return ¼ÓÃÜºóµÄÃÜÂë
+     * å¯†ç åŠ å¯†å‡½æ•°
+     * @param input è¾“å…¥çš„å¯†ç 
+     * @return åŠ å¯†åçš„å¯†ç 
      */
     public static String encodeInp(String input)
     {
@@ -67,10 +67,10 @@ public class Util {
     }
     
     /**
-     * ÅĞ¶ÏÊÇ·ñµÇÂ¼£¬Í¬Ê±ÉèÖÃÇëÇóºÍÏìÓ¦±àÂëĞÅÏ¢
-     * @param request ÇëÇóĞÅÏ¢
-     * @param response »ØÓ¦ĞÅÏ¢
-     * @return ÊÇ·ñµÇÂ¼
+     * åˆ¤æ–­æ˜¯å¦ç™»å½•ï¼ŒåŒæ—¶è®¾ç½®è¯·æ±‚å’Œå“åº”ç¼–ç ä¿¡æ¯
+     * @param request è¯·æ±‚ä¿¡æ¯
+     * @param response å›åº”ä¿¡æ¯
+     * @return æ˜¯å¦ç™»å½•
      * @throws ServletException
      * @throws IOException
      */
@@ -83,10 +83,10 @@ public class Util {
     }
     
     /**
-     * ÅĞ¶ÏÊÇ·ñÊÇ¹ÜÀíÔ±½ÇÉ«
-     * @param request ÇëÇóĞÅÏ¢
-     * @param response »ØÓ¦ĞÅÏ¢
-     * @return ÊÇ·ñÎª¹ÜÀíÔ±
+     * åˆ¤æ–­æ˜¯å¦æ˜¯ç®¡ç†å‘˜è§’è‰²
+     * @param request è¯·æ±‚ä¿¡æ¯
+     * @param response å›åº”ä¿¡æ¯
+     * @return æ˜¯å¦ä¸ºç®¡ç†å‘˜
      * @throws ServletException
      * @throws IOException
      */
@@ -99,10 +99,10 @@ public class Util {
     }
     
     /**
-     * ÅĞ¶ÏÊÇ·ñÊÇ¶ÁÕß½ÇÉ«
-     * @param request ÇëÇóĞÅÏ¢
-     * @param response »ØÓ¦ĞÅÏ¢
-     * @return ÊÇ·ñÎª¹ÜÀíÔ±
+     * åˆ¤æ–­æ˜¯å¦æ˜¯è¯»è€…è§’è‰²
+     * @param request è¯·æ±‚ä¿¡æ¯
+     * @param response å›åº”ä¿¡æ¯
+     * @return æ˜¯å¦ä¸ºç®¡ç†å‘˜
      * @throws ServletException
      * @throws IOException
      */
@@ -115,7 +115,7 @@ public class Util {
     }
     
     /**
-     * »ñÈ¡µ±Ç°ÓÃ»§ËùÓÃµÄÓïÑÔ
+     * è·å–å½“å‰ç”¨æˆ·æ‰€ç”¨çš„è¯­è¨€
      * @param request
      * @return
      */
@@ -127,17 +127,17 @@ public class Util {
     }
     
     public static void setRequestResponseAccess(HttpServletRequest request,HttpServletResponse response) throws UnsupportedEncodingException {
-    	//ÉèÖÃ×ÖÌå±àÂë¼°·µ»ØjsonµÄheader
+    	//è®¾ç½®å­—ä½“ç¼–ç åŠè¿”å›jsonçš„header
     	response.setContentType("application/json;charset=utf-8");
     	request.setCharacterEncoding("UTF-8");
 		response.setCharacterEncoding("UTF-8");
-    	// ÔÊĞí¸ÃÓò·¢Æğ¿çÓòÇëÇó
+    	// å…è®¸è¯¥åŸŸå‘èµ·è·¨åŸŸè¯·æ±‚
 		response.setHeader("Access-Control-Allow-Origin",request.getHeader("origin"));
-        // ÔÊĞíµÄÍâÓòÇëÇó·½Ê½
+        // å…è®¸çš„å¤–åŸŸè¯·æ±‚æ–¹å¼
         response.setHeader("Access-Control-Allow-Methods", "POST, GET");
-        // ÔÚ999999ÃëÄÚ£¬²»ĞèÒªÔÙ·¢ËÍÔ¤¼ìÑéÇëÇó£¬¿ÉÒÔ»º´æ¸Ã½á¹û
+        // åœ¨999999ç§’å†…ï¼Œä¸éœ€è¦å†å‘é€é¢„æ£€éªŒè¯·æ±‚ï¼Œå¯ä»¥ç¼“å­˜è¯¥ç»“æœ
         response.setHeader("Access-Control-Max-Age", "0");
-        // ÔÊĞí¿çÓòÇëÇó°üº¬Ä³ÇëÇóÍ·,x-requested-withÇëÇóÍ·ÎªÒì²½ÇëÇó
+        // å…è®¸è·¨åŸŸè¯·æ±‚åŒ…å«æŸè¯·æ±‚å¤´,x-requested-withè¯·æ±‚å¤´ä¸ºå¼‚æ­¥è¯·æ±‚
         response.setHeader("Access-Control-Allow-Headers",
         		"Origin, No-Cache, X-Requested-With, If-Modified-Since, Pragma, Last-Modified, Cache-Control, Expires, Content-Type, X-E4M-With,userId,token");
         response.setHeader("Access-Control-Allow-Credentials", "true");

@@ -29,8 +29,8 @@ public class WanderingServlet extends HttpServlet {
 		// TODO Auto-generated method stub
 		response.setContentType("text/html;charset=UTF-8");
 		response.getWriter()
-			.append("ÄúºÃ£¬ÎÒÊÇµÚÒ»¸öÁ÷ÀËµÄ servlet£¡<br>")
-			.append("ÏîÄ¿µØÖ· :")
+			.append("æ‚¨å¥½ï¼Œæˆ‘æ˜¯ç¬¬ä¸€ä¸ªæµæµªçš„ servletï¼<br>")
+			.append("é¡¹ç›®åœ°å€ :")
 			.append(request.getContextPath());
 	}
 

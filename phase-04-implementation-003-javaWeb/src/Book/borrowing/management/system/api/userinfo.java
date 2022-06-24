@@ -37,10 +37,10 @@ public class userinfo extends HttpServlet {
 		Util.setRequestResponseAccess(request, response);
 		if (!Util.judgeusername(request,response)) return;
 		
-		//»ñÈ¡ÓÃ»§Ãû
+		//è·å–ç”¨æˆ·å
 		HttpSession session = request.getSession(true);
 		String username = session.getAttribute("username").toString();
-		//»ñÈ¡¶ÁÕßĞÕÃû
+		//è·å–è¯»è€…å§“å
 		String readername = BookDBCon.preparedqueryResult("select readerName from Reader where readerNO=?",username);
 		UserModel userinfo = new UserModel(username,readername);
 		response.getWriter().append(JSON.toJSONString(userinfo));

@@ -10,7 +10,7 @@ public class ReaderModel {
 	public ReaderModel(String language,String readerno) {
 		this.language = language;
 		this.readerno=readerno;
-		String sql = "select * from View_Reader where ¶ÁÕß±àºÅ='"+readerno+"'";
+		String sql = "select * from View_Reader where è¯»è€…ç¼–å·='"+readerno+"'";
 		Vector<String> name = new Vector<String>();
 		Vector<Vector<String>> data = new Vector<Vector<String>>();
 		BookDBCon.queryVector2(sql, data, name);
@@ -48,7 +48,7 @@ public class ReaderModel {
 		this.notreturnnum=notreturnnum;
 	}
 	public String getSqlQueryString() {
-		String sql=" where ¶ÁÕß±àºÅ like '%"+readerno+"%' and ĞÕÃû like '%"+readername+"%' and ĞÔ±ğ like '%"+sex+"%' and Éí·İÖ¤ºÅ like '%"+idnum+"%' and ¹¤×÷µ¥Î» like '%"+workunit+"%'";
+		String sql=" where è¯»è€…ç¼–å· like '%"+readerno+"%' and å§“å like '%"+readername+"%' and æ€§åˆ« like '%"+sex+"%' and èº«ä»½è¯å· like '%"+idnum+"%' and å·¥ä½œå•ä½ like '%"+workunit+"%'";
 		return sql;
 	}
 	public Msg addReader() {
@@ -66,11 +66,11 @@ public class ReaderModel {
 		}
 	}
 	public Msg delReader() {
-		String sql = "select * from View_reader where ¶ÁÕß±àºÅ=?";
+		String sql = "select * from View_reader where è¯»è€…ç¼–å·=?";
 		if (BookDBCon.preparedqueryResult(sql, readerno) == null) {
 			return new Msg("403", "readernotfound",language);
 		}
-		sql = "select * from View_reader where ¶ÁÕß±àºÅ=? and Î´¹é»¹ÊıÁ¿=0";
+		sql = "select * from View_reader where è¯»è€…ç¼–å·=? and æœªå½’è¿˜æ•°é‡=0";
 		if (BookDBCon.preparedqueryResult(sql, readerno) == null) {
 			return new Msg("403", "somebody1",language);
 		}
@@ -103,6 +103,6 @@ public class ReaderModel {
 		return idnum.length()==18;
 	}
 	public boolean checksex() {
-		return sex.equals("ÄĞ") || sex.equals("Å®");
+		return sex.equals("ç”·") || sex.equals("å¥³");
 	}
 }

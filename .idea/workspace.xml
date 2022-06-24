@@ -1,105 +1,42 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
   <component name="ChangeListManager">
-    <list default="true" id="12a2e59f-adf9-4623-9652-9bf5a6c79c23" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/book/.idea/gradle.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/book/gradle/wrapper/gradle-wrapper.jar" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/book/gradle/wrapper/gradle-wrapper.properties" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/bookFE" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/bookFE/src/api/Book.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/bookFE/src/api/Borrow.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/bookFE/src/api/Reader.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/bookFE/src/api/Table.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/bookFE/src/api/User.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/bookFE/src/components/Footer.vue" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/bookFE/src/components/Main.vue" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/bookFE/src/components/Main/Filter.vue" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/bookFE/src/components/Main/Table.vue" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/bookFE/src/components/NavBar/User.vue" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/bookFE/src/i18n/en_US.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/bookFE/src/i18n/zh_CN.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/bookFE/src/utils/request.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/book/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/book/.idea/compiler.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/book/.idea/libraries/Maven__c3p0_c3p0_0_9_1_2.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/book/.idea/libraries/Maven__com_fasterxml_classmate_1_3_1.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/book/.idea/libraries/Maven__com_fasterxml_jackson_core_jackson_annotations_2_8_0.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/book/.idea/libraries/Maven__com_fasterxml_jackson_core_jackson_core_2_8_8.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/book/.idea/libraries/Maven__com_fasterxml_jackson_core_jackson_databind_2_8_8.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/book/.idea/libraries/Maven__com_google_protobuf_protobuf_java_2_6_0.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/book/.idea/libraries/Maven__commons_beanutils_commons_beanutils_1_8_3.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/book/.idea/libraries/Maven__commons_logging_commons_logging_1_2.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/book/.idea/libraries/Maven__javax_servlet_javax_servlet_api_3_0_1.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/book/.idea/libraries/Maven__javax_validation_validation_api_1_1_0_Final.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/book/.idea/libraries/Maven__jstl_jstl_1_2.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/book/.idea/libraries/Maven__junit_junit_4_11.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/book/.idea/libraries/Maven__mysql_mysql_connector_java_8_0_11.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/book/.idea/libraries/Maven__net_sf_ehcache_ehcache_core_2_5_0.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/book/.idea/libraries/Maven__org_apache_shiro_shiro_core_1_2_2.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/book/.idea/libraries/Maven__org_apache_shiro_shiro_ehcache_1_2_3.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/book/.idea/libraries/Maven__org_apache_shiro_shiro_quartz_1_2_3.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/book/.idea/libraries/Maven__org_apache_shiro_shiro_spring_1_2_3.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/book/.idea/libraries/Maven__org_apache_shiro_shiro_web_1_2_3.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/book/.idea/libraries/Maven__org_apache_tomcat_tomcat_annotations_api_8_0_22.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/book/.idea/libraries/Maven__org_apache_tomcat_tomcat_api_8_0_22.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/book/.idea/libraries/Maven__org_apache_tomcat_tomcat_catalina_8_0_22.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/book/.idea/libraries/Maven__org_apache_tomcat_tomcat_coyote_8_0_22.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/book/.idea/libraries/Maven__org_apache_tomcat_tomcat_el_api_8_0_22.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/book/.idea/libraries/Maven__org_apache_tomcat_tomcat_jni_8_0_22.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/book/.idea/libraries/Maven__org_apache_tomcat_tomcat_jsp_api_8_0_22.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/book/.idea/libraries/Maven__org_apache_tomcat_tomcat_juli_8_0_22.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/book/.idea/libraries/Maven__org_apache_tomcat_tomcat_servlet_api_8_0_22.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/book/.idea/libraries/Maven__org_apache_tomcat_tomcat_util_8_0_22.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/book/.idea/libraries/Maven__org_apache_tomcat_tomcat_util_scan_8_0_22.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/book/.idea/libraries/Maven__org_aspectj_aspectjweaver_1_8_9.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/book/.idea/libraries/Maven__org_hamcrest_hamcrest_core_1_3.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/book/.idea/libraries/Maven__org_hibernate_hibernate_validator_5_4_1_Final.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/book/.idea/libraries/Maven__org_jboss_logging_jboss_logging_3_3_0_Final.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/book/.idea/libraries/Maven__org_mybatis_generator_mybatis_generator_core_1_3_5.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/book/.idea/libraries/Maven__org_mybatis_mybatis_3_4_2.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/book/.idea/libraries/Maven__org_mybatis_mybatis_spring_1_3_1.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/book/.idea/libraries/Maven__org_opensymphony_quartz_quartz_1_6_1.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/book/.idea/libraries/Maven__org_slf4j_slf4j_api_1_6_4.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/book/.idea/libraries/Maven__org_springframework_spring_aop_4_3_7_RELEASE.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/book/.idea/libraries/Maven__org_springframework_spring_aspects_4_3_7_RELEASE.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/book/.idea/libraries/Maven__org_springframework_spring_beans_4_3_7_RELEASE.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/book/.idea/libraries/Maven__org_springframework_spring_context_4_3_7_RELEASE.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/book/.idea/libraries/Maven__org_springframework_spring_core_4_3_7_RELEASE.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/book/.idea/libraries/Maven__org_springframework_spring_expression_4_3_7_RELEASE.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/book/.idea/libraries/Maven__org_springframework_spring_jdbc_4_3_7_RELEASE.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/book/.idea/libraries/Maven__org_springframework_spring_test_4_3_7_RELEASE.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/book/.idea/libraries/Maven__org_springframework_spring_tx_4_3_7_RELEASE.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/book/.idea/libraries/Maven__org_springframework_spring_web_4_3_7_RELEASE.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/book/.idea/libraries/Maven__org_springframework_spring_webmvc_4_3_7_RELEASE.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/book/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/book/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/book/.idea/modules.xml" beforeDir="false" afterPath="$PROJECT_DIR$/book/.idea/modules.xml" afterDir="false" />
+    <list default="true" id="12a2e59f-adf9-4623-9652-9bf5a6c79c23" name="Default Changelist" comment="Default Changelist">
+      <change afterPath="$PROJECT_DIR$/ssm-crud/Dockerfile" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/book/book.iml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/book/target/book-0.0.1-SNAPSHOT/META-INF/MANIFEST.MF" beforeDir="false" afterPath="$PROJECT_DIR$/book/target/book-0.0.1-SNAPSHOT/META-INF/MANIFEST.MF" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/book/target/book.war" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/book/target/maven-archiver/pom.properties" beforeDir="false" afterPath="$PROJECT_DIR$/book/target/maven-archiver/pom.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/book/target/maven-status/maven-compiler-plugin/compile/default-compile/createdFiles.lst" beforeDir="false" afterPath="$PROJECT_DIR$/book/target/maven-status/maven-compiler-plugin/compile/default-compile/createdFiles.lst" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/book/target/maven-status/maven-compiler-plugin/compile/default-compile/inputFiles.lst" beforeDir="false" afterPath="$PROJECT_DIR$/book/target/maven-status/maven-compiler-plugin/compile/default-compile/inputFiles.lst" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bookFE/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/bookFE/package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bookFE/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/bookFE/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bookFE/public/favicon.ico" beforeDir="false" afterPath="$PROJECT_DIR$/bookFE/public/favicon.ico" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bookFE/src/App.vue" beforeDir="false" afterPath="$PROJECT_DIR$/bookFE/src/App.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bookFE/src/assets/logo.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/bookFE/src/components/HelloWorld.vue" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/bookFE/src/main.js" beforeDir="false" afterPath="$PROJECT_DIR$/bookFE/src/main.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ssm-crud/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/ssm-crud/pom.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
+  <component name="CodeStyleSettingsInfer">
+    <option name="done" value="true" />
+  </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="MarkdownSettingsMigration">
+    <option name="stateVersion" value="1" />
   </component>
   <component name="MavenImportPreferences">
     <option name="generalSettings">
       <MavenGeneralSettings>
-        <option name="mavenHome" value="C:\Users\congcong\AppData\Local\JetBrains\Toolbox\apps\IDEA-U\ch-0\202.6948.69\plugins\maven\lib\maven3" />
+        <option name="mavenHome" value="D:/apache-maven-3.5.2" />
+        <option name="useMavenConfig" value="true" />
+        <option name="userSettingsFile" value="D:\apache-maven-3.5.2\conf\settings.xml" />
       </MavenGeneralSettings>
     </option>
+  </component>
+  <component name="ProjectCodeStyleSettingsMigration">
+    <option name="version" value="2" />
   </component>
   <component name="ProjectId" id="1kV3OleMGrr5IjAXVy7mN77IGr6" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
@@ -107,13 +44,24 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">
-    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
-    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
-    <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="aspect.path.notification.shown" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/book" />
-    <property name="vue.rearranger.settings.migration" value="true" />
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "last_opened_file_path": "C:/Users/LIUAL16/IdeaProjects/github-eclipse-repo/ssm-crud",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "project.structure.last.edited": "模块",
+    "project.structure.proportion": "0.15",
+    "project.structure.side.proportion": "0.2",
+    "settings.editor.selected.configurable": "Debugger_Data_Views_Java"
+  }
+}]]></component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\LIUAL16\IdeaProjects\github-eclipse-repo\ssm-crud" />
+    </key>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
@@ -130,5 +78,32 @@
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State>
+              <option name="FILTERS">
+                <map>
+                  <entry key="branch">
+                    <value>
+                      <list>
+                        <option value="master" />
+                      </list>
+                    </value>
+                  </entry>
+                </map>
+              </option>
+            </State>
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+  <component name="XSLT-Support.FileAssociations.UIState">
+    <expand />
+    <select />
   </component>
 </project>

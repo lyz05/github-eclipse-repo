@@ -45,16 +45,16 @@ public class tablebootstrap extends HttpServlet {
 		Util.setRequestResponseAccess(request, response);
 		if (!Util.judgeusername(request,response)) return;
 		
-		//Êı¾İ×¼±¸
+		//æ•°æ®å‡†å¤‡
 		String username = request.getSession().getAttribute("username").toString();
 		String tableName = request.getParameter("table");
-		//ÓÃ»§ËùÊô½ÇÉ«ÅĞ¶Ï
+		//ç”¨æˆ·æ‰€å±è§’è‰²åˆ¤æ–­
 		if (tableName.equals("Borrow") || tableName.equals("BorrowHistory") || tableName.equals("View_Book")) {
 			if (!Util.judgereader(request, response)) return;
 		} else {
 			if (!Util.judgeadmin(request, response)) return;
 		}
-		//where´¦Àí
+		//whereå¤„ç†
 		String querysql=new String();
 		if (tableName.equals("View_Book_Admin")) {
 			BookModel bookinfo = new BookModel(Util.getlanguage(request),request.getParameter("bookno"),request.getParameter("bookname"),request.getParameter("author"),request.getParameter("press"),request.getParameter("price"),request.getParameter("publishdate"),request.getParameter("shopnum"));
@@ -68,12 +68,12 @@ public class tablebootstrap extends HttpServlet {
 			BorrowBookModel bookinfo = new BorrowBookModel(request.getParameter("bookno"),request.getParameter("bookname"),request.getParameter("author"),request.getParameter("press"),request.getParameter("publishdate_1"),request.getParameter("publishdate_2"),check,username);
 			querysql = bookinfo.sqlQueryString();
 		}
-		//¸÷ÖÖÊÓÍ¼Óë±í´¦Àí
+		//å„ç§è§†å›¾ä¸è¡¨å¤„ç†
 		if (tableName.equals("Borrow")) {
-			TableBootstrapModel BorrowTable = new TableBootstrapModel("select Í¼Êé±àºÅ,Í¼ÊéÃû³Æ,×÷Õß,³ö°æÉç,½èÊéÊ±¼ä,Ó¦¹é»¹ÈÕÆÚ,¹é»¹ÈÕÆÚ from View_Borrow where ¶ÁÕß±àºÅ='"+ username + "' and ¹é»¹ÈÕÆÚ is null",tableName);
+			TableBootstrapModel BorrowTable = new TableBootstrapModel("select å›¾ä¹¦ç¼–å·,å›¾ä¹¦åç§°,ä½œè€…,å‡ºç‰ˆç¤¾,å€Ÿä¹¦æ—¶é—´,åº”å½’è¿˜æ—¥æœŸ,å½’è¿˜æ—¥æœŸ from View_Borrow where è¯»è€…ç¼–å·='"+ username + "' and å½’è¿˜æ—¥æœŸ is null",tableName);
 			response.getWriter().append(JSON.toJSONString(BorrowTable));
 		} else if (tableName.equals("BorrowHistory")) {
-			TableBootstrapModel BorrowHistoryTable = new TableBootstrapModel("select Í¼Êé±àºÅ,Í¼ÊéÃû³Æ,×÷Õß,³ö°æÉç,½èÊéÊ±¼ä,Ó¦¹é»¹ÈÕÆÚ,¹é»¹ÈÕÆÚ from View_Borrow where ¶ÁÕß±àºÅ='"+ username + "' and ¹é»¹ÈÕÆÚ is not null",tableName);
+			TableBootstrapModel BorrowHistoryTable = new TableBootstrapModel("select å›¾ä¹¦ç¼–å·,å›¾ä¹¦åç§°,ä½œè€…,å‡ºç‰ˆç¤¾,å€Ÿä¹¦æ—¶é—´,åº”å½’è¿˜æ—¥æœŸ,å½’è¿˜æ—¥æœŸ from View_Borrow where è¯»è€…ç¼–å·='"+ username + "' and å½’è¿˜æ—¥æœŸ is not null",tableName);
 			response.getWriter().append(JSON.toJSONString(BorrowHistoryTable));
 		} else {
 			TableBootstrapModel BookTable = new TableBootstrapModel("select * from "+tableName+querysql,tableName);

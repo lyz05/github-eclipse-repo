@@ -13,7 +13,7 @@ import javax.servlet.http.HttpServletResponse;
 @WebServlet("/chat/RoomUser")
 public class RoomUser extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-    //Ç°Ì¨µ÷ÓÃ´Ë·½·¨»ñÈ¡ÔÚÏßÓÃ»§ÁĞ±í
+    //å‰å°è°ƒç”¨æ­¤æ–¹æ³•è·å–åœ¨çº¿ç”¨æˆ·åˆ—è¡¨
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		request.setCharacterEncoding("utf-8");

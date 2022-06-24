@@ -2,5 +2,19 @@
 <project version="4">
   <component name="Encoding">
     <file url="file://$PROJECT_DIR$/Readme.md" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/Book/borrowing/management/system/Util.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/Book/borrowing/management/system/api/login.java" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/src/Book/borrowing/management/system/api/logout.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/Book/borrowing/management/system/api/tablebootstrap.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/Book/borrowing/management/system/api/userinfo.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/Book/borrowing/management/system/model/BookModel.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/Book/borrowing/management/system/model/BorrowBookModel.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/Book/borrowing/management/system/model/BorrowModel.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/Book/borrowing/management/system/model/Msg.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/Book/borrowing/management/system/model/ReaderModel.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/Book/borrowing/management/system/model/TableBootstrapModel.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/chat/RoomUser.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/sdlc/PoemWeb.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/sdlc/WanderingServlet.java" charset="UTF-8" />
   </component>
 </project>

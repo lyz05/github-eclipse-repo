@@ -1,11 +1,11 @@
 package Book.borrowing.management.system.model;
 
-//½èÔÄÍ¼Êé¹ıÂËÆ÷¼°½èÔÄÍ¼Êé
+//å€Ÿé˜…å›¾ä¹¦è¿‡æ»¤å™¨åŠå€Ÿé˜…å›¾ä¹¦
 public class BorrowBookModel {
 	public String bookno,bookname,author,press,publishdate_1,publishdate_2,price,publishdate,shopnum,curnum;
 	public boolean check;
 	public String readerno;
-	//¹ıÂËÆ÷¹¹Ôìº¯Êı
+	//è¿‡æ»¤å™¨æ„é€ å‡½æ•°
 	public BorrowBookModel(String bookno,String bookname,String author,String press,String publishdate_1,String publishdate_2,boolean check,String readerno)
 	{
 		this.bookno=bookno;
@@ -17,7 +17,7 @@ public class BorrowBookModel {
 		this.check=check;
 		this.readerno=readerno;
 	}
-	//½èÔÄÍ¼Êé¹¹Ôìº¯Êı
+	//å€Ÿé˜…å›¾ä¹¦æ„é€ å‡½æ•°
 	public BorrowBookModel(String bookno,String bookname,String author,String press,String publishdate,String shopnum,String curnum)
 	{
 		this.bookno=bookno;
@@ -29,13 +29,13 @@ public class BorrowBookModel {
 		this.curnum=curnum;
 	}
 	public String sqlQueryString() {
-		String sql = " where Í¼Êé±àºÅ like '%"+ bookno + "%' and Í¼ÊéÃû³Æ like '%" + bookname + "%' and ×÷Õß like '%" + author + "%' and ³ö°æÉç like '%" + press + "%'";
+		String sql = " where å›¾ä¹¦ç¼–å· like '%"+ bookno + "%' and å›¾ä¹¦åç§° like '%" + bookname + "%' and ä½œè€… like '%" + author + "%' and å‡ºç‰ˆç¤¾ like '%" + press + "%'";
         if (!publishdate_1.equals("")) 
-            sql += " and ³ö°æÈÕÆÚ>='" + publishdate_1+"'";
+            sql += " and å‡ºç‰ˆæ—¥æœŸ>='" + publishdate_1+"'";
         if (!publishdate_2.equals("")) 
-            sql += " and ³ö°æÈÕÆÚ<='" + publishdate_2+"'";
+            sql += " and å‡ºç‰ˆæ—¥æœŸ<='" + publishdate_2+"'";
         if (check)
-            sql += " and ÔÚ¿âÊıÁ¿>0 and Í¼Êé±àºÅ not in (select Í¼Êé±àºÅ from View_Borrow where ¶ÁÕß±àºÅ='"+readerno+"' and ¹é»¹ÈÕÆÚ is null)";
+            sql += " and åœ¨åº“æ•°é‡>0 and å›¾ä¹¦ç¼–å· not in (select å›¾ä¹¦ç¼–å· from View_Borrow where è¯»è€…ç¼–å·='"+readerno+"' and å½’è¿˜æ—¥æœŸ is null)";
         return sql;
 	}
 }

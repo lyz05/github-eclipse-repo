@@ -9,7 +9,7 @@ public class TableBootstrapModel {
 	public Vector<Object> rows;
 	
 	public TableBootstrapModel(String sql,String tableName) {
-        //dataÊÇ±í¸ñÖĞµÄÊı¾İ£¬nameÊÇ±íÍ·×Ö¶ÎĞÅÏ¢
+        //dataæ˜¯è¡¨æ ¼ä¸­çš„æ•°æ®ï¼Œnameæ˜¯è¡¨å¤´å­—æ®µä¿¡æ¯
     	Vector<Vector<String>> data = new Vector<Vector<String>>();
     	Vector<String> name = new Vector<String>();
         rows = new Vector<Object>();

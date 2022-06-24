@@ -3,7 +3,7 @@ package Book.borrowing.management.system.model;
 import java.util.Locale;
 import java.util.ResourceBundle;
 
-//·µ»Ø²Ù×÷ĞÅÏ¢
+//è¿”å›æ“ä½œä¿¡æ¯
 public class Msg {
 	private String message;
 	private String code;
@@ -11,13 +11,13 @@ public class Msg {
 	
 	public Msg() {}
 	
-	//¹ú¼Ê»¯ĞÅÏ¢¹¹Ôìº¯Êı
+	//å›½é™…åŒ–ä¿¡æ¯æ„é€ å‡½æ•°
 	public Msg(String code,String message,String language) {
 		setCode(code);
 		setlocale(language);
 		setMessage(message);
 	}
-	//·Ç¹ú¼Ê»¯ĞÅÏ¢¹¹Ôìº¯Êı
+	//éå›½é™…åŒ–ä¿¡æ¯æ„é€ å‡½æ•°
 	public Msg(String code,String message) {
 		setCode(code);
 		this.message=message; 
