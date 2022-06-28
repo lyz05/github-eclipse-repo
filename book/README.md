@@ -17,7 +17,7 @@
 系统基于Docker容器化部署，使用docker-compose进行多容器化管理，整套系统由三个容器Nginx、Tomcat、MySQL构成，分别完成前端，后端，数据库的任务。
 
 ## Project setup
-使用IDEA IDE打开项目，设置该项目为Maven项目，配置Tomcat7服务器，配置mysql数据库，并执行[SQLQuery-mysql](./database/SQLQuery-mysql.sql)下的SQL语句。
+使用IDEA IDE打开项目，设置该项目为Maven项目，配置Tomcat7服务器，配置mysql数据库，并执行初始化数据库BookDB1的SQL语句。
 
 ### 项目依赖
  - mvn clean

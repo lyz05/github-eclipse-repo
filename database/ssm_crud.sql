@@ -1,4 +1,4 @@
-drop database ssm_crud;
+use mysql;
 create database ssm_crud;
 use ssm_crud;
 -- MySQL dump 10.13  Distrib 8.0.28, for Win64 (x86_64)

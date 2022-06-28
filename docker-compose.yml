@@ -3,7 +3,7 @@ version: '3'
 services:
   mysql:
     container_name: mysql
-    build: ./database
+    build: ./database/.
     restart: always
     # volumes:
     #   - ./mysql/data:/var/lib/mysql
@@ -19,8 +19,6 @@ services:
     ports:
       - 8080:8080
 #      - 8009:8009
-    # volumes:
-    #   - ./tomcat/webapps:/usr/local/tomcat/webapps
     depends_on:
       - mysql
     environment:
